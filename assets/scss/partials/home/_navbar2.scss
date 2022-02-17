@@ -3,7 +3,7 @@
     & a{
         font-weight: 500;
         padding: $size 0 $size ($size*2)-4 !important;
-        color: $navbar-font-color;
+        color: $font-color;
         font-size: $size+1;
         transition: .3s all;
     }
