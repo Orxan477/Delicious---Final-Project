@@ -10,7 +10,9 @@
 
 #nav1 .nav1Left {
   font-size: 15px;
+  font-weight: 500;
   color: black;
+  margin-right: 24px;
 }
 
 #nav1 .nav1Left i {

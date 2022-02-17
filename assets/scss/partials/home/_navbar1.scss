@@ -3,10 +3,13 @@
     background-color: transparent;
 }
 #nav1 .nav1Left{
-    font-size: $font-size+1;
+    font-size: $size+1;
+    font-weight: 500;
     color: black;
+    margin-right: $size+10;
 }
 
 #nav1 .nav1Left i{
     color: $main-color;
+    
 }
