@@ -19,4 +19,34 @@
 #nav1 .nav1Left i {
   color: #ffb03b;
 }
+
+.nav2Right {
+  margin-left: 29%;
+}
+
+.nav2Right a {
+  font-weight: 500;
+  padding: 14px 0 14px 24px !important;
+  color: black;
+  font-size: 15px;
+  -webkit-transition: .3s all;
+  transition: .3s all;
+}
+
+.nav2Right a:hover {
+  color: #ffb03b;
+}
+
+.nav2LeftIcon {
+  font-family: 'Satisfy', cursive;
+  font-size: 28px;
+  font-weight: 500;
+  color: #ffb03b;
+  letter-spacing: 3px;
+  line-height: 1;
+}
+
+.nav2LeftIcon:hover {
+  color: #ffb03b;
+}
 /*# sourceMappingURL=style.css.map */

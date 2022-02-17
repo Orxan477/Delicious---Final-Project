@@ -1,0 +1,24 @@
+.nav2Right{
+    margin-left: 29%;
+    & a{
+        font-weight: 500;
+        padding: $size 0 $size ($size*2)-4 !important;
+        color: black;
+        font-size: $size+1;
+        transition: .3s all;
+    }
+    & a:hover{
+        color: $main-color;
+    }
+}
+.nav2LeftIcon{
+    font-family: 'Satisfy', cursive;
+    font-size: ($size*2);
+    font-weight: 500;
+    color: $logo-color;
+    letter-spacing: 3px;
+    line-height: 1;
+}
+.nav2LeftIcon:hover{
+    color:$logo-color;
+}
