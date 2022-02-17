@@ -13,6 +13,7 @@
   font-weight: 500;
   color: black;
   margin-right: 24px;
+  word-spacing: -1px;
 }
 
 #nav1 .nav1Left i {
