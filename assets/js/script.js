@@ -5,6 +5,7 @@ $(document).ready(function(){
       items:1,
       loop:true,
       autoplay:true,
+      animateOut: 'fadeOut',
       autoplayTimeout:4000,
       autoplayHoverPause:true
   });
