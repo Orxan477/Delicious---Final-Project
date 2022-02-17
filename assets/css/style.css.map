@@ -5,7 +5,8 @@
         "../scss/style.scss",
         "../scss/partials/_variable.scss",
         "../scss/partials/home/_index.scss",
-        "../scss/partials/home/_navbar1.scss"
+        "../scss/partials/home/_navbar1.scss",
+        "../scss/partials/home/_navbar2.scss"
     ],
     "names": [],
     "file": "style.css"
