@@ -11,7 +11,7 @@
 #nav1 .nav1Left {
   font-size: 15px;
   font-weight: 500;
-  color: black;
+  color: white;
   margin-right: 24px;
   word-spacing: -1px;
 }
@@ -27,7 +27,7 @@
 .nav2Right a {
   font-weight: 500;
   padding: 14px 0 14px 24px !important;
-  color: black;
+  color: white;
   font-size: 15px;
   -webkit-transition: .3s all;
   transition: .3s all;
@@ -41,13 +41,13 @@
   font-family: 'Satisfy', cursive;
   font-size: 28px;
   font-weight: 500;
-  color: #ffb03b;
+  color: white;
   letter-spacing: 3px;
   line-height: 1;
 }
 
 .nav2LeftIcon:hover {
-  color: #ffb03b;
+  color: white;
 }
 
 .owlImg img {
