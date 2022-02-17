@@ -1,2 +1,2 @@
-# Final Project
+# Final Project - Restaurant
 To reserve a place in a restaurant, to order food...
