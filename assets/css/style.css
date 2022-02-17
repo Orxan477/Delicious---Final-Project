@@ -87,6 +87,8 @@
   margin-bottom: 30px;
   font-family: 'Satisfy', cursive;
   color: white;
+  font-size: 48px;
+  font-weight: 600;
 }
 
 .contentIntro h2 span {
@@ -96,6 +98,8 @@
 
 .contentIntro p {
   margin: 0 auto 30px auto;
+  color: white;
+  font-weight: 500;
 }
 
 .contentIntro button {
@@ -104,27 +108,28 @@
   padding: 10px 33px;
   font-size: 14px;
   background-color: transparent;
-  border: 1px solid #ffb03b;
+  border: 2px solid #ffb03b;
   font-weight: 500;
   -webkit-transition: .3s all;
   transition: .3s all;
+  font-weight: 500;
 }
 
 .contentIntro button:hover {
   background-color: #ffb03b;
-  border: 1px solid #ffb03b;
+  border: 2px solid #ffb03b;
 }
 
 .contentIntro .btn:focus {
   background-color: #ffb03b;
-  border-color: 1px solid #ffb03b;
+  border-color: 2px solid #ffb03b;
   -webkit-box-shadow: 0;
           box-shadow: 0;
 }
 
 .contentIntro .btn:active:focus {
   background-color: #ffb03b;
-  border-color: 1px solid #ffb03b;
+  border-color: 2px solid #ffb03b;
   -webkit-box-shadow: 0 !important;
           box-shadow: 0 !important;
 }
