@@ -167,20 +167,21 @@
 .contentIntro .btn:focus {
   background-color: #ffb03b;
   border-color: 2px solid #ffb03b;
-  -webkit-box-shadow: 0;
-          box-shadow: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 .contentIntro .btn:active:focus {
   background-color: #ffb03b;
   border-color: 2px solid #ffb03b;
-  -webkit-box-shadow: 0 !important;
-          box-shadow: 0 !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
 }
 
 .contentIntro .btn-primary:focus {
-  -webkit-box-shadow: 0 !important;
-          box-shadow: 0 !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  border-color: 1px solid #ffb03b !important;
 }
 
 #homeIntro .active .animate-head {
