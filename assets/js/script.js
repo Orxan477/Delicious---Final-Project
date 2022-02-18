@@ -6,6 +6,6 @@ $(document).ready(function(){
       loop:true,
       autoplay:true,
       animateOut: 'fadeOut',
-      autoplayTimeout:4000
+      autoplayTimeout:5000
   });
   });

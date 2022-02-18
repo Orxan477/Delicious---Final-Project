@@ -20,6 +20,23 @@
   color: #ffb03b;
 }
 
+@media only screen and (max-width: 992px) {
+  .myNavbar {
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+  .myNavbar #nav1 .nav1Hidden {
+    display: none;
+  }
+  .myNavbar #nav1 .nav1Number {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
 .nav2Right {
   margin-left: 29%;
 }
@@ -141,5 +158,20 @@
 .contentIntro .btn-primary:focus {
   -webkit-box-shadow: 0 !important;
           box-shadow: 0 !important;
+}
+
+.contentIntro .animate-head {
+  -webkit-animation: fadeInDown ease 1s both;
+          animation: fadeInDown ease 1s both;
+}
+
+.contentIntro .animate-content {
+  -webkit-animation: fadeInUp ease 1s 1s both;
+          animation: fadeInUp ease 1s 1s both;
+}
+
+.contentIntro .animate-button {
+  -webkit-animation: fadeInUp ease 1s 2s both;
+          animation: fadeInUp ease 1s 2s both;
 }
 /*# sourceMappingURL=style.css.map */

@@ -14,3 +14,17 @@
     color: $main-color;
     
 }
+@media only screen and (max-width: 992px) {
+    .myNavbar{
+        background-color: rgba(0,0,0,0.9);
+        & #nav1{
+            & .nav1Hidden{
+                display: none;
+            }
+            & .nav1Number{
+               display: flex;
+               justify-content: center;
+            }
+        }
+    }
+}

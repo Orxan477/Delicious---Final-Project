@@ -44,7 +44,7 @@
     & button{
         margin: 0 ($size/2)+3;
         border-radius: ($size*4)+2;
-        padding: 10px 33px;
+        padding: ($size/2)+3 ($size*2)+5;
         font-size: $size;
         background-color: transparent;
         border: 2px solid $main-color;
@@ -68,5 +68,15 @@
     }
     & .btn-primary:focus{
         box-shadow: 0 !important;
+    }
+    & .animate-head{
+        animation: fadeInDown ease 1s both;
+    }
+    & .animate-content{
+        // animation-duration: 2s;
+        animation: fadeInUp ease 1s 1s both;
+    }
+    & .animate-button{
+        animation: fadeInUp ease 1s 2s both;
     }
 }
