@@ -27,17 +27,16 @@
 }
 .background-scroll-navbar{
     background-color: rgba(0,0,0,0.9);
-    transition: .5s all;
+    transition: .3s all;
+}
+.background-scroll-0-navbar{
+    transition: .3s all;
 }
 .sticky {
     position: fixed;
     top: 0;
     width: 100%;
 }
-// #nav2{
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     z-index: 5;
-//     width: 100%;
-// }
+.active-color{
+    color: $main-color !important;
+}
