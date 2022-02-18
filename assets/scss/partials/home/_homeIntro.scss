@@ -69,14 +69,22 @@
     & .btn-primary:focus{
         box-shadow: 0 !important;
     }
-    & .animate-head{
-        animation: fadeInDown ease 1s both;
-    }
-    & .animate-content{
-        // animation-duration: 2s;
-        animation: fadeInUp ease 1s 1s both;
-    }
-    & .animate-button{
-        animation: fadeInUp ease 1s 2s both;
+   
+}
+#homeIntro{
+    // position: absolute;
+    // top: 0;
+    // left: 0;
+    // width: 100%;
+    & .active{
+        & .animate-head{
+            animation: fadeInDown ease 1s both;
+        }
+        & .animate-content{
+            animation: fadeInUp ease 1s 1s both;
+        }
+        & .animate-button{
+            animation: fadeInUp ease 1s 2s both;
+        }
     }
 }

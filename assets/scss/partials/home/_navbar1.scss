@@ -1,6 +1,7 @@
 
 #nav1{
     background-color: transparent;
+    transition: .3s;
 }
 #nav1 .nav1Left{
     font-size: $size+1;
@@ -13,6 +14,14 @@
 #nav1 .nav1Left i{
     color: $main-color;
     
+}
+.myNavbar{
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    width: 100%;
 }
 @media only screen and (max-width: 992px) {
     .myNavbar{
@@ -28,3 +37,14 @@
         }
     }
 }
+// #nav1{
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     z-index: 5;
+//     width: 100%;
+// }
+// .navbar1Hidden{
+//     display: none;
+//     transition: .5s all;
+// }

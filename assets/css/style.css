@@ -6,6 +6,8 @@
 
 #nav1 {
   background-color: transparent;
+  -webkit-transition: .3s;
+  transition: .3s;
 }
 
 #nav1 .nav1Left {
@@ -18,6 +20,15 @@
 
 #nav1 .nav1Left i {
   color: #ffb03b;
+}
+
+.myNavbar {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 100%;
 }
 
 @media only screen and (max-width: 992px) {
@@ -69,6 +80,18 @@
 
 .burgerMenu {
   color: white;
+}
+
+.background-scroll-navbar {
+  background-color: rgba(0, 0, 0, 0.9);
+  -webkit-transition: .5s all;
+  transition: .5s all;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 .owlImg .img {
@@ -160,17 +183,17 @@
           box-shadow: 0 !important;
 }
 
-.contentIntro .animate-head {
+#homeIntro .active .animate-head {
   -webkit-animation: fadeInDown ease 1s both;
           animation: fadeInDown ease 1s both;
 }
 
-.contentIntro .animate-content {
+#homeIntro .active .animate-content {
   -webkit-animation: fadeInUp ease 1s 1s both;
           animation: fadeInUp ease 1s 1s both;
 }
 
-.contentIntro .animate-button {
+#homeIntro .active .animate-button {
   -webkit-animation: fadeInUp ease 1s 2s both;
           animation: fadeInUp ease 1s 2s both;
 }
