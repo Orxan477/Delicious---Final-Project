@@ -197,4 +197,73 @@
   -webkit-animation: fadeInUp ease 1s 2s both;
           animation: fadeInUp ease 1s 2s both;
 }
+
+.padding-all-content {
+  padding: 0 7%;
+}
+
+.image-about {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  min-height: 400px;
+  position: relative;
+}
+
+.image-about .icon-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  font-size: 25px;
+  color: white;
+  padding: 25px;
+  border-radius: 44px;
+  background-color: #ffb03b;
+  cursor: pointer;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.image-about .icon-play:hover {
+  background-color: #f0a636;
+}
+
+.about-head h3 {
+  font-family: 'Satisfy', cursive;
+  font-size: 34px;
+  color: #444444;
+}
+
+.about-head h3 span {
+  font-family: 'Satisfy', cursive;
+  font-size: 34px;
+  font-weight: 600;
+}
+
+.about-content p {
+  color: #848484;
+  font-size: 15px;
+}
+
+.about-italic-content p {
+  font-style: italic;
+  font-size: 15px;
+  color: #848484;
+}
+
+.about-content-options li {
+  list-style: none;
+  font-size: 16px;
+}
+
+.about-content-options .check-option-about {
+  color: #ffb03b;
+}
+
+.about-content-options .distance-ul-about {
+  margin: 18px 0;
+}
 /*# sourceMappingURL=style.css.map */

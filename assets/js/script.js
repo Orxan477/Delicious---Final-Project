@@ -6,8 +6,8 @@ $(document).ready(function(){
       loop:true,
       autoplay:true,
       animateOut: 'fadeOut',
-      autoplayTimeout:5000,
-      autoplayHoverPause:true
+      autoplayTimeout:6000
+      // autoplayHoverPause:true
   });
   });
 
@@ -15,7 +15,6 @@ $(document).ready(function(){
 
 window.onscroll = function() {myFunction()};
 
-// var navbar1 = document.getElementById("nav1");
 var navbar2 = document.getElementById("nav2");
 var sticky = navbar2.offsetTop;
 
