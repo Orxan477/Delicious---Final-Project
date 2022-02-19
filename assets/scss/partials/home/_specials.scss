@@ -1,4 +1,4 @@
-.chooseIntro{
+.specialIntro{
     flex-direction: column;
     text-align: center;
     & h3{
@@ -20,29 +20,24 @@
 }
 
 @media only screen and (min-width: 1024px) {
-    .chooseIntro{
+    .specialIntro{
         & p{
             width: 50%;
         }
     }
 }
-
-.myCard{
-    padding: 14% 9%;
-    border: none;
-    box-shadow: 0 $size/3 $size+1 rgb(212, 212, 212);
-    border: none;
-    height: 100%;
-    & h5{
-        font-size: $size*2;
-        font-weight: 700;
-        color: $choose-number-color;
-    }
-    & h6 {
-        color: $choose-font-color;
-        font-family: "Satisfy", sans-serif;
-        font-size: ($size*2)-4;
-        font-weight: 600;
-        margin: 5% 0;
+.titleSpecials{
+    & ul{
+        & li{
+            list-style: none;
+            padding: 0;
+            & .nav-link{
+                font-size: $size+1;
+                color: $second-color;
+                font-weight: 600;
+                padding: 12px 15px 12px 0;
+                border-right: 2px solid #e8e7e4;
+            }
+        }
     }
 }
