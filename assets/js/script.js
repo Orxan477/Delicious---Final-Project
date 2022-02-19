@@ -59,12 +59,12 @@ function myFunctionHomeNavbar() {
 var specialNames = document.querySelectorAll(".special-name");
 
 [...specialNames].forEach((name) => {
-  name.addEventListener("click", function (ev) {
+  name.addEventListener("click", async function (ev) {
 
     ev.preventDefault();
     ChangeActiveSpecial(name);
-    GetClickData(name);
     CurrentActiveProperty();
+    GetClickData(name);
 
   });
 });
@@ -75,19 +75,20 @@ function ChangeActiveSpecial(name) {
   name.classList.add("active-special");
 }
 
-async function GetClickData(name) {
-  let clickNameDataId = name.getAttribute("data-id");
-  let clickNameProp = document.getElementById(clickNameDataId);
-  await ChangeActiveProperty(clickNameProp)
-}
-
 function CurrentActiveProperty() {
   let currentActiveSpecialProp = document.querySelector(".active-special-property");
   currentActiveSpecialProp.classList.remove("active-special-property");
   currentActiveSpecialProp.classList.add("d-none");
 }
 
-async function ChangeActiveProperty(clickNameProp){
-  await clickNameProp.classList.remove("d-none");
-  await clickNameProp.classList.add("active-special-property");
+function GetClickData(name) {
+  let clickNameDataId = name.getAttribute("data-id");
+  let clickNameProp = document.getElementById(clickNameDataId);
+  ChangeActiveProperty(clickNameProp);
+}
+
+
+function ChangeActiveProperty(clickNameProp){
+  clickNameProp.classList.remove("d-none");
+  clickNameProp.classList.add("active-special-property");
 }
