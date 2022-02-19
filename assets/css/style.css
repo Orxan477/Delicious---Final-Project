@@ -208,6 +208,10 @@
           animation: fadeInUp ease 1s 2s both;
 }
 
+#about {
+  background-color: #fffaf3;
+}
+
 .padding-all-content {
   padding: 0 7%;
 }
@@ -275,5 +279,38 @@
 
 .about-content-options .distance-ul-about {
   margin: 18px 0;
+}
+
+.chooseIntro {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+}
+
+.chooseIntro h3 {
+  font-size: 31px;
+  color: #444444;
+  font-family: 'Satisfy', cursive;
+  font-weight: 600;
+}
+
+.chooseIntro h3 span {
+  color: #ffb03b;
+  font-family: 'Satisfy', cursive;
+}
+
+.chooseIntro p {
+  font-size: 16px;
+  color: #444444;
+  font-weight: 300;
+  margin: 1% auto 0 auto;
+}
+
+@media only screen and (min-width: 1024px) {
+  .chooseIntro p {
+    width: 50%;
+  }
 }
 /*# sourceMappingURL=style.css.map */

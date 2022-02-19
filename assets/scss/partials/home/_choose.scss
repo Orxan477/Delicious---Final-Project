@@ -1,0 +1,28 @@
+.chooseIntro{
+    flex-direction: column;
+    text-align: center;
+    & h3{
+        font-size: ($size*2)+3;
+        color: $second-color;
+        font-family: 'Satisfy', cursive;
+        font-weight: 600;
+        & span{
+            color: $main-color;
+            font-family: 'Satisfy', cursive;
+        }
+    }
+    & p{
+        font-size: $size+2;
+        color: $second-color;
+        font-weight: 300;
+        margin: 1% auto 0 auto;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .chooseIntro{
+        & p{
+            width: 50%;
+        }
+    }
+}
