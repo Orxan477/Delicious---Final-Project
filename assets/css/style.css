@@ -388,4 +388,24 @@
 .titleSpecials ul li .nav-link:hover {
   color: #ffb03b;
 }
+
+.content-special h3 {
+  font-family: 'Satisfy', cursive;
+  color: #444444;
+  font-weight: 600;
+  font-size: 28px;
+  margin: 0;
+}
+
+.content-special .distance {
+  color: #777777;
+  font-style: italic;
+  font-size: 16px;
+  margin: 3% 0 2% 0;
+}
+
+.content-special .normal-text {
+  color: #777777;
+  font-size: 16px;
+}
 /*# sourceMappingURL=style.css.map */

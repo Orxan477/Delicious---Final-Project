@@ -45,3 +45,23 @@
         }
     }
 }
+
+.content-special{
+    & h3{
+        font-family: 'Satisfy', cursive;
+        color: $second-color;
+        font-weight: 600;
+        font-size: $size*2;
+        margin: 0;
+    }
+    & .distance{
+        color: $special-font-color;
+        font-style: italic;
+        font-size: $size+2;
+        margin: 3% 0 2% 0;
+    }
+    & .normal-text{
+        color: $special-font-color;
+        font-size: $size+2;
+    }
+}
