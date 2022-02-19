@@ -66,7 +66,7 @@
 }
 
 .nav2LeftIcon {
-  font-family: 'Satisfy', cursive;
+  font-family: "Satisfy", cursive;
   font-size: 28px;
   font-weight: 500;
   color: white;
@@ -138,14 +138,14 @@
 
 .contentIntro h2 {
   margin-bottom: 30px;
-  font-family: 'Satisfy', cursive;
+  font-family: "Satisfy", cursive;
   color: white;
   font-size: 48px;
   font-weight: 600;
 }
 
 .contentIntro h2 span {
-  font-family: 'Satisfy', cursive;
+  font-family: "Satisfy", cursive;
   color: #ffb03b;
 }
 
@@ -246,13 +246,13 @@
 }
 
 .about-head h3 {
-  font-family: 'Satisfy', cursive;
+  font-family: "Satisfy", cursive;
   font-size: 34px;
   color: #444444;
 }
 
 .about-head h3 span {
-  font-family: 'Satisfy', cursive;
+  font-family: "Satisfy", cursive;
   font-size: 34px;
   font-weight: 600;
 }
@@ -292,13 +292,13 @@
 .chooseIntro h3 {
   font-size: 32px;
   color: #444444;
-  font-family: 'Satisfy', cursive;
+  font-family: "Satisfy", cursive;
   font-weight: 600;
 }
 
 .chooseIntro h3 span {
   color: #ffb03b;
-  font-family: 'Satisfy', cursive;
+  font-family: "Satisfy", cursive;
 }
 
 .chooseIntro p {
@@ -348,13 +348,13 @@
 .specialIntro h3 {
   font-size: 32px;
   color: #444444;
-  font-family: 'Satisfy', cursive;
+  font-family: "Satisfy", cursive;
   font-weight: 600;
 }
 
 .specialIntro h3 span {
   color: #ffb03b;
-  font-family: 'Satisfy', cursive;
+  font-family: "Satisfy", cursive;
 }
 
 .specialIntro p {
@@ -390,7 +390,7 @@
 }
 
 .content-special h3 {
-  font-family: 'Satisfy', cursive;
+  font-family: "Satisfy", cursive;
   color: #444444;
   font-weight: 600;
   font-size: 28px;

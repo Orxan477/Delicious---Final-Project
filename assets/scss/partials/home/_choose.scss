@@ -4,11 +4,11 @@
     & h3{
         font-size: ($size*2)+4;
         color: $second-color;
-        font-family: 'Satisfy', cursive;
+        font-family: $second-font-family;
         font-weight: 600;
         & span{
             color: $main-color;
-            font-family: 'Satisfy', cursive;
+            font-family: $second-font-family;
         }
     }
     & p{

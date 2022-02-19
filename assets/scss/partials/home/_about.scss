@@ -30,11 +30,11 @@
 }
 .about-head{
     & h3{
-        font-family: 'Satisfy', cursive;
+        font-family: $second-font-family;
         font-size: ($size*2)+6;
         color: $second-color;
         & span{
-            font-family: 'Satisfy', cursive;
+            font-family: $second-font-family;
             font-size: ($size*2)+6;
             font-weight: 600;
         }
