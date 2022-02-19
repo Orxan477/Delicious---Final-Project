@@ -37,6 +37,10 @@
                 font-weight: 600;
                 padding: 12px 15px 12px 0;
                 border-right: 2px solid #e8e7e4;
+                transition: .3s all;
+            }
+            & .nav-link:hover{
+                color: $main-color;
             }
         }
     }
