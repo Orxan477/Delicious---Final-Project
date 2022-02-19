@@ -26,3 +26,23 @@
         }
     }
 }
+
+.myCard{
+    padding: 14% 9%;
+    border: none;
+    box-shadow: 0 $size/3 $size+1 rgb(212, 212, 212);
+    border: none;
+    height: 100%;
+    & h5{
+        font-size: $size*2;
+        font-weight: 700;
+        color: $choose-number-color;
+    }
+    & h6 {
+        color: $choose-font-color;
+        font-family: "Satisfy", sans-serif;
+        font-size: ($size*2)-4;
+        font-weight: 600;
+        margin: 5% 0;
+    }
+}

@@ -313,4 +313,27 @@
     width: 50%;
   }
 }
+
+.myCard {
+  padding: 14% 9%;
+  border: none;
+  -webkit-box-shadow: 0 4.66667px 15px #d4d4d4;
+          box-shadow: 0 4.66667px 15px #d4d4d4;
+  border: none;
+  height: 100%;
+}
+
+.myCard h5 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffcf88;
+}
+
+.myCard h6 {
+  color: #6c665c;
+  font-family: "Satisfy", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 5% 0;
+}
 /*# sourceMappingURL=style.css.map */
