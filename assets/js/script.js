@@ -1,3 +1,4 @@
+//Owl-carousel(start)
 var owl = $(".owl-carousel");
 
 $(document).ready(function () {
@@ -10,11 +11,14 @@ $(document).ready(function () {
     autoplayHoverPause: false
   });
 });
+//Owl-carousel(end)
 
+
+//Navbar-start
 window.onscroll = function () {
   myFunction(),activeLink();
 };
-
+//Navbar-fixed
 var navbar2 = document.getElementById("nav2");
 var sticky = navbar2.offsetTop;
 
@@ -28,7 +32,7 @@ function myFunction() {
     navbar2.classList.add("background-scroll-0-navbar");
   }
 }
-
+//Navbar-Active Link
 const sections = document.querySelectorAll("section");
 const navLi = document.querySelectorAll(".nav2Right  ul li .nav-link");
 
@@ -52,13 +56,10 @@ function activeLink() {
     
   });
 };
+//Navbar-end
 
 
-
-
-
-
-
+// Specials Section (start)
 var specialNames = document.querySelectorAll(".special-name");
 
 [...specialNames].forEach((name) => {
@@ -95,3 +96,4 @@ function ChangeActiveProperty(clickNameProp){
   clickNameProp.classList.remove("d-none");
   clickNameProp.classList.add("active-special-property");
 }
+// Specials Section (end)
