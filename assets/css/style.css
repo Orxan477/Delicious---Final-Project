@@ -487,15 +487,17 @@ html {
   }
 }
 
+.myGallery {
+  overflow: hidden;
+}
+
 .myGallery .hoverImage {
   -webkit-transition: .3s all;
   transition: .3s all;
-  overflow: hidden;
 }
 
 .myGallery .hoverImage:hover {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
-  z-index: 1;
 }
 /*# sourceMappingURL=style.css.map */

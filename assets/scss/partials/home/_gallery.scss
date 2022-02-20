@@ -28,12 +28,12 @@
 }
 
 .myGallery{
+    overflow: hidden;
     & .hoverImage{
         transition: .3s all;
-        overflow: hidden;
     }
     & .hoverImage:hover{
         transform: scale(1.1);
-        z-index:1;
+        // z-index:1;
     }
 }
