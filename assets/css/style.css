@@ -500,4 +500,62 @@ html {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
+
+#guestSay {
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+#guestSay .item-say {
+  text-align: center;
+}
+
+#guestSay .item-say img {
+  width: 100px;
+  border-radius: 50%;
+  border: 6px solid rgba(255, 255, 255, 0.15);
+}
+
+#guestSay .item-say h3 {
+  font-size: 20px;
+  color: white;
+  margin: 1% 0 0.5% 0;
+  font-weight: bold;
+}
+
+#guestSay .item-say h4 {
+  font-size: 14px;
+  color: #ddd;
+  margin: 0 0 1.5% 0;
+  font-family: "Comic Neue", cursive;
+}
+
+#guestSay .item-say p {
+  font-style: italic;
+  color: #eee;
+  margin: 0  auto 1.5% auto;
+}
+
+#guestSay .icon-say {
+  color: rgba(238, 238, 238, 0.411);
+}
+
+#guestSay::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: black;
+  opacity: .7;
+}
+
+@media only screen and (min-width: 992px) {
+  .item-say p {
+    width: 80%;
+  }
+}
 /*# sourceMappingURL=style.css.map */

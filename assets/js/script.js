@@ -1,4 +1,5 @@
 var owl = $(".owl-carousel");
+var say= $(".say-carousel");
 
 $(document).ready(function () {
   owl.owlCarousel({
@@ -7,6 +8,14 @@ $(document).ready(function () {
     autoplay: true,
     animateOut: "fadeOut",
     autoplayTimeout: 7000,
+    autoplayHoverPause: false
+  });
+  say.owlCarousel({
+    items: 2,
+    loop: true,
+    autoplay: true,
+    animateOut: "bounce",
+    autoplayTimeout: 1000,
     autoplayHoverPause: false,
   });
 });
