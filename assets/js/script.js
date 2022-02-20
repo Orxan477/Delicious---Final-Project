@@ -12,7 +12,7 @@ $(document).ready(function () {
 });
 
 window.onscroll = function () {
-  myFunction(), myFunctionNavbar(), myFunctionHomeNavbar();
+  myFunction(),activeLink();
 };
 
 var navbar2 = document.getElementById("nav2");
@@ -29,47 +29,32 @@ function myFunction() {
   }
 }
 
-var home = document.getElementById("homeIntro");
-var homeNav = document.getElementById("home-nav");
-var homeSticky = home.offsetHeight;
+const sections = document.querySelectorAll("section");
+const navLi = document.querySelectorAll(".nav2Right  ul li .nav-link");
 
-var about = document.getElementById("about");
-var aboutNav = document.getElementById("about-nav");
-var aboutSticky = about.scrollHeight;
+function activeLink() {
+  var current = "";
 
-var sum=homeSticky+aboutSticky;
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop;
+    
+    if (pageYOffset >= sectionTop-60) {
+      current = section.getAttribute("id");
+     }
+  });
+  let currentLinkActive=document.querySelector("."+current);
 
-var choose=document.getElementById("choose")
-var chooseSticky=choose.scrollHeight;
-console.log("choose="+chooseSticky);
+  console.log(currentLinkActive);
+  navLi.forEach((link) => {
 
-var sim2=sum+chooseSticky;
-
-console.log("about="+homeSticky);
-
-
-function myFunctionNavbar() {
-  if (window.pageYOffset <= aboutSticky) {
-    aboutNav.classList.remove("active-color");
-  } else {
-    aboutNav.classList.add("active-color");
-  }
-}
+    link.classList.remove("active-color");
+    currentLinkActive.classList.add("active-color");
+    
+  });
+};
 
 
-function myFunctionHomeNavbar() {
-  if (window.pageYOffset <= homeSticky && window.pageYOffset > aboutSticky) {
-    aboutNav.classList.remove("active-color");
-    homeNav.classList.add("active-color");
-  }
-}
 
-function myFunctionHomeNavbar() {
-  if (window.pageYOffset > sum && window.pageYOffset < sim2) {
-    aboutNav.classList.add("active-color");
-    homeNav.classList.remove("active-color");
-  }
-}
 
 
 
