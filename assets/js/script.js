@@ -29,26 +29,44 @@ function myFunction() {
   }
 }
 
-var about = document.getElementById("about");
-var aboutNav = document.getElementById("about-nav");
-var aboutSticky = about.offsetHeight;
-
-function myFunctionNavbar() {
-  if (window.pageYOffset > aboutSticky) {
-    aboutNav.classList.add("active-color");
-  } else {
-    aboutNav.classList.remove("active-color");
-  }
-}
-
 var home = document.getElementById("homeIntro");
 var homeNav = document.getElementById("home-nav");
 var homeSticky = home.offsetHeight;
 
-function myFunctionHomeNavbar() {
-  if (window.pageYOffset >= homeSticky && window.pageYOffset < aboutSticky) {
-    homeNav.classList.add("active-color");
+var about = document.getElementById("about");
+var aboutNav = document.getElementById("about-nav");
+var aboutSticky = about.scrollHeight;
+
+var sum=homeSticky+aboutSticky;
+
+var choose=document.getElementById("choose")
+var chooseSticky=choose.scrollHeight;
+console.log("choose="+chooseSticky);
+
+var sim2=sum+chooseSticky;
+
+console.log("about="+homeSticky);
+
+
+function myFunctionNavbar() {
+  if (window.pageYOffset <= aboutSticky) {
+    aboutNav.classList.remove("active-color");
   } else {
+    aboutNav.classList.add("active-color");
+  }
+}
+
+
+function myFunctionHomeNavbar() {
+  if (window.pageYOffset <= homeSticky && window.pageYOffset > aboutSticky) {
+    aboutNav.classList.remove("active-color");
+    homeNav.classList.add("active-color");
+  }
+}
+
+function myFunctionHomeNavbar() {
+  if (window.pageYOffset > sum && window.pageYOffset < sim2) {
+    aboutNav.classList.add("active-color");
     homeNav.classList.remove("active-color");
   }
 }

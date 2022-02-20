@@ -1,0 +1,39 @@
+.galleryIntro{
+    flex-direction: column;
+    text-align: center;
+    & h3{
+        font-size: ($size*2)+4;
+        color: $second-color;
+        font-family: $second-font-family;
+        font-weight: 600;
+        & span{
+            color: $main-color;
+            font-family: $second-font-family;
+        }
+    }
+    & p{
+        font-size: $size+2;
+        color: $second-color;
+        font-weight: 300;
+        margin: 1% auto 0 auto;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .galleryIntro{
+        & p{
+            width: 50%;
+        }
+    }
+}
+
+.myGallery{
+    & .hoverImage{
+        transition: .3s all;
+        overflow: hidden;
+    }
+    & .hoverImage:hover{
+        transform: scale(1.1);
+        z-index:1;
+    }
+}
