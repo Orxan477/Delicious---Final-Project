@@ -789,4 +789,75 @@ html {
   -webkit-transition: .3s all;
   transition: .3s all;
 }
+
+#subscribe {
+  background-color: #fffaf3;
+}
+
+#subscribe .sub-text {
+  text-align: center;
+  padding: 30px;
+}
+
+#subscribe .sub-text h4 {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1;
+  color: black;
+}
+
+#subscribe .sub-text p {
+  color: black;
+  font-size: 17px;
+}
+
+#subscribe .sub-text input {
+  display: inline-block;
+  height: 37px;
+}
+
+#subscribe .sub-text button {
+  margin: 0 10px;
+  border-radius: 58px;
+  padding: 10px 33px;
+  font-size: 14px;
+  background-color: #ffb03b;
+  border: 2px solid #ffb03b;
+  font-weight: 500;
+  -webkit-transition: .3s all;
+  transition: .3s all;
+  font-weight: 500;
+  color: white;
+}
+
+#subscribe .sub-text button:hover {
+  background-color: #f0a636;
+  border: 2px solid #f0a636;
+}
+
+#subscribe .sub-text .btn:focus {
+  background-color: #ffb03b;
+  border-color: 2px solid #ffb03b;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+#subscribe .sub-text .btn:active:focus {
+  background-color: #ffb03b;
+  border-color: 2px solid #ffb03b;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+#subscribe .sub-text .btn-primary:focus {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  border-color: 1px solid #ffb03b !important;
+}
+
+@media only screen and (max-width: 503px) {
+  #subscribe .sub-text button {
+    margin-top: 10px;
+  }
+}
 /*# sourceMappingURL=style.css.map */
