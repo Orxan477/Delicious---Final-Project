@@ -691,6 +691,7 @@ html {
   list-style: none;
   color: white;
   font-family: "Comic Neue", cursive;
+  padding: 0;
 }
 
 #footer ul li p {
@@ -745,5 +746,37 @@ html {
 
 #footer .pageProp ul > li {
   padding: 0 0 10px;
+}
+
+#footer .social-net ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+#footer .social-net li:hover {
+  margin: 0;
+}
+
+#footer .social-net li:hover .logo-social {
+  color: white;
+  background-color: #f0a636;
+}
+
+#footer .social-net p {
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+#footer .social-net .logo-social {
+  padding: 10px;
+  border-radius: 50px;
+  background-color: #ffb03b;
+  font-size: 17px;
+  -webkit-transition: .3s all;
+  transition: .3s all;
 }
 /*# sourceMappingURL=style.css.map */

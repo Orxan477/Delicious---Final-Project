@@ -5,8 +5,9 @@
             list-style: none;
             color: $font-color;
             font-family: $say-position-font-family;
+            padding: 0;
             & p{
-                font-size: 14px;
+                font-size: $size;
                 margin: 0;
                 line-height: 24px;
             }
@@ -49,6 +50,31 @@
         }
         & ul > li{
             padding: 0 0 10px;
+        }
+    }
+    & .social-net{
+        & ul{
+            display: flex;
+            justify-content: space-around;
+        }
+        & li:hover{
+            margin: 0;
+        }
+        & li:hover .logo-social{
+            color: $logo-color;
+            background-color:$button-hover-color;
+        }
+        & p{
+            color: $font-color;
+            font-size: $size;
+            font-weight: 500;
+        }
+        & .logo-social{
+            padding: 10px;
+            border-radius: 50px;
+            background-color: $main-color;
+            font-size: $size+3;
+            transition: .3s all;
         }
     }
 }
