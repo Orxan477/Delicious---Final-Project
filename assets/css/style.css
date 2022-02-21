@@ -661,8 +661,8 @@ html {
   border-radius: 50%;
   color: #ffb03b;
   font-size: 19px;
-  -webkit-transition: .3s all;
-  transition: .3s all;
+  -webkit-transition: .5s all;
+  transition: .5s all;
 }
 
 .padding-all-row .direction h4 {
