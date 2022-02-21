@@ -13,7 +13,6 @@ $(document).ready(function () {
 });
 //Owl-carousel(end)
 
-
 //Navbar-start
 window.onscroll = function () {
   myFunction(),activeLink(),myUpperFunction();
