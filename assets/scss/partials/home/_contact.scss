@@ -76,7 +76,7 @@
     }
 }
 .padding-all-row{
-    padding: 25px;
+    padding: 0 ($size+11) ($size+11);
     box-shadow: 0 $size/3 $size+1 rgb(228, 227, 227);
     & .direction:hover .logo-contact-direction{
         background-color: $main-color;

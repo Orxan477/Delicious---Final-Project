@@ -645,7 +645,7 @@ html {
 }
 
 .padding-all-row {
-  padding: 25px;
+  padding: 0 25px 25px;
   -webkit-box-shadow: 0 4.66667px 15px #e4e3e3;
           box-shadow: 0 4.66667px 15px #e4e3e3;
 }
@@ -681,5 +681,9 @@ html {
 
 .padding-all-row .direction .padding-direction {
   padding-left: 14px;
+}
+
+#footer {
+  background-color: #35322d;
 }
 /*# sourceMappingURL=style.css.map */
