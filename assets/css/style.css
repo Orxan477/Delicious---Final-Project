@@ -611,11 +611,6 @@ html {
   border: 1px solid #f0a636;
 }
 
-.buttonSend button:hover {
-  background-color: #ffb03b;
-  border: 1px solid #ffb03b;
-}
-
 .buttonSend .btn:focus {
   background-color: #ffb03b;
   border-color: 1px solid #ffb03b;
