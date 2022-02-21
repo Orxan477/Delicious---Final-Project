@@ -786,7 +786,14 @@ html {
 }
 
 #subscribe {
-  background-color: #fffaf3;
+  background-color: #f0eeeb;
+}
+
+#subscribe .form {
+  display: inline-block;
+  padding: 6px;
+  background-color: white;
+  border-radius: 15px;
 }
 
 #subscribe .sub-text {
@@ -809,6 +816,7 @@ html {
 #subscribe .sub-text input {
   display: inline-block;
   height: 37px;
+  border: none;
 }
 
 #subscribe .sub-text button {
@@ -823,6 +831,7 @@ html {
   transition: .3s all;
   font-weight: 500;
   color: white;
+  margin: 0;
 }
 
 #subscribe .sub-text button:hover {
@@ -854,5 +863,21 @@ html {
   #subscribe .sub-text button {
     margin-top: 10px;
   }
+}
+
+#footer2 {
+  background-color: silver;
+}
+
+#footer2 .creator {
+  text-align: center;
+}
+
+#footer2 .creator p {
+  font-size: 14px;
+}
+
+#footer2 .creator span {
+  font-weight: 600;
 }
 /*# sourceMappingURL=style.css.map */

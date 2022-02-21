@@ -1,0 +1,12 @@
+#footer2{
+    background-color: silver;
+    & .creator{
+        text-align: center;
+        & p{
+            font-size: $size;
+        }
+        & span{
+            font-weight: 600;
+        }
+    }
+}
