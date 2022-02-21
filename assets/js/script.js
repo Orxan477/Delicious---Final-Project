@@ -16,7 +16,7 @@ $(document).ready(function () {
 
 //Navbar-start
 window.onscroll = function () {
-  myFunction(),activeLink();
+  myFunction(),activeLink(),myUpperFunction();
 };
 //Navbar-fixed
 var navbar2 = document.getElementById("nav2");
@@ -30,6 +30,21 @@ function myFunction() {
     navbar2.classList.remove("sticky");
     navbar2.classList.remove("background-scroll-navbar");
     navbar2.classList.add("background-scroll-0-navbar");
+  }
+}
+//back-to-home-link
+var upper = document.getElementById("upper");
+// var home=document.getElementById("homeIntro");
+// var homeSection=home.offsetTop;
+// console.log(homeSection)
+function myUpperFunction() {
+  
+  if (window.pageYOffset >= 80) {
+    upper.classList.remove("d-none");
+    upper.classList.add("d-flex");
+  } else {
+    upper.classList.add("d-none");
+    upper.classList.remove("d-flex");
   }
 }
 //Navbar-Active Link
