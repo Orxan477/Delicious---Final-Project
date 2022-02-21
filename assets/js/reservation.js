@@ -8,3 +8,6 @@ function myFunctionOTherPage() {
     navbarOtherPage2.classList.remove("stickyOtherPageNavbar");
   }
 }
+
+window.onscroll = function () {myUpperFunction();
+};
