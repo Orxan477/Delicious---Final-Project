@@ -48,7 +48,6 @@ function activeLink() {
   });
   let currentLinkActive=document.querySelector("."+current);
 
-  console.log(currentLinkActive);
   navLi.forEach((link) => {
 
     link.classList.remove("active-color");
