@@ -1,0 +1,13 @@
+.buttonSend{
+    & button{
+        background-color: $main-color;
+        border-radius: $big-size/2;
+        font-size: $size+2;
+        padding: ($size/2)+3 ($size+6);
+        border: 1px solid $main-color;
+    }
+    & button:hover{
+        background-color: $button-hover-color;
+        border: 1px solid $button-hover-color;
+    }
+}

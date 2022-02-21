@@ -558,4 +558,17 @@ html {
     width: 80%;
   }
 }
+
+.buttonSend button {
+  background-color: #ffb03b;
+  border-radius: 50px;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: 1px solid #ffb03b;
+}
+
+.buttonSend button:hover {
+  background-color: #f0a636;
+  border: 1px solid #f0a636;
+}
 /*# sourceMappingURL=style.css.map */
