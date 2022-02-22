@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 
-<body >
+<body>
   <header class=" myNavbar" style="background-color: rgba(0, 0, 0, 0.9); z-index: 5;">
     <section id="nav1">
       <div class="container">
@@ -64,10 +64,11 @@
                 <a class="nav-link specials" href="http://127.0.0.1:5500/#specials">Specials</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link reservation active-color" href="http://127.0.0.1:5500/reservation.html">Reservation</a>
+                <a class="nav-link reservation active-color"
+                  href="http://127.0.0.1:5500/reservation.html">Reservation</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Team</a>
+                <a class="nav-link" href="http://127.0.0.1:5500/team.html">Team</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link gallery" href="http://127.0.0.1:5500/#gallery">Gallery</a>
@@ -92,49 +93,49 @@
   </header>
 
   <main>
-      <section id="reservation" class="mt-5">
-          <div class="container">
-              <div class="row">
-                <div class="col-lg-12 reservationIntro">
-                    <h3>Book a <span>Table</span></h3>
-                    <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque
-                      vitae autem.</p>
-                  </div>
-                  <div class="col-lg-12 col-md-12 col-sm-12 message mt-3">
-                    <form action="#">
-                      <div class="form-row">
-                        <div class="form-group col-md-4">
-                          <input type="text" class="form-control" id="inputEmail4" placeholder="Your Name">
-                        </div>
-                        <div class="form-group col-md-4">
-                          <input type="email" class="form-control" id="inputEmail4" placeholder="Your Mail">
-                        </div>
-                        <div class="form-group col-md-4">
-                          <input type="number" class="form-control" id="inputEmail4" placeholder="Your Phone">
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <div class="form-group col-md-4">
-                          <input type="date" class="form-control">
-                        </div>
-                        <div class="form-group col-md-4">
-                          <input type="time" class="form-control">
-                        </div>
-                        <div class="form-group col-md-4">
-                          <input type="text" class="form-control" id="peopleCOunt" placeholder="# of People">
-                        </div>
-                      </div>
-                      <div class="form-group myArea">
-                        <textarea name="Message" class="myTextArea" id="mesagge" placeholder="Message"></textarea>
-                      </div>
-                      <div class="buttonSend d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary">Reservation</button>
-                      </div>
-                    </form>
-                  </div>
-              </div>
+    <section id="reservation" class="mt-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 reservationIntro">
+            <h3>Book a <span>Table</span></h3>
+            <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque
+              vitae autem.</p>
           </div>
-      </section>
+          <div class="col-lg-12 col-md-12 col-sm-12 message mt-3">
+            <form action="#">
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <input type="text" class="form-control" id="inputEmail4" placeholder="Your Name">
+                </div>
+                <div class="form-group col-md-4">
+                  <input type="email" class="form-control" id="inputEmail4" placeholder="Your Mail">
+                </div>
+                <div class="form-group col-md-4">
+                  <input type="number" class="form-control" id="inputEmail4" placeholder="Your Phone">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <input type="date" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                  <input type="time" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                  <input type="text" class="form-control" id="peopleCOunt" placeholder="# of People">
+                </div>
+              </div>
+              <div class="form-group myArea">
+                <textarea name="Message" class="myTextArea" id="mesagge" placeholder="Message"></textarea>
+              </div>
+              <div class="buttonSend d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary">Reservation</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
@@ -159,11 +160,22 @@
           <div class="col-lg-3 col-md-4 col-sm-6 mt-3 ">
             <ul>
               <li class="logo">Delicious</li>
-              <li><p>A108 Adam Street</p></li>
-              <li><p>New York, NY 535022</p></li>
-              <li><p>United States</p></li>
-              <li class="contactRestaurant"><p><strong>Phone:</strong> +994 51 403 04 77</p></li>
-              <li><strong><p>Email:</strong> tu201906147@code.edu.az</p></li>
+              <li>
+                <p>A108 Adam Street</p>
+              </li>
+              <li>
+                <p>New York, NY 535022</p>
+              </li>
+              <li>
+                <p>United States</p>
+              </li>
+              <li class="contactRestaurant">
+                <p><strong>Phone:</strong> +994 51 403 04 77</p>
+              </li>
+              <li><strong>
+                  <p>Email:
+                </strong> tu201906147@code.edu.az</p>
+              </li>
             </ul>
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6 mt-3 pageProp ">
@@ -192,8 +204,10 @@
               <li><a href="https://www.instagram.com/_.orxan477/"><i class="fab fa-facebook logo-social"></i></a></li>
               <li><a href="https://www.facebook.com/orxan477/"><i class="fab fa-instagram logo-social"></i></a></li>
               <li><a href="https://twitter.com/_orxan477"><i class="fab fa-twitter logo-social"></i></a></li>
-              <li><a href="https://www.linkedin.com/in/orkhan-ganbarov-1bb707201/"><i class="fab fa-linkedin-in logo-social"></i></a></li>
-              <li><a href="https://www.youtube.com/channel/UCAncQZ4mlgS0ew0r-MZi5dw"><i class="fab fa-youtube logo-social"></i></a></li>
+              <li><a href="https://www.linkedin.com/in/orkhan-ganbarov-1bb707201/"><i
+                    class="fab fa-linkedin-in logo-social"></i></a></li>
+              <li><a href="https://www.youtube.com/channel/UCAncQZ4mlgS0ew0r-MZi5dw"><i
+                    class="fab fa-youtube logo-social"></i></a></li>
             </ul>
           </div>
         </div>
@@ -211,8 +225,9 @@
     </section>
   </footer>
 
-  <a href="#" id="upper" class="page-upper d-none displayNone align-items-center justify-content-center active"><i class="fas fa-arrow-up"></i></a>
-  
+  <a href="#" id="upper" class="page-upper d-none displayNone align-items-center justify-content-center active"><i
+      class="fas fa-arrow-up"></i></a>
+
   <script src="https://kit.fontawesome.com/90e76288a0.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
@@ -223,7 +238,7 @@
     integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
     crossorigin="anonymous"></script>
   <script src="./assets/js/script.js"></script>
-  <script src="./assets/js/reservation.js"></script>
+  <script src="./assets/js/otherPage.js"></script>
 </body>
 
 </html>
