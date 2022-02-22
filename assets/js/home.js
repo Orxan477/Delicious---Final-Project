@@ -33,28 +33,28 @@ function myFunction() {
 }
 
 //Navbar-Active Link
-const sections = document.querySelectorAll("section");
-const navLi = document.querySelectorAll(".nav2Right  ul li .nav-link");
+// const sections = document.querySelectorAll("section");
+// const navLi = document.querySelectorAll(".nav2Right  ul li .nav-link");
 
-function activeLink() {
-  var current = "";
+// function activeLink() {
+//   var current = "";
 
-  sections.forEach((section) => {
-    const sectionTop = section.offsetTop;
+//   sections.forEach((section) => {
+//     const sectionTop = section.offsetTop;
     
-    if (pageYOffset >= sectionTop-60) {
-      current = section.getAttribute("id");
-     }
-  });
-  let currentLinkActive=document.querySelector("."+current);
+//     if (pageYOffset > sectionTop - 60) {
+//       current = section.getAttribute("id");
+//      }
+//   });
+//   let currentLinkActive=document.querySelector("."+current);
 
-  navLi.forEach((link) => {
+//   navLi.forEach((link) => {
 
-    link.classList.remove("active-color");
-    currentLinkActive.classList.add("active-color");
+//     link.classList.remove("active-color");
+//     currentLinkActive.classList.add("active-color");
     
-  });
-};
+//   });
+// };
 //Navbar-end
 
 
