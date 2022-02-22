@@ -19,7 +19,8 @@
         "../scss/partials/home/_subscribe.scss",
         "../scss/partials/home/_footer2.scss",
         "../scss/partials/bookTable/_reservation.scss",
-        "../scss/partials/team/_team.scss"
+        "../scss/partials/team/_team.scss",
+        "../scss/partials/menu/_menu.scss"
     ],
     "names": [],
     "file": "style.css"
