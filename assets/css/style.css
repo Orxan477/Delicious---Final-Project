@@ -695,216 +695,6 @@ html {
   border: 1px solid black;
 }
 
-#footer {
-  background-color: #35322d;
-}
-
-#footer ul li {
-  list-style: none;
-  color: white;
-  font-family: "Comic Neue", cursive;
-  padding: 0;
-}
-
-#footer ul li p {
-  font-size: 14px;
-  margin: 0;
-  line-height: 24px;
-}
-
-#footer ul .logo {
-  font-family: "Satisfy", cursive;
-  color: #ffb03b;
-  font-size: 32px;
-  margin-bottom: 14px;
-}
-
-#footer ul .contactRestaurant {
-  margin-top: 20px;
-}
-
-#footer .icon-footer-right {
-  margin-right: 5px;
-  color: #ffb03b;
-}
-
-#footer .pageProp h3 {
-  font-size: 18px;
-  margin: 7px 0 14px;
-  color: white;
-}
-
-#footer .pageProp a {
-  color: white;
-  font-size: 14px;
-  -webkit-transition: .3s all;
-  transition: .3s all;
-}
-
-#footer .pageProp li {
-  -webkit-transition: .3s all;
-  transition: .3s all;
-  padding: 10px 0;
-}
-
-#footer .pageProp li:hover {
-  margin-left: 5px;
-}
-
-#footer .pageProp li:hover a {
-  color: #ffb03b;
-  text-decoration: none;
-}
-
-#footer .pageProp ul > li {
-  padding: 0 0 10px;
-}
-
-#footer .social-net ul {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-}
-
-#footer .social-net li:hover {
-  margin: 0;
-}
-
-#footer .social-net li:hover .logo-social {
-  color: white;
-  background-color: #f0a636;
-}
-
-#footer .social-net p {
-  color: white;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-#footer .social-net .logo-social {
-  padding: 10px;
-  border-radius: 50px;
-  background-color: #ffb03b;
-  font-size: 17px;
-  -webkit-transition: .3s all;
-  transition: .3s all;
-}
-
-#subscribe {
-  background-color: #f0eeeb;
-}
-
-#subscribe .form {
-  display: inline-block;
-  padding: 6px;
-  background-color: white;
-  border-radius: 15px;
-}
-
-#subscribe .sub-text {
-  text-align: center;
-  padding: 30px;
-}
-
-#subscribe .sub-text h4 {
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 1;
-  color: black;
-}
-
-#subscribe .sub-text p {
-  color: black;
-  font-size: 17px;
-}
-
-#subscribe .sub-text input {
-  display: inline-block;
-  height: 37px;
-  border: none;
-}
-
-#subscribe .sub-text button {
-  margin: 0 10px;
-  border-radius: 58px;
-  padding: 10px 33px;
-  font-size: 14px;
-  background-color: #ffb03b;
-  border: 2px solid #ffb03b;
-  font-weight: 500;
-  -webkit-transition: .3s all;
-  transition: .3s all;
-  font-weight: 500;
-  color: white;
-  margin: 0;
-}
-
-#subscribe .sub-text button:hover {
-  background-color: #f0a636;
-  border: 2px solid #f0a636;
-}
-
-#subscribe .sub-text .btn:focus {
-  background-color: #ffb03b;
-  border-color: 2px solid #ffb03b;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-
-#subscribe .sub-text .btn:active:focus {
-  background-color: #ffb03b;
-  border-color: 2px solid #ffb03b;
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
-}
-
-#subscribe .sub-text .btn-primary:focus {
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
-  border-color: 1px solid #ffb03b !important;
-}
-
-#footer2 {
-  background-color: silver;
-}
-
-#footer2 .creator {
-  text-align: center;
-}
-
-#footer2 .creator p {
-  font-size: 14px;
-}
-
-#footer2 .creator span {
-  font-weight: 600;
-}
-
-.page-upper {
-  position: fixed;
-  right: 15px;
-  bottom: 9px;
-  z-index: 3;
-  width: 40px;
-  height: 40px;
-  background-color: #ffb03b;
-  border-radius: 50px;
-  text-decoration: none;
-  -webkit-transition: .4s all;
-  transition: .4s all;
-}
-
-.page-upper i {
-  color: white;
-}
-
-.page-upper:hover {
-  text-decoration: none;
-  background-color: #f0a636;
-}
-
 .reservationIntro {
   margin-top: 100px;
   -webkit-box-orient: vertical;
@@ -1072,5 +862,215 @@ html {
   .menuIntro p {
     width: 50%;
   }
+}
+
+#subscribe {
+  background-color: #f0eeeb;
+}
+
+#subscribe .form {
+  display: inline-block;
+  padding: 6px;
+  background-color: white;
+  border-radius: 15px;
+}
+
+#subscribe .sub-text {
+  text-align: center;
+  padding: 30px;
+}
+
+#subscribe .sub-text h4 {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1;
+  color: black;
+}
+
+#subscribe .sub-text p {
+  color: black;
+  font-size: 17px;
+}
+
+#subscribe .sub-text input {
+  display: inline-block;
+  height: 37px;
+  border: none;
+}
+
+#subscribe .sub-text button {
+  margin: 0 10px;
+  border-radius: 58px;
+  padding: 10px 33px;
+  font-size: 14px;
+  background-color: #ffb03b;
+  border: 2px solid #ffb03b;
+  font-weight: 500;
+  -webkit-transition: .3s all;
+  transition: .3s all;
+  font-weight: 500;
+  color: white;
+  margin: 0;
+}
+
+#subscribe .sub-text button:hover {
+  background-color: #f0a636;
+  border: 2px solid #f0a636;
+}
+
+#subscribe .sub-text .btn:focus {
+  background-color: #ffb03b;
+  border-color: 2px solid #ffb03b;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+#subscribe .sub-text .btn:active:focus {
+  background-color: #ffb03b;
+  border-color: 2px solid #ffb03b;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+#subscribe .sub-text .btn-primary:focus {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  border-color: 1px solid #ffb03b !important;
+}
+
+#footer {
+  background-color: #35322d;
+}
+
+#footer ul li {
+  list-style: none;
+  color: white;
+  font-family: "Comic Neue", cursive;
+  padding: 0;
+}
+
+#footer ul li p {
+  font-size: 14px;
+  margin: 0;
+  line-height: 24px;
+}
+
+#footer ul .logo {
+  font-family: "Satisfy", cursive;
+  color: #ffb03b;
+  font-size: 32px;
+  margin-bottom: 14px;
+}
+
+#footer ul .contactRestaurant {
+  margin-top: 20px;
+}
+
+#footer .icon-footer-right {
+  margin-right: 5px;
+  color: #ffb03b;
+}
+
+#footer .pageProp h3 {
+  font-size: 18px;
+  margin: 7px 0 14px;
+  color: white;
+}
+
+#footer .pageProp a {
+  color: white;
+  font-size: 14px;
+  -webkit-transition: .3s all;
+  transition: .3s all;
+}
+
+#footer .pageProp li {
+  -webkit-transition: .3s all;
+  transition: .3s all;
+  padding: 10px 0;
+}
+
+#footer .pageProp li:hover {
+  margin-left: 5px;
+}
+
+#footer .pageProp li:hover a {
+  color: #ffb03b;
+  text-decoration: none;
+}
+
+#footer .pageProp ul > li {
+  padding: 0 0 10px;
+}
+
+#footer .social-net ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+#footer .social-net li:hover {
+  margin: 0;
+}
+
+#footer .social-net li:hover .logo-social {
+  color: white;
+  background-color: #f0a636;
+}
+
+#footer .social-net p {
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+#footer .social-net .logo-social {
+  padding: 10px;
+  border-radius: 50px;
+  background-color: #ffb03b;
+  font-size: 17px;
+  -webkit-transition: .3s all;
+  transition: .3s all;
+}
+
+#footer2 {
+  background-color: silver;
+}
+
+#footer2 .creator {
+  text-align: center;
+}
+
+#footer2 .creator p {
+  font-size: 14px;
+}
+
+#footer2 .creator span {
+  font-weight: 600;
+}
+
+.page-upper {
+  position: fixed;
+  right: 15px;
+  bottom: 9px;
+  z-index: 3;
+  width: 40px;
+  height: 40px;
+  background-color: #ffb03b;
+  border-radius: 50px;
+  text-decoration: none;
+  -webkit-transition: .4s all;
+  transition: .4s all;
+}
+
+.page-upper i {
+  color: white;
+}
+
+.page-upper:hover {
+  text-decoration: none;
+  background-color: #f0a636;
 }
 /*# sourceMappingURL=style.css.map */
