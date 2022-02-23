@@ -923,6 +923,7 @@ html {
 
 .sum-count .sum span {
   font-size: 20px;
+  font-weight: bold;
 }
 
 #subscribe {
