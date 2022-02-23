@@ -765,6 +765,7 @@ html {
 
 #team .employee {
   margin-bottom: 90px;
+  cursor: pointer;
 }
 
 #team .image-info {
@@ -828,6 +829,10 @@ html {
 
 #team .image-info ul .social-logo:hover {
   color: #ffb03b;
+}
+
+.modal-image {
+  width: 290%;
 }
 
 .menuIntro {

@@ -28,8 +28,8 @@
 }
 #team{
     & .employee{
-        // position: relative;
         margin-bottom: ($big-size/2)+40;
+        cursor:pointer;
     }
     & .image-info{
         text-align: center;
@@ -80,4 +80,7 @@
             }
         }
     }
+}
+.modal-image{
+    width: 290%;
 }
