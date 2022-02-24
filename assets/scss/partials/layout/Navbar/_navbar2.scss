@@ -1,11 +1,38 @@
 .nav2Right{
-    margin-left: 22%;
-    & a{
+    margin-left: 20%;
+    & a, .shop-cart{
         font-weight: 500;
         padding: $size 0 $size ($size*2)-4 !important;
         color: $font-color;
         font-size: $size+1;
         transition: .3s all;
+    }
+    & .shop-cart{
+        position: relative;
+        & sup {
+            padding: 1px 3px;
+            color: #fff;
+            background-color: #f34f3f;
+            z-index: 2;
+          }
+          & .shop-min{
+              position: absolute;
+              display: none;
+              transition: .3s all;
+              visibility: hidden;
+        }
+        & i{
+            cursor: pointer;
+            font-size: $size+5;
+        }
+    }
+    & .shop-cart:hover .shop-min{
+        visibility: visible;
+    }
+    & .logo-basket{
+        font-size: $size;
+        position: absolute;
+        left: 10px;
     }
     & a:hover{
         color: $main-color;
@@ -42,7 +69,7 @@
 }
 @media only screen and (max-width:1199px) {
     .nav2Right{
-        margin-left: 7%;
+        margin-left: 5%;
     }
 }
 .stickyOtherPageNavbar{

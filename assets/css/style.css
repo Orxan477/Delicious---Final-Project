@@ -53,16 +53,50 @@ html {
 }
 
 .nav2Right {
-  margin-left: 22%;
+  margin-left: 20%;
 }
 
-.nav2Right a {
+.nav2Right a, .nav2Right .shop-cart {
   font-weight: 500;
   padding: 14px 0 14px 24px !important;
   color: white;
   font-size: 15px;
   -webkit-transition: .3s all;
   transition: .3s all;
+}
+
+.nav2Right .shop-cart {
+  position: relative;
+}
+
+.nav2Right .shop-cart sup {
+  padding: 1px 3px;
+  color: #fff;
+  background-color: #f34f3f;
+  z-index: 2;
+}
+
+.nav2Right .shop-cart .shop-min {
+  position: absolute;
+  display: none;
+  -webkit-transition: .3s all;
+  transition: .3s all;
+  visibility: hidden;
+}
+
+.nav2Right .shop-cart i {
+  cursor: pointer;
+  font-size: 19px;
+}
+
+.nav2Right .shop-cart:hover .shop-min {
+  visibility: visible;
+}
+
+.nav2Right .logo-basket {
+  font-size: 14px;
+  position: absolute;
+  left: 10px;
 }
 
 .nav2Right a:hover {
@@ -109,7 +143,7 @@ html {
 
 @media only screen and (max-width: 1199px) {
   .nav2Right {
-    margin-left: 7%;
+    margin-left: 5%;
   }
 }
 
