@@ -365,27 +365,69 @@ html {
   }
 }
 
-.myCard {
-  padding: 14% 9%;
-  border: none;
+#WhyChoose .box {
+  padding: 50px 30px;
   -webkit-box-shadow: 0 4.66667px 15px #d4d4d4;
           box-shadow: 0 4.66667px 15px #d4d4d4;
-  border: none;
+  -webkit-transition: all ease-in-out 0.3s;
+  transition: all ease-in-out 0.3s;
   height: 100%;
 }
 
-.myCard h5 {
-  font-size: 28px;
-  font-weight: 700;
-  color: #ffcf88;
+.box:hover {
+  background-color: #ffb03b;
 }
 
-.myCard h6 {
+.box h5 {
+  position: relative;
+  -webkit-transition: all ease-in-out 0.3s;
+  transition: all ease-in-out 0.3s;
+  top: 0%;
   color: #6c665c;
   font-family: "Satisfy", sans-serif;
   font-size: 24px;
   font-weight: 600;
-  margin: 5% 0;
+}
+
+.box:hover h5 {
+  position: relative;
+  -webkit-transition: all ease-in-out 0.3s;
+  transition: all ease-in-out 0.3s;
+  top: -10%;
+  color: white;
+}
+
+.box:hover span {
+  position: relative;
+  -webkit-transition: all ease-in-out 0.3s;
+  transition: all ease-in-out 0.3s;
+  top: -10%;
+  color: white;
+}
+
+.box span {
+  position: relative;
+  -webkit-transition: all ease-in-out 0.3s;
+  transition: all ease-in-out 0.3s;
+  top: 0%;
+  color: #ffcf88;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.box:hover p {
+  position: relative;
+  -webkit-transition: all ease-in-out 0.3s;
+  transition: all ease-in-out 0.3s;
+  top: -10%;
+  color: white !important;
+}
+
+.box p {
+  position: relative;
+  -webkit-transition: all ease-in-out 0.3s;
+  transition: all ease-in-out 0.3s;
+  top: 0%;
 }
 
 .specialIntro {

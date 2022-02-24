@@ -27,22 +27,57 @@
     }
 }
 
-.myCard{
-    padding: 14% 9%;
-    border: none;
+#WhyChoose .box {
+   
+    padding: 50px 30px;
     box-shadow: 0 $size/3 $size+1 rgb(212, 212, 212);
-    border: none;
+    transition: all ease-in-out 0.3s;
     height: 100%;
-    & h5{
-        font-size: $size*2;
+   
+}
+.box:hover{
+    background-color:#ffb03b ;
+   
+} 
+.box h5{
+    position: relative;
+    transition: all ease-in-out 0.3s;
+    top: 0%;
+    color: $choose-font-color;
+    font-family: "Satisfy", sans-serif;
+    font-size: ($size*2)-4;
+    font-weight: 600;
+
+}
+.box:hover h5{
+    position: relative;
+    transition: all ease-in-out 0.3s;
+    top: -10%;
+    color: white;
+}
+.box:hover span{
+    position: relative;
+    transition: all ease-in-out 0.3s;
+    top: -10%;
+    color: white;
+}
+.box span{
+    position: relative;
+    transition: all ease-in-out 0.3s;
+    top: 0%;
+    color: $choose-number-color;
+    font-size: $size*2;
         font-weight: 700;
-        color: $choose-number-color;
-    }
-    & h6 {
-        color: $choose-font-color;
-        font-family: "Satisfy", sans-serif;
-        font-size: ($size*2)-4;
-        font-weight: 600;
-        margin: 5% 0;
-    }
+}
+.box:hover p{
+    position: relative;
+    transition: all ease-in-out 0.3s;
+    top: -10%;
+    color: white !important;
+}
+
+.box p{
+    position: relative;
+    transition: all ease-in-out 0.3s;
+    top: 0%;
 }
