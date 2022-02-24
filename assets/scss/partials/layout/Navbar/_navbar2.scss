@@ -1,80 +1,97 @@
-.nav2Right{
-    margin-left: 20%;
-    & a, .shop-cart{
-        font-weight: 500;
-        padding: $size 0 $size ($size*2)-4 !important;
-        color: $font-color;
-        font-size: $size+1;
-        transition: .3s all;
-    }
-    & .shop-cart{
-        position: relative;
-        & sup {
-            padding: 1px 3px;
-            color: #fff;
-            background-color: #f34f3f;
-            z-index: 2;
-          }
-          & .shop-min{
-              position: absolute;
-              display: none;
-              transition: .3s all;
-              visibility: hidden;
-        }
-        & i{
-            cursor: pointer;
-            font-size: $size+5;
-        }
-    }
-    & .shop-cart:hover .shop-min{
-        visibility: visible;
-    }
-    & .logo-basket{
-        font-size: $size;
-        position: absolute;
-        left: 10px;
-    }
-    & a:hover{
-        color: $main-color;
-    }
-}
-.nav2LeftIcon{
-    font-family: $second-font-family;
-    font-size: ($size*2);
+.nav2Right {
+  margin-left: 18%;
+  & a,
+  .shop-cart {
     font-weight: 500;
-    color: $logo-color;
-    letter-spacing: 3px;
-    line-height: 1;
-}
-.nav2LeftIcon:hover{
-    color:$logo-color;
-}
-.burgerMenu{
+    padding: $size 0 $size ($size * 2)-4 !important;
     color: $font-color;
+    font-size: $size + 1;
+    transition: 0.3s all;
+  }
+  & .shop-cart {
+    position: relative;
+    transition: 0.3s all;
+    margin-left: 10px;
+    padding: 0 !important;
+    & a sup {
+      padding: 1px 3px;
+      color: #fff;
+      background-color: $main-color;
+      z-index: 2;
+      top: 0px;
+    }
+    & .shop-min {
+      position: absolute;
+      display: none;
+      z-index: 5;
+      background-color: white;
+      color: black;
+      left: 10%;
+      top: 80%;
+      box-shadow: 0 8px 15px silver;
+      transition: 0.3s;
+      & li{
+          padding: 4px;
+          & img{
+            width: 100px;
+          }
+      }
+    }
+    & i {
+      cursor: pointer;
+      font-size: $size + 5;
+    }
+  }
+  & .shop-cart:hover .shop-min {
+    display: inline;
+  }
+  & .logo-basket {
+    font-size: $size;
+    position: absolute;
+    left: 10px;
+    top: 13px;
+  }
+  & a:hover {
+    color: $main-color;
+  }
 }
-.background-scroll-navbar{
-    background-color: rgba(0,0,0,0.9);
-    transition: .3s all;
+.nav2LeftIcon {
+  font-family: $second-font-family;
+  font-size: ($size * 2);
+  font-weight: 500;
+  color: $logo-color;
+  letter-spacing: 3px;
+  line-height: 1;
 }
-.background-scroll-0-navbar{
-    transition: .3s all;
+.nav2LeftIcon:hover {
+  color: $logo-color;
+}
+.burgerMenu {
+  color: $font-color;
+}
+.background-scroll-navbar {
+  background-color: rgba(0, 0, 0, 0.9);
+  transition: 0.3s all;
+}
+.background-scroll-0-navbar {
+  transition: 0.3s all;
 }
 .sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
-.active-color{
-    color: $main-color !important;
+.active-color {
+  color: $main-color !important;
 }
-@media only screen and (max-width:1199px) {
-    .nav2Right{
-        margin-left: 5%;
-    }
+@media only screen and (max-width: 1199px) {
+  .nav2Right {
+    margin-left: 5%;
+  }
 }
-.stickyOtherPageNavbar{
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: rgba(0,0,0,0.9);
+.stickyOtherPageNavbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
 }

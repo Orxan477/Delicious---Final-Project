@@ -53,35 +53,55 @@ html {
 }
 
 .nav2Right {
-  margin-left: 20%;
+  margin-left: 18%;
 }
 
-.nav2Right a, .nav2Right .shop-cart {
+.nav2Right a,
+.nav2Right .shop-cart {
   font-weight: 500;
   padding: 14px 0 14px 24px !important;
   color: white;
   font-size: 15px;
-  -webkit-transition: .3s all;
-  transition: .3s all;
+  -webkit-transition: 0.3s all;
+  transition: 0.3s all;
 }
 
 .nav2Right .shop-cart {
   position: relative;
+  -webkit-transition: 0.3s all;
+  transition: 0.3s all;
+  margin-left: 10px;
+  padding: 0 !important;
 }
 
-.nav2Right .shop-cart sup {
+.nav2Right .shop-cart a sup {
   padding: 1px 3px;
   color: #fff;
-  background-color: #f34f3f;
+  background-color: #ffb03b;
   z-index: 2;
+  top: 0px;
 }
 
 .nav2Right .shop-cart .shop-min {
   position: absolute;
   display: none;
-  -webkit-transition: .3s all;
-  transition: .3s all;
-  visibility: hidden;
+  z-index: 5;
+  background-color: white;
+  color: black;
+  left: 10%;
+  top: 80%;
+  -webkit-box-shadow: 0 8px 15px silver;
+          box-shadow: 0 8px 15px silver;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.nav2Right .shop-cart .shop-min li {
+  padding: 4px;
+}
+
+.nav2Right .shop-cart .shop-min li img {
+  width: 100px;
 }
 
 .nav2Right .shop-cart i {
@@ -90,13 +110,14 @@ html {
 }
 
 .nav2Right .shop-cart:hover .shop-min {
-  visibility: visible;
+  display: inline;
 }
 
 .nav2Right .logo-basket {
   font-size: 14px;
   position: absolute;
   left: 10px;
+  top: 13px;
 }
 
 .nav2Right a:hover {
@@ -122,13 +143,13 @@ html {
 
 .background-scroll-navbar {
   background-color: rgba(0, 0, 0, 0.9);
-  -webkit-transition: .3s all;
-  transition: .3s all;
+  -webkit-transition: 0.3s all;
+  transition: 0.3s all;
 }
 
 .background-scroll-0-navbar {
-  -webkit-transition: .3s all;
-  transition: .3s all;
+  -webkit-transition: 0.3s all;
+  transition: 0.3s all;
 }
 
 .sticky {
