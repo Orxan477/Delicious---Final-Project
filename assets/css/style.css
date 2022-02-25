@@ -88,8 +88,10 @@ html {
   z-index: 5;
   background-color: white;
   color: black;
-  left: 10%;
-  top: 80%;
+  left: 70%;
+  top: 100%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   -webkit-box-shadow: 0 8px 15px silver;
           box-shadow: 0 8px 15px silver;
   -webkit-transition: 0.3s;
@@ -101,7 +103,24 @@ html {
 }
 
 .nav2Right .shop-cart .shop-min li img {
-  width: 100px;
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+}
+
+.nav2Right .shop-cart .shop-min .product-info {
+  display: inline-block;
+  position: absolute;
+}
+
+.nav2Right .shop-cart .shop-min .basket-product {
+  width: 300px;
+}
+
+.nav2Right .shop-cart .shop-min .basket-product .basket-head h3 {
+  padding: 0 5px;
+  font-size: 17px;
+  font-weight: 900;
 }
 
 .nav2Right .shop-cart i {

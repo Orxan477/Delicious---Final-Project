@@ -26,15 +26,32 @@
       z-index: 5;
       background-color: white;
       color: black;
-      left: 10%;
-      top: 80%;
+      left: 70%;
+      top: 100%;
+      transform: translateX(-50%);
       box-shadow: 0 8px 15px silver;
       transition: 0.3s;
-      & li{
-          padding: 4px;
-          & img{
-            width: 100px;
+      & li {
+        padding: 4px;
+        & img {
+          width: 80px;
+          height: 80px;
+          margin-right: 20px;
+        }
+      }
+      & .product-info{
+          display: inline-block;
+          position: absolute;
+      }
+      & .basket-product {
+        width: 300px;
+        & .basket-head {
+          h3 {
+            padding: 0 5px;
+            font-size: $size+3;
+            font-weight: 900;
           }
+        }
       }
     }
     & i {
