@@ -69,11 +69,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.UI\\Restaurant.UI\\Restaurant.UI.csproj",
+      "projectUniqueName": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.UI\\Restaurant.UI.csproj",
       "projectName": "Restaurant.UI",
-      "projectPath": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.UI\\Restaurant.UI\\Restaurant.UI.csproj",
+      "projectPath": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.UI\\Restaurant.UI.csproj",
       "packagesPath": "C:\\Users\\Orxan477\\.nuget\\packages\\",
-      "outputPath": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.UI\\Restaurant.UI\\obj\\",
+      "outputPath": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.UI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -94,8 +94,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.UI\\Restaurant.Business\\Restaurant.Business.csproj": {
-              "projectPath": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.UI\\Restaurant.Business\\Restaurant.Business.csproj"
+            "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.Business\\Restaurant.Business.csproj": {
+              "projectPath": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.Business\\Restaurant.Business.csproj"
             }
           }
         }

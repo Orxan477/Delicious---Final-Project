@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.UI\\Restaurant.Data\\Restaurant.Data.csproj": {}
+    "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.Data\\Restaurant.Data.csproj": {}
   },
   "projects": {
-    "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.UI\\Restaurant.Core\\Restaurant.Core.csproj": {
+    "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.Core\\Restaurant.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.UI\\Restaurant.Core\\Restaurant.Core.csproj",
+        "projectUniqueName": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.Core\\Restaurant.Core.csproj",
         "projectName": "Restaurant.Core",
-        "projectPath": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.UI\\Restaurant.Core\\Restaurant.Core.csproj",
+        "projectPath": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.Core\\Restaurant.Core.csproj",
         "packagesPath": "C:\\Users\\Orxan477\\.nuget\\packages\\",
-        "outputPath": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.UI\\Restaurant.Core\\obj\\",
+        "outputPath": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -68,14 +68,14 @@
         }
       }
     },
-    "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.UI\\Restaurant.Data\\Restaurant.Data.csproj": {
+    "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.Data\\Restaurant.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.UI\\Restaurant.Data\\Restaurant.Data.csproj",
+        "projectUniqueName": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.Data\\Restaurant.Data.csproj",
         "projectName": "Restaurant.Data",
-        "projectPath": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.UI\\Restaurant.Data\\Restaurant.Data.csproj",
+        "projectPath": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.Data\\Restaurant.Data.csproj",
         "packagesPath": "C:\\Users\\Orxan477\\.nuget\\packages\\",
-        "outputPath": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.UI\\Restaurant.Data\\obj\\",
+        "outputPath": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -96,8 +96,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.UI\\Restaurant.Core\\Restaurant.Core.csproj": {
-                "projectPath": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.UI\\Restaurant.Core\\Restaurant.Core.csproj"
+              "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.Core\\Restaurant.Core.csproj": {
+                "projectPath": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.Core\\Restaurant.Core.csproj"
               }
             }
           }

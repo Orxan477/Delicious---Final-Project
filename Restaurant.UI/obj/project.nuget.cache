@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MrDnxguotEDrWcjA+Lt7aLPNVXAWqP7SSVP1tNDsfHBAspu9U5pqnALITGaMQZbqKarzwKIbH3jFOJkIaHpWBw==",
+  "dgSpecHash": "LL6D5p8xO7DUbJrKR6NNDptP9yF1aXpL8UJ0zZn6x35JonvJLjuBrQQRJqQrq6xvL9zc9Shgz2tDasPgFF3n+w==",
   "success": true,
-  "projectFilePath": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.UI\\Restaurant.UI\\Restaurant.UI.csproj",
+  "projectFilePath": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.UI\\Restaurant.UI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Orxan477\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.22\\microsoft.netcore.app.host.win-x64.3.1.22.nupkg.sha512",
     "C:\\Users\\Orxan477\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512"
