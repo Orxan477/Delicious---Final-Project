@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "4d0a8261-43a5-41f4-85f8-8194ed6ae26f": {
+      "ProjectGuid": "4d0a8261-43a5-41f4-85f8-8194ed6ae26f",
+      "DisplayName": "Restaurant.UI",
+      "ColorIndex": 0
+    },
+    "fdee551e-58cc-41b0-93c3-320290051551": {
+      "ProjectGuid": "fdee551e-58cc-41b0-93c3-320290051551",
+      "DisplayName": "Restaurant.Business",
+      "ColorIndex": 1
+    },
+    "1eab6c35-4484-4e7d-acce-a53e3b95d655": {
+      "ProjectGuid": "1eab6c35-4484-4e7d-acce-a53e3b95d655",
+      "DisplayName": "Restaurant.Core",
+      "ColorIndex": 2
+    },
+    "627f3728-1eb4-4504-83d9-04dc3cdd2b9a": {
+      "ProjectGuid": "627f3728-1eb4-4504-83d9-04dc3cdd2b9a",
+      "DisplayName": "Restaurant.Data",
+      "ColorIndex": 3
+    }
+  },
+  "NextColorIndex": 4
+}

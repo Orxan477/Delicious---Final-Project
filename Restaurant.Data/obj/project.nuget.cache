@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "/BJ1t5pVwXC7P3w9f5F3AbO7iN7YtXZ/Wo82T3vjdrVq9lU7fOYAo0jSF9EKZ1JN8qtK+mAHcFm3bA/cyJW+Iw==",
+  "success": true,
+  "projectFilePath": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.UI\\Restaurant.Data\\Restaurant.Data.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Orxan477\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512"
+  ],
+  "logs": []
+}
