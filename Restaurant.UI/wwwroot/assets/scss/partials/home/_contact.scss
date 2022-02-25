@@ -1,0 +1,107 @@
+.contactIntro{
+    flex-direction: column;
+    text-align: center;
+    & h3{
+        font-size: ($size*2)+4;
+        color: $second-color;
+        font-family: $second-font-family;
+        font-weight: 600;
+        & span{
+            color: $main-color;
+            font-family: $second-font-family;
+        }
+    }
+    & p{
+        font-size: $size+2;
+        color: $second-color;
+        font-weight: 300;
+        margin: 1% auto 0 auto;
+    }
+}
+
+
+@media only screen and (min-width: 1024px) {
+    .contactIntro{
+        & p{
+            width: 50%;
+        }
+    }
+}
+
+.buttonSend{
+    & button{
+        background-color: $main-color;
+        border-radius: $big-size/2;
+        font-size: $size+2;
+        padding: ($size/2)+3 ($size+6);
+        border: 1px solid $main-color;
+    }
+    & button:hover{
+        background-color: $button-hover-color;
+        border: 1px solid $button-hover-color;
+    }
+    & .btn:focus{
+        background-color: $main-color;
+        border-color: 1px solid $main-color;
+        box-shadow: none;
+    }
+    & .btn:active:focus{
+        background-color: $main-color;
+        border-color: 1px solid $main-color;
+        box-shadow: none !important;
+    }
+    & .btn-primary:focus{
+        box-shadow: none !important;
+        border-color: 1px solid $main-color !important;
+    }
+}
+.myTextArea{
+    border: 1px solid #ced4da;
+    width: 100%;
+    height: $big-size+30;
+}
+
+@media only screen and (max-width: 768px) {
+    .message{
+        margin-top: $size;
+    }
+}
+.padding-all-row{
+    padding: 0 ($size+11) ($size+11);
+    box-shadow: 0 $size/3 $size+1 rgb(228, 227, 227);
+    & .direction:hover .logo-contact-direction{
+        background-color: $main-color;
+        color: $logo-color;
+    }
+    & .direction{
+        & .logo-contact-direction{
+            padding: $size+1;
+            background-color: $contact-card-logo-background;
+            border-radius: 50%;
+            color: $main-color;
+            font-size: $size+5;
+            transition: .5s all;
+        }
+        & h4{
+            color:$contact-card-head;
+            font-weight: 600;
+            font-size: $size+4;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+        & p{
+            font-size: $size;
+            color: $contact-card-text;
+            margin: 0
+        }
+        & .padding-direction{
+            padding-left: $size;
+        }
+    }
+}
+.message{
+    & .form-control:focus{
+        box-shadow: none;
+        border: 1px solid black;
+    }
+}

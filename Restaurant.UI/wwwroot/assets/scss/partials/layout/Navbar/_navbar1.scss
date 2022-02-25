@@ -1,0 +1,40 @@
+
+#nav1{
+    background-color: transparent;
+    transition: .3s;
+}
+#nav1 .nav1Left{
+    font-size: $size+1;
+    font-weight: 500;
+    color: $font-color;
+    margin-right: $size+10;
+    word-spacing: -1px;
+}
+
+#nav1 .nav1Left i{
+    color: $main-color;
+    
+}
+.myNavbar{
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    width: 100%;
+    
+}
+@media only screen and (max-width: 992px) {
+    .myNavbar{
+        background-color: rgba(0,0,0,0.9);
+        & #nav1{
+            & .nav1Hidden{
+                display: none;
+            }
+            & .nav1Number{
+               display: flex;
+               justify-content: center;
+            }
+        }
+    }
+}

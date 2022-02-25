@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewData["Title"] = "Menu";
+}
+
+<main>
+        <section id="menu" class="mt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 menuIntro">
+                        <h3>Check our tasty <span>Menu</span></h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 d-flex justify-content-center mt-3">
+                        <ul class="category d-flex ">
+                            <li><a href="#" data-id="all" class=" mr-3 product">All</a></li>
+                            <li><a href="#" data-id="launch" class="mr-3 product">Launch</a></li>
+                            <li><a href="#" data-id="pizza" class="mr-3 product">pizza</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-6 mt-3 ">
+                        <div class="product-item text-center" data-id="launch">
+                            <div class="img">
+                                <a href="#">
+                                    <img src="~/assets/img/american-hot.png" class="img-fluid" alt="">
+                                </a>
+                            </div>
+                            <div class="title mt-3">
+                                <h6>American Hot</h6>
+                            </div>
+                            <div>
+                                <span class="text-black-50">Pizza Sous, Mozzarella pendiri, Pepperoni və Halapenyo
+                                    Bibəri</span>
+                                <span class="text-black-50">
+                                    <a href="#" data-toggle="modal" data-target="#pro1"
+                                        class="btn btn-warning mt-2">Secin</a>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="pro1" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog " role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header d-flex justify-content-center">
+                                        <h5 class="modal-title" id="exampleModalLabel">Americano Hot</h5>
+                                    </div>
+                                    <div class="modal-body menu-modal">
+                                        <div class="d-flex justify-content-center">
+                                            <img src="~/assets/img/american-hot.png" style="width: 60%;"
+                                                class="img-fluid" alt="">
+                                        </div>
+                                        <p class="text-black-50 mt-3 mb-0 px-2">Pizza Sous, Mozzarella pendiri, Pepperoni və
+                                            Halapenyo Bibəri</p>
+                                        <div class="size">
+                                            <select name="size" id="pizza">
+                                                <option value="9" selected="selected">Mini, 23 sm 9 azn</option>
+                                                <option value="12" >Kiçik, 27 sm 12 azn</option>
+                                                <option value="15" >Kiçik, 30 sm 15 azn</option>
+                                                <option value="20" >Kiçik, 40 sm 20 azn</option>
+                                            </select>
+                                        </div>
+                                        <div class="sum-count d-flex justify-content-between px-2">
+                                            <div class="count">
+                                                <div class="minus d-inline">
+                                                    <i class="fas fa-minus minus-click"></i>
+                                                </div>
+                                                <span>0</span>
+                                                <div class="plus d-inline">
+                                                    <i class="fas fa-plus plus-click"></i>
+                                                </div>
+                                            </div>
+                                            <div class="sum">
+                                                <span class="total-price">0</span><span>₼</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-warning">Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        @section Script
+{
+    <script src="~/assets/js/script.js"></script>
+    <script src="~/assets/js/otherPage.js"></script>
+    <script src="~/assets/js/menu.js"></script>
+}
+    </main>
+

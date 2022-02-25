@@ -1,0 +1,85 @@
+// footer{
+//     position: fixed;
+//     bottom: 0;
+//     width: 100%;
+// }
+#footer{
+    background-color: $footer-background-color;
+    & ul{
+        & li{
+            list-style: none;
+            color: $font-color;
+            font-family: $say-position-font-family;
+            padding: 0;
+            & p{
+                font-size: $size;
+                margin: 0;
+                line-height: 24px;
+            }
+        }
+        & .logo{
+            font-family: $second-font-family;
+            color: $main-color;
+            font-size: ($size*2)+4;
+            margin-bottom: $size;
+        }
+        .contactRestaurant{
+            margin-top: $size+6;
+        }
+    }
+    & .icon-footer-right{
+        margin-right: 5px;
+        color: $main-color;
+    }
+    & .pageProp{
+        & h3{
+            font-size: $size+4;
+            margin: $size/2 0 $size;
+            color: white;
+        }
+        & a{
+            color: $font-color;
+            font-size: $size;
+            transition: .3s all;
+        }
+        & li{
+            transition: .3s all;
+            padding:10px 0;
+        }
+        & li:hover{
+            margin-left: 5px;
+        }
+        & li:hover a{
+            color: $main-color;
+            text-decoration: none;
+        }
+        & ul > li{
+            padding: 0 0 10px;
+        }
+    }
+    & .social-net{
+        & ul{
+            display: flex;
+            justify-content: space-around;
+        }
+        & li:hover{
+            margin: 0;
+        }
+        & li:hover .logo-social{
+            color: $logo-color;
+            background-color:$button-hover-color;
+        }
+        & p{
+            color: $font-color;
+            font-size: $size;
+            font-weight: 500;
+        }
+        & .logo-social{
+            padding: 10px;
+            border-radius: 50px;
+            background-color: $main-color;
+            font-size: $size+3;
+            transition: .3s all;
+        }
+    }
+}

@@ -1,0 +1,86 @@
+.teamIntro{
+    margin-top: $big-size+30;
+    flex-direction: column;
+    text-align: center;
+    & h3{
+        font-size: ($size*2)+4;
+        color: $second-color;
+        font-family: $second-font-family;
+        font-weight: 600;
+        & span{
+            color: $main-color;
+            font-family: $second-font-family;
+        }
+    }
+    & p{
+        font-size: $size+2;
+        color: $second-color;
+        font-weight: 300;
+        margin: 1% auto 0 auto;
+    }
+}
+@media only screen and (min-width: 1024px) {
+    .teamIntro{
+        & p{
+            width: 50%;
+        }
+    }
+}
+#team{
+    & .employee{
+        margin-bottom: ($big-size/2)+40;
+        cursor:pointer;
+    }
+    & .image-info{
+        text-align: center;
+        position: absolute;
+        background-color: white;
+        bottom: 0px;
+        left: ($size*2);
+        right: ($size*2);
+        padding: $size+6 0;
+        color: $team-color;
+        box-shadow: 0 $size/3 $size+1 rgb(228, 227, 227);
+        & h4{
+            font-weight: 400;
+            margin-bottom: ($size/2)+3;
+            font-size: $size+2;
+            color: $team-name-color;
+            padding-bottom: $size/2+3;
+            position: relative;
+        }
+        & h4::after{
+            content: "";
+            position: absolute;
+            width: $big-size/2;
+            height: 1px;
+            background-color: $team-name-underline;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        & span{
+            font-style: italic;
+            font-size: ($size/2)+6;
+        }
+        & ul{
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            margin: $size/2 0 0 0;
+            & .social-logo{
+                padding: $size/2;
+                font-size: $size+3;
+                color: $team-social-logo-color;
+                transition: .3s all;
+                color: $team-social-logo-color;
+            }
+            & .social-logo:hover{
+                color: $main-color;
+            }
+        }
+    }
+}
+.modal-image{
+    width: 290%;
+}
