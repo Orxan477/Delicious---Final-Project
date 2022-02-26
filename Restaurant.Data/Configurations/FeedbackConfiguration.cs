@@ -11,7 +11,7 @@ namespace Restaurant.Data.Configurations
             builder.Property(x=>x.FullName).HasMaxLength(50).IsRequired();
             builder.Property(x => x.Comment).HasMaxLength(255).IsRequired();
             builder.Property(x => x.Image).IsRequired();
-            builder.Property(x => x.Position).IsRequired();
+            //builder.Property(x => x.Position).IsRequired();
         }
     }
 }

@@ -4,7 +4,7 @@ using Restaurant.Data.Configurations;
 
 namespace Restaurant.Data.DAL
 {
-    internal class AppDbContext:DbContext
+    public class AppDbContext:DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext>options):base(options) {}
 
