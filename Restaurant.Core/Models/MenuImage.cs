@@ -1,9 +1,8 @@
-﻿namespace Restaurant.Core.Entites
+﻿namespace Restaurant.Core.Models
 {
     public class MenuImage
     {
         public int Id { get; set; }
         public string Image { get; set; }
-
     }
 }

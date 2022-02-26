@@ -1,4 +1,4 @@
-﻿using Restaurant.Core.Entites;
+﻿using Restaurant.Core.Models;
 
 namespace Restaurant.Core.Models
 {

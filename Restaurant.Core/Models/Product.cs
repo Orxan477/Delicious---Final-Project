@@ -1,6 +1,6 @@
 ﻿using Restaurant.Core.Models;
 
-namespace Restaurant.Core.Entites
+namespace Restaurant.Core.Models
 {
     public class Product
     {
