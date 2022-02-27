@@ -12,6 +12,5 @@ namespace Restaurant.Business.ViewModels
         public List<Special> Specials { get; set; }
         public List<RestaurantPhotos> RestaurantsPhotos { get; set;}
         public List<Feedback> Feedbacks { get; set; }
-        public List<SectionHead> SectionHeads { get; set; }
     }
 }
