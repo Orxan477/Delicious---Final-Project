@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "EBmWzfZXdzW1vj5Zmoz1WT25Z6wJvbhrYHQQlyGoYO3vpn0SnOzIP4ht5odNZnmT84Ii+boqOsbmDRpqd4sygw==",
+  "dgSpecHash": "IOTW8OtWmdj7rLsKV5bz/yrTxqwiW2u7bTrqCA9DcOqy2XAgXKR9ac/qedZzXk0PXGmQYVYVs2VJjOlLfIxexw==",
   "success": true,
   "projectFilePath": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.UI\\Restaurant.UI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Orxan477\\.nuget\\packages\\fluentvalidation\\10.3.6\\fluentvalidation.10.3.6.nupkg.sha512",
+    "C:\\Users\\Orxan477\\.nuget\\packages\\fluentvalidation.aspnetcore\\10.3.6\\fluentvalidation.aspnetcore.10.3.6.nupkg.sha512",
+    "C:\\Users\\Orxan477\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\10.3.6\\fluentvalidation.dependencyinjectionextensions.10.3.6.nupkg.sha512",
     "C:\\Users\\Orxan477\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Orxan477\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
     "C:\\Users\\Orxan477\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\3.1.0\\microsoft.aspnetcore.razor.language.3.1.0.nupkg.sha512",

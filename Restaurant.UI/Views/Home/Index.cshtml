@@ -230,21 +230,26 @@
               loading="lazy"></iframe>
           </div>
           <div class="col-lg-6 col-md-5 col-sm-12 message">
-            <form action="#">
+            <form method="post" asp-controller="Home" asp-action="ContactUs">
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <input type="text" class="form-control" id="inputEmail4" placeholder="Your Name">
+                  <input asp-for="ContactUsVM.Name" class="form-control" placeholder="Your Name">
+                  <span class="text-danger" asp-validation-for="ContactUsVM.Name"></span>
                 </div>
                 <div class="form-group col-md-6">
-                  <input type="email" class="form-control" id="inputEmail4" placeholder="Your Mail">
+                  <input asp-for="ContactUsVM.Email" class="form-control" placeholder="Your Mail">
+                  <span class="text-danger" asp-validation-for="ContactUsVM.Email"></span>
                 </div>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" id="inputAddress" placeholder="Subject">
+                <input asp-for="ContactUsVM.Subject" class="form-control" placeholder="Subject">
+                <span class="text-danger" asp-validation-for="ContactUsVM.Subject"></span>
               </div>
               <div class="form-group myArea">
-                <textarea name="Message" class="myTextArea" id="mesagge" placeholder="Message"></textarea>
+                <textarea asp-for="ContactUsVM.Message" class="myTextArea" placeholder="Message"></textarea>
+                <span class="text-danger" asp-validation-for="ContactUsVM.Message"></span>
               </div>
+              <div asp-validation-summary="ModelOnly"></div>
               <div class="buttonSend d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary">Send Message</button>
               </div>
@@ -257,6 +262,9 @@
 {
     <script src="~/assets/js/script.js"></script>
   <script src="~/assets/js/home.js"></script>
+  <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
 }
   </main>
 

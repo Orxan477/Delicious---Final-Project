@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "kMdkvUx+hj/fkXiDybkyqXgrmRyqS/DU8RUTHAq3Jb9Q1UwFDWUlF4qceNSGQsclakN2cLRMS65tae/ZVzcr9A==",
+  "dgSpecHash": "fgSiVusw/sdtvhZH8GSy9LvPLV6lnSCAfusWM22Ca87bDEyjBH9BAQpHHrRJtgEf5KLPNuFy8Zt3MQpQZuqfhQ==",
   "success": true,
   "projectFilePath": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.Business\\Restaurant.Business.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Orxan477\\.nuget\\packages\\fluentvalidation\\10.3.6\\fluentvalidation.10.3.6.nupkg.sha512",
+    "C:\\Users\\Orxan477\\.nuget\\packages\\fluentvalidation.aspnetcore\\10.3.6\\fluentvalidation.aspnetcore.10.3.6.nupkg.sha512",
+    "C:\\Users\\Orxan477\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\10.3.6\\fluentvalidation.dependencyinjectionextensions.10.3.6.nupkg.sha512",
     "C:\\Users\\Orxan477\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.0\\microsoft.bcl.asyncinterfaces.1.1.0.nupkg.sha512",
     "C:\\Users\\Orxan477\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
     "C:\\Users\\Orxan477\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

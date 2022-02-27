@@ -12,7 +12,10 @@
     <Folder Include="Implementations\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Profiles\" />
-    <Folder Include="Validators\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.6" />
   </ItemGroup>
 
 </Project>

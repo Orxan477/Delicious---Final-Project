@@ -23,6 +23,7 @@ namespace Restaurant.Data.DAL
         public DbSet<Special> Specials { get; set; }
         public DbSet<Subscribe> Subscribes { get; set; }
         public DbSet<Team> Teams { get; set; }
+        public DbSet<ContactUs> ContactUs { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new AboutConfiguration());
@@ -40,6 +41,7 @@ namespace Restaurant.Data.DAL
             modelBuilder.ApplyConfiguration(new SpecialConfiguration());
             modelBuilder.ApplyConfiguration(new SubscribeConfiguration());
             modelBuilder.ApplyConfiguration(new TeamConfiguration());
+            modelBuilder.ApplyConfiguration(new ContactUsConfiguration());
             base.OnModelCreating(modelBuilder);
         }
     }

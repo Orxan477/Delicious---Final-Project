@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Business.ViewModels;
+using Restaurant.Business.ViewModels.Home;
+using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
 using System.Threading.Tasks;
 
@@ -31,6 +33,23 @@ namespace Restaurant.UI.Controllers
                 ChooseRestaurants=await _context.ChooseRestaurants.ToListAsync(),
             };
             return View(homeVM);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ContactUs(ContactUsVM contactVM)
+        {
+            if(!ModelState.IsValid) return View(contactVM);
+
+            ContactUs contact = new ContactUs
+            {
+                Name = contactVM.Name,
+                Email = contactVM.Email,
+                Subject = contactVM.Subject,
+                Message = contactVM.Message,
+            };
+            await _context.ContactUs.AddAsync(contact);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }
