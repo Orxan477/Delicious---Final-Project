@@ -9,8 +9,9 @@ namespace Restaurant.Data.Configurations
         public void Configure(EntityTypeBuilder<Special> builder)
         {
             builder.Property(x => x.FoodName).HasMaxLength(50).IsRequired();
-            builder.Property(x=>x.PropHead).HasMaxLength(50).IsRequired();
-            builder.Property(x => x.PropContent).HasMaxLength(255).IsRequired();
+            builder.Property(x=>x.PropHead).HasMaxLength(100).IsRequired();
+            builder.Property(x => x.PropContent).HasMaxLength(500).IsRequired();
+            builder.Property(x => x.PropContentItalic).HasMaxLength(255).IsRequired();
             //builder.Property(x=>x.MenuImage).IsRequired();
         }
     }

@@ -32,9 +32,12 @@ function myFunction() {
   }
 }
 
-var special = document.getElementById("tab1");
-special.classList.add("active-special");
-console.log(special);
+var specialName = document.querySelector(".special-ul").firstElementChild.firstElementChild;
+specialName.classList.add("active-special");
+
+var specialProperty = document.querySelector(".titleSpecials").nextElementSibling;
+specialProperty.classList.remove("d-none");
+specialProperty.classList.add("active-special-property");
 
 
 // Specials Section (start)

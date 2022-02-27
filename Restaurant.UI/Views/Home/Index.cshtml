@@ -100,91 +100,28 @@
               vitae autem.</p>
           </div>
           <div class="col-lg-3 col-md-12 col-sm-12 titleSpecials mb-4">
-            <ul>
-              @*@foreach (var item in Model.Specials)*@
-             @*{*@
+            <ul class="special-ul">
+              @foreach (var special in Model.Specials)
+             {
                 <li>
-                <a href="#" class="nav-link special-name " data-id="tab1">Modi sit est</a>
+                <a href="#" class="nav-link special-name " data-id="tab-@special.Id">@special.FoodName</a>
               </li> 
-             @*}*@
-              <li>
-                <a href="#" class="nav-link special-name" data-id="tab2">Unde praesentium sed</a>
-              </li>
-              <li>
-                <a href="#" class="nav-link special-name" data-id="tab3">Pariatur explicabo vel</a>
-              </li>
-              <li>
-                <a href="#" class="nav-link special-name" data-id="tab4">Nostrum qui quasi</a>
-              </li>
-              <li>
-                <a href="#" class="nav-link special-name" data-id="tab5">Iusto ut expedita aut</a>
-              </li>
+             }
             </ul>
           </div>
-          <div class="col-lg-9 col-md-12 col-sm-12 p-0 active-special-property" id="tab1">
+          @foreach (var specialProp in Model.Specials)
+         {
+             <div class="col-lg-9 col-md-12 col-sm-12 p-0 d-none" id="tab-@specialProp.Id">
             <div class="col-lg-8 col-md-8 content-special">
-              <h3>Architecto ut aperiam autem id</h3>
-              <p class="distance">Qui laudantium consequatur laborum sit qui ad sapiente dila parde sonata raqer a
-                videna mareta paulona marka</p>
-              <p class="normal-text">Et nobis maiores eius. Voluptatibus ut enim blanditiis atque harum sint. Laborum
-                eos ipsum ipsa odit magni. Incidunt hic ut molestiae aut qui. Est repellat minima eveniet eius et quis
-                magni nihil. Consequatur dolorem quaerat quos qui similique accusamus nostrum rem vero</p>
+              <h3>@specialProp.PropHead</h3>
+              <p class="distance">@specialProp.PropContentItalic</p>
+              <p class="normal-text">@specialProp.PropContent</p>
             </div>
             <div class="col-lg-4 col-md-4 ">
-              <img src="~/assets/img/specials-1.jpg" class="img-fluid" alt="">
+              <img src="~/assets/img/@specialProp.MenuImage.Image" class="img-fluid" alt="">
             </div>
           </div>
-          <div class="col-lg-9 col-md-12 col-sm-12 p-0 d-none" id="tab2">
-            <div class="col-lg-8 col-md-8 content-special">
-              <h3>Et blanditiis nemo veritatis excepturi</h3>
-              <p class="distance">Qui laudantium consequatur laborum sit qui ad sapiente dila parde sonata raqer a
-                videna mareta paulona marka</p>
-              <p class="normal-text">Ea ipsum voluptatem consequatur quis est. Illum error ullam omnis quia et
-                reiciendis sunt sunt est. Non aliquid repellendus itaque accusamus eius et velit ipsa voluptates. Optio
-                nesciunt eaque beatae accusamus lerode pakto madirna desera vafle de nideran pal</p>
-            </div>
-            <div class="col-lg-4 col-md-4">
-              <img src="~/assets/img/specials-2.jpg" class="img-fluid" alt="">
-            </div>
-          </div>
-          <div class="col-lg-9 col-md-12 col-sm-12 p-0 d-none" id="tab3">
-            <div class="col-lg-8 col-md-8 content-special">
-              <h3>Impedit facilis occaecati odio neque aperiam sit</h3>
-              <p class="distance">Eos voluptatibus quo. Odio similique illum id quidem non enim fuga. Qui natus non sunt
-                dicta dolor et. In asperiores velit quaerat perferendis aut</p>
-              <p class="normal-text">Iure officiis odit rerum. Harum sequi eum illum corrupti culpa veritatis quisquam.
-                Neque necessitatibus illo rerum eum ut. Commodi ipsam minima molestiae sed laboriosam a iste odio. Earum
-                odit nesciunt fugiat sit ullam. Soluta et harum voluptatem optio quae</p>
-            </div>
-            <div class="col-lg-4 col-md-4">
-              <img src="~/assets/img/specials-3.jpg" class="img-fluid" alt="">
-            </div>
-          </div>
-          <div class="col-lg-9 col-md-12 col-sm-12 p-0 d-none" id="tab4">
-            <div class="col-lg-8 col-md-8 content-special">
-              <h3>Fuga dolores inventore laboriosam ut est accusamus laboriosam dolore</h3>
-              <p class="distance">Totam aperiam accusamus. Repellat consequuntur iure voluptas iure porro quis delectus
-              </p>
-              <p class="normal-text">Eaque consequuntur consequuntur libero expedita in voluptas. Nostrum ipsam
-                necessitatibus aliquam fugiat debitis quis velit. Eum ex maxime error in consequatur corporis atque.
-                Eligendi asperiores sed qui veritatis aperiam quia a laborum inventore</p>
-            </div>
-            <div class="col-lg-4 col-md-4">
-              <img src="~/assets/img/specials-4.jpg" class="img-fluid" alt="">
-            </div>
-          </div>
-          <div class="col-lg-9 col-md-12 col-sm-12 p-0 d-none" id="tab5">
-            <div class="col-lg-8 col-md-8 content-special">
-              <h3>Est eveniet ipsam sindera pad rone matrelat sando reda</h3>
-              <p class="distance">Omnis blanditiis saepe eos autem qui sunt debitis porro quia.</p>
-              <p class="normal-text">Exercitationem nostrum omnis. Ut reiciendis repudiandae minus. Omnis recusandae ut
-                non quam ut quod eius qui. Ipsum quia odit vero atque qui quibusdam amet. Occaecati sed est sint aut
-                vitae molestiae voluptate vel</p>
-            </div>
-            <div class="col-lg-4 col-md-4">
-              <img src="~/assets/img/specials-5.jpg" class="img-fluid" alt="">
-            </div>
-          </div>
+         }
         </div>
       </div>
     </section>

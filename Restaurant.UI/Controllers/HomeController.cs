@@ -21,7 +21,9 @@ namespace Restaurant.UI.Controllers
                 HomeIntro=await _context.HomeIntros.ToListAsync(),
                 About=await _context.Abouts.FirstOrDefaultAsync(),
                 AboutOptions=await _context.AboutOptions.ToListAsync(),
-                Specials=await _context.Specials.ToListAsync(),
+                Specials=await _context.Specials
+                                       .Include(x=>x.MenuImage)
+                                       .ToListAsync(),
                 RestaurantsPhotos=await _context.RestaurantPhotos.ToListAsync(),
                 Feedbacks=await _context.Feedbacks
                                         .Include(x=>x.Position)
