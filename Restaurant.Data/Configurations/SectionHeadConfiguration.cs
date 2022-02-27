@@ -8,8 +8,8 @@ namespace Restaurant.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<SectionHead> builder)
         {
-            builder.Property(x => x.Head).HasMaxLength(50).IsRequired();
-            builder.Property(x=>x.Content).HasMaxLength(255).IsRequired();
+            builder.Property(x => x.Key).IsRequired();
+            builder.Property(x => x.Head).HasMaxLength(100).IsRequired();
         }
     }
 }

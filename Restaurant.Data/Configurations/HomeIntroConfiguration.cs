@@ -10,6 +10,7 @@ namespace Restaurant.Data.Configurations
         {
             builder.Property(x => x.Head).HasMaxLength(50).IsRequired();
             builder.Property(x => x.Content).HasMaxLength(255).IsRequired();
+            builder.Property(x => x.Image).IsRequired();
         }
     }
 }

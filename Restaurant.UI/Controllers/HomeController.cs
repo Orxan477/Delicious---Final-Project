@@ -1,14 +1,34 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
+using Microsoft.EntityFrameworkCore;
+using Restaurant.Business.ViewModels;
+using Restaurant.Data.DAL;
+using System.Threading.Tasks;
 
 namespace Restaurant.UI.Controllers
 {
     public class HomeController : Controller
     {
-        //[Route("/#homeIntro")]
-        public IActionResult Index()
+        private AppDbContext _context;
+
+        public HomeController(AppDbContext context)
         {
-            return View();
+            _context = context;
+        }
+        public async Task<IActionResult> Index()
+        {
+            HomeVM homeVM = new HomeVM
+            {
+                HomeIntro=await _context.HomeIntros.ToListAsync(),
+                About=await _context.Abouts.FirstOrDefaultAsync(),
+                AboutOptions=await _context.AboutOptions.ToListAsync(),
+                Specials=await _context.Specials.ToListAsync(),
+                RestaurantsPhotos=await _context.RestaurantPhotos.ToListAsync(),
+                Feedbacks=await _context.Feedbacks
+                                        .Include(x=>x.Position)
+                                        .ToListAsync(),
+                ChooseRestaurants=await _context.ChooseRestaurants.ToListAsync(),
+            };
+            return View(homeVM);
         }
     }
 }

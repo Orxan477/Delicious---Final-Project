@@ -36,8 +36,11 @@ namespace Restaurant.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ItalicContent")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Link")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalContent")
                         .IsRequired()
@@ -94,8 +97,8 @@ namespace Restaurant.Data.Migrations
 
                     b.Property<string>("CardContent")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<string>("CardHead")
                         .IsRequired()
@@ -160,6 +163,10 @@ namespace Restaurant.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -321,7 +328,7 @@ namespace Restaurant.Data.Migrations
                     b.ToTable("RestaurantPhotos");
                 });
 
-            modelBuilder.Entity("Restaurant.Core.Models.SectionHead", b =>
+            modelBuilder.Entity("Restaurant.Core.Models.SectionContent", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -329,34 +336,37 @@ namespace Restaurant.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Content")
-                        .IsRequired()
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
-                    b.Property<string>("Head")
+                    b.Property<string>("Key")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("SectionHeads");
+                    b.ToTable("SectionContents");
                 });
 
-            modelBuilder.Entity("Restaurant.Core.Models.Slider", b =>
+            modelBuilder.Entity("Restaurant.Core.Models.SectionHead", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Image")
+                    b.Property<string>("Head")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Key")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sliders");
+                    b.ToTable("SectionHeads");
                 });
 
             modelBuilder.Entity("Restaurant.Core.Models.Special", b =>

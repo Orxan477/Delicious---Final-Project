@@ -1,4 +1,4 @@
-﻿
+﻿@model HomeVM
 @{
     ViewData["Title"] = "Home";
 }
@@ -8,49 +8,23 @@
       <div class="container-fluid">
         <div class="row">
           <div class="owl-carousel owlImg">
-            <div style="background-image: url(/assets/img/slide-1.jpg);" class="img col-lg-12 ">
+            @foreach (var intro in Model.HomeIntro)
+            {
+                
+                <div style="background-image: url(/assets/img/@intro.Image);" class="img col-lg-12 ">
               <div class="col-lg-7 col-md-8 col-sm-12 contentIntro d-flex justify-content-center">
-                <h2 class="animate-head"><span>Delicious</span> Restaurant</h2>
+                <h2 class="animate-head">@Html.Raw(intro.Head)</h2>
                 <p class="animate-content">
-                  Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam.
-                  Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus
-                  deleniti vel. Minus et tempore modi architecto.
+                  @intro.Content
                 </p>
                 <div class="animate-button">
                   <button class="btn btn-primary">MENU</button>
-                  <button class="btn btn-primary">BOOK A TABLE</button>
+                  <button class="btn btn-primary">Reservation</button>
                 </div>
               </div>
 
             </div>
-            <div style="background-image: url(/assets/img/slide-2.jpg);" class="img col-lg-12">
-              <div class="col-lg-7 col-md-8 col-sm-12 contentIntro d-flex justify-content-center">
-                <h2 class="animate-head">Lorem Ipsum Dolor</h2>
-                <p class="animate-content">
-                  Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam.
-                  Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus
-                  deleniti vel. Minus et tempore modi architecto.
-                </p>
-                <div class="animate-button">
-                  <button class="btn btn-primary">MENU</button>
-                  <button class="btn btn-primary">BOOK A TABLE</button>
-                </div>
-              </div>
-            </div>
-            <div style="background-image: url(/assets/img/slide-3.jpg);" class="img col-lg-12">
-              <div class="col-lg-7 col-md-8 col-sm-12 contentIntro d-flex justify-content-center">
-                <h2 class="animate-head">Sequi ea ut et est quaerat</h2>
-                <p class="animate-content">
-                  Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam.
-                  Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus
-                  deleniti vel. Minus et tempore modi architecto.
-                </p>
-                <div class="animate-button">
-                  <button class="btn btn-primary">MENU</button>
-                  <button class="btn btn-primary">BOOK A TABLE</button>
-                </div>
-              </div>
-            </div>
+            }
           </div>
         </div>
       </div>
@@ -61,40 +35,33 @@
         <div class="row">
           <div class="col-lg-5 col-md-12 col-sm-12 mb-4 p-0 image-about "
             style="background-image: url(/assets/img/about.jpg);">
-            <a href="https://www.youtube.com/watch?v=NcXewuQOttk" target="_blank" rel="noopener noreferrer"><i
+            <a href="@Model.About.Link" target="_blank" rel="noopener noreferrer"><i
                 class="fas fa-play icon-play"></i></a>
           </div>
           <div class="col-lg-7 col-md-12 col-sm-12 padding-all-content">
             <div class="about-head">
-              <h3>Eum ipsam laborum deleniti <span>velit pariatur architecto aut nihil</span></h3>
+              <h3>@Html.Raw(Model.About.Head)</h3>
             </div>
             <div class="about-content">
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Duis aute irure dolor in reprehenderit
+                 @Model.About.NormalContent
               </p>
             </div>
             <div class="about-italic-content">
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.
+                @Model.About.ItalicContent
               </p>
             </div>
             <div class="about-content-options">
               <ul>
-                <li><i class="fas fa-check-double check-option-about"></i> Ullamco laboris nisi ut aliquip ex ea commodo
-                  consequat.</li>
-                <li class="distance-ul-about"><i class="fas fa-check-double check-option-about"></i> Duis aute irure
-                  dolor in reprehenderit in voluptate velit.</li>
-                <li><i class="fas fa-check-double check-option-about"></i> Ullamco laboris nisi ut aliquip ex ea commodo
-                  consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore
-                  eu fugiat nulla pariatur.</li>
+                @foreach (var option in Model.AboutOptions)
+               {
+                   <li class="distance-ul-about"><i class="fas fa-check-double check-option-about"></i>@option.Option</li>
+               }
               </ul>
             </div>
             <div class="about-content">
-              <p>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                <p> @Model.About.NormalContent2</p>
             </div>
           </div>
         </div>
@@ -106,41 +73,20 @@
         <div class="row">
           <div class="col-lg-12 chooseIntro">
             <h3>Why choose <span>Our Restaurant</span></h3>
-            <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque
-              vitae autem.</p>
+            <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
           </div>
-          <div class="col-lg-4 col-md-6 col-sm-12 my-3">
+          @foreach (var choose in Model.ChooseRestaurants)
+         {
+             <div class="col-lg-4 col-md-6 col-sm-12 my-3">
             <div class="box">
-              <span>01</span>
-              <h5>Lorem Ipsum</h5>
+              <span>@choose.Number</span>
+              <h5>@choose.CardHead</h5>
               <p class="text-muted">
-                Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur
-                ducimus vero placeat
+                @choose.CardContent
               </p>
             </div>
           </div>
-
-          <div class="col-lg-4 col-md-6 col-sm-12 my-3">
-            <div class="box">
-              <span>02</span>
-              <h5>Repellat Nihil</h5>
-              <p class="text-muted">
-                Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor
-                quod et vel dire leno para dest
-              </p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 col-sm-12 my-3">
-            <div class="box">
-              <span>03</span>
-              <h5>Ad ad velit qui</h5>
-              <p class="text-muted">
-                Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt
-                debitis quo vel nam quis
-              </p>
-            </div>
-          </div>
+         }
         </div>
       </div>
     </section>
@@ -155,9 +101,12 @@
           </div>
           <div class="col-lg-3 col-md-12 col-sm-12 titleSpecials mb-4">
             <ul>
-              <li>
-                <a href="#" class="nav-link special-name active-special" data-id="tab1">Modi sit est</a>
-              </li>
+              @*@foreach (var item in Model.Specials)*@
+             @*{*@
+                <li>
+                <a href="#" class="nav-link special-name " data-id="tab1">Modi sit est</a>
+              </li> 
+             @*}*@
               <li>
                 <a href="#" class="nav-link special-name" data-id="tab2">Unde praesentium sed</a>
               </li>
@@ -249,46 +198,14 @@
               vitae autem.
             </p>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-6 pt-1 pb-1 pr-1 pl-0">
+          @foreach (var restaurant in Model.RestaurantsPhotos)
+         {
+             <div class="col-lg-3 col-md-4 col-sm-6 pt-1 pb-1 pr-1 pl-0">
             <div class="card myGallery">
-              <img class="card-img-top hoverImage" src="~/assets/img/gallery-1.jpg" alt="Card image cap">
+              <img class="card-img-top hoverImage" src="~/assets/img/@restaurant.Image" alt="Card image cap">
             </div>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-6 pt-1 pb-1 pr-1 pl-0">
-            <div class="card myGallery">
-              <img class="card-img-top hoverImage" src="~/assets/img/gallery-2.jpg" alt="Card image cap">
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6 pt-1 pb-1 pr-1 pl-0">
-            <div class="card myGallery">
-              <img class="card-img-top hoverImage" src="~/assets/img/gallery-3.jpg" alt="Card image cap">
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6 pt-1 pb-1 pr-1 pl-0">
-            <div class="card myGallery">
-              <img class="card-img-top hoverImage" src="~/assets/img/gallery-4.jpg" alt="Card image cap">
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6 pt-1 pb-1 pr-1 pl-0">
-            <div class="card myGallery">
-              <img class="card-img-top hoverImage" src="~/assets/img/gallery-5.jpg" alt="Card image cap">
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6 pt-1 pb-1 pr-1 pl-0">
-            <div class="card myGallery">
-              <img class="card-img-top hoverImage" src="~/assets/img/gallery-6.jpg" alt="Card image cap">
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6 pt-1 pb-1 pr-1 pl-0">
-            <div class="card myGallery">
-              <img class="card-img-top hoverImage" src="~/assets/img/gallery-7.jpg" alt="Card image cap">
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6 pt-1 pb-1 pr-1 pl-0">
-            <div class="card myGallery">
-              <img class="card-img-top hoverImage" src="~/assets/img/gallery-8.jpg" alt="Card image cap">
-            </div>
-          </div>
+         }
         </div>
 
       </div>
@@ -298,66 +215,20 @@
       <div class="container">
         <div class="row">
           <div class="owl-carousel">
-            <div class="item-say py-5">
+            @foreach (var feedback in Model.Feedbacks)
+           {
+               <div class="item-say py-5">
               <div class="d-flex justify-content-center">
-                <img src="~/assets/img/testimonials-1.jpg" class="card-img-top" alt="">
+                <img src="~/assets/img/@feedback.Image" class="card-img-top" alt="">
               </div>
-              <h3>Saul Goodman</h3>
-              <h4>Ceo & Founder</h4>
+              <h3>@feedback.FullName</h3>
+              <h4>@feedback.Position.Name</h4>
               <p><i class="fas fa-quote-left icon-say mr-2"></i>
-                Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium
-                quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                  @feedback.Comment
                 <i class="fas fa-quote-right icon-say ml-2"></i>
               </p>
             </div>
-            <div class="item-say py-5">
-              <div class="d-flex justify-content-center">
-                <img src="~/assets/img/testimonials-2.jpg" class="card-img-top" alt="">
-              </div>
-              <h3>Sara Wilsson</h3>
-              <h4>Designer</h4>
-              <p><i class="fas fa-quote-left icon-say mr-2"></i>
-                Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis
-                quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                <i class="fas fa-quote-right icon-say ml-2"></i>
-              </p>
-            </div>
-            <div class="item-say py-5">
-              <div class="d-flex justify-content-center">
-                <img src="~/assets/img/testimonials-3.jpg" class="card-img-top" alt="">
-              </div>
-              <h3>Jena Karlis</h3>
-              <h4>Store Owner</h4>
-              <p><i class="fas fa-quote-left icon-say mr-2"></i>
-                Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor
-                labore quem eram duis noster aute amet eram fore quis sint minim.
-                <i class="fas fa-quote-right icon-say ml-2"></i>
-              </p>
-            </div>
-            <div class="item-say py-5">
-              <div class="d-flex justify-content-center">
-                <img src="~/assets/img/testimonials-4.jpg" class="card-img-top" alt="">
-              </div>
-              <h3>Matt Brandon</h3>
-              <h4>Freelancer</h4>
-              <p><i class="fas fa-quote-left icon-say mr-2"></i>
-                Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim
-                dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-                <i class="fas fa-quote-right icon-say ml-2"></i>
-              </p>
-            </div>
-            <div class="item-say py-5">
-              <div class="d-flex justify-content-center">
-                <img src="~/assets/img/testimonials-5.jpg" class="card-img-top" alt="">
-              </div>
-              <h3>John Larson</h3>
-              <h4>FEntrepreneur</h4>
-              <p><i class="fas fa-quote-left icon-say mr-2"></i>
-                Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa
-                labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-                <i class="fas fa-quote-right icon-say ml-2"></i>
-              </p>
-            </div>
+           }
           </div>
         </div>
       </div>

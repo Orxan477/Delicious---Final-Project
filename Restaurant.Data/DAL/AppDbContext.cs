@@ -21,7 +21,7 @@ namespace Restaurant.Data.DAL
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<RestaurantPhotos> RestaurantPhotos { get; set; }
         public DbSet<SectionHead> SectionHeads { get; set; }
-        public DbSet<Slider> Sliders { get; set; }
+        public DbSet<SectionContent> SectionContents { get; set; }
         public DbSet<Special> Specials { get; set; }
         public DbSet<Subscribe> Subscribes { get; set; }
         public DbSet<Team> Teams { get; set; }
@@ -40,7 +40,7 @@ namespace Restaurant.Data.DAL
             modelBuilder.ApplyConfiguration(new ReservationConfiguration());
             modelBuilder.ApplyConfiguration(new RestaurantPhotosConfiguration());
             modelBuilder.ApplyConfiguration(new SectionHeadConfiguration());
-            modelBuilder.ApplyConfiguration(new SliderConfiguration());
+            modelBuilder.ApplyConfiguration(new SectionContentConfiguration());
             modelBuilder.ApplyConfiguration(new SpecialConfiguration());
             modelBuilder.ApplyConfiguration(new SubscribeConfiguration());
             modelBuilder.ApplyConfiguration(new TeamConfiguration());

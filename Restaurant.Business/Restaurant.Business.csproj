@@ -13,7 +13,6 @@
     <Folder Include="Interfaces\" />
     <Folder Include="Profiles\" />
     <Folder Include="Validators\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
 
 </Project>

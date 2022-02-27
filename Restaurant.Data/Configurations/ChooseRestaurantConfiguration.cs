@@ -11,7 +11,7 @@ namespace Restaurant.Data.Configurations
         {
             builder.Property(x => x.Number).HasDefaultValue(0).IsRequired();
             builder.Property(x => x.CardHead).HasMaxLength(20).IsRequired();
-            builder.Property(x => x.CardContent).HasMaxLength(50).IsRequired();
+            builder.Property(x => x.CardContent).HasMaxLength(255).IsRequired();
 
         }
     }
