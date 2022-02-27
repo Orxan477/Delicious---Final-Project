@@ -1,0 +1,525 @@
+﻿++Solution 'Restaurant.UI' ‎(4 of 4 projects)
+i:{00000000-0000-0000-0000-000000000000}:Restaurant.UI.sln
+++Restaurant.Core
+i:{00000000-0000-0000-0000-000000000000}:Restaurant.Core
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.core\bin\debug\netcoreapp3.1\restaurant.core.dll
+++Dependencies
+i:{1eab6c35-4484-4e7d-acce-a53e3b95d655}:>646
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:>645
+i:{fdee551e-58cc-41b0-93c3-320290051551}:>540
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:>1005
+++Interfaces
+i:{1eab6c35-4484-4e7d-acce-a53e3b95d655}:d:\hp\documents\private\code academy\finallproject\restaurant.core\interfaces\
+i:{fdee551e-58cc-41b0-93c3-320290051551}:d:\hp\documents\private\code academy\finallproject\restaurant.business\interfaces\
+++IRepository.cs
+i:{1eab6c35-4484-4e7d-acce-a53e3b95d655}:d:\hp\documents\private\code academy\finallproject\restaurant.core\interfaces\irepository.cs
+++IUnitOfWork.cs
+i:{1eab6c35-4484-4e7d-acce-a53e3b95d655}:d:\hp\documents\private\code academy\finallproject\restaurant.core\interfaces\iunitofwork.cs
+++Models
+i:{1eab6c35-4484-4e7d-acce-a53e3b95d655}:d:\hp\documents\private\code academy\finallproject\restaurant.core\models\
+++Frameworks
+i:{1eab6c35-4484-4e7d-acce-a53e3b95d655}:frameworks
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:frameworks
+i:{fdee551e-58cc-41b0-93c3-320290051551}:frameworks
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:frameworks
+++About.cs
+i:{1eab6c35-4484-4e7d-acce-a53e3b95d655}:d:\hp\documents\private\code academy\finallproject\restaurant.core\models\about.cs
+++AboutOption.cs
+i:{1eab6c35-4484-4e7d-acce-a53e3b95d655}:d:\hp\documents\private\code academy\finallproject\restaurant.core\models\aboutoption.cs
+++Category.cs
+i:{1eab6c35-4484-4e7d-acce-a53e3b95d655}:d:\hp\documents\private\code academy\finallproject\restaurant.core\models\category.cs
+++ChooseRestaurant.cs
+i:{1eab6c35-4484-4e7d-acce-a53e3b95d655}:d:\hp\documents\private\code academy\finallproject\restaurant.core\models\chooserestaurant.cs
+++Feedback.cs
+i:{1eab6c35-4484-4e7d-acce-a53e3b95d655}:d:\hp\documents\private\code academy\finallproject\restaurant.core\models\feedback.cs
+++HomeIntro.cs
+i:{1eab6c35-4484-4e7d-acce-a53e3b95d655}:d:\hp\documents\private\code academy\finallproject\restaurant.core\models\homeintro.cs
+++MenuImage.cs
+i:{1eab6c35-4484-4e7d-acce-a53e3b95d655}:d:\hp\documents\private\code academy\finallproject\restaurant.core\models\menuimage.cs
+++PizzaPrice.cs
+i:{1eab6c35-4484-4e7d-acce-a53e3b95d655}:d:\hp\documents\private\code academy\finallproject\restaurant.core\models\pizzaprice.cs
+++Position.cs
+i:{1eab6c35-4484-4e7d-acce-a53e3b95d655}:d:\hp\documents\private\code academy\finallproject\restaurant.core\models\position.cs
+++Product.cs
+i:{1eab6c35-4484-4e7d-acce-a53e3b95d655}:d:\hp\documents\private\code academy\finallproject\restaurant.core\models\product.cs
+++Reservation.cs
+i:{1eab6c35-4484-4e7d-acce-a53e3b95d655}:d:\hp\documents\private\code academy\finallproject\restaurant.core\models\reservation.cs
+++RestaurantPhotos.cs
+i:{1eab6c35-4484-4e7d-acce-a53e3b95d655}:d:\hp\documents\private\code academy\finallproject\restaurant.core\models\restaurantphotos.cs
+++SectionHead.cs
+i:{1eab6c35-4484-4e7d-acce-a53e3b95d655}:d:\hp\documents\private\code academy\finallproject\restaurant.core\models\sectionhead.cs
+++Slider.cs
+++Special.cs
+i:{1eab6c35-4484-4e7d-acce-a53e3b95d655}:d:\hp\documents\private\code academy\finallproject\restaurant.core\models\special.cs
+++Subscribe.cs
+i:{1eab6c35-4484-4e7d-acce-a53e3b95d655}:d:\hp\documents\private\code academy\finallproject\restaurant.core\models\subscribe.cs
+++Team.cs
+i:{1eab6c35-4484-4e7d-acce-a53e3b95d655}:d:\hp\documents\private\code academy\finallproject\restaurant.core\models\team.cs
+++Microsoft.NETCore.App
+i:{1eab6c35-4484-4e7d-acce-a53e3b95d655}:d:\hp\documents\private\code academy\finallproject\restaurant.core\microsoft.netcore.app
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\microsoft.netcore.app
+i:{fdee551e-58cc-41b0-93c3-320290051551}:d:\hp\documents\private\code academy\finallproject\restaurant.business\microsoft.netcore.app
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\microsoft.netcore.app
+++Restaurant.Data
+i:{00000000-0000-0000-0000-000000000000}:Restaurant.Data
+i:{fdee551e-58cc-41b0-93c3-320290051551}:d:\hp\documents\private\code academy\finallproject\restaurant.data\bin\debug\netcoreapp3.1\restaurant.data.dll
+++Configurations
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\configurations\
+++AboutConfiguration.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\configurations\aboutconfiguration.cs
+++AboutOptionConfiguration.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\configurations\aboutoptionconfiguration.cs
+++CategoryConfiguration.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\configurations\categoryconfiguration.cs
+++ChooseRestaurantConfiguration.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\configurations\chooserestaurantconfiguration.cs
+++FeedbackConfiguration.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\configurations\feedbackconfiguration.cs
+++HomeIntroConfiguration.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\configurations\homeintroconfiguration.cs
+++MenuImageConfiguration.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\configurations\menuimageconfiguration.cs
+++PizzaPriceConfiguration.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\configurations\pizzapriceconfiguration.cs
+++PositionConfiguration.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\configurations\positionconfiguration.cs
+++ProductConfiguration.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\configurations\productconfiguration.cs
+++ReservationConfiguration.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\configurations\reservationconfiguration.cs
+++RestaurantPhotosConfiguration.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\configurations\restaurantphotosconfiguration.cs
+++SectionHeadConfiguration.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\configurations\sectionheadconfiguration.cs
+++SliderConfiguration.cs
+++SpecialConfiguration.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\configurations\specialconfiguration.cs
+++SubscribeConfiguration.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\configurations\subscribeconfiguration.cs
+++TeamConfiguration.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\configurations\teamconfiguration.cs
+++DAL
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\dal\
+++Implementations
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\implementations\
+i:{fdee551e-58cc-41b0-93c3-320290051551}:d:\hp\documents\private\code academy\finallproject\restaurant.business\implementations\
+++Repository.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\implementations\repository.cs
+++UnitOfWork.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\implementations\unitofwork.cs
+++Migrations
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\migrations\
+++20220226224715_CreateDb.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\migrations\20220226224715_createdb.cs
+++20220226224954_AlterFeedbackTable.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\migrations\20220226224954_alterfeedbacktable.cs
+++20220227090610_AlterConfigurationTable.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\migrations\20220227090610_alterconfigurationtable.cs
+++20220227090610_AlterConfigurationTable.Designer.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\migrations\20220227090610_alterconfigurationtable.designer.cs
+++20220227091119_AlterChooseRestaurantConfigurationTable.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\migrations\20220227091119_alterchooserestaurantconfigurationtable.cs
+++20220227091119_AlterChooseRestaurantConfigurationTable.Designer.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\migrations\20220227091119_alterchooserestaurantconfigurationtable.designer.cs
+++20220227092443_AlterAboutConfigurationTable.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\migrations\20220227092443_alteraboutconfigurationtable.cs
+++20220227092443_AlterAboutConfigurationTable.Designer.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\migrations\20220227092443_alteraboutconfigurationtable.designer.cs
+++20220227093624_AlterSectionHeadConfigurationTable.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\migrations\20220227093624_altersectionheadconfigurationtable.cs
+++AppDbContextModelSnapshot.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\migrations\appdbcontextmodelsnapshot.cs
+++Analyzers
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:analyzers
+i:{fdee551e-58cc-41b0-93c3-320290051551}:analyzers
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:analyzers
+++Packages
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:packages
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:packages
+++Projects
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:projects
+i:{fdee551e-58cc-41b0-93c3-320290051551}:projects
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:projects
+++AppDbContext.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\dal\appdbcontext.cs
+++20220226224715_CreateDb.Designer.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\migrations\20220226224715_createdb.designer.cs
+++20220226224954_AlterFeedbackTable.Designer.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\migrations\20220226224954_alterfeedbacktable.designer.cs
+++20220227093624_AlterSectionHeadConfigurationTable.Designer.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\migrations\20220227093624_altersectionheadconfigurationtable.designer.cs
+++Microsoft.EntityFrameworkCore.Analyzers
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:c:\users\orxan477\.nuget\packages\microsoft.entityframeworkcore.analyzers\3.1.0\analyzers\dotnet\cs\microsoft.entityframeworkcore.analyzers.dll
+i:{fdee551e-58cc-41b0-93c3-320290051551}:c:\users\orxan477\.nuget\packages\microsoft.entityframeworkcore.analyzers\3.1.0\analyzers\dotnet\cs\microsoft.entityframeworkcore.analyzers.dll
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:c:\users\orxan477\.nuget\packages\microsoft.entityframeworkcore.analyzers\3.1.0\analyzers\dotnet\cs\microsoft.entityframeworkcore.analyzers.dll
+++Microsoft.EntityFrameworkCore (3.1.0)
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:>1038
+++Microsoft.EntityFrameworkCore.SqlServer (3.1.0)
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:>1039
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:>1016
+++Microsoft.EntityFrameworkCore.Tools (3.1.0)
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:>1040
+++Restaurant.Business
+i:{00000000-0000-0000-0000-000000000000}:Restaurant.Business
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.business\restaurant.business.csproj
+++Profiles
+i:{fdee551e-58cc-41b0-93c3-320290051551}:d:\hp\documents\private\code academy\finallproject\restaurant.business\profiles\
+++Validators
+i:{fdee551e-58cc-41b0-93c3-320290051551}:d:\hp\documents\private\code academy\finallproject\restaurant.business\validators\
+++ViewModels
+i:{fdee551e-58cc-41b0-93c3-320290051551}:d:\hp\documents\private\code academy\finallproject\restaurant.business\viewmodels\
+++Restaurant.UI
+i:{00000000-0000-0000-0000-000000000000}:Restaurant.UI
+++Connected Services 
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:>1006
+++Properties
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\properties\
+++wwwroot
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\
+++Controllers
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\controllers\
+++HomeController.cs
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\controllers\homecontroller.cs
+++MenuController.cs
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\controllers\menucontroller.cs
+++ReservationController.cs
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\controllers\reservationcontroller.cs
+++TeamController.cs
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\controllers\teamcontroller.cs
+++ViewComponents
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\viewcomponents\
+++Views
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\views\
+++Home
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\views\home\
+++Index.cshtml
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\views\home\index.cshtml
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\views\menu\index.cshtml
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\views\team\index.cshtml
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\views\reservation\index.cshtml
+++Menu
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\views\menu\
+++Reservation
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\views\reservation\
+++Shared
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\views\shared\
+++Team
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\views\team\
+++_ViewImports.cshtml
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\views\_viewimports.cshtml
+++_ViewStart.cshtml
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\views\_viewstart.cshtml
+++appsettings.json
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\appsettings.json
+++Program.cs
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\program.cs
+++Startup.cs
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\startup.cs
+++No service dependencies discovered
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:>1007
+++launchSettings.json
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\properties\launchsettings.json
+++assets
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\owl\assets\
+++lib
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\
+++FooterViewComponent.cs
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\viewcomponents\footerviewcomponent.cs
+++HeaderViewComponent.cs
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\viewcomponents\headerviewcomponent.cs
+++Components
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\views\shared\components\
+++_Layout.cshtml
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\views\shared\_layout.cshtml
+++_ValidationScriptsPartial.cshtml
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\views\shared\_validationscriptspartial.cshtml
+++appsettings.Development.json
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\appsettings.development.json
+++Microsoft.AspNetCore.Analyzers
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.analyzers.dll
+++Microsoft.AspNetCore.Components.Analyzers
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.components.analyzers.dll
+++Microsoft.AspNetCore.Mvc.Analyzers
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.mvc.analyzers.dll
+++Microsoft.CodeAnalysis.Analyzers
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:c:\users\orxan477\.nuget\packages\microsoft.codeanalysis.analyzers\2.9.4\analyzers\dotnet\cs\microsoft.codeanalysis.analyzers.dll
+++Microsoft.CodeAnalysis.CSharp.Analyzers
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:c:\users\orxan477\.nuget\packages\microsoft.codeanalysis.analyzers\2.9.4\analyzers\dotnet\cs\microsoft.codeanalysis.csharp.analyzers.dll
+++Microsoft.AspNetCore.App
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\microsoft.aspnetcore.app
+++Microsoft.EntityFrameworkCore.Design (3.1.0)
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:>1017
+++Microsoft.VisualStudio.Web.CodeGeneration.Design (3.1.5)
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:>1018
+++css
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\css\
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\bootstrap\dist\css\
+++img
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\
+++js
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\js\
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\bootstrap\dist\js\
+++owl
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\owl\
+++scss
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\
+++bootstrap
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\bootstrap\
+++jquery
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\jquery\
+++jquery-validation
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\jquery-validation\
+++jquery-validation-unobtrusive
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\jquery-validation-unobtrusive\
+++Footer
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\views\shared\components\footer\
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\partials\layout\footer\
+++Header
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\views\shared\components\header\
+++style.css
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\css\style.css
+++about.jpg
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\about.jpg
+++american-hot.png
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\american-hot.png
+++chefs-1.jpg
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\chefs-1.jpg
+++chefs-2.jpg
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\chefs-2.jpg
+++chefs-3.jpg
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\chefs-3.jpg
+++gallery-1.jpg
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\gallery-1.jpg
+++gallery-2.jpg
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\gallery-2.jpg
+++gallery-3.jpg
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\gallery-3.jpg
+++gallery-4.jpg
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\gallery-4.jpg
+++gallery-5.jpg
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\gallery-5.jpg
+++gallery-6.jpg
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\gallery-6.jpg
+++gallery-7.jpg
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\gallery-7.jpg
+++gallery-8.jpg
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\gallery-8.jpg
+++icon.png
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\icon.png
+++shop-11-img.jpg
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\shop-11-img.jpg
+++slide-1.jpg
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\slide-1.jpg
+++slide-2.jpg
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\slide-2.jpg
+++slide-3.jpg
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\slide-3.jpg
+++specials-1.jpg
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\specials-1.jpg
+++specials-2.jpg
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\specials-2.jpg
+++specials-3.jpg
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\specials-3.jpg
+++specials-4.jpg
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\specials-4.jpg
+++specials-5.jpg
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\specials-5.jpg
+++testimonials-1.jpg
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\testimonials-1.jpg
+++testimonials-2.jpg
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\testimonials-2.jpg
+++testimonials-3.jpg
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\testimonials-3.jpg
+++testimonials-4.jpg
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\testimonials-4.jpg
+++testimonials-5.jpg
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\testimonials-5.jpg
+++testimonials-bg.jpg
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\img\testimonials-bg.jpg
+++home.js
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\js\home.js
+++menu.js
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\js\menu.js
+++otherPage.js
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\js\otherpage.js
+++script.js
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\js\script.js
+++owl.carousel.js
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\owl\owl.carousel.js
+++partials
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\partials\
+++style.scss
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\style.scss
+++dist
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\bootstrap\dist\
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\jquery\dist\
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\jquery-validation\dist\
+++LICENSE
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\bootstrap\license
+++LICENSE.txt
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\jquery\license.txt
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\jquery-validation-unobtrusive\license.txt
+++LICENSE.md
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\jquery-validation\license.md
+++jquery.validate.unobtrusive.js
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js
+++Default.cshtml
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\views\shared\components\footer\default.cshtml
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\views\shared\components\header\default.cshtml
+++style.css.map
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\css\style.css.map
+++ajax-loader.gif
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\owl\assets\ajax-loader.gif
+++owl.carousel.css
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\owl\assets\owl.carousel.css
+++owl.theme.default.css
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\owl\assets\owl.theme.default.css
+++owl.theme.green.css
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\owl\assets\owl.theme.green.css
+++owl.video.play.png
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\owl\assets\owl.video.play.png
+++owl.carousel.min.js
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\owl\owl.carousel.min.js
+++bookTable
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\partials\booktable\
+++home
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\partials\home\
+++layout
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\partials\layout\
+++menu
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\partials\menu\
+++team
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\partials\team\
+++_body.scss
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\partials\_body.scss
+++_variable.scss
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\partials\_variable.scss
+++jquery.js
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\jquery\dist\jquery.js
+++additional-methods.js
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\jquery-validation\dist\additional-methods.js
+++jquery.validate.js
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\jquery-validation\dist\jquery.validate.js
+++jquery.validate.unobtrusive.min.js
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js
+++owl.carousel.min.css
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\owl\assets\owl.carousel.min.css
+++owl.theme.default.min.css
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\owl\assets\owl.theme.default.min.css
+++owl.theme.green.min.css
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\owl\assets\owl.theme.green.min.css
+++_reservation.scss
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\partials\booktable\_reservation.scss
+++_about.scss
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\partials\home\_about.scss
+++_choose.scss
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\partials\home\_choose.scss
+++_contact.scss
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\partials\home\_contact.scss
+++_feedback.scss
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\partials\home\_feedback.scss
+++_gallery.scss
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\partials\home\_gallery.scss
+++_homeIntro.scss
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\partials\home\_homeintro.scss
+++_index.scss
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\partials\home\_index.scss
+++_specials.scss
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\partials\home\_specials.scss
+++Navbar
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\partials\layout\navbar\
+++_menu.scss
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\partials\menu\_menu.scss
+++_team.scss
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\partials\team\_team.scss
+++bootstrap.css
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\bootstrap\dist\css\bootstrap.css
+++bootstrap-grid.css
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
+++bootstrap-reboot.css
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
+++bootstrap.js
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\bootstrap\dist\js\bootstrap.js
+++jquery.min.js
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\jquery\dist\jquery.min.js
+++additional-methods.min.js
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\jquery-validation\dist\additional-methods.min.js
+++jquery.validate.min.js
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
+++_footer.scss
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\partials\layout\footer\_footer.scss
+++_footer2.scss
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\partials\layout\footer\_footer2.scss
+++_layoutFooter.scss
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\partials\layout\footer\_layoutfooter.scss
+++_subscribe.scss
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\partials\layout\footer\_subscribe.scss
+++_layoutNavbar.scss
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\partials\layout\navbar\_layoutnavbar.scss
+++_navbar1.scss
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\partials\layout\navbar\_navbar1.scss
+++_navbar2.scss
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\assets\scss\partials\layout\navbar\_navbar2.scss
+++bootstrap.css.map
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
+++bootstrap.min.css
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
+++bootstrap-grid.css.map
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
+++bootstrap-grid.min.css
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
+++bootstrap-reboot.css.map
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
+++bootstrap-reboot.min.css
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
+++bootstrap.bundle.js
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
+++bootstrap.js.map
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
+++bootstrap.min.js
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
+++jquery.min.map
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\jquery\dist\jquery.min.map
+++bootstrap.min.css.map
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
+++bootstrap-grid.min.css.map
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
+++bootstrap-reboot.min.css.map
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
+++bootstrap.bundle.js.map
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
+++bootstrap.bundle.min.js
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
+++bootstrap.min.js.map
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
+++bootstrap.bundle.min.js.map
+i:{4d0a8261-43a5-41f4-85f8-8194ed6ae26f}:d:\hp\documents\private\code academy\finallproject\restaurant.ui\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
+++HomeVM.cs
+i:{fdee551e-58cc-41b0-93c3-320290051551}:d:\hp\documents\private\code academy\finallproject\restaurant.business\viewmodels\homevm.cs
+++SectionContent.cs
+i:{1eab6c35-4484-4e7d-acce-a53e3b95d655}:d:\hp\documents\private\code academy\finallproject\restaurant.core\models\sectioncontent.cs
+++SectionContentConfiguration.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\configurations\sectioncontentconfiguration.cs
+++20220227105707_CreateTable.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\migrations\20220227105707_createtable.cs
+++20220227105707_CreateTable.Designer.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\migrations\20220227105707_createtable.designer.cs
+++20220227110022_AlterTableHead.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\migrations\20220227110022_altertablehead.cs
+++20220227110022_AlterTableHead.Designer.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\migrations\20220227110022_altertablehead.designer.cs
+++20220227110512_DeleteColumnTable.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\migrations\20220227110512_deletecolumntable.cs
+++20220227110512_DeleteColumnTable.Designer.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\migrations\20220227110512_deletecolumntable.designer.cs
+++Index.cshtml~RF1934e1ed.TMP
+++20220227112400_DeleteTable.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\migrations\20220227112400_deletetable.cs
+++20220227112400_DeleteTable.Designer.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\migrations\20220227112400_deletetable.designer.cs
+++20220227114511_AboutTableAddedColumn.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\migrations\20220227114511_abouttableaddedcolumn.cs
+++20220227114511_AboutTableAddedColumn.Designer.cs
+i:{627f3728-1eb4-4504-83d9-04dc3cdd2b9a}:d:\hp\documents\private\code academy\finallproject\restaurant.data\migrations\20220227114511_abouttableaddedcolumn.designer.cs
+++Index.cshtml~RF1979f120.TMP
