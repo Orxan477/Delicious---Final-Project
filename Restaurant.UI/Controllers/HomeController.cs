@@ -39,7 +39,9 @@ namespace Restaurant.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ContactUs(HomeVM homeVM)
         {
-            if (ModelState["ContactUsVM"].ValidationState == ModelValidationState.Invalid) return View(homeVM.ContactUsVM);
+            //if (ModelState["ContactUsVM"].ValidationState == ModelValidationState.Invalid) return View(homeVM.ContactUsVM);
+            if (!ModelState.IsValid) return View(homeVM);
+            
             ContactUs contact = new ContactUs
             {
                 Name = homeVM.ContactUsVM.Name,
@@ -48,6 +50,21 @@ namespace Restaurant.UI.Controllers
                 Message = homeVM.ContactUsVM.Message,
             };
             await _context.ContactUs.AddAsync(contact);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Subscribe(HomeVM homeVM)
+        {
+            return Content("ok");
+            if (!ModelState.IsValid) return View();
+
+            Subscribe subscribe = new Subscribe
+            {
+                Email = homeVM.SubscribeVM.Email,
+            };
+            await _context.Subscribes.AddAsync(subscribe);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

@@ -1,4 +1,5 @@
-﻿using Restaurant.Business.ViewModels.Home;
+﻿using Restaurant.Business.ViewModels.Footer;
+using Restaurant.Business.ViewModels.Home;
 using Restaurant.Core.Models;
 using System.Collections.Generic;
 
@@ -14,5 +15,6 @@ namespace Restaurant.Business.ViewModels
         public List<RestaurantPhotos> RestaurantsPhotos { get; set;}
         public List<Feedback> Feedbacks { get; set; }
         public ContactUsVM ContactUsVM { get; set; }
+        public SubscribeVM SubscribeVM { get; set; }
     }
 }
