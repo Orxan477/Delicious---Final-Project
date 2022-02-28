@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using Restaurant.Business.ViewModels.Home;
-using Restaurant.Core.Models;
 
 namespace Restaurant.Business.Validators
 {

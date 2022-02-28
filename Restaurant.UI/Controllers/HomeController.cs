@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Business.ViewModels;
 using Restaurant.Business.ViewModels.Home;
@@ -36,16 +37,16 @@ namespace Restaurant.UI.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ContactUs(ContactUsVM contactVM)
+        public async Task<IActionResult> ContactUs(HomeVM homeVM)
         {
-            if(!ModelState.IsValid) return View(contactVM);
-
+            //if (ModelState["homeVM.ContactUsVM"].ValidationState == ModelValidationState.Invalid) return View(homeVM.ContactUsVM);
+            if (ModelState.IsValid) return RedirectToAction(nameof(Index));
             ContactUs contact = new ContactUs
             {
-                Name = contactVM.Name,
-                Email = contactVM.Email,
-                Subject = contactVM.Subject,
-                Message = contactVM.Message,
+                Name = homeVM.ContactUsVM.Name,
+                Email = homeVM.ContactUsVM.Email,
+                Subject = homeVM.ContactUsVM.Subject,
+                Message = homeVM.ContactUsVM.Message,
             };
             await _context.ContactUs.AddAsync(contact);
             await _context.SaveChangesAsync();
