@@ -1,4 +1,4 @@
-﻿
+﻿@model MenuVM
 @{
     ViewData["Title"] = "Menu";
 }
@@ -14,32 +14,35 @@
                 <div class="row">
                     <div class="col-lg-12 d-flex justify-content-center mt-3">
                         <ul class="category d-flex ">
-                            <li><a href="#" data-id="all" class=" mr-3 product">All</a></li>
-                            <li><a href="#" data-id="launch" class="mr-3 product">Launch</a></li>
-                            <li><a href="#" data-id="pizza" class="mr-3 product">pizza</a></li>
+                            <li><a href="#" data-id="all" class=" mr-3 product">All</a></li> 
+                            @foreach (var product in Model.Products)
+                           {
+                              <li><a href="#" data-id="@product.Category.Name.ToLower()" class=" mr-3 product">@product.Category.Name</a></li> 
+                           }
                         </ul>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-3 col-md-4 col-sm-6 mt-3 ">
-                        <div class="product-item text-center" data-id="launch">
+                    @foreach (var pro in Model.Products)
+                   {
+                       <div class="col-lg-3 col-md-4 col-sm-6 mt-3 ">
+                        <div class="product-item text-center" data-id="@pro.Category.Name.ToLower()">
                             <div class="img">
                                 <a href="#">
-                                    <img src="~/assets/img/american-hot.png" class="img-fluid" alt="">
+                                    <img src="~/assets/img/@pro.MenuImage.Image" class="img-fluid" alt="">
                                 </a>
                             </div>
                             <div class="title mt-3">
-                                <h6>American Hot</h6>
+                                <h6>@pro.Name</h6>
                             </div>
                             <div>
-                                <span class="text-black-50">Pizza Sous, Mozzarella pendiri, Pepperoni və Halapenyo
-                                    Bibəri</span>
+                                <span class="text-black-50">@pro.Description</span>
                                 <span class="text-black-50">
-                                    <a href="#" data-toggle="modal" data-target="#pro1"
+                                    <a href="#" data-toggle="modal" data-target="#pro-@pro.Id"
                                         class="btn btn-warning mt-2">Secin</a>
                             </div>
                         </div>
-                        <div class="modal fade" id="pro1" tabindex="-1" role="dialog"
+                        <div class="modal fade" id="pro-@pro.Id" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog " role="document">
                                 <div class="modal-content">
@@ -48,17 +51,16 @@
                                     </div>
                                     <div class="modal-body menu-modal">
                                         <div class="d-flex justify-content-center">
-                                            <img src="~/assets/img/american-hot.png" style="width: 60%;"
+                                            <img src="~/assets/img/@pro.MenuImage.Image" style="width: 60%;"
                                                 class="img-fluid" alt="">
                                         </div>
-                                        <p class="text-black-50 mt-3 mb-0 px-2">Pizza Sous, Mozzarella pendiri, Pepperoni və
-                                            Halapenyo Bibəri</p>
+                                        <p class="text-black-50 mt-3 mb-0 px-2">@pro.Description</p>
                                         <div class="size">
                                             <select name="size" id="pizza">
-                                                <option value="9" selected="selected">Mini, 23 sm 9 azn</option>
-                                                <option value="12" >Kiçik, 27 sm 12 azn</option>
-                                                <option value="15" >Kiçik, 30 sm 15 azn</option>
-                                                <option value="20" >Kiçik, 40 sm 20 azn</option>
+                                                @foreach (var item in Model.Products)
+                                               {
+                                                   <option value="@item.ProductPrices" >@item.Content</option>
+                                               }
                                             </select>
                                         </div>
                                         <div class="sum-count d-flex justify-content-between px-2">
@@ -85,6 +87,7 @@
                             </div>
                         </div>
                     </div>
+                   }
                 </div>
             </div>
         </section>

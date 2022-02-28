@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Restaurant.Data.DAL;
 
 namespace Restaurant.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220228213423_AlterProductTable")]
+    partial class AlterProductTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -225,6 +227,28 @@ namespace Restaurant.Data.Migrations
                     b.ToTable("MenuImages");
                 });
 
+            modelBuilder.Entity("Restaurant.Core.Models.PizzaPrice", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<int>("Value")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PizzaPrices");
+                });
+
             modelBuilder.Entity("Restaurant.Core.Models.Position", b =>
                 {
                     b.Property<int>("Id")
@@ -239,24 +263,6 @@ namespace Restaurant.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Positions");
-                });
-
-            modelBuilder.Entity("Restaurant.Core.Models.Price", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Value")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Prices");
                 });
 
             modelBuilder.Entity("Restaurant.Core.Models.Product", b =>
@@ -287,6 +293,11 @@ namespace Restaurant.Data.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
+                    b.Property<decimal>("Price")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(18,2)")
+                        .HasDefaultValue(0m);
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
@@ -294,28 +305,6 @@ namespace Restaurant.Data.Migrations
                     b.HasIndex("MenuImageId");
 
                     b.ToTable("Prouducts");
-                });
-
-            modelBuilder.Entity("Restaurant.Core.Models.ProductPrice", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("PriceId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PriceId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductPrices");
                 });
 
             modelBuilder.Entity("Restaurant.Core.Models.Reservation", b =>
@@ -478,21 +467,6 @@ namespace Restaurant.Data.Migrations
                     b.HasOne("Restaurant.Core.Models.MenuImage", "MenuImage")
                         .WithMany()
                         .HasForeignKey("MenuImageId");
-                });
-
-            modelBuilder.Entity("Restaurant.Core.Models.ProductPrice", b =>
-                {
-                    b.HasOne("Restaurant.Core.Models.Price", "Price")
-                        .WithMany("ProductPrices")
-                        .HasForeignKey("PriceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Restaurant.Core.Models.Product", "Product")
-                        .WithMany("ProductPrices")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Restaurant.Core.Models.Special", b =>
