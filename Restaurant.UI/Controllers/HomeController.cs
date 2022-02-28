@@ -39,8 +39,7 @@ namespace Restaurant.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ContactUs(HomeVM homeVM)
         {
-            //if (ModelState["homeVM.ContactUsVM"].ValidationState == ModelValidationState.Invalid) return View(homeVM.ContactUsVM);
-            if (ModelState.IsValid) return RedirectToAction(nameof(Index));
+            if (ModelState["ContactUsVM"].ValidationState == ModelValidationState.Invalid) return View(homeVM.ContactUsVM);
             ContactUs contact = new ContactUs
             {
                 Name = homeVM.ContactUsVM.Name,
