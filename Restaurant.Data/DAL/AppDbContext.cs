@@ -15,7 +15,6 @@ namespace Restaurant.Data.DAL
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<HomeIntro> HomeIntros { get; set; }
         public DbSet<MenuImage> MenuImages { get; set; }
-        public DbSet<Price> Prices { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<Product> Prouducts { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
@@ -24,7 +23,6 @@ namespace Restaurant.Data.DAL
         public DbSet<Subscribe> Subscribes { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<ContactUs> ContactUs { get; set; }
-        public DbSet<ProductPrice> ProductPrices { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new AboutConfiguration());

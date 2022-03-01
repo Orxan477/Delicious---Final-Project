@@ -19,17 +19,14 @@ namespace Restaurant.UI.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            //List<Product> products = _context.Prouducts.Where(x => !x.IsDeleted)
-            //                    .Include(x => x.MenuImage)
-            //                    .Include(x => x.Category)
-            //                    .ToList();
             MenuVM vm = new MenuVM
             {
-                Products = await _context.Prouducts.Where(x => !x.IsDeleted)
+                Products = await _context.Prouducts.Where(x => !x.IsDeleted )
                                     .Include(x => x.MenuImage)
                                     .Include(x => x.Category)
-                                    .Include(x=>x.ProductPrices)
+                                    .OrderByDescending(p => p.Id)
                                     .ToListAsync(),
+                Categories = await _context.Categories.ToListAsync(),
             };
             return View(vm);
         }

@@ -13,11 +13,10 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-12 d-flex justify-content-center mt-3">
-                        <ul class="category d-flex ">
-                            <li><a href="#" data-id="all" class=" mr-3 product">All</a></li> 
-                            @foreach (var product in Model.Products)
+                        <ul class="category d-flex">
+                            @foreach (var category in Model.Categories)
                            {
-                              <li><a href="#" data-id="@product.Category.Name.ToLower()" class=" mr-3 product">@product.Category.Name</a></li> 
+                              <li><a href="" data-id="@category.Name.ToLower()" class=" mr-3 product">@category.Name</a></li> 
                            }
                         </ul>
                     </div>
@@ -36,13 +35,22 @@
                                 <h6>@pro.Name</h6>
                             </div>
                             <div>
-                                <span class="text-black-50">@pro.Description</span>
+                                <p class="text-black-50">@pro.Description</p>
                                 <span class="text-black-50">
-                                    <a href="#" data-toggle="modal" data-target="#pro-@pro.Id"
+                                    @if (pro.Category.Name.ToLower().Trim()=="pizza")
+                                   {
+                                       <a href="#" data-toggle="modal" data-target="#pro-@pro.Id"
                                         class="btn btn-warning mt-2">Secin</a>
+                                   }
+                                   else {
+                                       <a href="#"class="btn btn-warning">Add to Card</a>
+                                   }
+                                </span>
                             </div>
                         </div>
-                        <div class="modal fade" id="pro-@pro.Id" tabindex="-1" role="dialog"
+                        @if (pro.Category.Name.ToLower().Trim()=="pizza")
+                        {
+                            <div class="modal fade" id="pro-@pro.Id" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog " role="document">
                                 <div class="modal-content">
@@ -57,25 +65,15 @@
                                         <p class="text-black-50 mt-3 mb-0 px-2">@pro.Description</p>
                                         <div class="size">
                                             <select name="size" id="pizza">
-                                                @foreach (var item in Model.Products)
-                                               {
-                                                   <option value="@item.ProductPrices" >@item.Content</option>
-                                               }
+                                                @{
+                                                    double n = @pro.Price;
+                                                    double orta = (n * 1.5);
+                                                    double boyuk = (n * 2.5);
+                                                }
+                                                   <option value="@pro.Price" >Kiçik - @pro.Price</option>
+                                                   <option value="@orta.ToString()" >Orta - @orta</option>
+                                                   <option value="@boyuk.ToString("F2")" >Böyük - @boyuk</option>
                                             </select>
-                                        </div>
-                                        <div class="sum-count d-flex justify-content-between px-2">
-                                            <div class="count">
-                                                <div class="minus d-inline">
-                                                    <i class="fas fa-minus minus-click"></i>
-                                                </div>
-                                                <span>0</span>
-                                                <div class="plus d-inline">
-                                                    <i class="fas fa-plus plus-click"></i>
-                                                </div>
-                                            </div>
-                                            <div class="sum">
-                                                <span class="total-price">0</span><span>₼</span>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -86,6 +84,7 @@
                                 </div>
                             </div>
                         </div>
+                        }
                     </div>
                    }
                 </div>
