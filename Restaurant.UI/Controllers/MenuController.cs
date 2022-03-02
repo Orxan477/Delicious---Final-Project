@@ -46,5 +46,11 @@ namespace Restaurant.UI.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        public IActionResult AddBasket(int? id)
+        {
+            if(id is null) return NotFound();
+            return Json(id);
+        }
     }
 }
