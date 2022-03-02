@@ -1,5 +1,4 @@
-﻿@using Restaurant.Business.ViewModels.Reservation
-@model ReservationVM
+﻿@model ReservationVM
 @{
     ViewData["Title"] = "Reservation";
 }
@@ -14,29 +13,40 @@
               vitae autem.</p>
           </div>
           <div class="col-lg-12 col-md-12 col-sm-12 message mt-3">
-            <form method="post" asp-action="Reservation">
+            <form method="post" asp-controller="Reservation" asp-action="ReservationTable">
               <div class="form-row">
                 <div class="form-group col-md-4">
                   <input asp-for="FullName" class="form-control" placeholder="Your Name">
+                  <span class="text-danger" asp-validation-for="FullName"></span>
                 </div>
                 <div class="form-group col-md-4">
                   <input asp-for="Email" class="form-control" placeholder="Your Mail">
+                  <span class="text-danger" asp-validation-for="Email"></span>
                 </div>
                 <div class="form-group col-md-4">
-                  <input asp-for="Number" class="form-control" placeholder="Your Phone">
+                     
+                  <input asp-for="Number" class="form-control" placeholder="Your Number"  
+                     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" 
+                                             maxlength = "12"
+                                             minlength="12" 
+                                             />
+                  <span class="text-danger" asp-validation-for="Number"></span>
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-lg-6 col-md-6">
                   <input asp-for=Date class="form-control">
+                  <span class="text-danger" asp-validation-for="Date"></span>
                 </div>
                 <div class="form-group col-lg-6 col-md-6">
                   <input asp-for="PeopleCount" class="form-control" placeholder="# of People">
+                  <span class="text-danger" min="0" asp-validation-for="PeopleCount"></span>
                 </div>
               </div>
               <div class="form-group myArea">
                 <textarea asp-for="Message" name="Message" class="myTextArea" id="mesagge" placeholder="Message"></textarea>
-              </div>
+             <span class="text-danger" asp-validation-for="Message"></span>
+            </div>
               <div class="buttonSend d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary">Reservation</button>
               </div>
@@ -49,6 +59,7 @@
 {
     <script src="~/assets/js/script.js"></script>
     <script src="~/assets/js/otherPage.js"></script>
+    <partial name="_ValidationScriptsPartial" />
 }
   </main>
 

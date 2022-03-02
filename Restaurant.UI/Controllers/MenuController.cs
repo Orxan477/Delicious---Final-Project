@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Restaurant.Business.ViewModels;
 using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,16 +18,33 @@ namespace Restaurant.UI.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            MenuVM vm = new MenuVM
+            HomeVM vm = new HomeVM
             {
-                Products = await _context.Prouducts.Where(x => !x.IsDeleted )
+                MenuVM = new MenuVM
+                {
+                    Products = await _context.Prouducts.Where(x => !x.IsDeleted)
                                     .Include(x => x.MenuImage)
                                     .Include(x => x.Category)
                                     .OrderByDescending(p => p.Id)
                                     .ToListAsync(),
-                Categories = await _context.Categories.ToListAsync(),
+                    Categories = await _context.Categories.ToListAsync(),
+                }
             };
             return View(vm);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Subscribe(HomeVM homeVM)
+        {
+            if (!ModelState.IsValid) return View();
+
+            Subscribe subscribe = new Subscribe
+            {
+                Email = homeVM.SubscribeVM.Email,
+            };
+            await _context.Subscribes.AddAsync(subscribe);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

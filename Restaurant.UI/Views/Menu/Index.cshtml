@@ -1,4 +1,4 @@
-﻿@model MenuVM
+﻿@model HomeVM
 @{
     ViewData["Title"] = "Menu";
 }
@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="col-lg-12 d-flex justify-content-center mt-3">
                         <ul class="category d-flex">
-                            @foreach (var category in Model.Categories)
+                            @foreach (var category in Model.MenuVM.Categories)
                            {
                               <li><a href="" data-id="@category.Name.ToLower()" class=" mr-3 product">@category.Name</a></li> 
                            }
@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    @foreach (var pro in Model.Products)
+                    @foreach (var pro in Model.MenuVM.Products)
                    {
                        <div class="col-lg-3 col-md-4 col-sm-6 mt-3 ">
                         <div class="product-item text-center" data-id="@pro.Category.Name.ToLower()">

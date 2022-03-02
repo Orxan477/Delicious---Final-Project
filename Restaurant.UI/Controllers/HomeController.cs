@@ -39,7 +39,6 @@ namespace Restaurant.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ContactUs(HomeVM homeVM)
         {
-            //if (ModelState["ContactUsVM"].ValidationState == ModelValidationState.Invalid) return View(homeVM.ContactUsVM);
             if (!ModelState.IsValid) return View(homeVM);
             
             ContactUs contact = new ContactUs
@@ -57,7 +56,6 @@ namespace Restaurant.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Subscribe(HomeVM homeVM)
         {
-            return Content("ok");
             if (!ModelState.IsValid) return View();
 
             Subscribe subscribe = new Subscribe

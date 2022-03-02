@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20220302185435_updateDatabaseReservationTable.cs" />
+    <Compile Remove="Migrations\20220302185435_updateDatabaseReservationTable.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Restaurant.Core\Restaurant.Core.csproj" />
   </ItemGroup>
 
