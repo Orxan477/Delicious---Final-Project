@@ -47,9 +47,12 @@ namespace Restaurant.UI.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult AddBasket(int? id)
+        public async Task<IActionResult> AddBasket(int? id)
         {
             if(id is null) return NotFound();
+            Product dbProduct = await _context.Prouducts.FindAsync(id);
+            if (dbProduct is null) return BadRequest();
+
             return Json(id);
         }
     }
