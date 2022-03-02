@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Restaurant.Business.ViewModels;
+using Restaurant.Business.ViewModels.Menu;
 using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -52,8 +55,43 @@ namespace Restaurant.UI.Controllers
             if(id is null) return NotFound();
             Product dbProduct = await _context.Prouducts.FindAsync(id);
             if (dbProduct is null) return BadRequest();
-
-            return Json(id);
+            List<BasketVM> basket;
+            if (Request.Cookies["basket"] != null)
+            {
+                basket = JsonConvert.DeserializeObject<List<BasketVM>>(Request.Cookies["basket"]);
+            }
+            else
+            {
+                basket= new List<BasketVM>();
+            }
+            BasketVM basketProduct = basket.Find(x => x.Id == dbProduct.Id);
+            if (basketProduct is null)
+            {
+                basket.Add(new BasketVM
+                {
+                    Id = dbProduct.Id,
+                    Count = 1
+                });
+            }
+            else
+            {
+                basketProduct.Count++;
+            }
+            Response.Cookies.Append("basket", JsonConvert.SerializeObject(basket));
+            return RedirectToAction("Index","Menu");
+        }
+        public IActionResult Basket()
+        {
+            //List<BasketVM> basket;
+            //if (Request.Cookies["basket"] != null)
+            //{
+            //    basket = JsonConvert.DeserializeObject<List<BasketVM>>(Request.Cookies["basket"]);
+            //}
+            //else
+            //{
+            //    basket = new List<BasketVM>();
+            //}
+            return Json(JsonConvert.DeserializeObject<List<BasketVM>>(Request.Cookies["basket"]));
         }
     }
 }
