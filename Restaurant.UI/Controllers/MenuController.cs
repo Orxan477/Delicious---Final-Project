@@ -49,12 +49,46 @@ namespace Restaurant.UI.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddBasket(int? id)
         {
             if(id is null) return NotFound();
             Product dbProduct = await _context.Prouducts.FindAsync(id);
             if (dbProduct is null) return BadRequest();
+
+            List<BasketVM> basket = GetBasket();
+            UpdateBasket((int)id, basket);
+            Response.Cookies.Append("basket", JsonConvert.SerializeObject(basket));
+            return RedirectToAction("Index","Menu");
+        }
+        #region Check Basket
+        //private async Task<ActionResult> CheckBasket(int? id)
+        //{
+        //    if (id == null) return RedirectToAction("Index", "Menu");
+        //    Product dbProduct = await _context.Prouducts.FindAsync(id);
+        //    if (dbProduct is null) return BadRequest();
+        //}
+        #endregion
+        private void UpdateBasket(int id,List<BasketVM> basket)
+        {
+            BasketVM basketProduct = basket.Find(x => x.Id == id);
+            if (basketProduct is null)
+            {
+                basket.Add(new BasketVM
+                {
+                    Id = id,
+                    Count = 1,
+                    //Category = basketProduct.Category
+                });
+            }
+            else
+            {
+                basketProduct.Count++;
+            }
+        }
+        private List<BasketVM> GetBasket()
+        {
             List<BasketVM> basket;
             if (Request.Cookies["basket"] != null)
             {
@@ -62,23 +96,9 @@ namespace Restaurant.UI.Controllers
             }
             else
             {
-                basket= new List<BasketVM>();
+                basket = new List<BasketVM>();
             }
-            BasketVM basketProduct = basket.Find(x => x.Id == dbProduct.Id);
-            if (basketProduct is null)
-            {
-                basket.Add(new BasketVM
-                {
-                    Id = dbProduct.Id,
-                    Count = 1
-                });
-            }
-            else
-            {
-                basketProduct.Count++;
-            }
-            Response.Cookies.Append("basket", JsonConvert.SerializeObject(basket));
-            return RedirectToAction("Index","Menu");
+            return basket;
         }
         public IActionResult Basket()
         {
