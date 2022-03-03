@@ -25,7 +25,7 @@ namespace Restaurant.UI.Controllers
             {
                 MenuVM = new MenuVM
                 {
-                    Products = await _context.Prouducts.Where(x => !x.IsDeleted)
+                    Products = await _context.Products.Where(x => !x.IsDeleted)
                                     .Include(x => x.MenuImage)
                                     .Include(x => x.Category)
                                     .OrderByDescending(p => p.Id)
@@ -54,7 +54,7 @@ namespace Restaurant.UI.Controllers
         public async Task<IActionResult> AddBasket(int? id)
         {
             if(id is null) return NotFound();
-            Product dbProduct = await _context.Prouducts.FindAsync(id);
+            Product dbProduct = await _context.Products.FindAsync(id);
             if (dbProduct is null) return BadRequest();
 
             List<BasketVM> basket = GetBasket();
@@ -100,8 +100,9 @@ namespace Restaurant.UI.Controllers
             }
             return basket;
         }
-        public IActionResult Basket()
+        public async Task<IActionResult> Basket()
         {
+            #region MyRegion
             //List<BasketVM> basket;
             //if (Request.Cookies["basket"] != null)
             //{
@@ -111,7 +112,14 @@ namespace Restaurant.UI.Controllers
             //{
             //    basket = new List<BasketVM>();
             //}
-            return Json(JsonConvert.DeserializeObject<List<BasketVM>>(Request.Cookies["basket"]));
+            #endregion
+            List<BasketVM> basket = GetBasket();
+            List<BasketItemVM> model = new List<BasketItemVM>();
+            foreach (BasketVM item in basket)
+            {
+                //Product product=await _context.Products.Include(x=>x.)
+            }
+            return View(model);
         }
     }
 }

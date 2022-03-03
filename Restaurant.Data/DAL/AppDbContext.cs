@@ -16,7 +16,7 @@ namespace Restaurant.Data.DAL
         public DbSet<HomeIntro> HomeIntros { get; set; }
         public DbSet<MenuImage> MenuImages { get; set; }
         public DbSet<Position> Positions { get; set; }
-        public DbSet<Product> Prouducts { get; set; }
+        public DbSet<Product> Products { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<RestaurantPhotos> RestaurantPhotos { get; set; }
         public DbSet<Special> Specials { get; set; }
