@@ -79,7 +79,6 @@ namespace Restaurant.UI.Controllers
                 {
                     Id = id,
                     Count = 1,
-                    //Category = basketProduct.Category
                 });
             }
             else

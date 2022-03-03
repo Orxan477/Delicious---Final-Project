@@ -1,51 +1,70 @@
 ﻿@model HomeVM
-@*@model List<BasketItemVM>*@
 @{
     ViewData["Title"] = "Basket";
+    double productPrice=1;
+    double totalPrice=0;
 }
 
   <main>
         <section id="basket">
             <div class="container">
-                <div class="row">
-                    @foreach (var product in Model.BasketItemVM)
-                   {
-                       <div class="col-lg-12 d-flex shop-basket">
-                        <div class="col-lg-3 col-md-5 col-sm-6">
-                            <div class="mycard d-flex justify-content-center">
-                                <img src="~/assets/img/@product.Image" style="width:150px" alt="">
-                            </div>
-                        </div>
-                        <div class="col-lg-9 col-md-7 col-sm-6">
-                            <h3>Pizza</h3>
-                            <p class="mb-0">Category: @product.Category</p>
-                            <p class="mb-0">Price: @product.Price</p>
-                            <p>Type: Mini</p>
-                            <div class="sum-count d-flex justify-content-between ">
-                                <div class="count">
-                                    <div class="minus d-inline">
-                                        <i class="fas fa-minus minus-click"></i>
-                                    </div>
-                                    <span>0</span>
-                                    <div class="plus d-inline">
-                                        <i class="fas fa-plus plus-click"></i>
+                <div class="row">                    
+                    @if (Model.BasketItemVM.Count!=0)
+                    {
+                        @foreach (var product in Model.BasketItemVM)
+                        {
+                            <div class="col-lg-12 d-flex shop-basket mb-4">
+                                <div class="col-lg-3 col-md-5 col-sm-6">
+                                    <div class="mycard d-flex justify-content-center">
+                                        <img src="~/assets/img/@product.Image" style="width:150px" alt="">
                                     </div>
                                 </div>
-                                <div class="sum">
-                                    <span class="total-price">0</span><span>₼</span>
+                                 <div class="col-lg-9 col-md-7 col-sm-6">
+                                    <h3>@product.Name</h3>
+                                    <p class="mb-0">Category: @product.Category</p>
+                                    <p class="mb-0">Price: @product.Price</p>
+                                    <p>Type: Mini</p>
+                                    <div class="sum-count d-flex justify-content-between ">
+                                        <div class="count">
+                                            <div class="minus d-inline">
+                                             <i class="fas fa-minus minus-click"></i>
+                                            </div>
+                                            <span>@product.Count</span>
+                                            <div class="plus d-inline">
+                                                <i class="fas fa-plus plus-click"></i>
+                                            </div>
+                                        </div>
+                                        <div class="sum">
+                                            @{
+                                                productPrice = @product.Count * @product.Price;
+                                                totalPrice+= @product.Count * @product.Price;
+                                            }
+                                            <span class="total-price">@productPrice</span><span>₼</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            <div class="col-lg-12">
+                         <div class="d-flex justify-content-end">
+                            <h4 class="mb-0" style="padding:4px 0;">Total Price: @totalPrice</h4>
+                            <button class="btn btn-warning ml-3">Buy</button>
+                         </div>
                     </div>
-                   }
+                        }
+                     }
+                    else
+                     {
+                        <h3>Sebetiniz bosdur<a asp-controller="Menu" asp-action="Index"> buradan </a>    menu sehifesine qayida bilersiniz</h3>
+                     }
                 </div>
             </div>
-        </section>
+        </section
+
         @section Script
-{
-    <script src="~/assets/js/script.js"></script>
-    <script src="~/assets/js/otherPage.js"></script>
-    <script src="~/assets/js/menu.js"></script>
-}
-    </main>
+            {
+                <script src="~/assets/js/script.js"></script>
+                <script src="~/assets/js/otherPage.js"></script>
+                <script src="~/assets/js/menu.js"></script>
+            }
+   </main>
 

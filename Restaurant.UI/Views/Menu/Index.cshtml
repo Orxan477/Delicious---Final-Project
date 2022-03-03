@@ -41,9 +41,10 @@
                                    {
                                        <a href="#" data-toggle="modal" data-target="#pro-@pro.Id"
                                         class="btn btn-warning mt-2">Secin</a>
-                                   }
-                                   else {
-                                       <form asp-action="AddBasket" asp-route-id="@pro.Id" method="post" >
+                                    }
+                                    else {
+                                        
+                                        <form asp-action="AddBasket" asp-route-id="@pro.Id" method="post" >
                                                <button type="submit" class="btn btn-warning">Add to Cart</button>
                                             </form>
                                    }
@@ -81,9 +82,12 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-dismiss="modal">Cancel</button>
-                                            <form asp-action="AddBasket" asp-route-id="@pro.Id" method="post" >
+                                            @*@{int s = 1;}*@
+                                            <form asp-action="AddBasket" asp-route-id="@pro.Id"  method="post" >
                                                 <button type="submit" class="btn btn-warning">Add to Cart</button>
+                                                @*@{s++;}*@
                                             </form>
+
                                     </div>
                                 </div>
                             </div>
