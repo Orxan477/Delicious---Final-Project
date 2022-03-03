@@ -113,13 +113,33 @@ namespace Restaurant.UI.Controllers
             //    basket = new List<BasketVM>();
             //}
             #endregion
+
             List<BasketVM> basket = GetBasket();
+            List<BasketItemVM> model = await GetBasketList(basket);
+            return Json(model);
+        }
+        private async Task<List<BasketItemVM>> GetBasketList(List<BasketVM> basket)
+        {
             List<BasketItemVM> model = new List<BasketItemVM>();
             foreach (BasketVM item in basket)
             {
-                //Product product=await _context.Products.Include(x=>x.)
+                Product dbProduct = await _context.Products
+                                            .Include(x => x.MenuImage).FirstOrDefaultAsync(x => x.Id == item.Id);
+                BasketItemVM basketItemVM = GetBasketItem(item, dbProduct);
+                model.Add(basketItemVM);
             }
-            return View(model);
+            return model;
+        }
+        private BasketItemVM GetBasketItem(BasketVM item, Product dbProduct)
+        {
+            return new BasketItemVM
+            {
+                Id = item.Id,
+                Name = dbProduct.Name,
+                Count = item.Count,
+                Image = dbProduct.MenuImage.Image,
+                Price = dbProduct.Price,
+            };
         }
     }
 }

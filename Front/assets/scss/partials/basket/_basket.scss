@@ -1,0 +1,8 @@
+#basket{
+    margin-top: $big-size+50;
+    & .shop-basket{
+        border: 1px solid silver;
+        border-radius: 25px;
+        padding: 15px;
+    }
+}

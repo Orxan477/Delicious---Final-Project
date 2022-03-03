@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewData["Title"] = "Basket";
+}
+
+  <main>
+        <section id="basket">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 d-flex shop-basket">
+                        <div class="col-lg-3 col-md-5 col-sm-6">
+                            <div class="card">
+                                <img src="~/assets/img/american-hot.png" class="card-img-top" alt="">
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-md-7 col-sm-6">
+                            <h3>Pizza</h3>
+                            <p class="mb-0">Category: Pizza</p>
+                            <p class="mb-0">Price: 30$</p>
+                            <p>Type: Mini</p>
+                            <div class="sum-count d-flex justify-content-between ">
+                                <div class="count">
+                                    <div class="minus d-inline">
+                                        <i class="fas fa-minus minus-click"></i>
+                                    </div>
+                                    <span>0</span>
+                                    <div class="plus d-inline">
+                                        <i class="fas fa-plus plus-click"></i>
+                                    </div>
+                                </div>
+                                <div class="sum">
+                                    <span class="total-price">0</span><span>₼</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        @section Script
+{
+    <script src="~/assets/js/script.js"></script>
+    <script src="~/assets/js/otherPage.js"></script>
+    <script src="~/assets/js/menu.js"></script>
+}
+    </main>
+

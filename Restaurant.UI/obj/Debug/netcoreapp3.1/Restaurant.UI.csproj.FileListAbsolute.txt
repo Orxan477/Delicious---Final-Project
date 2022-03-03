@@ -179,3 +179,4 @@ D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\bin\Debug\netco
 D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\bin\Debug\netcoreapp3.1\FluentValidation.DependencyInjectionExtensions.dll
 D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\obj\Debug\netcoreapp3.1\Restaurant.UI.MvcApplicationPartsAssemblyInfo.cs
 D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\obj\Debug\netcoreapp3.1\Razor\Views\Menu\Index.cshtml.g.cs
+D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\obj\Debug\netcoreapp3.1\Razor\Views\Menu\Basket.cshtml.g.cs
