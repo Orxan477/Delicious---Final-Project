@@ -47,8 +47,15 @@ using Restaurant.Business.ViewModels.Reservation;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 6 "D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\Views\_ViewImports.cshtml"
+using Restaurant.Business.ViewModels.Menu;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"266b75c2ca7c29d2087463ce004a685832df8f09", @"/Views/Menu/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"812f846773018a9b5fa8bcd1ea5d19e60e02db68", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c642045ab5facbda06c8a24985111813a93e162a", @"/Views/_ViewImports.cshtml")]
     public class Views_Menu_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<HomeVM>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("img-fluid"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -160,7 +167,7 @@ using Restaurant.Business.ViewModels.Reservation;
 #line hidden
 #nullable disable
             WriteLiteral("\">\r\n                            <div class=\"img\">\r\n                                <a href=\"#\">\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "266b75c2ca7c29d2087463ce004a685832df8f099971", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "266b75c2ca7c29d2087463ce004a685832df8f0910186", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -227,7 +234,7 @@ AddHtmlAttributeValue("", 1317, pro.MenuImage.Image, 1317, 20, false);
 #line hidden
 #nullable disable
             WriteLiteral("                                       ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "266b75c2ca7c29d2087463ce004a685832df8f0913685", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "266b75c2ca7c29d2087463ce004a685832df8f0913901", async() => {
                 WriteLiteral("\r\n                                               <button type=\"submit\" class=\"btn btn-warning\">Add to Cart</button>\r\n                                            ");
             }
             );
@@ -299,7 +306,7 @@ WriteAttributeValue("", 2725, pro.Id, 2725, 7, false);
                                     <div class=""modal-body menu-modal"">
                                         <div class=""d-flex justify-content-center"">
                                             ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "266b75c2ca7c29d2087463ce004a685832df8f0918367", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "266b75c2ca7c29d2087463ce004a685832df8f0918583", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -345,7 +352,7 @@ AddHtmlAttributeValue("", 3452, pro.MenuImage.Image, 3452, 20, false);
 #line hidden
 #nullable disable
             WriteLiteral("                                                   ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "266b75c2ca7c29d2087463ce004a685832df8f0921292", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "266b75c2ca7c29d2087463ce004a685832df8f0921508", async() => {
                 WriteLiteral("Kiçik - ");
 #nullable restore
 #line 75 "D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\Views\Menu\Index.cshtml"
@@ -377,7 +384,7 @@ AddHtmlAttributeValue("", 3452, pro.MenuImage.Image, 3452, 20, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                                   ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "266b75c2ca7c29d2087463ce004a685832df8f0923267", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "266b75c2ca7c29d2087463ce004a685832df8f0923483", async() => {
                 WriteLiteral("Orta - ");
 #nullable restore
 #line 76 "D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\Views\Menu\Index.cshtml"
@@ -409,7 +416,7 @@ AddHtmlAttributeValue("", 3452, pro.MenuImage.Image, 3452, 20, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                                   ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "266b75c2ca7c29d2087463ce004a685832df8f0925247", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "266b75c2ca7c29d2087463ce004a685832df8f0925463", async() => {
                 WriteLiteral("Böyük - ");
 #nullable restore
 #line 77 "D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\Views\Menu\Index.cshtml"
@@ -448,7 +455,7 @@ AddHtmlAttributeValue("", 3452, pro.MenuImage.Image, 3452, 20, false);
                                         <button type=""button"" class=""btn btn-secondary""
                                             data-dismiss=""modal"">Cancel</button>
                                             ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "266b75c2ca7c29d2087463ce004a685832df8f0927622", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "266b75c2ca7c29d2087463ce004a685832df8f0927838", async() => {
                 WriteLiteral("\r\n                                                <button type=\"submit\" class=\"btn btn-warning\">Add to Cart</button>\r\n                                            ");
             }
             );
@@ -501,7 +508,7 @@ AddHtmlAttributeValue("", 3452, pro.MenuImage.Image, 3452, 20, false);
             WriteLiteral("                </div>\r\n            </div>\r\n        </section>\r\n");
             DefineSection("Script", async() => {
                 WriteLiteral("\r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "266b75c2ca7c29d2087463ce004a685832df8f0931256", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "266b75c2ca7c29d2087463ce004a685832df8f0931472", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -515,7 +522,7 @@ AddHtmlAttributeValue("", 3452, pro.MenuImage.Image, 3452, 20, false);
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "266b75c2ca7c29d2087463ce004a685832df8f0932356", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "266b75c2ca7c29d2087463ce004a685832df8f0932572", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -529,7 +536,7 @@ AddHtmlAttributeValue("", 3452, pro.MenuImage.Image, 3452, 20, false);
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "266b75c2ca7c29d2087463ce004a685832df8f0933456", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "266b75c2ca7c29d2087463ce004a685832df8f0933672", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

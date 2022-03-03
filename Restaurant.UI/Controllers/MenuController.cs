@@ -116,7 +116,7 @@ namespace Restaurant.UI.Controllers
 
             List<BasketVM> basket = GetBasket();
             List<BasketItemVM> model = await GetBasketList(basket);
-            return Json(model);
+            return View(model);
         }
         private async Task<List<BasketItemVM>> GetBasketList(List<BasketVM> basket)
         {
@@ -139,6 +139,7 @@ namespace Restaurant.UI.Controllers
                 Count = item.Count,
                 Image = dbProduct.MenuImage.Image,
                 Price = dbProduct.Price,
+                Category=dbProduct.Category.Name
             };
         }
     }
