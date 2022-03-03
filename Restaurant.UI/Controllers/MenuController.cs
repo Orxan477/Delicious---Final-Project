@@ -102,21 +102,13 @@ namespace Restaurant.UI.Controllers
         }
         public async Task<IActionResult> Basket()
         {
-            #region MyRegion
-            //List<BasketVM> basket;
-            //if (Request.Cookies["basket"] != null)
-            //{
-            //    basket = JsonConvert.DeserializeObject<List<BasketVM>>(Request.Cookies["basket"]);
-            //}
-            //else
-            //{
-            //    basket = new List<BasketVM>();
-            //}
-            #endregion
-
             List<BasketVM> basket = GetBasket();
             List<BasketItemVM> model = await GetBasketList(basket);
-            return View(model);
+            HomeVM homeVM = new HomeVM
+            {
+                BasketItemVM = model
+            };
+            return View(homeVM);
         }
         private async Task<List<BasketItemVM>> GetBasketList(List<BasketVM> basket)
         {
@@ -124,7 +116,7 @@ namespace Restaurant.UI.Controllers
             foreach (BasketVM item in basket)
             {
                 Product dbProduct = await _context.Products
-                                            .Include(x => x.MenuImage).FirstOrDefaultAsync(x => x.Id == item.Id);
+                                            .Include(x => x.MenuImage).Include(x=>x.Category).FirstOrDefaultAsync(x => x.Id == item.Id);
                 BasketItemVM basketItemVM = GetBasketItem(item, dbProduct);
                 model.Add(basketItemVM);
             }
@@ -139,7 +131,7 @@ namespace Restaurant.UI.Controllers
                 Count = item.Count,
                 Image = dbProduct.MenuImage.Image,
                 Price = dbProduct.Price,
-                Category=dbProduct.Category.Name
+                Category = dbProduct.Category.Name
             };
         }
     }

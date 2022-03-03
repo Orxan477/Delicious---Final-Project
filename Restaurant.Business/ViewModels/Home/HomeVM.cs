@@ -1,5 +1,6 @@
 ﻿using Restaurant.Business.ViewModels.Footer;
 using Restaurant.Business.ViewModels.Home;
+using Restaurant.Business.ViewModels.Menu;
 using Restaurant.Core.Models;
 using System.Collections.Generic;
 
@@ -17,5 +18,6 @@ namespace Restaurant.Business.ViewModels
         public MenuVM MenuVM { get; set; }
         public ContactUsVM ContactUsVM { get; set; }
         public SubscribeVM SubscribeVM { get; set; }
+        public List<BasketItemVM> BasketItemVM { get; set; }
     }
 }
