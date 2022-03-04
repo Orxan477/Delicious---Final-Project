@@ -18,6 +18,11 @@
     <ProjectReference Include="..\Restaurant.Business\Restaurant.Business.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\admin\Data\" />
+    <Folder Include="Areas\admin\Models\" />
+  </ItemGroup>
+
 
 
 </Project>
