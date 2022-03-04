@@ -58,7 +58,7 @@
               </li>
               <li class="nav-item shop-cart">
                 <a asp-controller="Menu" asp-action="Basket">
-                  <sup class="rounded-circle">0</sup>
+                  <sup class="rounded-circle">@ViewBag.basketCount</sup>
                   <i class="fas fa-shopping-basket logo-basket"></i>
                 </a>
               </li>

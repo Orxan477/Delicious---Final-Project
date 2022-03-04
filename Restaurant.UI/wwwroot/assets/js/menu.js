@@ -12,8 +12,6 @@ $(document).ready(function () {
             success: function (result) {
                 $(".products").append(result)
                 productCount = $(".products").children().length;
-                //console.log(productCount);
-                //console.log(dbProCount);
                 if (productCount == dbProCount) {
                     console.log(result)
                     $("#load").remove();
@@ -22,21 +20,21 @@ $(document).ready(function () {
         })
     })
 
-    //$(document).on("click", "#pizza-order", function (ev) {
-    //    ev.preventDefault();
-    //    var pizza = document.getElementById("pizza");
-    //    var value = pizza.options[pizza.selectedIndex].value;
-    //    var pizzaId = ev.target.nextElementSibling.value;
-    //    console.log(pizzaId);
-    //    $.ajax({
-    //        url: "/Menu/AddBasket",
-    //        data: {
-    //            id: pizzaId,
-    //            priceId: value
-    //        },
-    //        type: "GET"
-    //    })
-    //})
+    $(document).on("click", "#pizza-order", function (ev) {
+        ev.preventDefault();
+        var pizza = document.getElementById("pizza");
+        var value = pizza.options[pizza.selectedIndex].value;
+        var pizzaId = ev.target.nextElementSibling.value;
+        console.log(pizzaId);
+        $.ajax({
+            url: "/Menu/AddBasket",
+            data: {
+                id: pizzaId,
+                priceId: value
+            },
+            type: "GET"
+        })
+    })
 })
 
 
