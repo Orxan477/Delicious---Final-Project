@@ -19,7 +19,7 @@ namespace Restaurant.UI.Controllers
         public MenuController(AppDbContext context)
         {
             _context = context;
-            _proCount= _context.Products.Count();
+            _proCount = _context.Products.Count();
         }
         public async Task<IActionResult> Index()
         {
@@ -41,7 +41,7 @@ namespace Restaurant.UI.Controllers
         }
         public IActionResult LoadProduct(int skip)
         {
-            if (_proCount==skip)
+            if (_proCount == skip)
             {
                 return Json(new
                 {
@@ -58,7 +58,7 @@ namespace Restaurant.UI.Controllers
                                 .Skip(skip)
                                 .Take(2)
                                 .Include(x => x.MenuImage)
-                                .Include(x=>x.Category)
+                                .Include(x => x.Category)
                                 .ToList(),
                 }
 
@@ -81,18 +81,65 @@ namespace Restaurant.UI.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddBasket(int? id)
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddBasket(int? id,int? priceId)
         {
             if (id is null) return NotFound();
             Product dbProduct = await _context.Products.FindAsync(id);
             if (dbProduct is null) return BadRequest();
 
             List<BasketVM> basket = GetBasket();
-            UpdateBasket((int)id, basket);
+            UpdateBasket((int)id, basket,priceId);
             Response.Cookies.Append("basket", JsonConvert.SerializeObject(basket));
             return RedirectToAction("Index", "Menu");
+        }
+        private double ProductPrice(Product dbProduct, int? priceId)
+        {
+            double price = 1;
+            
+            if (priceId != null)
+            {
+                switch (priceId)
+                {
+                    case 1:
+                        price = (double)dbProduct.Price;
+                        break;
+                    case 2:
+                        price = (double)(dbProduct.Price * 1.5);
+                        break;
+                    case 3:
+                        price = (double)(dbProduct.Price * 2.5);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                price = (int)(dbProduct.Price);
+            }
+            return price;
+        }
+        private string ProductSize(int? priceId)
+        {
+            string size = string.Empty;
+            switch (priceId)
+            {
+                case 1:
+                    size = "Kiçik";
+                    break;
+                case 2:
+                    size = "Orta";
+                    break;
+                case 3:
+                    size = "Böyük";
+                    break;
+                default:
+                    break;
+            }
+            return size;
+
         }
         #region Check Basket
         //private async Task<ActionResult> CheckBasket(int? id)
@@ -102,15 +149,20 @@ namespace Restaurant.UI.Controllers
         //    if (dbProduct is null) return BadRequest();
         //}
         #endregion
-        private void UpdateBasket(int id, List<BasketVM> basket)
+        private void UpdateBasket(int id, List<BasketVM> basket,int?priceId)
         {
-            BasketVM basketProduct = basket.Find(x => x.Id == id);
+            Product dbProduct =  _context.Products.Find(id);
+            double price=ProductPrice(dbProduct, priceId);
+            string size=ProductSize(priceId);
+            BasketVM basketProduct = basket.Find(x => x.Id == id && x.Price==price);
             if (basketProduct is null)
             {
                 basket.Add(new BasketVM
                 {
                     Id = id,
                     Count = 1,
+                    Price=price,
+                    Size= size
                 });
             }
             else
@@ -161,8 +213,9 @@ namespace Restaurant.UI.Controllers
                 Name = dbProduct.Name,
                 Count = item.Count,
                 Image = dbProduct.MenuImage.Image,
-                Price = dbProduct.Price,
-                Category = dbProduct.Category.Name
+                Price = item.Price,
+                Category = dbProduct.Category.Name,
+                Size=item.Size
             };
         }
     }

@@ -18,6 +18,22 @@ $(document).ready(function () {
             }
         })
     })
+
+    //$(document).on("click", "#pizza-order", function (ev) {
+    //    ev.preventDefault();
+    //    var pizza = document.getElementById("pizza");
+    //    var value = pizza.options[pizza.selectedIndex].value;
+    //    var pizzaId = ev.target.nextElementSibling.value;
+    //    console.log(pizzaId);
+    //    $.ajax({
+    //        url: "/Menu/AddBasket",
+    //        data: {
+    //            id: pizzaId,
+    //            priceId: value
+    //        },
+    //        type: "GET"
+    //    })
+    //})
 })
 
 
@@ -28,14 +44,12 @@ var plus = document.querySelector(".plus-click");
 
  var totalPrice = document.querySelector(".total-price");
 
- var pizza = document.getElementById("pizza");
- var value=pizza.options[pizza.selectedIndex].value;
 
- pizza.addEventListener("click", function () {
-    value = pizza.options[pizza.selectedIndex].value;
-console.log(value);
-    //totalPrice.innerHTML = value * count.innerText;
- });
+
+//////var modalPizza = document.getElementById("modal-pizza")
+//////console.log(modalPizza)
+
+
 
 //minus.addEventListener("click", function () {
 //    if (count.innerText > 0) {

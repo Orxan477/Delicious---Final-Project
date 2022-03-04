@@ -51,19 +51,19 @@
                                                     double orta = (n * 1.5);
                                                     double boyuk = (n * 2.5);
                                                 }
-                                                   <option value="@pro.Price" >Kiçik - @pro.Price</option>
-                                                   <option value="@orta.ToString()" >Orta - @orta</option>
-                                                   <option value="@boyuk.ToString("F2")" >Böyük - @boyuk</option>
+                                                    <option>Choose Size</option>
+                                                   <option value="1" >Kiçik - @pro.Price</option>
+                                                   <option value="2" >Orta - @orta</option>
+                                                   <option value="3" >Böyük - @boyuk</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-dismiss="modal">Cancel</button>
-                                            @*@{int s = 1;}*@
-                                            <form asp-action="AddBasket" asp-route-id="@pro.Id"  method="post" >
+                                            <form asp-action="AddBasket" asp-route-id="@pro.Id" id="pizza-order"  method="post" >
                                                 <button type="submit" class="btn btn-warning">Add to Cart</button>
-                                                @*@{s++;}*@
+                                                <input type="hidden" id="productCount" value="@pro.Id" />
                                             </form>
 
                                     </div>
