@@ -19,5 +19,6 @@ namespace Restaurant.Business.ViewModels
         public ContactUsVM ContactUsVM { get; set; }
         public SubscribeVM SubscribeVM { get; set; }
         public List<BasketItemVM> BasketItemVM { get; set; }
+        public List<Product> Product { get; set; }
     }
 }

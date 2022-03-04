@@ -14,13 +14,16 @@ namespace Restaurant.UI.Controllers
     public class MenuController : Controller
     {
         private AppDbContext _context;
+        private int _proCount;
 
         public MenuController(AppDbContext context)
         {
             _context = context;
+            _proCount= _context.Products.Count();
         }
         public async Task<IActionResult> Index()
         {
+            ViewBag.productsCount = _proCount;
             HomeVM vm = new HomeVM
             {
                 MenuVM = new MenuVM
@@ -29,11 +32,40 @@ namespace Restaurant.UI.Controllers
                                     .Include(x => x.MenuImage)
                                     .Include(x => x.Category)
                                     .OrderByDescending(p => p.Id)
+                                    .Take(2)
                                     .ToListAsync(),
                     Categories = await _context.Categories.ToListAsync(),
                 }
             };
             return View(vm);
+        }
+        public IActionResult LoadProduct(int skip)
+        {
+            if (_proCount==skip)
+            {
+                return Json(new
+                {
+                    alter = "No Product"
+                });
+            }
+            HomeVM homeVM = new HomeVM
+            {
+                MenuVM = new MenuVM
+                {
+
+                    Products = _context.Products
+                                .OrderByDescending(x => x.Id)
+                                .Skip(skip)
+                                .Take(2)
+                                .Include(x => x.MenuImage)
+                                .Include(x=>x.Category)
+                                .ToList(),
+                }
+
+            };
+
+            return PartialView("_MenuPartial", homeVM);
+
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -53,14 +85,14 @@ namespace Restaurant.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddBasket(int? id)
         {
-            if(id is null) return NotFound();
+            if (id is null) return NotFound();
             Product dbProduct = await _context.Products.FindAsync(id);
             if (dbProduct is null) return BadRequest();
 
             List<BasketVM> basket = GetBasket();
             UpdateBasket((int)id, basket);
             Response.Cookies.Append("basket", JsonConvert.SerializeObject(basket));
-            return RedirectToAction("Index","Menu");
+            return RedirectToAction("Index", "Menu");
         }
         #region Check Basket
         //private async Task<ActionResult> CheckBasket(int? id)
@@ -70,7 +102,7 @@ namespace Restaurant.UI.Controllers
         //    if (dbProduct is null) return BadRequest();
         //}
         #endregion
-        private void UpdateBasket(int id,List<BasketVM> basket)
+        private void UpdateBasket(int id, List<BasketVM> basket)
         {
             BasketVM basketProduct = basket.Find(x => x.Id == id);
             if (basketProduct is null)
@@ -115,7 +147,7 @@ namespace Restaurant.UI.Controllers
             foreach (BasketVM item in basket)
             {
                 Product dbProduct = await _context.Products
-                                            .Include(x => x.MenuImage).Include(x=>x.Category).FirstOrDefaultAsync(x => x.Id == item.Id);
+                                            .Include(x => x.MenuImage).Include(x => x.Category).FirstOrDefaultAsync(x => x.Id == item.Id);
                 BasketItemVM basketItemVM = GetBasketItem(item, dbProduct);
                 model.Add(basketItemVM);
             }
