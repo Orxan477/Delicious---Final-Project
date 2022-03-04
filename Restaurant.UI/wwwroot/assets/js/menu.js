@@ -2,6 +2,7 @@ $(document).ready(function () {
     $(document).on("click", "#load", function () {
         let productCount = $(".products").children().length;
         let dbProCount = $("#productCount").val();
+        console.log(dbProCount)
         $.ajax({
             url: "/Menu/LoadProduct",
             data: {
@@ -11,6 +12,8 @@ $(document).ready(function () {
             success: function (result) {
                 $(".products").append(result)
                 productCount = $(".products").children().length;
+                //console.log(productCount);
+                //console.log(dbProCount);
                 if (productCount == dbProCount) {
                     console.log(result)
                     $("#load").remove();
