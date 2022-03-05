@@ -67,6 +67,23 @@ namespace Restaurant.UI.Controllers
             return PartialView("_MenuPartial", homeVM);
 
         }
+        public IActionResult ModalPartial(int id)
+        {
+            HomeVM homeVM = new HomeVM
+            {
+                MenuVM = new MenuVM
+                {
+
+                    Products = _context.Products
+                                .Where(x=>x.Id==id)
+                               .Include(x => x.MenuImage)
+                               .Include(x => x.Category)
+                               .ToList(),
+                }
+
+            };
+            return PartialView("_ModalPartial",homeVM);
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Subscribe(HomeVM homeVM)

@@ -1,38 +1,9 @@
-﻿@model HomeVM
+﻿ @model HomeVM
+
 
     @foreach (var pro in Model.MenuVM.Products)
-                   {
-                       <div class="col-lg-3 col-md-4 col-sm-6 mt-3 ">
-                        <div class="product-item text-center" data-id="@pro.Category.Name.ToLower()">
-                            <div class="img">
-                                <a href="#">
-                                    <img src="~/assets/img/@pro.MenuImage.Image" class="img-fluid" alt="">
-                                </a>
-                            </div>
-                            <div class="title mt-3">
-                                <h6>@pro.Name</h6>
-                            </div>
-                            <div>
-                                <p class="text-black-50">@pro.Description</p>
-                                <span class="text-black-50">
-                                    @if (pro.Category.Name.ToLower().Trim()=="pizza")
-                                   {
-                                       <a href="#" data-toggle="modal" id="modal-pizza" data-target="#pro-@pro.Id"
-                                        class="btn btn-warning mt-2">Secin</a>
-                                        <input type="hidden" value="@pro.Id" />
-                                    }
-                                    else {
-                                        
-                                        <form asp-action="AddBasket" asp-route-id="@pro.Id" method="post" >
-                                               <button type="submit" class="btn btn-warning">Add to Cart</button>
-                                            </form>
-                                   }
-                                </span>
-                            </div>
-                        </div>
-                        @if (pro.Category.Name.ToLower().Trim()=="pizza")
-                        {
-                           @* <div class="modal fade" id="pro-@pro.Id" tabindex="-1" role="dialog"
+   {
+       <div class="modal fade myModalAjax" id="pro-@pro.Id" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog " role="document">
                                 <div class="modal-content">
@@ -70,11 +41,5 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>*@
-                        @*<partial name="_ModalPartial" />*@
-                        <div class="append-modal">
-
                         </div>
-                        }
-                    </div>
-                   }
+   }
