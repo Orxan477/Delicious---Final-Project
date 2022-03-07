@@ -5,6 +5,7 @@ using System.Linq;
 
 namespace Restaurant.UI.Areas.admin.Controllers
 {
+    [Area("Admin")]
     public class TeamController : Controller
     {
         private AppDbContext _context;
@@ -18,6 +19,16 @@ namespace Restaurant.UI.Areas.admin.Controllers
             return View(_context.Teams
                                 .Include(x=>x.Position)
                                 .ToList());
+        }
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create()
+        {
+
         }
     }
 }
