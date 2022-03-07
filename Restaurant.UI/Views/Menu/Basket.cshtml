@@ -8,7 +8,7 @@
   <main>
         <section id="basket">
             <div class="container">
-                <div class="row">                    
+                <div class="row justify-content-center">                    
                     @if (Model.BasketItemVM.Count!=0)
                     {
                         @foreach (var product in Model.BasketItemVM)
@@ -20,10 +20,19 @@
                                     </div>
                                 </div>
                                  <div class="col-lg-9 col-md-7 col-sm-6">
-                                    <h3>@product.Name</h3>
+                                    <div class="d-flex justify-content-between">
+                                        <h3>@product.Name</h3>
+                                        <form method="post" id="deleteProduct">
+                                            <button type="submit" class="btn btn-link"  asp-action="RemoveFromCart" asp-route-id="@product.Id" style="color:black">
+                                                <i class="fas fa-times" style="cursor:pointer"></i>
+                                               
+                                        </button>
+                                         <input type="hidden" value="@product.Id">
+                                        </form>
+                                    </div>
                                     <p class="mb-0">Category: @product.Category</p>
                                     <p class="mb-0">Price: @product.Price</p>
-                                    <p>Size: @product.Size</p>
+                                    <p>Size:@product.Size</p>
                                     <div class="sum-count d-flex justify-content-between ">
                                         <div class="count">
                                             <div class="minus d-inline">
@@ -47,14 +56,23 @@
                             <div class="col-lg-12">
                     </div>
                         }
-                         <div class="d-flex justify-content-end">
-                            <h4 class="mb-0" style="padding:4px 0;">Total Price: @totalPrice <span>₼</span></h4>
-                            <button class="btn btn-warning ml-3">Buy</button>
+                         <div class="col-lg-12">
+                             <div class="d-flex justify-content-between">
+                            <form class=" d-inline" method="post">
+                                <button class="btn btn-warning" asp-action="EmptyCart" type="submit">Empty Card</button>
+                            </form>
+                            <form method="post" class="d-inline" href="#">
+                            <h4 class="mb-0 d-inline" style="padding:4px 0;">Total Price: @totalPrice <span>₼</span></h4>
+                                <button type="submit" class="btn btn-warning ml-3">Buy</button>
+                            </form>
+                         </div>
                          </div>
                      }
                     else
                      {
-                        <h3>Sebetiniz bosdur<a asp-controller="Menu" asp-action="Index"> buradan </a>    menu sehifesine qayida bilersiniz</h3>
+                        <div>
+                            <h3>Sebetiniz bosdur<a asp-controller="Menu" asp-action="Index"> buradan </a>    menu sehifesine qayida bilersiniz</h3>
+                        </div>
                      }
                 </div>
             </div>

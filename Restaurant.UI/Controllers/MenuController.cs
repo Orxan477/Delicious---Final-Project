@@ -235,5 +235,32 @@ namespace Restaurant.UI.Controllers
                 Size=item.Size
             };
         }
+        [HttpPost]
+        public IActionResult EmptyCart()
+        {
+            Response.Cookies.Delete("basket");
+            return RedirectToAction("Basket", "Menu");
+        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        public IActionResult RemoveFromCart(int? id)
+        {
+            if (id == null) return NotFound();
+            var baskets = GetBasket();
+            var basket = baskets.FirstOrDefault(x => x.Id == id);
+            if (basket == null) return NotFound();
+            if (basket.Count == 1 || basket.Count <= 0)
+            {
+                baskets.Remove(basket);
+            }
+            else
+            {
+                basket.Count--;
+            }
+
+
+            HttpContext.Response.Cookies.Append("basket", JsonConvert.SerializeObject(baskets));
+            return RedirectToAction("Basket", "Menu");
+        }
     }
 }

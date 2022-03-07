@@ -2,6 +2,8 @@ $(document).ready(function () {
     $(document).on("click", "#load", function () {
         let productCount = $(".products").children().length;
         let dbProCount = $("#productCount").val();
+        console.log("product="+productCount)
+        console.log("db="+dbProCount)
         $.ajax({
             url: "/Menu/LoadProduct",
             data: {
@@ -11,8 +13,8 @@ $(document).ready(function () {
             success: function (result) {
                 $(".products").append(result)
                 productCount = $(".products").children().length;
+                    
                 if (productCount >= dbProCount) {
-                    //console.log(result)
                     $("#load").remove();
                 }
             }
@@ -21,8 +23,9 @@ $(document).ready(function () {
 
     $(document).on("click", "#pizza-order", function (ev) {
         ev.preventDefault();
-        var pizza = $("#pizza");
+        var pizza = document.getElementById("pizza");
         var value = pizza.options[pizza.selectedIndex].value;
+        console.log("value=" + value)
         var pizzaId = ev.target.nextElementSibling.value;
         $.ajax({
             url: "/Menu/AddBasket",
@@ -30,51 +33,46 @@ $(document).ready(function () {
                 id: pizzaId,
                 priceId: value
             },
-            type: "GET"
+            type: "GET",
+            success: function (result) {
+                alertify.set('notifier', 'position', 'top-right');
+                alertify.success('Add to Card');
+            }
         })
     })
 
-    //$(document).on("click", "#modal-pizza", function (ev) {
-    //    var pizzaId = ev.target.nextElementSibling.value;
-    //    console.log(pizzaId);
-    //    $.ajax({
-    //        url: "/Menu/ModalPartial",
-    //        data: {
-    //            id: pizzaId
-    //        },
-    //        type: "GET",
-    //        success: function (result) {
-    //            //$(".append-modal").children.remove()
-    //            $(".append-modal").append(result)
-    //        }
-    //    })
-    //})
+    
 
-})
+    $(document).on("click", "#otherCatBut", function (ev) {
+        ev.preventDefault();
+        var otherMenId = ev.target.nextElementSibling.value;
+        $.ajax({
+            url: "/Menu/AddBasket",
+            data: {
+                id: otherMenId
+            },
+            type: "GET",
+            success: function (result) {
+                alertify.set('notifier', 'position', 'top-right');
+                alertify.success('Add to Card');
+            }
+        })
+    });
 
-
-
-var minus = document.querySelector(".minus-click");
-var plus = document.querySelector(".plus-click");
-//var count = minus.parentElement.nextElementSibling;
-
- var totalPrice = document.querySelector(".total-price");
-
-
-
-//////var modalPizza = document.getElementById("modal-pizza")
-//////console.log(modalPizza)
-
-
-
-//minus.addEventListener("click", function () {
-//    if (count.innerText > 0) {
-//        count.innerHTML -= 1;
-//        // totalPrice.innerHTML = value * count.innerText;
-//    }
-//});
-
-//plus.addEventListener("click", function () {
-//    count.innerHTML++;
-//    // totalPrice.innerHTML = value * count.innerText;
-//});
+    //$(document).on("click", "#deleteProduct", function (ev) {
+    //    ev.preventDefault();
+    //    var proId = ev.target.nextElementSibling;
+    //    console.log(proId);
+    //    //$.ajax({
+    //    //    url: "/Menu/RemoveFromCart",
+    //    //    data: {
+    //    //        id: proId
+    //    //    },
+    //    //    type: "GET",
+    //    //    success: function (result) {
+    //    //        alertify.set('notifier', 'position', 'top-right');
+    //    //        alertify.success('Remove');
+    //    //    }
+    //    //})
+    //});
+});
