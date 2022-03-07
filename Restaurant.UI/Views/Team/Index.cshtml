@@ -1,4 +1,4 @@
-﻿
+﻿@model HomeVM
 @{
     ViewData["Title"] = "Team";
 }
@@ -13,15 +13,17 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-12 py-3">
+                    @foreach (var person in Model.Teams)
+                   {
+                       <div class="col-lg-4 col-md-6 col-sm-12 py-3">
                         <div class="employee">
                             <div class="image">
-                                <img src="./assets/img/chefs-1.jpg" data-toggle="modal" data-target="#exampleModal"
+                                <img src="./assets/img/@person.Image" data-toggle="modal" data-target="#exampleModal"
                                     class="card-img-top" alt="">
                             </div>
                             <div class="image-info">
-                                <h4>Walter White</h4>
-                                <span>Master Chef</span>
+                                <h4>@person.FullName</h4>
+                                <span>@person.Position.Name</span>
                                 <ul>
                                     <li><a href="#"><i class="fab fa-twitter social-logo"></i></a></li>
                                     <li><a href="#"><i class="fab fa-facebook social-logo"></i></a></li>
@@ -38,15 +40,9 @@
                                         <h5 class="modal-title" id="exampleModalLabel">Walter White</h5>
                                     </div>
                                     <div class="modal-body d-flex">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse inventore error,
-                                        vero tenetur omnis ducimus id, tempore blanditiis mollitia sequi cupiditate
-                                        quibusdam, asperiores neque beatae et est explicabo voluptatum enim.
-                                        lorem
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore quidem dolor expedita omnis repellat vitae accusantium deleniti recusandae architecto? Fugit explicabo similique unde nam error sint minima ratione architecto iusto.
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Id fugiat natus officiis recusandae fugit nobis similique quas perferendis, inventore molestiae repellat porro tenetur repellendus deserunt aut eos numquam aperiam? Consequuntur!
-                                        <!-- <div class="modal-image">
-                                            <img src="./assets/img/chefs-1.jpg" class="card-img-top" alt="">
-                                        </div> -->
+                                       @person.About
+                                            <img src="./assets/img/@person.Image" class="card-img-top" style="width:50px" alt="">
+                                        </div> 
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
@@ -55,58 +51,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 py-3">
-                        <div class="employee">
-                            <div class="image">
-                                <img src="./assets/img/chefs-2.jpg" class="card-img-top" alt="">
-                            </div>
-                            <div class="image-info">
-                                <h4>Sarah Jhonson</h4>
-                                <span>Patissier</span>
-                                <ul>
-                                    <li><a href="#"><i class="fab fa-twitter social-logo"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-facebook social-logo"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-instagram social-logo"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin social-logo"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 py-3">
-                        <div class="employee">
-                            <div class="image">
-                                <img src="./assets/img/chefs-3.jpg" class="card-img-top" alt="">
-                            </div>
-                            <div class="image-info">
-                                <h4>William Anderson</h4>
-                                <span>Cook</span>
-                                <ul>
-                                    <li><a href="#"><i class="fab fa-twitter social-logo"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-facebook social-logo"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-instagram social-logo"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin social-logo"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 py-3">
-                        <div class="employee">
-                            <div class="image">
-                                <img src="./assets/img/chefs-3.jpg" class="card-img-top" alt="">
-                            </div>
-                            <div class="image-info">
-                                <h4>William Anderson</h4>
-                                <span>Cook</span>
-                                <ul>
-                                    <li><a href="#"><i class="fab fa-twitter social-logo"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-facebook social-logo"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-instagram social-logo"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin social-logo"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                   }
                 </div>
             </div>
         </section>

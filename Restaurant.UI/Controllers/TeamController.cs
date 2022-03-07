@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Restaurant.Business.ViewModels;
 using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Restaurant.UI.Controllers
@@ -16,7 +18,11 @@ namespace Restaurant.UI.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            HomeVM vm = new HomeVM
+            {
+                Teams = _context.Teams.Include(x=>x.Position).ToList(),
+            };
+            return View(vm);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
