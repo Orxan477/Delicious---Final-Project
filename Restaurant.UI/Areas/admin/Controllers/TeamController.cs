@@ -24,11 +24,11 @@ namespace Restaurant.UI.Areas.admin.Controllers
         {
             return View();
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Create()
-        {
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult Create()
+        //{
 
-        }
+        //}
     }
 }
