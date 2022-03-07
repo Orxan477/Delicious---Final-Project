@@ -54,8 +54,15 @@ using Restaurant.Business.ViewModels.Menu;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 7 "D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\Areas\admin\Views\_ViewImports.cshtml"
+using Restaurant.Business.ViewModels.Team;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4379b42e9d8b1b6c182dae66876c77a6a74cb63b", @"/Areas/admin/Views/HomeIntro/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c642045ab5facbda06c8a24985111813a93e162a", @"/Areas/admin/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"452d2274147ee67b5c364e03d71d19e9690dd43a", @"/Areas/admin/Views/_ViewImports.cshtml")]
     public class Areas_admin_Views_HomeIntro_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<HomeIntro>>
     {
         #pragma warning disable 1998

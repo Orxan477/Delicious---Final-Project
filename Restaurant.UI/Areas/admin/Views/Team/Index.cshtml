@@ -29,7 +29,7 @@
                             <td><img src="~/assets/img/@team.Image" /></td>
                             <td>@team.FullName</td>
                             <td>@team.Position.Name</td>
-                            <td>About</td>
+                            <td>@team.About</td>
                             <td>
                                     <a asp-action="Update" class="btn btn-warning" asp-route-id="@team.Id">Update</a>
                                     <form class="d-inline" asp-action="Delete" asp-route-id="@team.Id" method="post">
@@ -41,7 +41,7 @@
                             }
                         </tbody>
                         <div class="d-flex justify-content-end">
-                            <a class="btn btn-success">Create</a>
+                            <a asp-area="Admin" asp-controller="Team" asp-action="Create" class="btn btn-success">Create</a>
                         </div>
                       </table>
                     </div>
