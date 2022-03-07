@@ -22,7 +22,9 @@ namespace Restaurant.UI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            
+
+            services.AddAutoMapper(typeof(Startup));
+
             services.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Startup>());
 
             services.AddDbContext<AppDbContext>(options =>

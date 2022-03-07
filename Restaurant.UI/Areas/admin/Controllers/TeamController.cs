@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -16,13 +17,16 @@ namespace Restaurant.UI.Areas.admin.Controllers
     public class TeamController : Controller
     {
         private AppDbContext _context;
+        private IMapper _mapper;
         private string _errorMessage;
         private IWebHostEnvironment _env;
 
         public TeamController(AppDbContext context,
-                              IWebHostEnvironment env)
+                              IWebHostEnvironment env,
+                              IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
             _env = env;
         }
         public IActionResult Index()
@@ -75,7 +79,47 @@ namespace Restaurant.UI.Areas.admin.Controllers
         {
             Team dbTeam = _context.Teams.Where(x => x.Id == id).FirstOrDefault();
             if (dbTeam is null) return NotFound();
+            UpdateTeamVM team = _mapper.Map<UpdateTeamVM>(dbTeam);
             await GetSelectedItemAsync();
+            return View(team);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(int id,UpdateTeamVM updateTeam)
+        {
+            if (!ModelState.IsValid) return View();
+            Team dbTeam = _context.Teams.Where(x => x.Id == id).FirstOrDefault();
+            bool isCurrentName = dbTeam.FullName.Trim().ToLower() == updateTeam.FullName.ToLower().Trim();
+            if (!isCurrentName)
+            {
+                dbTeam.FullName = updateTeam.FullName;
+            }
+            bool isCurrentPosition = dbTeam.PositionId == updateTeam.PositionId;
+            if (!isCurrentPosition)
+            {
+                dbTeam.PositionId = updateTeam.PositionId;
+            }
+            if (!CheckImageValid(updateTeam.Photo, "image/", 200))
+            {
+                ModelState.AddModelError("Photo", _errorMessage);
+                return View(updateTeam);
+            }
+            Helper.RemoveFile(_env.WebRootPath, "assets/img", dbTeam.Image);
+            string fileName = await Extension.SaveFileAsync(updateTeam.Photo, _env.WebRootPath, "assets/img");
+            dbTeam.Image = fileName;
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+            Team dbTeam = _context.Teams.Where(x => x.Id == id).FirstOrDefault();
+            if (dbTeam is null) return NotFound();
+            Helper.RemoveFile(_env.WebRootPath, "assets/img", dbTeam.Image);
+            _context.Teams.Remove(dbTeam);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
         private async Task GetSelectedItemAsync()
         {
