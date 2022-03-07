@@ -9,7 +9,7 @@ namespace Restaurant.Business.Validators.Team
         {
             RuleFor(x=>x.FullName).NotEmpty().NotNull().MaximumLength(100);
             RuleFor(x => x.Photo).NotNull();
-            RuleFor(x=>x.About).NotNull().NotEmpty().MaximumLength(255);
+            RuleFor(x=>x.About).MaximumLength(255);
         }
     }
 }
