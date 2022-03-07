@@ -3,9 +3,9 @@
 
     @foreach (var pro in Model.MenuVM.Products)
    {
-       <div class="modal fade myModalAjax" id="pro-@pro.Id" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog " role="document">
+       @*<div class="modal fade myModalAjax" id="pro-@pro.Id" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">*@
+                            @*<div class="modal-dialog " role="document">*@
                                 <div class="modal-content">
                                     <div class="modal-header d-flex justify-content-center">
                                         <h5 class="modal-title" id="exampleModalLabel">@pro.Name</h5>
@@ -17,13 +17,13 @@
                                         </div>
                                         <p class="text-black-50 mt-3 mb-0 px-2">@pro.Description</p>
                                         <div class="size">
-                                            <select name="size" id="pizza">
+                                            <select name="size" id="pizzas">
                                                 @{
                                                     double n = @pro.Price;
                                                     double orta = (n * 1.5);
                                                     double boyuk = (n * 2.5);
                                                 }
-                                                    <option>Choose Size</option>
+                                                    <option value="1">Choose Size</option>
                                                    <option value="1" >Kiçik - @pro.Price</option>
                                                    <option value="2" >Orta - @orta.ToString("F2")</option>
                                                    <option value="3" >Böyük - @boyuk</option>
@@ -32,14 +32,14 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">Cancel</button>
-                                            <form asp-action="AddBasket" asp-route-id="@pro.Id" id="pizza-order"  method="post" >
+                                            data-dismiss="modal" id="modalClosePartial">Cancel</button>
+                                            <form asp-action="AddBasket" asp-route-id="@pro.Id" id="pizza-order-button"  method="post" >
                                                 <button type="submit" class="btn btn-warning">Add to Cart</button>
                                                 <input type="hidden" id="productCount" value="@pro.Id" />
                                             </form>
 
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            @*</div>*@
+                     @*   </div>*@
    }

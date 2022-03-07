@@ -32,7 +32,7 @@ namespace Restaurant.UI.Controllers
                                     .Include(x => x.MenuImage)
                                     .Include(x => x.Category)
                                     .OrderByDescending(p => p.Id)
-                                    .Take(2)
+                                    //.Take(2)
                                     .ToListAsync(),
                     Categories = await _context.Categories.ToListAsync(),
                 }

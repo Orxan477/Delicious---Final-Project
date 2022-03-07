@@ -1,37 +1,34 @@
 $(document).ready(function () {
-    $(document).on("click", "#load", function () {
-        let productCount = $(".products").children().length;
-        let dbProCount = $("#productCount").val();
-        console.log("product="+productCount)
-        console.log("db="+dbProCount)
-        $.ajax({
-            url: "/Menu/LoadProduct",
-            data: {
-                skip: productCount
-            },
-            method: "GET",
-            success: function (result) {
-                $(".products").append(result)
-                productCount = $(".products").children().length;
+    //$(document).on("click", "#load", function () {
+    //    let productCount = $(".products").children().length;
+    //    let dbProCount = $("#productCount").val();
+    //    $.ajax({
+    //        url: "/Menu/LoadProduct",
+    //        data: {
+    //            skip: productCount
+    //        },
+    //        method: "GET",
+    //        success: function (result) {
+    //            $(".products").append(result)
+    //            productCount = $(".products").children().length;
                     
-                if (productCount >= dbProCount) {
+    //            if (productCount >= dbProCount) {
                     $("#load").remove();
-                }
-            }
-        })
-    })
-
-    $(document).on("click", "#pizza-order", function (ev) {
+    //            }
+    //        }
+    //    })
+    //})
+    
+    $(document).on("click", "#pizza-order-button", function (ev) {
         ev.preventDefault();
-        var pizza = document.getElementById("pizza");
-        var value = pizza.options[pizza.selectedIndex].value;
-        console.log("value=" + value)
+        var as=$("#pizzas :selected").val();
+        console.log("value=" + as);
         var pizzaId = ev.target.nextElementSibling.value;
         $.ajax({
             url: "/Menu/AddBasket",
             data: {
                 id: pizzaId,
-                priceId: value
+                priceId: as
             },
             type: "GET",
             success: function (result) {
@@ -41,6 +38,24 @@ $(document).ready(function () {
         })
     })
 
+
+    $(document).on("click", "#modal-pizza", function (ev) {
+        var pizzaId = ev.target.nextElementSibling.value;
+        $.ajax({
+            url: "/Menu/ModalPartial",
+            data: {
+                id: pizzaId
+            },
+            type: "GET",
+            success: function (result) {
+                $(".append-modal").append(result)
+            }
+        })
+    })
+
+    $(document).on("click", "#modalClosePartial", function (ev) {
+        $(".append-modal").children().remove();
+    })
     
 
     $(document).on("click", "#otherCatBut", function (ev) {
@@ -75,4 +90,23 @@ $(document).ready(function () {
     //    //    }
     //    //})
     //});
+
+
+    $(document).on('click', '.category li a', function (ev) {
+        ev.preventDefault();
+        let category = $(this).attr('data-id');
+        let products = $('.product-item');
+
+        products.each(function () {
+            if (category == $(this).attr('data-id')) {
+                $(this).parent().fadeIn();
+            }
+            else {
+                $(this).parent().hide();
+            }
+        })
+        if (category == 'all') {
+            products.parent().fadeIn();
+        }
+    })
 });
