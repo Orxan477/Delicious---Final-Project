@@ -33,9 +33,9 @@
                             <td>@pro.Price</td>
                             <td>@pro.Description</td>
                             <td>
-                                    <a asp-action="Update" class="btn btn-warning" asp-route-id="@pro.Id">Update</a>
+                                    <a asp-action="Update" class="btn btn-warning" asp-route-id="@pro.Id"><i class="mdi mdi-table-edit"></i></a>
                                     <form class="d-inline" asp-action="Delete" asp-route-id="@pro.Id" method="post">
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-danger"><i class="mdi mdi-delete-forever"></i></button>
                                     </form>
                                 </td>
                                 </tr>
@@ -43,7 +43,7 @@
                             }
                         </tbody>
                         <div class="d-flex justify-content-end">
-                            <a asp-area="Admin" asp-controller="Menu" asp-action="Create" class="btn btn-success">Create</a>
+                            <a asp-area="Admin" asp-controller="Menu" asp-action="Create" class="btn btn-success"><i class="fas fa-plus-circle"></i></a>
                         </div>
                       </table>
                     </div>
