@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Category>
+﻿@model IEnumerable<Position>
 @{
     ViewData["Title"] = "Index";
     int n = 1;
@@ -19,14 +19,14 @@
                           </tr>
                         </thead>
                         <tbody>
-                         @foreach (var cat in Model)
+                         @foreach (var pos in Model)
                         {
                          <tr>
                             <td>@n</td>
-                            <td>@cat.Name</td>
+                            <td>@pos.Name</td>
                             <td>
-                                    <a asp-action="Update" class="btn btn-warning" asp-route-id="@cat.Id"><i class="mdi mdi-table-edit"></i></a>
-                                    <form class="d-inline" asp-action="Delete" asp-route-id="@cat.Id" method="post">
+                                    <a asp-action="Update" class="btn btn-warning" asp-route-id="@pos.Id"><i class="mdi mdi-table-edit"></i></a>
+                                    <form class="d-inline" asp-action="Delete" asp-route-id="@pos.Id" method="post">
                                         <button type="submit" class="btn btn-danger"><i class="mdi mdi-delete-forever"></i></button>
                                     </form>
                                 </td>
@@ -35,7 +35,7 @@
                             }
                         </tbody>
                         <div class="d-flex justify-content-end">
-                            <a asp-area="Admin" asp-controller="Category" asp-action="Create" class="btn btn-success"><i class="fas fa-plus-circle"></i></a>
+                            <a asp-area="Admin" asp-controller="Position" asp-action="Create" class="btn btn-success"><i class="fas fa-plus-circle"></i></a>
                         </div>
                       </table>
                     </div>

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Restaurant.Business.ViewModels.Menu;
+using Restaurant.Business.ViewModels.Position;
 using Restaurant.Business.ViewModels.Team;
 using Restaurant.Core.Models;
 using System;
@@ -16,6 +17,8 @@ namespace Restaurant.Business.Profiles
             CreateMap<Product, UpdateMenuVM>();
             CreateMap<CategoryCreateVM, Category>();
             CreateMap<Category, UpdateCategoryVM>();
+            CreateMap<CreatePositionVM, Position>();
+            CreateMap<Position, UpdatePositionVM>();
         }
     }
 }
