@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Restaurant.UI.Areas.admin.Controllers
 {
@@ -16,6 +18,14 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public IActionResult Index()
         {
             return View(_context.ContactUs.Where(x=>!x.IsDeleted).OrderByDescending(x=>x.Id).ToList());
+        }
+        public async Task<IActionResult> Check(int id)
+        {
+            ContactUs dbContactUs = _context.ContactUs.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
+            if (dbContactUs is null) return NotFound();
+            dbContactUs.IsDeleted = true;
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }
