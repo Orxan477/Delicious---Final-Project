@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Index";
+    int n = 1;
+}
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Product</h4>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>No</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Description</th>
+                            <th>Setting</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                         @foreach (var pro in Model)
+                        {
+                         <tr>
+                            <td>@n</td>
+                            <td><img src="~/assets/img/@pro.MenuImage.Image" /></td>
+                            <td>@pro.Name</td>
+                            <td>@pro.Category.Name</td>
+                            <td>@pro.Price</td>
+                            <td>@pro.Description</td>
+                            <td>
+                                    <a asp-action="Update" class="btn btn-warning" asp-route-id="@pro.Id">Update</a>
+                                    <form class="d-inline" asp-action="Delete" asp-route-id="@pro.Id" method="post">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                                </tr>
+                                n++;
+                            }
+                        </tbody>
+                        <div class="d-flex justify-content-end">
+                            <a asp-area="Admin" asp-controller="Menu" asp-action="Create" class="btn btn-success">Create</a>
+                        </div>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+</div>
+@section ScriptModal{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+}
+

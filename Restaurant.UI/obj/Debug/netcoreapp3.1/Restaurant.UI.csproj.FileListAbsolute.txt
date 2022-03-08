@@ -199,3 +199,4 @@ D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\bin\Debug\netco
 D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
 D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
 D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\obj\Debug\netcoreapp3.1\Razor\Areas\admin\Views\Team\Update.cshtml.g.cs
+D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\obj\Debug\netcoreapp3.1\Razor\Areas\admin\Views\Menu\Index.cshtml.g.cs
