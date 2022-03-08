@@ -45,39 +45,42 @@ namespace Restaurant.UI.Areas.admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        //public async Task<IActionResult> Update(int id)
-        //{
-        //    Team dbTeam = _context.Teams.Where(x => x.Id == id).FirstOrDefault();
-        //    if (dbTeam is null) return NotFound();
-        //    UpdateTeamVM team = _mapper.Map<UpdateTeamVM>(dbTeam);
-        //    await GetSelectedItemAsync();
-        //    return View(team);
-        //}
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Update(int id, UpdateTeamVM updateTeam)
-        //{
-        //    if (!ModelState.IsValid) return View();
-        //    Team dbTeam = _context.Teams.Where(x => x.Id == id).FirstOrDefault();
-        //    bool isCurrentName = dbTeam.FullName.Trim().ToLower() == updateTeam.FullName.ToLower().Trim();
-        //    if (!isCurrentName)
-        //    {
-        //        dbTeam.FullName = updateTeam.FullName;
-        //    }
-        //    dbTeam.Image = fileName;
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //}
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Delete(int id)
-        //{
-        //    Team dbTeam = _context.Teams.Where(x => x.Id == id).FirstOrDefault();
-        //    if (dbTeam is null) return NotFound();
-        //    Helper.RemoveFile(_env.WebRootPath, "assets/img", dbTeam.Image);
-        //    _context.Teams.Remove(dbTeam);
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //}
+        public IActionResult Update(int id)
+        {
+            Category dbCategory = _context.Categories.Where(x => x.Id == id).FirstOrDefault();
+            if (dbCategory is null) return NotFound();
+            UpdateCategoryVM category = _mapper.Map<UpdateCategoryVM>(dbCategory);
+            return View(category);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(int id, UpdateCategoryVM updateCategory)
+        {
+            if (!ModelState.IsValid) return View();
+            Category dbCategory = _context.Categories.Where(x => x.Id == id).FirstOrDefault();
+            bool isCurrentName = dbCategory.Name.Trim().ToLower() == updateCategory.Name.ToLower().Trim();
+            bool nameContext = _context.Categories.Any(x => x.Name == updateCategory.Name);
+            if (nameContext && !isCurrentName)
+            {
+                ModelState.AddModelError("Name", "This Category is available");
+                return View();
+            }
+            if (!isCurrentName && !nameContext)
+            {
+                dbCategory.Name = updateCategory.Name;
+            }
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+            Category dbCategory = _context.Categories.Where(x => x.Id == id).FirstOrDefault();
+            if (dbCategory is null) return NotFound();
+            _context.Categories.Remove(dbCategory);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

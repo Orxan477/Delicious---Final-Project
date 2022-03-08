@@ -15,6 +15,7 @@ namespace Restaurant.Business.Profiles
             CreateMap<Team, UpdateTeamVM>();
             CreateMap<Product, UpdateMenuVM>();
             CreateMap<CategoryCreateVM, Category>();
+            CreateMap<Category, UpdateCategoryVM>();
         }
     }
 }
