@@ -1,6 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Restaurant.Business.ViewModels.Menu;
+using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Restaurant.UI.Areas.admin.Controllers
 {
@@ -8,30 +13,38 @@ namespace Restaurant.UI.Areas.admin.Controllers
     public class CategoryController : Controller
     {
         private AppDbContext _context;
+        private IMapper _mapper;
 
-        public CategoryController(AppDbContext context)
+        public CategoryController(AppDbContext context,
+                                  IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
         public IActionResult Index()
         {
             return View(_context.Categories.ToList());
         }
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create(TeamCreateVM teamCreate)
-        //{
-        //    if (!ModelState.IsValid) return View();
-        //    Team team = new Team
-        //    {
-        //        FullName = teamCreate.FullName,
-        //        PositionId = teamCreate.PositionId,
-        //        Image = fileName
-        //    };
-        //    await _context.AddAsync(team);
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //}
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(CategoryCreateVM categoryCreate)
+        {
+            if (!ModelState.IsValid) return View();
+            bool name = _context.Categories.Any(x=>x.Name==categoryCreate.Name);
+            if (name)
+            {
+                ModelState.AddModelError("Name", "This Product Name is available");
+                return View();
+            }
+            Category category = _mapper.Map<Category>(categoryCreate);
+            await _context.Categories.AddAsync(category);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
         //public async Task<IActionResult> Update(int id)
         //{
         //    Team dbTeam = _context.Teams.Where(x => x.Id == id).FirstOrDefault();
