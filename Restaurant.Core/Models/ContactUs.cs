@@ -1,4 +1,6 @@
-﻿namespace Restaurant.Core.Models
+﻿using System;
+
+namespace Restaurant.Core.Models
 {
     public class ContactUs
     {
@@ -7,6 +9,7 @@
         public string Email { get; set; }
         public string Subject { get; set; }
         public string Message { get; set; }
+        public DateTime SentDate { get; set; }
         public bool IsDeleted { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using Restaurant.Business.ViewModels;
 using Restaurant.Business.ViewModels.Home;
 using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
+using System;
 using System.Threading.Tasks;
 
 namespace Restaurant.UI.Controllers
@@ -40,13 +41,14 @@ namespace Restaurant.UI.Controllers
         public async Task<IActionResult> ContactUs(HomeVM homeVM)
         {
             if (!ModelState.IsValid) return View(homeVM);
-            
+
             ContactUs contact = new ContactUs
             {
                 Name = homeVM.ContactUsVM.Name,
                 Email = homeVM.ContactUsVM.Email,
                 Subject = homeVM.ContactUsVM.Subject,
                 Message = homeVM.ContactUsVM.Message,
+                SentDate = DateTime.Now,
             };
             await _context.ContactUs.AddAsync(contact);
             await _context.SaveChangesAsync();

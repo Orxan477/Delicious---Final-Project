@@ -203,3 +203,4 @@ D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\obj\Debug\netco
 D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\obj\Debug\netcoreapp3.1\Razor\Areas\admin\Views\Menu\Create.cshtml.g.cs
 D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\obj\Debug\netcoreapp3.1\Razor\Areas\admin\Views\Menu\Update.cshtml.g.cs
 D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\obj\Debug\netcoreapp3.1\Razor\Areas\admin\Views\Reservation\Index.cshtml.g.cs
+D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\obj\Debug\netcoreapp3.1\Razor\Areas\admin\Views\ContactUs\Index.cshtml.g.cs
