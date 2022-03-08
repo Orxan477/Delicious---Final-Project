@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Restaurant.Business.Profiles;
 using Restaurant.Data.DAL;
 
 namespace Restaurant.UI
@@ -23,9 +24,9 @@ namespace Restaurant.UI
         {
             services.AddControllersWithViews();
 
-            services.AddAutoMapper(typeof(Startup));
+            services.AddMapperService();
 
-            services.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Startup>());
+            services.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Startup>(lifetime: ServiceLifetime.Singleton));
 
             services.AddDbContext<AppDbContext>(options =>
             {
