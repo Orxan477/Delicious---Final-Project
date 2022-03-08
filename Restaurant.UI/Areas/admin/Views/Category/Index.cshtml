@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    int n = 1;
+}
+
+<div class="row">
+    <div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Category</h4>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>No</th>
+                            <th>Name</th>
+                            <th>Setting</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                         @foreach (var cat in Model)
+                        {
+                         <tr>
+                            <td>@n</td>
+                            <td>@cat.Name</td>
+                            <td>
+                                    <a asp-action="Update" class="btn btn-warning" asp-route-id="@cat.Id"><i class="mdi mdi-table-edit"></i></a>
+                                    <form class="d-inline" asp-action="Delete" asp-route-id="@cat.Id" method="post">
+                                        <button type="submit" class="btn btn-danger"><i class="mdi mdi-delete-forever"></i></button>
+                                    </form>
+                                </td>
+                                </tr>
+                                n++;
+                            }
+                        </tbody>
+                        <div class="d-flex justify-content-end">
+                            <a asp-area="Admin" asp-controller="Category" asp-action="Create" class="btn btn-success"><i class="fas fa-plus-circle"></i></a>
+                        </div>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+</div>
+
