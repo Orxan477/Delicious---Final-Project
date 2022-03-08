@@ -17,7 +17,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public IActionResult Index()
         {
-            return View(_context.Reservations.Where(x=>!x.IsCheck && !x.IsClose).ToList());
+            return View(_context.Reservations.Where(x=>!x.IsCheck && !x.IsClose).OrderByDescending(x=>x.Id).ToList());
         }
         public async Task<IActionResult> Close(int id)
         {
