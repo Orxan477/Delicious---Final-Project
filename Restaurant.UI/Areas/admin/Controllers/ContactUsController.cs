@@ -19,6 +19,8 @@ namespace Restaurant.UI.Areas.admin.Controllers
         {
             return View(_context.ContactUs.Where(x=>!x.IsDeleted).OrderByDescending(x=>x.Id).ToList());
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Check(int id)
         {
             ContactUs dbContactUs = _context.ContactUs.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();

@@ -27,6 +27,8 @@ namespace Restaurant.UI.Areas.admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Check(int id)
         {
             Reservation dbReservation = _context.Reservations.Where(x => x.Id == id && !x.IsCheck && !x.IsClose).FirstOrDefault();

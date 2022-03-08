@@ -17,21 +17,21 @@ namespace Restaurant.UI.Areas.admin.Controllers
         {
             return View(_context.Categories.ToList());
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(TeamCreateVM teamCreate)
-        {
-            if (!ModelState.IsValid) return View();
-            Team team = new Team
-            {
-                FullName = teamCreate.FullName,
-                PositionId = teamCreate.PositionId,
-                Image = fileName
-            };
-            await _context.AddAsync(team);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create(TeamCreateVM teamCreate)
+        //{
+        //    if (!ModelState.IsValid) return View();
+        //    Team team = new Team
+        //    {
+        //        FullName = teamCreate.FullName,
+        //        PositionId = teamCreate.PositionId,
+        //        Image = fileName
+        //    };
+        //    await _context.AddAsync(team);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
         //public async Task<IActionResult> Update(int id)
         //{
         //    Team dbTeam = _context.Teams.Where(x => x.Id == id).FirstOrDefault();
