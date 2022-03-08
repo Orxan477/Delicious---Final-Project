@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Restaurant.Business.ViewModels.Menu;
 using Restaurant.Business.ViewModels.Team;
 using Restaurant.Core.Models;
 using System;
@@ -12,6 +13,7 @@ namespace Restaurant.Business.Profiles
         public Mapper()
         {
             CreateMap<Team, UpdateTeamVM>();
+            CreateMap<Product, UpdateMenuVM>();
         }
     }
 }

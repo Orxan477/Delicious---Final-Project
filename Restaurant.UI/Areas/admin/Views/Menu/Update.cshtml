@@ -1,0 +1,48 @@
+﻿@model UpdateMenuVM
+@{
+    ViewData["Title"] = "Update";
+}
+
+@*<div class="container">*@
+    <row>
+        <div class="col-md-12 grid-margin stretch-card mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title"></h4>
+                    <form class="forms-sample" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label asp-for="Name"></label>
+                            <input asp-for="Name" class="form-control" placeholder="Name">
+                            <span class="text-danger" asp-validation-for="Name"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CategoryId" class="d-block">Position</label>
+                            <select asp-for="CategoryId" asp-items="@ViewBag.Category" class="form-select" aria-label="Default select example">
+                                <span class="text-danger" asp-validation-for="CategoryId"></span>
+                            </select>
+                        </div>
+                          <div class="form-group">
+                            <label asp-for="Photo"></label>
+                            <input asp-for="Photo" class="form-control" placeholder="About">
+                            <span class="text-danger" asp-validation-for="Photo"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label asp-for="Price"></label>
+                            <input asp-for="Price" type="number" class="form-control">
+                            <span class="text-danger" asp-validation-for="Price"></span>
+                        </div>
+                         <div class="form-group">
+                            <label asp-for="Description"></label>
+                            <textarea asp-for="Description" class="form-control"></textarea>
+                            <span class="text-danger" asp-validation-for="Description"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                        <button class="btn btn-light" asp-action="Index">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </row>
+@*</div>*@
+
