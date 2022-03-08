@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Restaurant.Business.Profiles;
+using Restaurant.Business.Validators.Home;
 using Restaurant.Data.DAL;
 
 namespace Restaurant.UI
@@ -26,7 +27,8 @@ namespace Restaurant.UI
 
             services.AddMapperService();
 
-            services.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Startup>(lifetime: ServiceLifetime.Singleton));
+            //services.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Startup>(lifetime: ServiceLifetime.Singleton));
+            services.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ContactUsVMValidation>());
 
             services.AddDbContext<AppDbContext>(options =>
             {
