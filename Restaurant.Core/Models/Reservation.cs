@@ -12,6 +12,7 @@ namespace Restaurant.Core.Models
         //public DateTime Time { get; set; }
         public int PeopleCount { get; set; }
         public string Message { get; set; }
-        public bool IsDeleted { get; set; }
+        public bool IsCheck { get; set; }
+        public bool IsClose { get; set; }
     }
 }

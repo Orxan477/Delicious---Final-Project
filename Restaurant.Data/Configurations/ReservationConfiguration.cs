@@ -14,7 +14,8 @@ namespace Restaurant.Data.Configurations
             builder.Property(x => x.Date).IsRequired();
             builder.Property(x => x.PeopleCount).HasDefaultValue(0).IsRequired();
             builder.Property(x => x.Message).HasMaxLength(255);
-            builder.Property(x => x.IsDeleted).HasDefaultValue(false);
+            builder.Property(x => x.IsCheck).HasDefaultValue(false);
+            builder.Property(x => x.IsClose).HasDefaultValue(false);
         }
     }
 }
