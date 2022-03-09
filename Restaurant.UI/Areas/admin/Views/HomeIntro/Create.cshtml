@@ -1,0 +1,40 @@
+﻿@model HomeIntroCreateVM
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@*<div class="container">*@
+    <row>
+        <div class="col-md-12 grid-margin stretch-card mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title"></h4>
+                    <form class="forms-sample" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label asp-for="Head"></label>
+                            <input asp-for="Head" class="form-control" placeholder="Head">
+                            <span class="text-danger" asp-validation-for="Head"></span>
+                        </div>
+                          <div class="form-group">
+                            <label asp-for="Content"></label>
+                            <input asp-for="Content" class="form-control" placeholder="Content">
+                            <span class="text-danger" asp-validation-for="Content"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Photo"></label>
+                            <input asp-for="Photo" class="form-control">
+                            <span class="text-danger" asp-validation-for="Photo"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                        <button class="btn btn-light" asp-action="Index">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </row>
+    @section ValidatorScript{
+        <partial name="_ValidationScriptsPartial" />
+    }
+@*</div>*@
+

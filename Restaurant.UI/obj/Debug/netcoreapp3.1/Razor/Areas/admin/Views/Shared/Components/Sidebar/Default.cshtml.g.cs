@@ -68,8 +68,15 @@ using Restaurant.Business.ViewModels.Position;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 9 "D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\Areas\admin\Views\_ViewImports.cshtml"
+using Restaurant.Business.ViewModels.Home.HomeIntro;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e8b7018e3ef54b00a78e29c0ffd608ab665529ba", @"/Areas/admin/Views/Shared/Components/Sidebar/Default.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"843cc2b1ebf8646f60c016669c712de3e71f431c", @"/Areas/admin/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"040c421bdc88c37b7b3286f4c0a51f5c12e6c170", @"/Areas/admin/Views/_ViewImports.cshtml")]
     public class Areas_admin_Views_Shared_Components_Sidebar_Default : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("src", new global::Microsoft.AspNetCore.Html.HtmlString("~/admin/assets/images/logo.svg"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -122,8 +129,8 @@ using Restaurant.Business.ViewModels.Position;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             WriteLiteral("<nav class=\"sidebar sidebar-offcanvas\" id=\"sidebar\">\r\n        <div class=\"sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top\">\r\n          ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba12700", async() => {
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba12917", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba12937", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba13154", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -156,7 +163,7 @@ using Restaurant.Business.ViewModels.Position;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n          ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba15449", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba15686", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();
@@ -199,7 +206,7 @@ using Restaurant.Business.ViewModels.Position;
           </li>
           <li class=""nav-item menu-items"">
             ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba18140", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba18377", async() => {
                 WriteLiteral("\r\n              <span class=\"menu-icon\">\r\n                <i class=\"mdi mdi-speedometer\"></i>\r\n              </span>\r\n              <span class=\"menu-title\">Dashboard</span>\r\n            ");
             }
             );
@@ -232,7 +239,7 @@ using Restaurant.Business.ViewModels.Position;
             <div class=""collapse"" id=""ui-basic"">
               <ul class=""nav flex-column sub-menu"">
                 <li class=""nav-item""> ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba20553", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba20790", async() => {
                 WriteLiteral("Intro");
             }
             );
@@ -253,7 +260,7 @@ using Restaurant.Business.ViewModels.Position;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("</li>\r\n                <li class=\"nav-item\"> ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba22244", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba22481", async() => {
                 WriteLiteral("About");
             }
             );
@@ -274,7 +281,7 @@ using Restaurant.Business.ViewModels.Position;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("</li>\r\n                <li class=\"nav-item\"> ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba23935", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba24172", async() => {
                 WriteLiteral("About Option");
             }
             );
@@ -295,7 +302,7 @@ using Restaurant.Business.ViewModels.Position;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("</li>\r\n                <li class=\"nav-item\"> ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba25633", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba25870", async() => {
                 WriteLiteral("Choose Restaurant");
             }
             );
@@ -316,7 +323,7 @@ using Restaurant.Business.ViewModels.Position;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("</li>\r\n                <li class=\"nav-item\"> ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba27336", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba27573", async() => {
                 WriteLiteral("Specials");
             }
             );
@@ -337,7 +344,7 @@ using Restaurant.Business.ViewModels.Position;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("</li>\r\n                <li class=\"nav-item\"> ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba29030", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba29267", async() => {
                 WriteLiteral("Gallery");
             }
             );
@@ -358,7 +365,7 @@ using Restaurant.Business.ViewModels.Position;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("</li>\r\n                <li class=\"nav-item\"> ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba30723", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba30960", async() => {
                 WriteLiteral("Feedback");
             }
             );
@@ -393,7 +400,7 @@ using Restaurant.Business.ViewModels.Position;
             <div class=""collapse"" id=""ui-basic2"">
               <ul class=""nav flex-column sub-menu"">
                 <li class=""nav-item""> ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba32991", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba33228", async() => {
                 WriteLiteral("Product");
             }
             );
@@ -414,7 +421,7 @@ using Restaurant.Business.ViewModels.Position;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("</li>\r\n                <li class=\"nav-item\"> ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba34684", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba34921", async() => {
                 WriteLiteral("Category");
             }
             );
@@ -435,7 +442,7 @@ using Restaurant.Business.ViewModels.Position;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("</li>\r\n             </ul>\r\n            </div>\r\n          </li>\r\n          <li class=\"nav-item menu-items\">\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba36461", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba36698", async() => {
                 WriteLiteral("\r\n              <span class=\"menu-icon\">\r\n                <i class=\"mdi mdi-account-multiple\"></i>\r\n              </span>\r\n              <span class=\"menu-title\">Team</span>\r\n            ");
             }
             );
@@ -456,7 +463,7 @@ using Restaurant.Business.ViewModels.Position;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n          </li>\r\n          <li class=\"nav-item menu-items\">\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba38384", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba38621", async() => {
                 WriteLiteral("\r\n              <span class=\"menu-icon\">\r\n                <i class=\"mdi mdi-certificate\"></i>\r\n              </span>\r\n              <span class=\"menu-title\">Position</span>\r\n            ");
             }
             );
@@ -477,7 +484,7 @@ using Restaurant.Business.ViewModels.Position;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n          </li>\r\n          <li class=\"nav-item menu-items\">\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba40306", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba40543", async() => {
                 WriteLiteral("\r\n              <span class=\"menu-icon\">\r\n                <i class=\"mdi mdi-table-large\"></i>\r\n              </span>\r\n              <span class=\"menu-title\">Reservation</span>\r\n            ");
             }
             );
@@ -498,7 +505,7 @@ using Restaurant.Business.ViewModels.Position;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n          </li>\r\n          <li class=\"nav-item menu-items\">\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba42231", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba42468", async() => {
                 WriteLiteral("\r\n              <span class=\"menu-icon\">\r\n                <i class=\"mdi mdi-contact-mail\"></i>\r\n              </span>\r\n              <span class=\"menu-title\">ContactUs</span>\r\n            ");
             }
             );
@@ -519,7 +526,7 @@ using Restaurant.Business.ViewModels.Position;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n          </li>\r\n          <li class=\"nav-item menu-items\">\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba44155", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b7018e3ef54b00a78e29c0ffd608ab665529ba44392", async() => {
                 WriteLiteral("\r\n              <span class=\"menu-icon\">\r\n                <i class=\"mdi mdi-email\"></i>\r\n              </span>\r\n              <span class=\"menu-title\">Subscribe</span>\r\n            ");
             }
             );
