@@ -20,6 +20,8 @@ namespace Restaurant.Business.Profiles
             CreateMap<Position, UpdatePositionVM>();
             CreateMap<HomeIntro, HomeIntroUpdateVM>();
             CreateMap<About, AboutUpdateVM>();
+            CreateMap<AboutOptionCreateVM, AboutOption>();
+            CreateMap<AboutOption, AboutOptionUpdateVM>();
         }
     }
 }
