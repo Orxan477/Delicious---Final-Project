@@ -105,5 +105,16 @@ namespace Restaurant.UI.Areas.admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+            HomeIntro dbHomeIntro = _context.HomeIntros.Where(x => x.Id == id).FirstOrDefault();
+            if (dbHomeIntro is null) return NotFound();
+            Helper.RemoveFile(_env.WebRootPath, "assets/img", dbHomeIntro.Image);
+            _context.HomeIntros.Remove(dbHomeIntro);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
