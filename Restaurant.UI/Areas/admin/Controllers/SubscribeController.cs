@@ -13,9 +13,9 @@ namespace Restaurant.UI.Areas.admin.Controllers
         {
             _context = context;
         }
-        //public IActionResult Index()
-        //{
-        //    return View(_context.Subscribes.Where(x=>x.);
-        //}
+        public IActionResult Index()
+        {
+            return View(_context.Subscribes.Where(x => !x.IsDeleted).ToList());
+        }
     }
 }
