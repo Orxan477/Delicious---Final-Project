@@ -19,6 +19,8 @@ namespace Restaurant.UI.Areas.admin.Controllers
         {
             return View(_context.Reservations.Where(x=>!x.IsCheck && !x.IsClose).OrderByDescending(x=>x.Id).ToList());
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Close(int id)
         {
             Reservation dbReservation = _context.Reservations.Where(x => x.Id == id && !x.IsCheck && !x.IsClose).FirstOrDefault();
