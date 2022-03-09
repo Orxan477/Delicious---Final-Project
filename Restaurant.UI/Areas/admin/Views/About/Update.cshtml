@@ -1,0 +1,51 @@
+﻿@model AboutUpdateVM
+@{
+    ViewData["Title"] = "Update";
+}
+
+@*<div class="container">*@
+    <row>
+        <div class="col-md-12 grid-margin stretch-card mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title"></h4>
+                    <form class="forms-sample" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label asp-for="Head"></label>
+                            <input asp-for="Head" class="form-control" placeholder="Head">
+                            <span class="text-danger" asp-validation-for="Head"></span>
+                        </div>
+                          <div class="form-group">
+                            <label asp-for="NormalContent">Normal Content</label>
+                            <input asp-for="NormalContent" class="form-control" placeholder="Normal Content">
+                            <span class="text-danger" asp-validation-for="NormalContent"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ItalicContent">Italic Content</label>
+                            <input asp-for="ItalicContent" class="form-control" placeholder="Italic Content">
+                            <span class="text-danger" asp-validation-for="ItalicContent"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="NormalContent2">Normal Content 2</label>
+                            <input asp-for="NormalContent2" class="form-control" placeholder="Normal Content 2">
+                            <span class="text-danger" asp-validation-for="NormalContent2"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Link"></label>
+                            <input asp-for="Link" class="form-control" placeholder="Link">
+                            <span class="text-danger" asp-validation-for="Link"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Photo"></label>
+                            <input asp-for="Photo" class="form-control">
+                            <span class="text-danger" asp-validation-for="Photo"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                        <button class="btn btn-light" asp-action="Index">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </row>
+@*</div>*@
+

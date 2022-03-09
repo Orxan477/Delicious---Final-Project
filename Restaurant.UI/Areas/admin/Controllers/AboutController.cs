@@ -1,9 +1,13 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Restaurant.Business.Utilities;
 using Restaurant.Business.ViewModels.Home.About;
 using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Restaurant.UI.Areas.admin.Controllers
 {
@@ -12,11 +16,14 @@ namespace Restaurant.UI.Areas.admin.Controllers
     {
         private AppDbContext _context;
         private IMapper _mapper;
+        private IWebHostEnvironment _env;
+        private string _errorMessage;
 
-        public AboutController(AppDbContext context,IMapper mapper)
+        public AboutController(AppDbContext context,IMapper mapper, IWebHostEnvironment env)
         {
             _context = context;
             _mapper = mapper;
+            _env = env;
         }
         public IActionResult Index()
         {
@@ -28,6 +35,65 @@ namespace Restaurant.UI.Areas.admin.Controllers
             if (dbAbout is null) return NotFound();
             AboutUpdateVM about = _mapper.Map<AboutUpdateVM>(dbAbout);
             return View(about);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(int id, AboutUpdateVM aboutUpdate)
+        {
+            if (!ModelState.IsValid) return View();
+            About dbAbout = _context.Abouts.Where(x => x.Id == id).FirstOrDefault();
+            bool isCurrentHead = dbAbout.Head.Trim().ToLower() == aboutUpdate.Head.ToLower().Trim();
+            if (!isCurrentHead)
+            {
+                dbAbout.Head = aboutUpdate.Head;
+            }
+            bool isCurrentNormalContent = dbAbout.NormalContent.Trim().ToLower() == aboutUpdate.NormalContent.ToLower().Trim();
+            if (!isCurrentNormalContent)
+            {
+                dbAbout.NormalContent = aboutUpdate.NormalContent;
+            }
+            bool isCurrentItalicContent = dbAbout.ItalicContent.Trim().ToLower() == aboutUpdate.ItalicContent.ToLower().Trim();
+            if (!isCurrentItalicContent)
+            {
+                dbAbout.ItalicContent = aboutUpdate.ItalicContent;
+            }
+            bool isCurrentNormalContent2 = dbAbout.NormalContent2.Trim().ToLower() == aboutUpdate.NormalContent2.ToLower().Trim();
+            if (!isCurrentNormalContent2)
+            {
+                dbAbout.NormalContent2 = aboutUpdate.NormalContent2;
+            }
+            bool isCurrentLink = dbAbout.Link.Trim().ToLower() == aboutUpdate.Link.ToLower().Trim();
+            if (!isCurrentLink)
+            {
+                dbAbout.Link = aboutUpdate.Link;
+            }
+            if (aboutUpdate.Photo != null)
+            {
+                if (!CheckImageValid(aboutUpdate.Photo, "image/", 200))
+                {
+                    ModelState.AddModelError("Photo", _errorMessage);
+                    return View(aboutUpdate);
+                }
+                Helper.RemoveFile(_env.WebRootPath, "assets/img", dbAbout.Image);
+                string fileName = await Extension.SaveFileAsync(aboutUpdate.Photo, _env.WebRootPath, "assets/img");
+                dbAbout.Image = fileName;
+            }
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        private bool CheckImageValid(IFormFile file, string type, int size)
+        {
+            if (!Extension.CheckSize(file, size))
+            {
+                _errorMessage = "The size of this photo is 200";
+                return false;
+            }
+            if (!Extension.CheckType(file, type))
+            {
+                _errorMessage = "The type is not correct";
+                return false;
+            }
+            return true;
         }
     }
 }
