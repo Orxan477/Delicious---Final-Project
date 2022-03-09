@@ -25,10 +25,11 @@
                             <td>@n</td>
                             <td>@cat.Name</td>
                             <td>
-                                    <a asp-action="Update" class="btn btn-warning" asp-route-id="@cat.Id"><i class="mdi mdi-table-edit"></i></a>
-                                    <form class="d-inline" asp-action="Delete" asp-route-id="@cat.Id" method="post">
-                                        <button type="submit" class="btn btn-danger"><i class="mdi mdi-delete-forever"></i></button>
-                                    </form>
+                                    <a asp-action="Update" class="btn btn-warning" asp-route-id="@cat.Id"><i class="mdi mdi-table-edit"></i></a>                
+                                    @*<form class="d-inline delete-btn" asp-action="Delete" asp-route-id="@cat.Id" method="post">
+                                        <button type="submit" class="btn btn-danger "><i class="mdi mdi-delete-forever"></i></button>
+                                    </form>*@
+                                    <a asp-action="Delete" class="btn btn-danger delete-btn" asp-route-id="@cat.Id"><i class="mdi mdi-delete-forever"></i></a>                
                                 </td>
                                 </tr>
                                 n++;
@@ -43,4 +44,7 @@
                 </div>
               </div>
 </div>
-
+@section ScriptModal{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+    <script src="~/admin/assets/js/AlertModal.js"></script>
+}

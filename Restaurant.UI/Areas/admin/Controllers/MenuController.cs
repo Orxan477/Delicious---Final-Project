@@ -137,6 +137,8 @@ namespace Restaurant.UI.Areas.admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
             Product dbProduct = _context.Products.Where(x => x.Id == id).Include(x=>x.MenuImage).FirstOrDefault();
