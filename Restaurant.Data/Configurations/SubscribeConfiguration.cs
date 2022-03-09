@@ -9,6 +9,7 @@ namespace Restaurant.Data.Configurations
         public void Configure(EntityTypeBuilder<Subscribe> builder)
         {
             builder.Property(x => x.Email).HasMaxLength(255).IsRequired();
+            builder.Property(x=>x.IsDeleted).HasDefaultValue(false);
         }
     }
 }
