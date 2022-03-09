@@ -32,7 +32,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public IActionResult Index()
         {
             return View(_context.Teams
-                                .Include(x=>x.Position)
+                                .Include(x => x.Position)
                                 .ToList());
         }
         public async Task<IActionResult> Create()
@@ -85,7 +85,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(int id,UpdateTeamVM updateTeam)
+        public async Task<IActionResult> Update(int id, UpdateTeamVM updateTeam)
         {
             if (!ModelState.IsValid) return View();
             Team dbTeam = _context.Teams.Where(x => x.Id == id).FirstOrDefault();
@@ -99,14 +99,17 @@ namespace Restaurant.UI.Areas.admin.Controllers
             {
                 dbTeam.PositionId = updateTeam.PositionId;
             }
-            if (!CheckImageValid(updateTeam.Photo, "image/", 200))
+            if (updateTeam.Photo != null)
             {
-                ModelState.AddModelError("Photo", _errorMessage);
-                return View(updateTeam);
+                if (!CheckImageValid(updateTeam.Photo, "image/", 200))
+                {
+                    ModelState.AddModelError("Photo", _errorMessage);
+                    return View(updateTeam);
+                }
+                Helper.RemoveFile(_env.WebRootPath, "assets/img", dbTeam.Image);
+                string fileName = await Extension.SaveFileAsync(updateTeam.Photo, _env.WebRootPath, "assets/img");
+                dbTeam.Image = fileName;
             }
-            Helper.RemoveFile(_env.WebRootPath, "assets/img", dbTeam.Image);
-            string fileName = await Extension.SaveFileAsync(updateTeam.Photo, _env.WebRootPath, "assets/img");
-            dbTeam.Image = fileName;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

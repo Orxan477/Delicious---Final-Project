@@ -62,11 +62,11 @@ namespace Restaurant.UI.Areas.admin.Controllers
             };
             await _context.MenuImages.AddAsync(image);
             await _context.SaveChangesAsync();
-            MenuImage dbImage = await _context.MenuImages.OrderByDescending(x=>x.Id).FirstOrDefaultAsync();
+            MenuImage dbImage = await _context.MenuImages.OrderByDescending(x => x.Id).FirstOrDefaultAsync();
             Product product = new Product
             {
                 Name = createMenu.Name,
-                CategoryId= createMenu.CategoryId,
+                CategoryId = createMenu.CategoryId,
                 MenuImageId = dbImage.Id,
                 Price = createMenu.Price,
                 Description = createMenu.Description,
@@ -103,7 +103,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Update(int id, UpdateMenuVM updateMenu)
         {
             if (!ModelState.IsValid) return View();
-            Product dbProduct = _context.Products.Where(x => x.Id == id).Include(x=>x.MenuImage).FirstOrDefault();
+            Product dbProduct = _context.Products.Where(x => x.Id == id).Include(x => x.MenuImage).FirstOrDefault();
             bool isCurrentName = dbProduct.Name.Trim().ToLower() == updateMenu.Name.ToLower().Trim();
             if (!isCurrentName)
             {
@@ -119,21 +119,24 @@ namespace Restaurant.UI.Areas.admin.Controllers
             {
                 dbProduct.Price = updateMenu.Price;
             }
-            if (!CheckImageValid(updateMenu.Photo, "image/", 200))
+            if (updateMenu.Photo != null)
             {
-                ModelState.AddModelError("Photo", _errorMessage);
-                return View(updateMenu);
+                if (!CheckImageValid(updateMenu.Photo, "image/", 200))
+                {
+                    ModelState.AddModelError("Photo", _errorMessage);
+                    return View(updateMenu);
+                }
+                Helper.RemoveFile(_env.WebRootPath, "assets/img", dbProduct.MenuImage.Image);
+                string fileName = await Extension.SaveFileAsync(updateMenu.Photo, _env.WebRootPath, "assets/img");
+                MenuImage image = new MenuImage
+                {
+                    Image = fileName,
+                };
+                await _context.MenuImages.AddAsync(image);
+                await _context.SaveChangesAsync();
+                MenuImage dbImage = await _context.MenuImages.OrderByDescending(x => x.Id).FirstOrDefaultAsync();
+                dbProduct.MenuImageId = dbImage.Id;
             }
-            Helper.RemoveFile(_env.WebRootPath, "assets/img", dbProduct.MenuImage.Image);
-            string fileName = await Extension.SaveFileAsync(updateMenu.Photo, _env.WebRootPath, "assets/img");
-            MenuImage image = new MenuImage
-            {
-                Image = fileName,
-            };
-            await _context.MenuImages.AddAsync(image);
-            await _context.SaveChangesAsync();
-            MenuImage dbImage = await _context.MenuImages.OrderByDescending(x => x.Id).FirstOrDefaultAsync();
-            dbProduct.MenuImageId = dbImage.Id;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -141,7 +144,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            Product dbProduct = _context.Products.Where(x => x.Id == id).Include(x=>x.MenuImage).FirstOrDefault();
+            Product dbProduct = _context.Products.Where(x => x.Id == id).Include(x => x.MenuImage).FirstOrDefault();
             if (dbProduct is null) return NotFound();
             MenuImage dbImage = await _context.MenuImages.Where(x => x.Id == dbProduct.MenuImageId).FirstOrDefaultAsync();
             Helper.RemoveFile(_env.WebRootPath, "assets/img", dbProduct.MenuImage.Image);
