@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Restaurant.Business.ViewModels.Home.About;
 using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
 using System.Linq;
@@ -9,10 +11,12 @@ namespace Restaurant.UI.Areas.admin.Controllers
     public class AboutController : Controller
     {
         private AppDbContext _context;
+        private IMapper _mapper;
 
-        public AboutController(AppDbContext context)
+        public AboutController(AppDbContext context,IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
         public IActionResult Index()
         {
@@ -22,8 +26,8 @@ namespace Restaurant.UI.Areas.admin.Controllers
         {
             About dbAbout = _context.Abouts.Where(x => x.Id == id).FirstOrDefault();
             if (dbAbout is null) return NotFound();
-            HomeIntroUpdateVM homeIntro = _mapper.Map<HomeIntroUpdateVM>(dbAbout);
-            return View(homeIntro);
+            AboutUpdateVM about = _mapper.Map<AboutUpdateVM>(dbAbout);
+            return View(about);
         }
     }
 }
