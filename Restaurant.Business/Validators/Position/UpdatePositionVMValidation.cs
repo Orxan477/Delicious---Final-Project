@@ -7,7 +7,7 @@ namespace Restaurant.Business.Validators.Position
     {
         public UpdatePositionVMValidation()
         {
-            RuleFor(x => x.Name).MaximumLength(20);
+            RuleFor(x => x.Name).NotNull().NotEmpty().MaximumLength(20);
         }
     }
 }

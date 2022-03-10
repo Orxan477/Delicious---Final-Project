@@ -7,7 +7,7 @@ namespace Restaurant.Business.Validators.Menu
     {
         public UpdateCategoryVMValidator()
         {
-            RuleFor(x=>x.Name).MaximumLength(50);
+            RuleFor(x=>x.Name).NotEmpty().NotNull().MaximumLength(50);
         }
     }
 }
