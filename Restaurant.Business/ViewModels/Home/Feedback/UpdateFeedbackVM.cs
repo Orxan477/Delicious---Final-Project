@@ -1,12 +1,13 @@
-﻿namespace Restaurant.Core.Models
+﻿using Microsoft.AspNetCore.Http;
+
+namespace Restaurant.Business.ViewModels.Home.Feedback
 {
-    public class Feedback
+    public class UpdateFeedbackVM
     {
         public int Id { get; set; }
-        public string Image { get; set; }
+        public IFormFile Photo { get; set; }
         public string FullName { get; set; }
         public int PositionId { get; set; }
-        public Position Position { get; set; }
         public string Comment { get; set; }
     }
 }
