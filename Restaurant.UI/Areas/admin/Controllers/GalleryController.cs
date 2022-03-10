@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Restaurant.Business.Utilities;
@@ -15,16 +16,18 @@ namespace Restaurant.UI.Areas.admin.Controllers
     {
         private AppDbContext _context;
         private IWebHostEnvironment _env;
+        private IMapper _mapper;
         private string _errorMessage;
 
-        public GalleryController(AppDbContext context, IWebHostEnvironment env)
+        public GalleryController(AppDbContext context, IWebHostEnvironment env, IMapper mapper)
         {
             _context = context;
             _env = env;
+            _mapper = mapper;
         }
         public IActionResult Index()
         {
-            ViewBag.RestaurantPhoto=_context.RestaurantPhotos.Count();
+            ViewBag.RestaurantPhoto = _context.RestaurantPhotos.Count();
             return View(_context.RestaurantPhotos.ToList());
         }
         public IActionResult Create()
@@ -64,42 +67,31 @@ namespace Restaurant.UI.Areas.admin.Controllers
             }
             return true;
         }
-        public async Task<IActionResult> Update(int id)
+        public IActionResult Update(int id)
         {
-            Team dbTeam = _context.Teams.Where(x => x.Id == id).FirstOrDefault();
-            if (dbTeam is null) return NotFound();
-            UpdateRestaurantPhotoVM team = _mapper.Map<UpdateTeamVM>(dbTeam);
-            await GetSelectedItemAsync();
-            return View(team);
+            RestaurantPhotos dbRestaurantPhoto = _context.RestaurantPhotos.Where(x => x.Id == id).FirstOrDefault();
+            if (dbRestaurantPhoto is null) return NotFound();
+            UpdateRestaurantPhotoVM photo = _mapper.Map<UpdateRestaurantPhotoVM>(dbRestaurantPhoto);
+            return View(photo);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(int id, UpdateTeamVM updateTeam)
+        public async Task<IActionResult> Update(int id, UpdateRestaurantPhotoVM updateRestaurantPhoto)
         {
             if (!ModelState.IsValid) return View();
-            Team dbTeam = _context.Teams.Where(x => x.Id == id).FirstOrDefault();
-            bool isCurrentName = dbTeam.FullName.Trim().ToLower() == updateTeam.FullName.ToLower().Trim();
-            if (!isCurrentName)
+            RestaurantPhotos dbRestaurantPhoto = _context.RestaurantPhotos.Where(x => x.Id == id).FirstOrDefault();
+            if (updateRestaurantPhoto.Photo != null)
             {
-                dbTeam.FullName = updateTeam.FullName;
-            }
-            bool isCurrentPosition = dbTeam.PositionId == updateTeam.PositionId;
-            if (!isCurrentPosition)
-            {
-                dbTeam.PositionId = updateTeam.PositionId;
-            }
-            if (updateTeam.Photo != null)
-            {
-                if (!CheckImageValid(updateTeam.Photo, "image/", 200))
+                if (!CheckImageValid(updateRestaurantPhoto.Photo, "image/", 200))
                 {
                     ModelState.AddModelError("Photo", _errorMessage);
-                    return View(updateTeam);
+                    return View(updateRestaurantPhoto);
                 }
-                Helper.RemoveFile(_env.WebRootPath, "assets/img", dbTeam.Image);
-                string fileName = await Extension.SaveFileAsync(updateTeam.Photo, _env.WebRootPath, "assets/img");
-                dbTeam.Image = fileName;
+                Helper.RemoveFile(_env.WebRootPath, "assets/img", dbRestaurantPhoto.Image);
+                string fileName = await Extension.SaveFileAsync(updateRestaurantPhoto.Photo, _env.WebRootPath, "assets/img");
+                dbRestaurantPhoto.Image = fileName;
+                await _context.SaveChangesAsync();
             }
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
         //[HttpPost]
