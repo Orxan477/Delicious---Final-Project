@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ChooseRestaurant>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Product</h4>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>No</th>
+                            <th>Head</th>
+                            <th>Content</th>
+                            <th>Setting</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                         @foreach (var choose in Model)
+                        {
+                         <tr>
+                            <td>@choose.Number</td>
+                            <td>@choose.CardHead</td>
+                            <td>@choose.CardContent</td>
+                            <td>
+                                    <a asp-action="Update" class="btn btn-warning" asp-route-id="@choose.Id"><i class="mdi mdi-table-edit"></i></a>
+                                   @* <form class="d-inline delete-btn" asp-action="Delete" asp-route-id="@pro.Id" method="post">
+                                        <button type="submit" class="btn btn-danger"><i class="mdi mdi-delete-forever"></i></button>
+                                    </form>*@
+                                    <a asp-action="Delete" class="btn btn-danger delete-btn" asp-route-id="@choose.Id"><i class="mdi mdi-delete-forever"></i></a>
+                                </td>
+                                </tr>
+                            }
+                        </tbody>
+                        <div class="d-flex justify-content-end">
+                            <a asp-area="Admin" asp-controller="ChooseRestaurant" asp-action="Create" class="btn btn-success"><i class="fas fa-plus-circle"></i></a>
+                        </div>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+</div>
+@section ScriptModal{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+    <script src="~/admin/assets/js/AlertModal.js"></script>
+}
+
