@@ -120,16 +120,16 @@ namespace Restaurant.UI.Areas.admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        ////[HttpPost]
-        ////[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Delete(int id)
-        //{
-        //    Team dbTeam = _context.Teams.Where(x => x.Id == id).FirstOrDefault();
-        //    if (dbTeam is null) return NotFound();
-        //    Helper.RemoveFile(_env.WebRootPath, "assets/img", dbTeam.Image);
-        //    _context.Teams.Remove(dbTeam);
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //}
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+            Feedback dbFeedback = _context.Feedbacks.Where(x => x.Id == id).FirstOrDefault();
+            if (dbFeedback is null) return NotFound();
+            Helper.RemoveFile(_env.WebRootPath, "assets/img", dbFeedback.Image);
+            _context.Feedbacks.Remove(dbFeedback);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
