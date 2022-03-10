@@ -8,7 +8,7 @@ namespace Restaurant.Business.Validators
         public ChooseCreateVMValidator()
         {
             RuleFor(x => x.CardHead).NotEmpty().NotNull().MaximumLength(20);
-            RuleFor(x => x.CardContent).NotEmpty().NotNull().MaximumLength(40);
+            RuleFor(x => x.CardContent).NotEmpty().NotNull().MaximumLength(100);
         }
     }
 }

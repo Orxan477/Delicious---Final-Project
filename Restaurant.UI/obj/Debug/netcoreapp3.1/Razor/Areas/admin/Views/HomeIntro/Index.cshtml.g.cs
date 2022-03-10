@@ -82,8 +82,15 @@ using Restaurant.Business.ViewModels.Home.About;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 11 "D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\Areas\admin\Views\_ViewImports.cshtml"
+using Restaurant.Business.ViewModels.Home.Choose;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e8b8b2fe3a0d5997b47e59a0519294a373bcf9b9", @"/Areas/admin/Views/HomeIntro/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f3c5919433bbbc2adee4c7fbc35e1cb98264cccd", @"/Areas/admin/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ca21b9f02069b4643c9dfa2e7626ca6e507a23af", @"/Areas/admin/Views/_ViewImports.cshtml")]
     public class Areas_admin_Views_HomeIntro_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<HomeIntro>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Update", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -165,7 +172,7 @@ using Restaurant.Business.ViewModels.Home.About;
 #line hidden
 #nullable disable
             WriteLiteral("</td>\r\n                            <td>");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "e8b8b2fe3a0d5997b47e59a0519294a373bcf9b99799", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "e8b8b2fe3a0d5997b47e59a0519294a373bcf9b910034", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -204,7 +211,7 @@ AddHtmlAttributeValue("", 993, home.Image, 993, 11, false);
 #line hidden
 #nullable disable
             WriteLiteral("</td>\r\n                            <td>\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b8b2fe3a0d5997b47e59a0519294a373bcf9b911995", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b8b2fe3a0d5997b47e59a0519294a373bcf9b912231", async() => {
                 WriteLiteral("<i class=\"mdi mdi-table-edit\"></i>");
             }
             );
@@ -237,7 +244,7 @@ AddHtmlAttributeValue("", 993, home.Image, 993, 11, false);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("                \r\n");
             WriteLiteral("                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b8b2fe3a0d5997b47e59a0519294a373bcf9b914413", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b8b2fe3a0d5997b47e59a0519294a373bcf9b914649", async() => {
                 WriteLiteral("<i class=\"mdi mdi-delete-forever\"></i>");
             }
             );
@@ -278,7 +285,7 @@ AddHtmlAttributeValue("", 993, home.Image, 993, 11, false);
 #line hidden
 #nullable disable
             WriteLiteral("                        </tbody>\r\n                        <div class=\"d-flex justify-content-end\">\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b8b2fe3a0d5997b47e59a0519294a373bcf9b917281", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b8b2fe3a0d5997b47e59a0519294a373bcf9b917517", async() => {
                 WriteLiteral("<i class=\"fas fa-plus-circle\"></i>");
             }
             );
@@ -301,7 +308,7 @@ AddHtmlAttributeValue("", 993, home.Image, 993, 11, false);
             WriteLiteral("\r\n                        </div>\r\n                      </table>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n</div>\r\n");
             DefineSection("ScriptModal", async() => {
                 WriteLiteral("\r\n    <script src=\"https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js\"></script>\r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b8b2fe3a0d5997b47e59a0519294a373bcf9b919349", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8b8b2fe3a0d5997b47e59a0519294a373bcf9b919585", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

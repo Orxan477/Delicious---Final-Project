@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Restaurant.Business.ViewModels.Home.About;
+using Restaurant.Business.ViewModels.Home.Choose;
 using Restaurant.Business.ViewModels.Home.HomeIntro;
 using Restaurant.Business.ViewModels.Menu;
 using Restaurant.Business.ViewModels.Position;
@@ -22,6 +23,7 @@ namespace Restaurant.Business.Profiles
             CreateMap<About, AboutUpdateVM>();
             CreateMap<AboutOptionCreateVM, AboutOption>();
             CreateMap<AboutOption, AboutOptionUpdateVM>();
+            CreateMap<ChooseRestaurant, ChooseUpdateVM>();
         }
     }
 }
