@@ -96,14 +96,14 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Delete(int id)
-        //{
-        //    Team dbTeam = _context.Teams.Where(x => x.Id == id).FirstOrDefault();
-        //    if (dbTeam is null) return NotFound();
-        //    Helper.RemoveFile(_env.WebRootPath, "assets/img", dbTeam.Image);
-        //    _context.Teams.Remove(dbTeam);
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //}
+        public async Task<IActionResult> Delete(int id)
+        {
+            RestaurantPhotos dbRestaurantPhoto = _context.RestaurantPhotos.Where(x => x.Id == id).FirstOrDefault();
+            if (dbRestaurantPhoto is null) return NotFound();
+            Helper.RemoveFile(_env.WebRootPath, "assets/img", dbRestaurantPhoto.Image);
+            _context.RestaurantPhotos.Remove(dbRestaurantPhoto);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
