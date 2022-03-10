@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Restaurant.Business.ViewModels.Home.About;
 using Restaurant.Business.ViewModels.Home.Choose;
+using Restaurant.Business.ViewModels.Home.Feedback;
 using Restaurant.Business.ViewModels.Home.Gallery;
 using Restaurant.Business.ViewModels.Home.HomeIntro;
 using Restaurant.Business.ViewModels.Menu;
@@ -26,6 +27,7 @@ namespace Restaurant.Business.Profiles
             CreateMap<AboutOption, AboutOptionUpdateVM>();
             CreateMap<ChooseRestaurant, ChooseUpdateVM>();
             CreateMap<RestaurantPhotos, UpdateRestaurantPhotoVM>();
+            CreateMap<Feedback, UpdateFeedbackVM>();
         }
     }
 }
