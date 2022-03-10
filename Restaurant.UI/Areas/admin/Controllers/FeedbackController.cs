@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Business.Utilities;
+using Restaurant.Business.ViewModels.Home.Feedback;
 using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
 using System.Linq;
@@ -16,12 +18,14 @@ namespace Restaurant.UI.Areas.admin.Controllers
     {
         private AppDbContext _context;
         private IWebHostEnvironment _env;
+        private IMapper _mapper;
         private string _errorMessage;
 
-        public FeedbackController(AppDbContext context, IWebHostEnvironment env)
+        public FeedbackController(AppDbContext context, IWebHostEnvironment env,IMapper mapper)
         {
             _context = context;
             _env = env;
+            _mapper = mapper;
         }
         public IActionResult Index()
         {
@@ -34,19 +38,21 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(TeamCreateVM teamCreate)
+        public async Task<IActionResult> Create(CreateFeedbackVM createFeedback)
         {
             if (!ModelState.IsValid) return View();
-            if (!CheckImageValid(teamCreate.Photo, "image/", 200))
+            if (!CheckImageValid(createFeedback.Photo, "image/", 200))
             {
                 ModelState.AddModelError("Photo", _errorMessage);
-                return View(teamCreate);
+                return View(createFeedback);
             }
-            string fileName = await Extension.SaveFileAsync(teamCreate.Photo, _env.WebRootPath, "assets/img");
+            string fileName = await Extension.SaveFileAsync(createFeedback.Photo, _env.WebRootPath, "assets/img");
             Feedback feedback = new Feedback
             {
-                FullName = teamCreate.FullName,
-                Image = fileName
+                FullName = createFeedback.FullName,
+                Image = fileName,
+                PositionId=createFeedback.PositionId,
+                Comment= createFeedback.Comment
             };
             await _context.Feedbacks.AddAsync(feedback);
             await _context.SaveChangesAsync();
@@ -71,44 +77,49 @@ namespace Restaurant.UI.Areas.admin.Controllers
             }
             return true;
         }
-        //public async Task<IActionResult> Update(int id)
-        //{
-        //    Team dbTeam = _context.Teams.Where(x => x.Id == id).FirstOrDefault();
-        //    if (dbTeam is null) return NotFound();
-        //    UpdateTeamVM team = _mapper.Map<UpdateTeamVM>(dbTeam);
-        //    await GetSelectedItemAsync();
-        //    return View(team);
-        //}
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Update(int id, UpdateTeamVM updateTeam)
-        //{
-        //    if (!ModelState.IsValid) return View();
-        //    Team dbTeam = _context.Teams.Where(x => x.Id == id).FirstOrDefault();
-        //    bool isCurrentName = dbTeam.FullName.Trim().ToLower() == updateTeam.FullName.ToLower().Trim();
-        //    if (!isCurrentName)
-        //    {
-        //        dbTeam.FullName = updateTeam.FullName;
-        //    }
-        //    bool isCurrentPosition = dbTeam.PositionId == updateTeam.PositionId;
-        //    if (!isCurrentPosition)
-        //    {
-        //        dbTeam.PositionId = updateTeam.PositionId;
-        //    }
-        //    if (updateTeam.Photo != null)
-        //    {
-        //        if (!CheckImageValid(updateTeam.Photo, "image/", 200))
-        //        {
-        //            ModelState.AddModelError("Photo", _errorMessage);
-        //            return View(updateTeam);
-        //        }
-        //        Helper.RemoveFile(_env.WebRootPath, "assets/img", dbTeam.Image);
-        //        string fileName = await Extension.SaveFileAsync(updateTeam.Photo, _env.WebRootPath, "assets/img");
-        //        dbTeam.Image = fileName;
-        //    }
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //}
+        public async Task<IActionResult> Update(int id)
+        {
+            Feedback dbFeedback = _context.Feedbacks.Where(x => x.Id == id).FirstOrDefault();
+            if (dbFeedback is null) return NotFound();
+            UpdateFeedbackVM feedback = _mapper.Map<UpdateFeedbackVM>(dbFeedback);
+            await GetSelectedItemAsync();
+            return View(feedback);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(int id, UpdateFeedbackVM updateFeedback)
+        {
+            if (!ModelState.IsValid) return View();
+            Feedback dbFeedback = _context.Feedbacks.Where(x => x.Id == id).FirstOrDefault();
+            bool isCurrentName = dbFeedback.FullName.Trim().ToLower() == updateFeedback.FullName.ToLower().Trim();
+            if (!isCurrentName)
+            {
+                dbFeedback.FullName = updateFeedback.FullName;
+            }
+            bool isCurrentPosition = dbFeedback.PositionId == updateFeedback.PositionId;
+            if (!isCurrentPosition)
+            {
+                dbFeedback.PositionId = updateFeedback.PositionId;
+            }
+            bool isCurrentComment = dbFeedback.Comment.Trim().ToLower() == updateFeedback.Comment.Trim().ToLower();
+            if (!isCurrentComment)
+            {
+                dbFeedback.Comment = updateFeedback.Comment;
+            }
+            if (updateFeedback.Photo != null)
+            {
+                if (!CheckImageValid(updateFeedback.Photo, "image/", 200))
+                {
+                    ModelState.AddModelError("Photo", _errorMessage);
+                    return View(updateFeedback);
+                }
+                Helper.RemoveFile(_env.WebRootPath, "assets/img", dbFeedback.Image);
+                string fileName = await Extension.SaveFileAsync(updateFeedback.Photo, _env.WebRootPath, "assets/img");
+                dbFeedback.Image = fileName;
+            }
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
         ////[HttpPost]
         ////[ValidateAntiForgeryToken]
         //public async Task<IActionResult> Delete(int id)

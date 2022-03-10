@@ -1,0 +1,44 @@
+﻿@model CreateFeedbackVM
+@{
+    ViewData["Title"] = "Create";
+}
+
+@*<div class="container">*@
+    <row>
+        <div class="col-md-12 grid-margin stretch-card mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title"></h4>
+                    <form class="forms-sample" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label asp-for="FullName">Full Name</label>
+                            <input asp-for="FullName" class="form-control" placeholder="Full Name">
+                            <span class="text-danger" asp-validation-for="FullName"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="PositionId" class="d-block">Position</label>
+                            <select asp-for="PositionId" asp-items="@ViewBag.Position" class="form-select" aria-label="Default select example">
+                                <span class="text-danger" asp-validation-for="PositionId"></span>
+                            </select>
+                        </div>
+                          <div class="form-group">
+                            <label asp-for="Comment"></label>
+                            <textarea asp-for="Comment" class="form-control" placeholder="Comment"></textarea>
+                            <span class="text-danger" asp-validation-for="Comment"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Photo"></label>
+                            <input asp-for="Photo" class="form-control">
+                            <span class="text-danger" asp-validation-for="Photo"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                        <button class="btn btn-light" asp-action="Index">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </row>
+    @section ValidatorScript{
+        <partial name="_ValidationScriptsPartial" />
+    }
+@*</div>*@
