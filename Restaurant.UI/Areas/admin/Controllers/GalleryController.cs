@@ -64,5 +64,54 @@ namespace Restaurant.UI.Areas.admin.Controllers
             }
             return true;
         }
+        public async Task<IActionResult> Update(int id)
+        {
+            Team dbTeam = _context.Teams.Where(x => x.Id == id).FirstOrDefault();
+            if (dbTeam is null) return NotFound();
+            UpdateRestaurantPhotoVM team = _mapper.Map<UpdateTeamVM>(dbTeam);
+            await GetSelectedItemAsync();
+            return View(team);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(int id, UpdateTeamVM updateTeam)
+        {
+            if (!ModelState.IsValid) return View();
+            Team dbTeam = _context.Teams.Where(x => x.Id == id).FirstOrDefault();
+            bool isCurrentName = dbTeam.FullName.Trim().ToLower() == updateTeam.FullName.ToLower().Trim();
+            if (!isCurrentName)
+            {
+                dbTeam.FullName = updateTeam.FullName;
+            }
+            bool isCurrentPosition = dbTeam.PositionId == updateTeam.PositionId;
+            if (!isCurrentPosition)
+            {
+                dbTeam.PositionId = updateTeam.PositionId;
+            }
+            if (updateTeam.Photo != null)
+            {
+                if (!CheckImageValid(updateTeam.Photo, "image/", 200))
+                {
+                    ModelState.AddModelError("Photo", _errorMessage);
+                    return View(updateTeam);
+                }
+                Helper.RemoveFile(_env.WebRootPath, "assets/img", dbTeam.Image);
+                string fileName = await Extension.SaveFileAsync(updateTeam.Photo, _env.WebRootPath, "assets/img");
+                dbTeam.Image = fileName;
+            }
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Delete(int id)
+        //{
+        //    Team dbTeam = _context.Teams.Where(x => x.Id == id).FirstOrDefault();
+        //    if (dbTeam is null) return NotFound();
+        //    Helper.RemoveFile(_env.WebRootPath, "assets/img", dbTeam.Image);
+        //    _context.Teams.Remove(dbTeam);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
     }
 }

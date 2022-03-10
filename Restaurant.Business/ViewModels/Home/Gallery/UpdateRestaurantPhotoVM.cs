@@ -2,7 +2,7 @@
 
 namespace Restaurant.Business.ViewModels.Home.Gallery
 {
-    internal class UpdateRestauranPhotoVM
+    public class UpdateRestaurantPhotoVM
     {
         public IFormFile Photo { get; set; }
     }
