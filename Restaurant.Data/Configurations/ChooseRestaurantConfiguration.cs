@@ -9,7 +9,6 @@ namespace Restaurant.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<ChooseRestaurant> builder)
         {
-            builder.Property(x => x.Number).HasDefaultValue(0).IsRequired();
             builder.Property(x => x.CardHead).HasMaxLength(20).IsRequired();
             builder.Property(x => x.CardContent).HasMaxLength(255).IsRequired();
 

@@ -22,30 +22,30 @@ namespace Restaurant.UI.Areas.admin.Controllers
         {
             return View();
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CreateMenuVM createMenu)
-        {
-            if (!ModelState.IsValid) return View();
-            bool isExist = _context.Products.Any(p => p.Name.Trim()
-                                                           .ToLower() == createMenu.Name.Trim().ToLower());
-            if (isExist)
-            {
-                ModelState.AddModelError("Name", "This name currently use");
-                return View();
-            }
-            Product product = new Product
-            {
-                Name = createMenu.Name,
-                CategoryId = createMenu.CategoryId,
-                MenuImageId = dbImage.Id,
-                Price = createMenu.Price,
-                Description = createMenu.Description,
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create(CreateMenuVM createMenu)
+        //{
+        //    if (!ModelState.IsValid) return View();
+        //    bool isExist = _context.Products.Any(p => p.Name.Trim()
+        //                                                   .ToLower() == createMenu.Name.Trim().ToLower());
+        //    if (isExist)
+        //    {
+        //        ModelState.AddModelError("Name", "This name currently use");
+        //        return View();
+        //    }
+        //    Product product = new Product
+        //    {
+        //        Name = createMenu.Name,
+        //        CategoryId = createMenu.CategoryId,
+        //        MenuImageId = dbImage.Id,
+        //        Price = createMenu.Price,
+        //        Description = createMenu.Description,
 
-            };
-            await _context.Products.AddAsync(product);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        //    };
+        //    await _context.Products.AddAsync(product);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
     }
 }

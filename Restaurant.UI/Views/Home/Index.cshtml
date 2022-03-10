@@ -1,270 +1,294 @@
 ﻿@model HomeVM
 @{
     ViewData["Title"] = "Home";
+    int n = 1;
 }
 
 <main>
     <section id="homeIntro">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="owl-carousel owlImg">
-            @foreach (var intro in Model.HomeIntro)
-            {
-                
-                <div style="background-image: url(/assets/img/@intro.Image);" class="img col-lg-12 ">
-              <div class="col-lg-7 col-md-8 col-sm-12 contentIntro d-flex justify-content-center">
-                <h2 class="animate-head">@Html.Raw(intro.Head)</h2>
-                <p class="animate-content">
-                  @intro.Content
-                </p>
-                <div class="animate-button">
-                  <button class="btn btn-primary">MENU</button>
-                  <button class="btn btn-primary">Reservation</button>
-                </div>
-              </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="owl-carousel owlImg">
+                    @foreach (var intro in Model.HomeIntro)
+                    {
 
+                        <div style="background-image: url(/assets/img/@intro.Image);" class="img col-lg-12 ">
+                            <div class="col-lg-7 col-md-8 col-sm-12 contentIntro d-flex justify-content-center">
+                                <h2 class="animate-head">@Html.Raw(intro.Head)</h2>
+                                <p class="animate-content">
+                                    @intro.Content
+                                </p>
+                                <div class="animate-button">
+                                    <button class="btn btn-primary">MENU</button>
+                                    <button class="btn btn-primary">Reservation</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+                </div>
             </div>
-            }
-          </div>
         </div>
-      </div>
     </section>
 
     <section id="about" class="mt-5">
-      <div class="container-fluid py-4">
-        <div class="row">
-          <div class="col-lg-5 col-md-12 col-sm-12 mb-4 p-0 image-about "
-            style="background-image: url(/assets/img/about.jpg);">
-            <a href="@Model.About.Link" target="_blank" rel="noopener noreferrer"><i
-                class="fas fa-play icon-play"></i></a>
-          </div>
-          <div class="col-lg-7 col-md-12 col-sm-12 padding-all-content">
-            <div class="about-head">
-              <h3>@Html.Raw(Model.About.Head)</h3>
+        <div class="container-fluid py-4">
+            <div class="row">
+                <div class="col-lg-5 col-md-12 col-sm-12 mb-4 p-0 image-about "
+                     style="background-image: url(/assets/img/about.jpg);">
+                    <a href="@Model.About.Link" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-play icon-play"></i>
+                    </a>
+                </div>
+                <div class="col-lg-7 col-md-12 col-sm-12 padding-all-content">
+                    <div class="about-head">
+                        <h3>@Html.Raw(Model.About.Head)</h3>
+                    </div>
+                    <div class="about-content">
+                        <p>
+                            @Model.About.NormalContent
+                        </p>
+                    </div>
+                    <div class="about-italic-content">
+                        <p>
+                            @Model.About.ItalicContent
+                        </p>
+                    </div>
+                    <div class="about-content-options">
+                        <ul>
+                            @foreach (var option in Model.AboutOptions)
+                            {
+                                <li class="distance-ul-about"><i class="fas fa-check-double check-option-about"></i>@option.Option</li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="about-content">
+                        <p> @Model.About.NormalContent2</p>
+                    </div>
+                </div>
             </div>
-            <div class="about-content">
-              <p>
-                 @Model.About.NormalContent
-              </p>
-            </div>
-            <div class="about-italic-content">
-              <p>
-                @Model.About.ItalicContent
-              </p>
-            </div>
-            <div class="about-content-options">
-              <ul>
-                @foreach (var option in Model.AboutOptions)
-               {
-                   <li class="distance-ul-about"><i class="fas fa-check-double check-option-about"></i>@option.Option</li>
-               }
-              </ul>
-            </div>
-            <div class="about-content">
-                <p> @Model.About.NormalContent2</p>
-            </div>
-          </div>
         </div>
-      </div>
     </section>
 
     <section id="WhyChoose" class="mt-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 chooseIntro">
-            <h3>Why choose <span>Our Restaurant</span></h3>
-            <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
-          </div>
-          @foreach (var choose in Model.ChooseRestaurants)
-         {
-             <div class="col-lg-4 col-md-6 col-sm-12 my-3">
-            <div class="box">
-              <span>@choose.Number</span>
-              <h5>@choose.CardHead</h5>
-              <p class="text-muted">
-                @choose.CardContent
-              </p>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 chooseIntro">
+                    <h3>Why choose <span>Our Restaurant</span></h3>
+                    <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+                </div>
+                @foreach (var choose in Model.ChooseRestaurants)
+                {
+                    <div class="col-lg-4 col-md-6 col-sm-12 my-3">
+                        <div class="box">
+                            @if (n <= 9)
+                            {
+                                <span>0</span><span>@n</span>
+                            }
+                            else
+                            {
+                                <span>@n</span>
+                            }
+                            @*<span>@choose.Number</span>*@
+                            <h5>@choose.CardHead</h5>
+                            <p class="text-muted">
+                                @choose.CardContent
+                            </p>
+                        </div>
+                    </div>
+                    n++;
+                }
             </div>
-          </div>
-         }
         </div>
-      </div>
     </section>
 
     <section id="specials" class="mt-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 specialIntro mb-5">
-            <h3>Check our <span>Specials</span></h3>
-            <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque
-              vitae autem.</p>
-          </div>
-          <div class="col-lg-3 col-md-12 col-sm-12 titleSpecials mb-4">
-            <ul class="special-ul">
-              @foreach (var special in Model.Specials)
-             {
-                <li>
-                <a href="#" class="nav-link special-name " data-id="tab-@special.Id">@special.FoodName</a>
-              </li> 
-             }
-            </ul>
-          </div>
-          @foreach (var specialProp in Model.Specials)
-         {
-             <div class="col-lg-9 col-md-12 col-sm-12 p-0 d-none" id="tab-@specialProp.Id">
-            <div class="col-lg-8 col-md-8 content-special">
-              <h3>@specialProp.PropHead</h3>
-              <p class="distance">@specialProp.PropContentItalic</p>
-              <p class="normal-text">@specialProp.PropContent</p>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 specialIntro mb-5">
+                    <h3>Check our <span>Specials</span></h3>
+                    <p>
+                        Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque
+                        vitae autem.
+                    </p>
+                </div>
+                <div class="col-lg-3 col-md-12 col-sm-12 titleSpecials mb-4">
+                    <ul class="special-ul">
+                        @foreach (var special in Model.Specials)
+                        {
+                            <li>
+                                <a href="#" class="nav-link special-name " data-id="tab-@special.Id">@special.FoodName</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                @foreach (var specialProp in Model.Specials)
+                {
+                    <div class="col-lg-9 col-md-12 col-sm-12 p-0 d-none" id="tab-@specialProp.Id">
+                        <div class="col-lg-8 col-md-8 content-special">
+                            <h3>@specialProp.PropHead</h3>
+                            <p class="distance">@specialProp.PropContentItalic</p>
+                            <p class="normal-text">@specialProp.PropContent</p>
+                        </div>
+                        <div class="col-lg-4 col-md-4 ">
+                            <img src="~/assets/img/@specialProp.MenuImage.Image" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                }
             </div>
-            <div class="col-lg-4 col-md-4 ">
-              <img src="~/assets/img/@specialProp.MenuImage.Image" class="img-fluid" alt="">
-            </div>
-          </div>
-         }
         </div>
-      </div>
     </section>
 
     <section id="gallery" class="mt-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 galleryIntro mb-4">
-            <h3>Some photos from <span>Our Restaurant</span></h3>
-            <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque
-              vitae autem.
-            </p>
-          </div>
-          @foreach (var restaurant in Model.RestaurantsPhotos)
-         {
-             <div class="col-lg-3 col-md-4 col-sm-6 pt-1 pb-1 pr-1 pl-0">
-            <div class="card myGallery">
-              <img class="card-img-top hoverImage" src="~/assets/img/@restaurant.Image" alt="Card image cap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 galleryIntro mb-4">
+                    <h3>Some photos from <span>Our Restaurant</span></h3>
+                    <p>
+                        Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque
+                        vitae autem.
+                    </p>
+                </div>
+                @foreach (var restaurant in Model.RestaurantsPhotos)
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6 pt-1 pb-1 pr-1 pl-0">
+                        <div class="card myGallery">
+                            <img class="card-img-top hoverImage" src="~/assets/img/@restaurant.Image" alt="Card image cap">
+                        </div>
+                    </div>
+                }
             </div>
-          </div>
-         }
-        </div>
 
-      </div>
+        </div>
     </section>
 
     <section id="feedback" class="mt-5" style="background-image: url(/assets/img/testimonials-bg.jpg);">
-      <div class="container">
-        <div class="row">
-          <div class="owl-carousel">
-            @foreach (var feedback in Model.Feedbacks)
-           {
-               <div class="item-say py-5">
-              <div class="d-flex justify-content-center">
-                <img src="~/assets/img/@feedback.Image" class="card-img-top" alt="">
-              </div>
-              <h3>@feedback.FullName</h3>
-              <h4>@feedback.Position.Name</h4>
-              <p><i class="fas fa-quote-left icon-say mr-2"></i>
-                  @feedback.Comment
-                <i class="fas fa-quote-right icon-say ml-2"></i>
-              </p>
+        <div class="container">
+            <div class="row">
+                <div class="owl-carousel">
+                    @foreach (var feedback in Model.Feedbacks)
+                    {
+                        <div class="item-say py-5">
+                            <div class="d-flex justify-content-center">
+                                <img src="~/assets/img/@feedback.Image" class="card-img-top" alt="">
+                            </div>
+                            <h3>@feedback.FullName</h3>
+                            <h4>@feedback.Position.Name</h4>
+                            <p>
+                                <i class="fas fa-quote-left icon-say mr-2"></i>
+                                @feedback.Comment
+                                <i class="fas fa-quote-right icon-say ml-2"></i>
+                            </p>
+                        </div>
+                    }
+                </div>
             </div>
-           }
-          </div>
         </div>
-      </div>
     </section>
 
     <section id="contact" class="mt-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 contactIntro mb-4">
-            <h3>Contact <span>Us</span></h3>
-            <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque
-              vitae autem.</p>
-          </div>
-          <div class="col-lg-12 padding-all-row mb-3 ">
+        <div class="container">
             <div class="row">
-              <div class="col-lg-3 col-md-4 col-sm-6 mt-4 direction d-flex">
-                <div class="logo">
-                  <i class="fas fa-map-marker-alt logo-contact-direction"></i>
+                <div class="col-lg-12 contactIntro mb-4">
+                    <h3>Contact <span>Us</span></h3>
+                    <p>
+                        Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque
+                        vitae autem.
+                    </p>
                 </div>
-                <div class="padding-direction">
-                  <h4>Location:</h4>
-                  <p class="">A108 Adam Street<br>
-                    New York, NY 535022</p>
+                <div class="col-lg-12 padding-all-row mb-3 ">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-6 mt-4 direction d-flex">
+                            <div class="logo">
+                                <i class="fas fa-map-marker-alt logo-contact-direction"></i>
+                            </div>
+                            <div class="padding-direction">
+                                <h4>Location:</h4>
+                                <p class="">
+                                    A108 Adam Street<br>
+                                    New York, NY 535022
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 mt-4 direction d-flex">
+                            <div class="logo">
+                                <i class="fas fa-clock logo-contact-direction"></i>
+                            </div>
+                            <div class="padding-direction">
+                                <h4>Open Hours:</h4>
+                                <p class="">
+                                    Monday-Saturday:<br>
+                                    11:00 AM - 2300 PM
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 mt-4 direction d-flex">
+                            <div class="logo">
+                                <i class="fas fa-envelope logo-contact-direction"></i>
+                            </div>
+                            <div class="padding-direction">
+                                <h4>Email:</h4>
+                                <p class="">
+                                    info@example.com<br>
+                                    contact@example.com
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 mt-4 direction d-flex">
+                            <div class="logo">
+                                <i class="fas fa-mobile-alt logo-contact-direction"></i>
+                            </div>
+                            <div class="padding-direction">
+                                <h4>Call:</h4>
+                                <p class="">
+                                    +1 5589 55488 51<br>
+                                    +1 5589 22475 14
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="col-lg-3 col-md-4 col-sm-6 mt-4 direction d-flex">
-                <div class="logo">
-                  <i class="fas fa-clock logo-contact-direction"></i>
+                <div class="col-lg-6 col-md-7 col-sm-12">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.361280743027!2d-74.00832638512718!3d40.7100626456719!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1saz!2s!4v1645417282338!5m2!1saz!2s"
+                            width="100%" height="100%" style="border:0; min-height: 300px;" allowfullscreen=""
+                            loading="lazy"></iframe>
                 </div>
-                <div class="padding-direction">
-                  <h4>Open Hours:</h4>
-                  <p class="">Monday-Saturday:<br>
-                    11:00 AM - 2300 PM</p>
+                <div class="col-lg-6 col-md-5 col-sm-12 message">
+                    <form method="post" asp-controller="Home" asp-action="ContactUs">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <input asp-for="ContactUsVM.Name" class="form-control" placeholder="Your Name">
+                                <span class="text-danger" asp-validation-for="ContactUsVM.Name"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input asp-for="ContactUsVM.Email" class="form-control" placeholder="Your Mail">
+                                <span class="text-danger" asp-validation-for="ContactUsVM.Email"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="ContactUsVM.Subject" class="form-control" placeholder="Subject">
+                            <span class="text-danger" asp-validation-for="ContactUsVM.Subject"></span>
+                        </div>
+                        <div class="form-group myArea">
+                            <textarea asp-for="ContactUsVM.Message" class="myTextArea" placeholder="Message"></textarea>
+                            <span class="text-danger" asp-validation-for="ContactUsVM.Message"></span>
+                        </div>
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="buttonSend d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </div>
+                    </form>
                 </div>
-              </div>
-              <div class="col-lg-3 col-md-4 col-sm-6 mt-4 direction d-flex">
-                <div class="logo">
-                  <i class="fas fa-envelope logo-contact-direction"></i>
-                </div>
-                <div class="padding-direction">
-                  <h4>Email:</h4>
-                  <p class="">info@example.com<br>
-                    contact@example.com</p>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-4 col-sm-6 mt-4 direction d-flex">
-                <div class="logo">
-                  <i class="fas fa-mobile-alt logo-contact-direction"></i>
-                </div>
-                <div class="padding-direction">
-                  <h4>Call:</h4>
-                  <p class="">+1 5589 55488 51<br>
-                    +1 5589 22475 14</p>
-                </div>
-              </div>
             </div>
-          </div>
-          <div class="col-lg-6 col-md-7 col-sm-12">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.361280743027!2d-74.00832638512718!3d40.7100626456719!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1saz!2s!4v1645417282338!5m2!1saz!2s"
-              width="100%" height="100%" style="border:0; min-height: 300px;" allowfullscreen=""
-              loading="lazy"></iframe>
-          </div>
-          <div class="col-lg-6 col-md-5 col-sm-12 message">
-            <form method="post" asp-controller="Home" asp-action="ContactUs">
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <input asp-for="ContactUsVM.Name" class="form-control" placeholder="Your Name">
-                  <span class="text-danger" asp-validation-for="ContactUsVM.Name"></span>
-                </div>
-                <div class="form-group col-md-6">
-                  <input asp-for="ContactUsVM.Email" class="form-control" placeholder="Your Mail">
-                  <span class="text-danger" asp-validation-for="ContactUsVM.Email"></span>
-                </div>
-              </div>
-              <div class="form-group">
-                <input asp-for="ContactUsVM.Subject" class="form-control" placeholder="Subject">
-                <span class="text-danger" asp-validation-for="ContactUsVM.Subject"></span>
-              </div>
-              <div class="form-group myArea">
-                <textarea asp-for="ContactUsVM.Message" class="myTextArea" placeholder="Message"></textarea>
-                <span class="text-danger" asp-validation-for="ContactUsVM.Message"></span>
-              </div>
-              <div asp-validation-summary="ModelOnly"></div>
-              <div class="buttonSend d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary">Send Message</button>
-              </div>
-            </form>
-          </div>
         </div>
-      </div>
     </section>
     @section Script
-{
+    {
     <script src="~/assets/js/NavLink.js"></script>
     <script src="~/assets/js/script.js"></script>
-  <script src="~/assets/js/home.js"></script>
-  <partial name="_ValidationScriptsPartial" />
+    <script src="~/assets/js/home.js"></script>
+    <partial name="_ValidationScriptsPartial" />
 
-}
-  </main>
+    }
+</main>
 
