@@ -21,7 +21,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         private IMapper _mapper;
         private string _errorMessage;
 
-        public FeedbackController(AppDbContext context, IWebHostEnvironment env, IMapper mapper)
+        public FeedbackController(AppDbContext context, IWebHostEnvironment env,IMapper mapper)
         {
             _context = context;
             _env = env;
@@ -29,7 +29,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public IActionResult Index()
         {
-            return View(_context.Feedbacks.Include(x => x.Position).ToList());
+            return View(_context.Feedbacks.Include(x=>x.Position).ToList());
         }
         public async Task<IActionResult> Create()
         {
@@ -51,8 +51,8 @@ namespace Restaurant.UI.Areas.admin.Controllers
             {
                 FullName = createFeedback.FullName,
                 Image = fileName,
-                PositionId = createFeedback.PositionId,
-                Comment = createFeedback.Comment
+                PositionId=createFeedback.PositionId,
+                Comment= createFeedback.Comment
             };
             await _context.Feedbacks.AddAsync(feedback);
             await _context.SaveChangesAsync();
@@ -91,37 +91,21 @@ namespace Restaurant.UI.Areas.admin.Controllers
         {
             if (!ModelState.IsValid) return View();
             Feedback dbFeedback = _context.Feedbacks.Where(x => x.Id == id).FirstOrDefault();
-
-            if (updateFeedback.FullName != null)
+            bool isCurrentName = dbFeedback.FullName.Trim().ToLower() == updateFeedback.FullName.ToLower().Trim();
+            if (!isCurrentName)
             {
-                bool isCurrentName = dbFeedback.FullName.Trim().ToLower() == updateFeedback.FullName.ToLower().Trim();
-                if (!isCurrentName)
-                {
-                    dbFeedback.FullName = updateFeedback.FullName;
-                }
-            }
-            else
-            {
-                updateFeedback.FullName = dbFeedback.FullName;
-            }
-            if (updateFeedback.Comment != null)
-            {
-                bool isCurrentComment = dbFeedback.Comment.Trim().ToLower() == updateFeedback.Comment.Trim().ToLower();
-                if (!isCurrentComment)
-                {
-                    dbFeedback.Comment = updateFeedback.Comment;
-                }
-            }
-            else
-            {
-                updateFeedback.Comment = dbFeedback.Comment;
+                dbFeedback.FullName = updateFeedback.FullName;
             }
             bool isCurrentPosition = dbFeedback.PositionId == updateFeedback.PositionId;
             if (!isCurrentPosition)
             {
                 dbFeedback.PositionId = updateFeedback.PositionId;
             }
-
+            bool isCurrentComment = dbFeedback.Comment.Trim().ToLower() == updateFeedback.Comment.Trim().ToLower();
+            if (!isCurrentComment)
+            {
+                dbFeedback.Comment = updateFeedback.Comment;
+            }
             if (updateFeedback.Photo != null)
             {
                 if (!CheckImageValid(updateFeedback.Photo, "image/", 200))
@@ -136,16 +120,16 @@ namespace Restaurant.UI.Areas.admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id)
-        {
-            Feedback dbFeedback = _context.Feedbacks.Where(x => x.Id == id).FirstOrDefault();
-            if (dbFeedback is null) return NotFound();
-            Helper.RemoveFile(_env.WebRootPath, "assets/img", dbFeedback.Image);
-            _context.Feedbacks.Remove(dbFeedback);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        ////[HttpPost]
+        ////[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Delete(int id)
+        //{
+        //    Team dbTeam = _context.Teams.Where(x => x.Id == id).FirstOrDefault();
+        //    if (dbTeam is null) return NotFound();
+        //    Helper.RemoveFile(_env.WebRootPath, "assets/img", dbTeam.Image);
+        //    _context.Teams.Remove(dbTeam);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
     }
 }
