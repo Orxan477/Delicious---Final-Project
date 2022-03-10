@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Restaurant.Business.Utilities;
+using Restaurant.Business.ViewModels.Home.Gallery;
 using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
 using System.Linq;
@@ -32,15 +33,15 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(TeamCreateVM teamCreate)
+        public async Task<IActionResult> Create(CreateRestaurantPhotoVM createRestaurantPhoto)
         {
             if (!ModelState.IsValid) return View();
-            if (!CheckImageValid(teamCreate.Photo, "image/", 200))
+            if (!CheckImageValid(createRestaurantPhoto.Photo, "image/", 200))
             {
                 ModelState.AddModelError("Photo", _errorMessage);
-                return View(teamCreate);
+                return View(createRestaurantPhoto);
             }
-            string fileName = await Extension.SaveFileAsync(teamCreate.Photo, _env.WebRootPath, "assets/img");
+            string fileName = await Extension.SaveFileAsync(createRestaurantPhoto.Photo, _env.WebRootPath, "assets/img");
             RestaurantPhotos restaurantPhoto = new RestaurantPhotos
             {
                 Image = fileName
