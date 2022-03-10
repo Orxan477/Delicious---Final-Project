@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Restaurant.Business.Utilities;
+using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,10 +13,13 @@ namespace Restaurant.UI.Areas.admin.Controllers
     public class GalleryController : Controller
     {
         private AppDbContext _context;
+        private IWebHostEnvironment _env;
+        private string _errorMessage;
 
-        public GalleryController(AppDbContext context)
+        public GalleryController(AppDbContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _env = env;
         }
         public IActionResult Index()
         {
@@ -34,13 +41,11 @@ namespace Restaurant.UI.Areas.admin.Controllers
                 return View(teamCreate);
             }
             string fileName = await Extension.SaveFileAsync(teamCreate.Photo, _env.WebRootPath, "assets/img");
-            Team team = new Team
+            RestaurantPhotos restaurantPhoto = new RestaurantPhotos
             {
-                FullName = teamCreate.FullName,
-                PositionId = teamCreate.PositionId,
                 Image = fileName
             };
-            await _context.AddAsync(team);
+            await _context.RestaurantPhotos.AddAsync(restaurantPhoto);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
