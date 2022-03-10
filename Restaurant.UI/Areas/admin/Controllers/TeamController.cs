@@ -126,7 +126,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         private async Task GetSelectedItemAsync()
         {
-            ViewBag.category = new SelectList(await _context.Positions
+            ViewBag.Position = new SelectList(await _context.Positions
                                                             .ToListAsync(), "Id", "Name");
         }
     }
