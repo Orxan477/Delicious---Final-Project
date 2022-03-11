@@ -10,7 +10,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title"></h4>
-                    <form class="forms-sample" method="post">
+                    <form class="forms-sample d-inline" method="post">
                         <div class="form-group">
                             <label asp-for="CardHead"></label>
                             <input asp-for="CardHead" class="form-control" placeholder="Head">
@@ -22,8 +22,8 @@
                             <span class="text-danger" asp-validation-for="CardContent"></span>
                         </div>
                         <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                        <button class="btn btn-light" asp-action="Index">Cancel</button>
                     </form>
+                        <a class="btn btn-light" asp-action="Index">Cancel</a>
                 </div>
             </div>
         </div>

@@ -27,6 +27,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public IActionResult Create()
         {
+            if (_context.ChooseRestaurants.Count() == 6) return BadRequest();
             return View();
         }
         [HttpPost]

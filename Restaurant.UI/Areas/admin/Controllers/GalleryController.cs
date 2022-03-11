@@ -32,6 +32,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public IActionResult Create()
         {
+            if (_context.RestaurantPhotos.Count() == 8) return BadRequest();
             return View();
         }
         [HttpPost]

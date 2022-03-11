@@ -28,7 +28,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public async Task<IActionResult> Create()
         {
-            if (_context.Specials.Count() >= 5)
+            if (_context.Specials.Count() == 5)
             {
                 return BadRequest();
             }
