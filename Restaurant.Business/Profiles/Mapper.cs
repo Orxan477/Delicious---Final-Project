@@ -4,6 +4,7 @@ using Restaurant.Business.ViewModels.Home.Choose;
 using Restaurant.Business.ViewModels.Home.Feedback;
 using Restaurant.Business.ViewModels.Home.Gallery;
 using Restaurant.Business.ViewModels.Home.HomeIntro;
+using Restaurant.Business.ViewModels.Home.Special;
 using Restaurant.Business.ViewModels.Menu;
 using Restaurant.Business.ViewModels.Position;
 using Restaurant.Business.ViewModels.Team;
@@ -28,6 +29,7 @@ namespace Restaurant.Business.Profiles
             CreateMap<ChooseRestaurant, ChooseUpdateVM>();
             CreateMap<RestaurantPhotos, UpdateRestaurantPhotoVM>();
             CreateMap<Feedback, UpdateFeedbackVM>();
+            CreateMap<Special, CreateUpdateSpecialVM>();
         }
     }
 }
