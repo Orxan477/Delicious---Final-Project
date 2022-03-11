@@ -1,0 +1,60 @@
+﻿@model CreateSpecialVM
+@{
+    ViewData["Title"] = "Create";
+}
+
+@*<div class="container">*@
+<row>
+    <div class="col-md-12 grid-margin stretch-card mt-5">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title"></h4>
+                <form class="forms-sample" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label asp-for="FoodName">Food Name</label>
+                        <input asp-for="FoodName" class="form-control" placeholder="Food Name">
+                        <span class="text-danger" asp-validation-for="FoodName"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PropHead">Tab Head</label>
+                        <textarea asp-for="PropHead" class="form-control" placeholder="Head"></textarea>
+                        <span class="text-danger" asp-validation-for="PropHead"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PropContent">Tab Content</label>
+                        <input asp-for="PropContent" class="form-control" placeholder="Content">
+                        <span class="text-danger" asp-validation-for="PropContent"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PropContentItalic">Tab Italic Content</label>
+                        <input asp-for="PropContentItalic" class="form-control" placeholder="Tab Content Italic">
+                        <span class="text-danger" asp-validation-for="PropContentItalic"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ProductId" class="d-block">Image</label>
+                        <select asp-for="ProductId" asp-items="@ViewBag.Product" class="form-select append-image" id="select-image" aria-label="Default select example">
+                            <span class="text-danger" asp-validation-for="ProductId"></span>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light" asp-action="Index">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</row>
+
+<script>
+    var appendImage=document.querySelector(".append-image");
+    var list= document.getElementById("select-image").children;
+    [...list].forEach((image)=>{
+        appendImage.append(<img src=$"{image.innerHTML}" />)
+    })
+</script>
+
+@section ValidatorScript{
+<partial name="_ValidationScriptsPartial" />
+    }
+@*</div>*@
+

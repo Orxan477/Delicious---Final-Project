@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Special>
+@{
+    ViewData["Title"] = "Index";
+    int n = 1;
+}
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Special</h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Image</th>
+                                <th>Food Name</th>
+                                <th>Info Head</th>
+                                <th>Info Content</th>
+                                <th>Info Content Italic</th>
+                                <th>Setting</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var special in Model)
+                            {
+                                <tr>
+                                    <td>@n</td>
+                                    <th><img src="~/assets/img/@special.MenuImage.Image" /></th>
+                                    <td>@special.FoodName</td>
+                                    <td>@special.PropHead</td>
+                                    <td>@special.PropContent</td>
+                                    <td>@special.PropContentItalic</td>
+                                    <td>
+                                        <a asp-action="Update" class="btn btn-warning" asp-route-id="@special.Id"><i class="mdi mdi-table-edit"></i></a>
+                                        @*<form class="d-inline delete-btn" asp-action="Delete" asp-route-id="@cat.Id" method="post">
+                                            <button type="submit" class="btn btn-danger "><i class="mdi mdi-delete-forever"></i></button>
+                                            </form>*@
+                                        <a asp-action="Delete" class="btn btn-danger delete-btn" asp-route-id="@special.Id"><i class="mdi mdi-delete-forever"></i></a>
+                                    </td>
+                                </tr>
+                                n++;
+                            }
+                        </tbody>
+                        @if (@ViewBag.SpecialCount < 6)
+                        {
+                            <div class="d-flex justify-content-end">
+                                <a asp-area="Admin" asp-controller="Special" asp-action="Create" class="btn btn-success"><i class="fas fa-plus-circle"></i></a>
+                            </div>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section ScriptModal{
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+<script src="~/admin/assets/js/AlertModal.js"></script>
+}
+

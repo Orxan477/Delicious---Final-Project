@@ -227,3 +227,5 @@ D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\obj\Debug\netco
 D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\obj\Debug\netcoreapp3.1\Razor\Areas\admin\Views\Feedback\Index.cshtml.g.cs
 D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\obj\Debug\netcoreapp3.1\Razor\Areas\admin\Views\Feedback\Create.cshtml.g.cs
 D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\obj\Debug\netcoreapp3.1\Razor\Areas\admin\Views\Feedback\Update.cshtml.g.cs
+D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\obj\Debug\netcoreapp3.1\Razor\Areas\admin\Views\Special\Index.cshtml.g.cs
+D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\obj\Debug\netcoreapp3.1\Razor\Areas\admin\Views\Special\Create.cshtml.g.cs

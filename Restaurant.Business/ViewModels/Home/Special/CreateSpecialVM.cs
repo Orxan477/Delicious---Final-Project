@@ -1,15 +1,13 @@
 ﻿using Restaurant.Core.Models;
 
-namespace Restaurant.Core.Models
+namespace Restaurant.Business.ViewModels.Home.Special
 {
-    public class Special
+    public class CreateSpecialVM
     {
-        public int Id { get; set; }
         public string FoodName { get; set; }
         public string PropHead { get; set; }
         public string PropContent { get; set; }
         public string PropContentItalic { get; set; }
-        public int MenuImageId { get; set; }
-        public MenuImage MenuImage { get; set; }
+        public int ProductId { get; set; }
     }
 }
