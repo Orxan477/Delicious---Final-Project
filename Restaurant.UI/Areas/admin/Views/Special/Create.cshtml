@@ -11,19 +11,19 @@
                 <h4 class="card-title"></h4>
                 <form class="forms-sample" method="post">
                     <div class="form-group">
-                        <label asp-for="PropHead">Tab Head</label>
-                        <textarea asp-for="PropHead" class="form-control" placeholder="Head"></textarea>
-                        <span class="text-danger" asp-validation-for="PropHead"></span>
+                        <label asp-for="InformationTabHead">Information Head</label>
+                        <textarea asp-for="InformationTabHead" class="form-control" placeholder="Head"></textarea>
+                        <span class="text-danger" asp-validation-for="InformationTabHead"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="PropContent">Tab Content</label>
-                        <input asp-for="PropContent" class="form-control" placeholder="Content">
-                        <span class="text-danger" asp-validation-for="PropContent"></span>
+                        <label asp-for="InformationTabContent">Information Content</label>
+                        <input asp-for="InformationTabContent" class="form-control" placeholder="Content">
+                        <span class="text-danger" asp-validation-for="InformationTabContent"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="PropContentItalic">Tab Italic Content</label>
-                        <input asp-for="PropContentItalic" class="form-control" placeholder="Tab Content Italic">
-                        <span class="text-danger" asp-validation-for="PropContentItalic"></span>
+                        <label asp-for="InformationTabItalicContent">Italic Content</label>
+                        <input asp-for="InformationTabItalicContent" class="form-control" placeholder="Italic Content">
+                        <span class="text-danger" asp-validation-for="InformationTabItalicContent"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="ProductId" class="d-block">Image</label>
@@ -39,14 +39,6 @@
         </div>
     </div>
 </row>
-
-<script>
-    var appendImage=document.querySelector(".append-image");
-    var list= document.getElementById("select-image").children;
-    [...list].forEach((image)=>{
-        appendImage.append(<img src=$"{image.innerHTML}" />)
-    })
-</script>
 
 @section ValidatorScript{
 <partial name="_ValidationScriptsPartial" />

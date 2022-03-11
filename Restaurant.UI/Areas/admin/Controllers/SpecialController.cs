@@ -25,6 +25,10 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public async Task<IActionResult> Create()
         {
+            if (_context.Specials.Count() >= 5)
+            {
+                return BadRequest();
+            }
             await GetSelectedItemAsync();
             return View();
         }
@@ -33,23 +37,35 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Create(CreateSpecialVM createSpecial)
         {
             if (!ModelState.IsValid) return View();
+            
+            Product dbProduct = await _context.Products.Where(x => !x.IsDeleted && x.Id == createSpecial.ProductId).Include(x=>x.MenuImage).FirstOrDefaultAsync();
+            if (dbProduct is null) return NotFound();
             bool isExistFoodName=_context.Specials.Any(x=>x.FoodName.Trim().ToLower()==
-                                                                    createSpecial.FoodName.ToLower());
+                                                                    dbProduct.Name.ToLower().Trim());
             if (isExistFoodName)
             {
                 ModelState.AddModelError("FoodName", "Information about this product is available");
                 return View(createSpecial);
             }
-            Product dbProduct = await _context.Products.Where(x => !x.IsDeleted && x.Id == createSpecial.ProductId).Include(x=>x.MenuImage).FirstOrDefaultAsync();
             Special special = new Special
             {
                 FoodName = dbProduct.Name,
-                InformationTabHead = createSpecial.PropHead,
-                InformationTabContent = createSpecial.PropContent,
-                InformationTabItalicContent = createSpecial.PropContentItalic,
+                InformationTabHead = createSpecial.InformationTabHead,
+                InformationTabContent = createSpecial.InformationTabContent,
+                InformationTabItalicContent = createSpecial.InformationTabItalicContent,
                 MenuImageId = dbProduct.MenuImage.Id
             };
             await _context.Specials.AddAsync(special);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+            Special dbSpecial = _context.Specials.Where(x => x.Id == id).FirstOrDefault();
+            if (dbSpecial is null) return NotFound();
+            _context.Specials.Remove(dbSpecial);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
