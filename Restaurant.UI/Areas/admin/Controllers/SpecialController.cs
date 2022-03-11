@@ -43,7 +43,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
             Product dbProduct = await _context.Products.Where(x => !x.IsDeleted && x.Id == createSpecial.ProductId).Include(x=>x.MenuImage).FirstOrDefaultAsync();
             Special special = new Special
             {
-                FoodName = createSpecial.FoodName,
+                FoodName = dbProduct.Name,
                 PropHead = createSpecial.PropHead,
                 PropContent = createSpecial.PropContent,
                 PropContentItalic = createSpecial.PropContentItalic,
