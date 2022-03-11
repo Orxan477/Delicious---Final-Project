@@ -44,9 +44,9 @@ namespace Restaurant.UI.Areas.admin.Controllers
             Special special = new Special
             {
                 FoodName = dbProduct.Name,
-                PropHead = createSpecial.PropHead,
-                PropContent = createSpecial.PropContent,
-                PropContentItalic = createSpecial.PropContentItalic,
+                InformationTabHead = createSpecial.PropHead,
+                InformationTabContent = createSpecial.PropContent,
+                InformationTabItalicContent = createSpecial.PropContentItalic,
                 MenuImageId = dbProduct.MenuImage.Id
             };
             await _context.Specials.AddAsync(special);
