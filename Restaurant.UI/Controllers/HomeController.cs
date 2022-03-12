@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
+using Restaurant.Business.Services;
 using Restaurant.Business.ViewModels;
 using Restaurant.Business.ViewModels.Home;
 using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Restaurant.UI.Controllers
@@ -13,13 +15,29 @@ namespace Restaurant.UI.Controllers
     public class HomeController : Controller
     {
         private AppDbContext _context;
+        private SettingServices _settingServices;
 
-        public HomeController(AppDbContext context)
+        public HomeController(AppDbContext context,
+                              SettingServices settingServices)
         {
             _context = context;
+            _settingServices = settingServices;
+        }
+        private string GetSetting(string key)
+        {
+            Dictionary<string, string> Settings = _settingServices.GetSetting();
+            return Settings[$"{key}"];
         }
         public async Task<IActionResult> Index()
         {
+            ViewBag.Adress1 = GetSetting("Adress1");
+            ViewBag.Adress2 = GetSetting("Adress2");
+            ViewBag.ContactUsWork = GetSetting("ContactUsWork");
+            ViewBag.WorkTime = GetSetting("WorkTime");
+            ViewBag.Email1 = GetSetting("Email1");
+            ViewBag.Email2 = GetSetting("Email2");
+            ViewBag.Phone1 = GetSetting("Phone1");
+            ViewBag.Phone2 = GetSetting("Phone2");
             HomeVM homeVM = new HomeVM
             {
                 HomeIntro=await _context.HomeIntros.ToListAsync(),

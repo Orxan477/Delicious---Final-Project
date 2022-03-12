@@ -1,10 +1,11 @@
 ﻿@model IEnumerable<Setting>
 @{
     ViewData["Title"] = "Index";
+    int n = 1;
 }
 
 <div class="row">
-    <div class="col-lg-6 grid-margin stretch-card">
+    <div class="col-lg-8 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Setting</h4>
@@ -12,6 +13,7 @@
                     <table class="table">
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>Key</th>
                                 <th>Value</th>
                                 <th>Setting</th>
@@ -21,6 +23,7 @@
                             @foreach (var item in Model)
                             {
                             <tr>
+                                <td>@n</td>
                                 <td>@item.Key</td>
 
                                 <td>@item.Value</td>
@@ -29,7 +32,8 @@
                                         Update
                                     </a>
                                 </td>
-                            </tr>
+                                </tr>
+                                n++;
                             }
                         </tbody>
                     </table>

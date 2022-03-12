@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Restaurant.Business.Services;
 using Restaurant.Business.ViewModels.Menu;
 using Restaurant.Data.DAL;
 using System.Collections.Generic;
@@ -10,14 +11,24 @@ namespace Restaurant.UI.ViewComponents
     public class HeaderViewComponent:ViewComponent
     {
         private AppDbContext _context;
+        private SettingServices _settingServices;
 
-        public HeaderViewComponent(AppDbContext context)
+        public HeaderViewComponent(AppDbContext context,
+                                   SettingServices settingServices)
         {
             _context = context;
+            _settingServices = settingServices;
+        }
+        private string GetSetting(string key)
+        {
+            Dictionary<string, string> Settings = _settingServices.GetSetting();
+            return Settings[$"{key}"];
         }
         public IViewComponentResult Invoke()
         {
-            
+            ViewBag.Phone1 = GetSetting("Phone1");
+            ViewBag.NavbarWork = GetSetting("NavbarWork");
+            ViewBag.WorkTime = GetSetting("WorkTime");
             ViewBag.basketCount = BasketCount();
             return View();
         }
