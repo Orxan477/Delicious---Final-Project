@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Restaurant.Business.ViewModels.Menu;
 using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
