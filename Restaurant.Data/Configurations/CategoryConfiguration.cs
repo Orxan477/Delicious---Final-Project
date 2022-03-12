@@ -9,6 +9,7 @@ namespace Restaurant.Data.Configurations
         public void Configure(EntityTypeBuilder<Category> builder)
         {
             builder.Property(x => x.Name).IsRequired();
+            builder.Property(x => x.IsDeleted).HasDefaultValue(false);
         }
     }
 }

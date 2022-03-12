@@ -6,5 +6,6 @@
         public string Head { get; set; }
         public string Content { get; set; }
         public string Image { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

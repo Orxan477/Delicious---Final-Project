@@ -9,5 +9,6 @@ namespace Restaurant.Core.Models
         public int Id { get; set; }
         public string CardHead { get; set; }
         public string CardContent { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

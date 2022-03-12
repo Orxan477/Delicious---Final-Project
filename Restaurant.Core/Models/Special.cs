@@ -11,5 +11,6 @@ namespace Restaurant.Core.Models
         public string InformationTabItalicContent { get; set; }
         public int MenuImageId { get; set; }
         public MenuImage MenuImage { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

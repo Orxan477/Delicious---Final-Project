@@ -12,6 +12,7 @@ namespace Restaurant.Data.Configurations
             builder.Property(x=>x.InformationTabHead).HasMaxLength(100).IsRequired();
             builder.Property(x => x.InformationTabContent).HasMaxLength(500).IsRequired();
             builder.Property(x => x.InformationTabItalicContent).HasMaxLength(255).IsRequired();
+            builder.Property(x => x.IsDeleted).HasDefaultValue(false);
         }
     }
 }
