@@ -4,10 +4,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Restaurant.Business.Services;
 using Restaurant.Business.Utilities;
 using Restaurant.Business.ViewModels.Home.Feedback;
 using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,13 +21,24 @@ namespace Restaurant.UI.Areas.admin.Controllers
         private AppDbContext _context;
         private IWebHostEnvironment _env;
         private IMapper _mapper;
+        private SettingServices _settingServices;
         private string _errorMessage;
 
-        public FeedbackController(AppDbContext context, IWebHostEnvironment env,IMapper mapper)
+        public FeedbackController(AppDbContext context,
+                                  IWebHostEnvironment env,
+                                  IMapper mapper,
+                                  SettingServices settingServices)
         {
             _context = context;
             _env = env;
             _mapper = mapper;
+            _settingServices = settingServices;
+        }
+        private int GetSetting(string key)
+        {
+            Dictionary<string, string> Settings = _settingServices.GetSetting();
+            string value= Settings[$"{key}"];
+            return int.Parse(value);
         }
         public IActionResult Index()
         {
@@ -41,7 +54,8 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Create(CreateFeedbackVM createFeedback)
         {
             if (!ModelState.IsValid) return View();
-            if (!CheckImageValid(createFeedback.Photo, "image/", 200))
+            int size = GetSetting("PhotoSize");
+            if (!CheckImageValid(createFeedback.Photo, "image/", size))
             {
                 ModelState.AddModelError("Photo", _errorMessage);
                 return View(createFeedback);
@@ -67,7 +81,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         {
             if (!Extension.CheckSize(file, size))
             {
-                _errorMessage = "The size of this photo is 200";
+                _errorMessage = $"The size of this photo is {size}";
                 return false;
             }
             if (!Extension.CheckType(file, type))
@@ -108,7 +122,8 @@ namespace Restaurant.UI.Areas.admin.Controllers
             }
             if (updateFeedback.Photo != null)
             {
-                if (!CheckImageValid(updateFeedback.Photo, "image/", 200))
+                int size = GetSetting("PhotoSize");
+                if (!CheckImageValid(updateFeedback.Photo, "image/", size))
                 {
                     ModelState.AddModelError("Photo", _errorMessage);
                     return View(updateFeedback);

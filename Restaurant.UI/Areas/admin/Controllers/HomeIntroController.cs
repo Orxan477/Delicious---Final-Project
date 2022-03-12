@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Restaurant.Business.Services;
 using Restaurant.Business.Utilities;
 using Restaurant.Business.ViewModels.Home.HomeIntro;
 using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,12 +20,23 @@ namespace Restaurant.UI.Areas.admin.Controllers
         private IMapper _mapper;
         private string _errorMessage;
         private IWebHostEnvironment _env;
+        private SettingServices _settingServices;
 
-        public HomeIntroController(AppDbContext context, IMapper mapper, IWebHostEnvironment env)
+        public HomeIntroController(AppDbContext context,
+                                   IMapper mapper,
+                                   IWebHostEnvironment env,
+                                   SettingServices settingServices)
         {
             _context = context;
             _mapper = mapper;
             _env = env;
+            _settingServices = settingServices;
+        }
+        private int GetSetting(string key)
+        {
+            Dictionary<string, string> Settings = _settingServices.GetSetting();
+            string value = Settings[$"{key}"];
+            return int.Parse(value);
         }
         public IActionResult Index()
         {
@@ -38,7 +51,8 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Create(HomeIntroCreateVM homeIntroCreate)
         {
             if (!ModelState.IsValid) return View();
-            if (!CheckImageValid(homeIntroCreate.Photo, "image/", 200))
+            int size = GetSetting("PhotoSize"); 
+            if (!CheckImageValid(homeIntroCreate.Photo, "image/", size))
             {
                 ModelState.AddModelError("Photo", _errorMessage);
                 return View(homeIntroCreate);
@@ -58,7 +72,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         {
             if (!Extension.CheckSize(file, size))
             {
-                _errorMessage = "The size of this photo is 200";
+                _errorMessage = $"The size of this photo is {size}";
                 return false;
             }
             if (!Extension.CheckType(file, type))
@@ -93,7 +107,8 @@ namespace Restaurant.UI.Areas.admin.Controllers
             }
             if (homeIntroUpdate.Photo != null)
             {
-                if (!CheckImageValid(homeIntroUpdate.Photo, "image/", 200))
+                int size = GetSetting("PhotoSize");
+                if (!CheckImageValid(homeIntroUpdate.Photo, "image/", size))
                 {
                     ModelState.AddModelError("Photo", _errorMessage);
                     return View(homeIntroUpdate);

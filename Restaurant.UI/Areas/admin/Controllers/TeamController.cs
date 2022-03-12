@@ -4,10 +4,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Restaurant.Business.Services;
 using Restaurant.Business.Utilities;
 using Restaurant.Business.ViewModels.Team;
 using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,14 +22,23 @@ namespace Restaurant.UI.Areas.admin.Controllers
         private IMapper _mapper;
         private string _errorMessage;
         private IWebHostEnvironment _env;
+        private SettingServices _settingServices;
 
         public TeamController(AppDbContext context,
                               IWebHostEnvironment env,
-                              IMapper mapper)
+                              IMapper mapper,
+                              SettingServices settingServices)
         {
             _context = context;
             _mapper = mapper;
             _env = env;
+            _settingServices = settingServices;
+        }
+        private int GetSetting(string key)
+        {
+            Dictionary<string, string> Settings = _settingServices.GetSetting();
+            string value = Settings[$"{key}"];
+            return int.Parse(value);
         }
         public IActionResult Index()
         {
@@ -45,7 +56,8 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Create(TeamCreateVM teamCreate)
         {
             if (!ModelState.IsValid) return View();
-            if (!CheckImageValid(teamCreate.Photo, "image/", 200))
+            int size = GetSetting("PhotoSize");
+            if (!CheckImageValid(teamCreate.Photo, "image/", size))
             {
                 ModelState.AddModelError("Photo", _errorMessage);
                 return View(teamCreate);
@@ -65,7 +77,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         {
             if (!Extension.CheckSize(file, size))
             {
-                _errorMessage = "The size of this photo is 200";
+                _errorMessage = $"The size of this photo is {size}";
                 return false;
             }
             if (!Extension.CheckType(file, type))
@@ -101,7 +113,8 @@ namespace Restaurant.UI.Areas.admin.Controllers
             }
             if (updateTeam.Photo != null)
             {
-                if (!CheckImageValid(updateTeam.Photo, "image/", 200))
+                int size = GetSetting("PhotoSize");
+                if (!CheckImageValid(updateTeam.Photo, "image/", size))
                 {
                     ModelState.AddModelError("Photo", _errorMessage);
                     return View(updateTeam);

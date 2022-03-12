@@ -16,6 +16,5 @@ namespace Restaurant.Business.Services
         {
             return _context.Settings.AsEnumerable().ToDictionary(p => p.Key, p => p.Value);
         }
-
     }
 }
