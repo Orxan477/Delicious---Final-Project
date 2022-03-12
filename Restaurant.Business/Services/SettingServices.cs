@@ -1,10 +1,19 @@
-﻿using System;
+﻿using Restaurant.Data.DAL;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Restaurant.Business.Services
 {
-    internal class SettingServices
+    public class SettingServices
     {
+        private AppDbContext _context;
+
+        public SettingServices(AppDbContext context)
+        {
+            _context = context;
+        }
+        //public Dictionary<string, string> GetSetting()
+        //{
+        //    return _context.Settings.AsEnumerable().ToDictionary(p => p.Key, p => p.Value);
+        //}
     }
 }
