@@ -33,7 +33,7 @@ namespace Restaurant.UI.Controllers
             ViewBag.ReservationCountDb = _context.Reservations.Where(x => !x.IsCheck && !x.IsClose).Count();
             return View();
         }
-        [HttpPut]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ReservationTable(ReservationVM reservationVM)
         {
