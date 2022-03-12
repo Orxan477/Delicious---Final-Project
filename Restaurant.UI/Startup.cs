@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Restaurant.Business.Profiles;
+using Restaurant.Business.Services;
 using Restaurant.Business.Validators.Home;
 using Restaurant.Data.DAL;
 
@@ -23,6 +24,7 @@ namespace Restaurant.UI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<SettingServices>();
             services.AddControllersWithViews();
 
             services.AddMapperService();

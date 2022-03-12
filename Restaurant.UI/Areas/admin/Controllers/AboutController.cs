@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Restaurant.Business.Services;
 using Restaurant.Business.Utilities;
 using Restaurant.Business.ViewModels.Home.About;
 using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,13 +19,23 @@ namespace Restaurant.UI.Areas.admin.Controllers
         private AppDbContext _context;
         private IMapper _mapper;
         private IWebHostEnvironment _env;
+        private SettingServices _settingservices;
         private string _errorMessage;
 
-        public AboutController(AppDbContext context,IMapper mapper, IWebHostEnvironment env)
+        public AboutController(AppDbContext context,
+                               IMapper mapper,
+                               IWebHostEnvironment env,
+                               SettingServices settingServices)
         {
             _context = context;
             _mapper = mapper;
             _env = env;
+            _settingservices = settingServices;
+        }
+        private string GetSetting(string key)
+        {
+            Dictionary<string, string> Settings = _settingservices.GetSetting();
+            return Settings[$"{key}"];
         }
         public IActionResult Index()
         {
@@ -69,7 +81,9 @@ namespace Restaurant.UI.Areas.admin.Controllers
             }
             if (aboutUpdate.Photo != null)
             {
-                if (!CheckImageValid(aboutUpdate.Photo, "image/", 200))
+                string value=GetSetting("PhotoSize");
+                int size= int.Parse(value);
+                if (!CheckImageValid(aboutUpdate.Photo, "image/", size))
                 {
                     ModelState.AddModelError("Photo", _errorMessage);
                     return View(aboutUpdate);

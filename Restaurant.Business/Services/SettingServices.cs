@@ -1,5 +1,6 @@
 ﻿using Restaurant.Data.DAL;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Restaurant.Business.Services
 {
@@ -11,9 +12,10 @@ namespace Restaurant.Business.Services
         {
             _context = context;
         }
-        //public Dictionary<string, string> GetSetting()
-        //{
-        //    return _context.Settings.AsEnumerable().ToDictionary(p => p.Key, p => p.Value);
-        //}
+        public Dictionary<string, string> GetSetting()
+        {
+            return _context.Settings.AsEnumerable().ToDictionary(p => p.Key, p => p.Value);
+        }
+
     }
 }
