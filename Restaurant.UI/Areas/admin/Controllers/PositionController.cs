@@ -22,7 +22,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public IActionResult Index()
         {
-            return View(_context.Positions.ToList());
+            return View(_context.Positions.Where(x => !x.IsDeleted).ToList());
         }
         public IActionResult Create()
         {
@@ -46,7 +46,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public IActionResult Update(int id)
         {
-            Position dbPosition = _context.Positions.Where(x => x.Id == id).FirstOrDefault();
+            Position dbPosition = _context.Positions.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
             if (dbPosition is null) return NotFound();
             UpdatePositionVM position = _mapper.Map<UpdatePositionVM>(dbPosition);
             return View(position);
@@ -56,7 +56,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Update(int id, UpdatePositionVM updatePosition)
         {
             if (!ModelState.IsValid) return View();
-            Position dbPosition = _context.Positions.Where(x => x.Id == id).FirstOrDefault();
+            Position dbPosition = _context.Positions.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
             bool isCurrentName = dbPosition.Name.Trim().ToLower() == updatePosition.Name.ToLower().Trim();
             bool nameContext = _context.Categories.Any(x => x.Name == updatePosition.Name);
             if (nameContext && !isCurrentName)
@@ -77,7 +77,8 @@ namespace Restaurant.UI.Areas.admin.Controllers
         {
             Position dbPosition = _context.Positions.Where(x => x.Id == id).FirstOrDefault();
             if (dbPosition is null) return NotFound();
-            _context.Positions.Remove(dbPosition);
+            //_context.Positions.Remove(dbPosition);
+            dbPosition.IsDeleted = true;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

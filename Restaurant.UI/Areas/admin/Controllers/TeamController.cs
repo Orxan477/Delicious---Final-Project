@@ -47,6 +47,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
             int count = GetSetting("TakeCount");
             ViewBag.TakeCount = count;
             var team = _context.Teams
+                               .Where(x => !x.IsDeleted)
                                .Skip((page - 1) * count)
                                .Take(count)
                                .Include(x => x.Position)
@@ -58,7 +59,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         private int GetPageCount(int take)
         {
-            var prodCount = _context.Teams.Count();
+            var prodCount = _context.Teams.Where(x => !x.IsDeleted).Count();
             return (int)Math.Ceiling((decimal)prodCount / take);
         }
         private List<TeamListVM> GetProductList(List<Team> teams)
@@ -121,7 +122,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public async Task<IActionResult> Update(int id)
         {
-            Team dbTeam = _context.Teams.Where(x => x.Id == id).FirstOrDefault();
+            Team dbTeam = _context.Teams.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
             if (dbTeam is null) return NotFound();
             UpdateTeamVM team = _mapper.Map<UpdateTeamVM>(dbTeam);
             await GetSelectedItemAsync();
@@ -132,7 +133,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Update(int id, UpdateTeamVM updateTeam)
         {
             if (!ModelState.IsValid) return View();
-            Team dbTeam = _context.Teams.Where(x => x.Id == id).FirstOrDefault();
+            Team dbTeam = _context.Teams.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
             bool isCurrentName = dbTeam.FullName.Trim().ToLower() == updateTeam.FullName.ToLower().Trim();
             if (!isCurrentName)
             {
@@ -165,7 +166,8 @@ namespace Restaurant.UI.Areas.admin.Controllers
             Team dbTeam = _context.Teams.Where(x => x.Id == id).FirstOrDefault();
             if (dbTeam is null) return NotFound();
             Helper.RemoveFile(_env.WebRootPath, "assets/img", dbTeam.Image);
-            _context.Teams.Remove(dbTeam);
+            //_context.Teams.Remove(dbTeam);
+            dbTeam.IsDeleted = true;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

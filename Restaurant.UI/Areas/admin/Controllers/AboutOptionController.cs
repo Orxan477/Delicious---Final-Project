@@ -35,10 +35,13 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public IActionResult Index(int page=1)
         {
-            ViewBag.OptionCount = _context.AboutOptions.Count();
+            ViewBag.OptionCount = _context.AboutOptions
+                                          .Where(x => !x.IsDeleted)
+                                          .Count();
             int count = GetSetting("TakeCount");
             ViewBag.TakeCount = count;
             var option = _context.AboutOptions
+                                .Where(x => !x.IsDeleted)
                                 .Skip((page - 1) * count)
                                 .Take(count)
                                 .ToList();
@@ -49,7 +52,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         private int GetPageCount(int take)
         {
-            var prodCount = _context.AboutOptions.Count();
+            var prodCount = _context.AboutOptions.Where(x => !x.IsDeleted).Count();
             return (int)Math.Ceiling((decimal)prodCount / take);
         }
         private List<AboutOptionListVM> GetProductList(List<AboutOption> options)
@@ -68,7 +71,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public IActionResult Create()
         {
-            if (_context.AboutOptions.Count()==3) return BadRequest();
+            if (_context.AboutOptions.Where(x => !x.IsDeleted).Count()==3) return BadRequest();
             return View();
         }
         [HttpPost]
@@ -89,7 +92,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public IActionResult Update(int id)
         {
-            AboutOption dbAboutOption = _context.AboutOptions.Where(x => x.Id == id).FirstOrDefault();
+            AboutOption dbAboutOption = _context.AboutOptions.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
             if (dbAboutOption is null) return NotFound();
             AboutOptionUpdateVM aboutOption = _mapper.Map<AboutOptionUpdateVM>(dbAboutOption);
             return View(aboutOption);
@@ -99,7 +102,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Update(int id, AboutOptionUpdateVM aboutOptionUpdate)
         {
             if (!ModelState.IsValid) return View();
-            AboutOption dbAboutOption = _context.AboutOptions.Where(x => x.Id == id).FirstOrDefault();
+            AboutOption dbAboutOption = _context.AboutOptions.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
             bool isCurrentName = dbAboutOption.Option.Trim().ToLower() == aboutOptionUpdate.Option.ToLower().Trim();
             bool nameContext = _context.AboutOptions.Any(x => x.Option.Trim().ToLower() == aboutOptionUpdate.Option.Trim().ToLower());
             if (nameContext && !isCurrentName)
@@ -120,7 +123,8 @@ namespace Restaurant.UI.Areas.admin.Controllers
         {
             AboutOption dbAboutOption = _context.AboutOptions.Where(x => x.Id == id).FirstOrDefault();
             if (dbAboutOption is null) return NotFound();
-            _context.AboutOptions.Remove(dbAboutOption);
+            //_context.AboutOptions.Remove(dbAboutOption);
+            dbAboutOption.IsDeleted = true;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

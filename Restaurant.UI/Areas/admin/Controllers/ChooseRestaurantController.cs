@@ -22,12 +22,12 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public IActionResult Index()
         {
-            ViewBag.ChooseCount = _context.ChooseRestaurants.Count();
-            return View(_context.ChooseRestaurants.ToList());
+            ViewBag.ChooseCount = _context.ChooseRestaurants.Where(x => !x.IsDeleted).Count();
+            return View(_context.ChooseRestaurants.Where(x => !x.IsDeleted).ToList());
         }
         public IActionResult Create()
         {
-            if (_context.ChooseRestaurants.Count() == 6) return BadRequest();
+            if (_context.ChooseRestaurants.Where(x => !x.IsDeleted).Count() == 6) return BadRequest();
             return View();
         }
         [HttpPost]
@@ -56,7 +56,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public IActionResult Update(int id)
         {
-            ChooseRestaurant dbChooseRestaurant = _context.ChooseRestaurants.Where(x => x.Id == id).FirstOrDefault();
+            ChooseRestaurant dbChooseRestaurant = _context.ChooseRestaurants.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
             if (dbChooseRestaurant is null) return NotFound();
             ChooseUpdateVM restaurant = _mapper.Map<ChooseUpdateVM>(dbChooseRestaurant);
             return View(restaurant);
@@ -66,7 +66,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Update(int id, ChooseUpdateVM chooseUpdate)
         {
             if (!ModelState.IsValid) return View();
-            ChooseRestaurant dbChooseRestaurant = _context.ChooseRestaurants.Where(x => x.Id == id).FirstOrDefault();
+            ChooseRestaurant dbChooseRestaurant = _context.ChooseRestaurants.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
             bool isCurrentName = dbChooseRestaurant.CardHead.Trim().ToLower() == chooseUpdate.CardHead.ToLower().Trim();
             bool nameContext = _context.ChooseRestaurants.Any(x => x.CardHead == chooseUpdate.CardHead);
             if (nameContext && !isCurrentName)
@@ -99,7 +99,8 @@ namespace Restaurant.UI.Areas.admin.Controllers
         {
             ChooseRestaurant dbChooseRestaurant = _context.ChooseRestaurants.Where(x => x.Id == id).FirstOrDefault();
             if (dbChooseRestaurant is null) return NotFound();
-            _context.ChooseRestaurants.Remove(dbChooseRestaurant);
+            //_context.ChooseRestaurants.Remove(dbChooseRestaurant);
+            dbChooseRestaurant.IsDeleted = true;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

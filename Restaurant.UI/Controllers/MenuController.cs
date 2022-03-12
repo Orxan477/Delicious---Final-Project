@@ -28,13 +28,16 @@ namespace Restaurant.UI.Controllers
             {
                 MenuVM = new MenuVM
                 {
-                    Products = await _context.Products.Where(x => !x.IsDeleted)
+                    Products = await _context.Products
+                                    .Where(x => !x.IsDeleted)
                                     .Include(x => x.MenuImage)
                                     .Include(x => x.Category)
                                     .OrderByDescending(p => p.Id)
-                                    //.Take(2)
                                     .ToListAsync(),
-                    Categories = await _context.Categories.ToListAsync(),
+
+                    Categories = await _context.Categories
+                                               .Where(x => !x.IsDeleted)
+                                               .ToListAsync(),
                 }
             };
             return View(vm);

@@ -45,6 +45,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
             int count = GetSetting("TakeCount");
             ViewBag.TakeCount = count;
             var intro=_context.HomeIntros
+                                .Where(x => !x.IsDeleted)
                                 .Skip((page - 1) * count)
                                 .Take(count)
                                 .ToList();
@@ -55,7 +56,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         private int GetPageCount(int take)
         {
-            var prodCount = _context.HomeIntros.Count();
+            var prodCount = _context.HomeIntros.Where(x => !x.IsDeleted).Count();
             return (int)Math.Ceiling((decimal)prodCount / take);
         }
         private List<IntroListVM> GetProductList(List<HomeIntro> intros)
@@ -116,7 +117,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public IActionResult Update(int id)
         {
-            HomeIntro dbHomeIntro = _context.HomeIntros.Where(x => x.Id == id).FirstOrDefault();
+            HomeIntro dbHomeIntro = _context.HomeIntros.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
             if (dbHomeIntro is null) return NotFound();
             HomeIntroUpdateVM homeIntro = _mapper.Map<HomeIntroUpdateVM>(dbHomeIntro);
             return View(homeIntro);
@@ -126,7 +127,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Update(int id, HomeIntroUpdateVM homeIntroUpdate)
         {
             if (!ModelState.IsValid) return View();
-            HomeIntro dbHomeIntro = _context.HomeIntros.Where(x => x.Id == id).FirstOrDefault();
+            HomeIntro dbHomeIntro = _context.HomeIntros.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
             bool isCurrentHead = dbHomeIntro.Head.Trim().ToLower() == homeIntroUpdate.Head.ToLower().Trim();
             if (!isCurrentHead)
             {
@@ -159,7 +160,8 @@ namespace Restaurant.UI.Areas.admin.Controllers
             HomeIntro dbHomeIntro = _context.HomeIntros.Where(x => x.Id == id).FirstOrDefault();
             if (dbHomeIntro is null) return NotFound();
             Helper.RemoveFile(_env.WebRootPath, "assets/img", dbHomeIntro.Image);
-            _context.HomeIntros.Remove(dbHomeIntro);
+            //_context.HomeIntros.Remove(dbHomeIntro);
+            dbHomeIntro.IsDeleted = true;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

@@ -8,6 +8,7 @@ using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Restaurant.UI.Controllers
@@ -40,17 +41,32 @@ namespace Restaurant.UI.Controllers
             ViewBag.Phone2 = GetSetting("Phone2");
             HomeVM homeVM = new HomeVM
             {
-                HomeIntro=await _context.HomeIntros.ToListAsync(),
-                About=await _context.Abouts.FirstOrDefaultAsync(),
-                AboutOptions=await _context.AboutOptions.ToListAsync(),
+                HomeIntro=await _context.HomeIntros
+                                        .Where(x=>!x.IsDeleted)
+                                        .ToListAsync(),
+
+                About=await _context.Abouts
+                                    .FirstOrDefaultAsync(),
+
+                AboutOptions=await _context.AboutOptions
+                                           .Where(x => !x.IsDeleted)
+                                           .ToListAsync(),
+
                 Specials=await _context.Specials
+                                       .Where(x => !x.IsDeleted)
                                        .Include(x=>x.MenuImage)
                                        .ToListAsync(),
+
                 RestaurantsPhotos=await _context.RestaurantPhotos.ToListAsync(),
+
                 Feedbacks=await _context.Feedbacks
+                                        .Where(x => !x.IsDeleted)
                                         .Include(x=>x.Position)
                                         .ToListAsync(),
-                ChooseRestaurants=await _context.ChooseRestaurants.ToListAsync(),
+
+                ChooseRestaurants=await _context.ChooseRestaurants
+                                                .Where(x => !x.IsDeleted)
+                                                .ToListAsync(),
             };
             return View(homeVM);
         }

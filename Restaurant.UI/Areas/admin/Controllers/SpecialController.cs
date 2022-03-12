@@ -23,12 +23,12 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public IActionResult Index()
         {
-            ViewBag.SpecialCount=_context.Specials.Count();
-            return View(_context.Specials.Include(x => x.MenuImage).ToList());
+            ViewBag.SpecialCount=_context.Specials.Where(x => !x.IsDeleted).Count();
+            return View(_context.Specials.Where(x => !x.IsDeleted).Include(x => x.MenuImage).ToList());
         }
         public async Task<IActionResult> Create()
         {
-            if (_context.Specials.Count() == 5)
+            if (_context.Specials.Where(x => !x.IsDeleted).Count() == 5)
             {
                 return BadRequest();
             }
@@ -64,7 +64,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public async Task<IActionResult> Update(int id)
         {
-            Special dbSpecial = _context.Specials.Where(x => x.Id == id).FirstOrDefault();
+            Special dbSpecial = _context.Specials.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
             if (dbSpecial is null) return NotFound();
             CreateUpdateSpecialVM position = _mapper.Map<CreateUpdateSpecialVM>(dbSpecial);
             await GetSelectedItemAsync();
@@ -75,7 +75,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Update(int id, CreateUpdateSpecialVM updateSpecialVM)
         {
             if (!ModelState.IsValid) return View();
-            Special dbSpecial = _context.Specials.Where(x => x.Id == id).FirstOrDefault();
+            Special dbSpecial = _context.Specials.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
             Product dbProduct = await _context.Products.Where(x => !x.IsDeleted && x.Id == updateSpecialVM.ProductId)
                                                                             .Include(x => x.MenuImage).FirstOrDefaultAsync();
             if (dbProduct is null) return NotFound();
@@ -114,7 +114,8 @@ namespace Restaurant.UI.Areas.admin.Controllers
         {
             Special dbSpecial = _context.Specials.Where(x => x.Id == id).FirstOrDefault();
             if (dbSpecial is null) return NotFound();
-            _context.Specials.Remove(dbSpecial);
+            //_context.Specials.Remove(dbSpecial);
+            dbSpecial.IsDeleted = true;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

@@ -20,7 +20,10 @@ namespace Restaurant.UI.Controllers
         {
             HomeVM vm = new HomeVM
             {
-                Teams = _context.Teams.Include(x=>x.Position).ToList(),
+                Teams = _context.Teams
+                                .Where(x => !x.IsDeleted)
+                                .Include(x=>x.Position)
+                                .ToList(),
             };
             return View(vm);
         }

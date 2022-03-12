@@ -22,7 +22,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public IActionResult Index()
         {
-            return View(_context.Categories.ToList());
+            return View(_context.Categories.Where(x => !x.IsDeleted).ToList());
         }
         public IActionResult Create()
         {
@@ -33,7 +33,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Create(CategoryCreateVM categoryCreate)
         {
             if (!ModelState.IsValid) return View();
-            bool name = _context.Categories.Any(x=>x.Name==categoryCreate.Name);
+            bool name = _context.Categories.Any(x=>x.Name==categoryCreate.Name && !x.IsDeleted);
             if (name)
             {
                 ModelState.AddModelError("Name", "This Product Name is available");
@@ -46,7 +46,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public IActionResult Update(int id)
         {
-            Category dbCategory = _context.Categories.Where(x => x.Id == id).FirstOrDefault();
+            Category dbCategory = _context.Categories.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
             if (dbCategory is null) return NotFound();
             UpdateCategoryVM category = _mapper.Map<UpdateCategoryVM>(dbCategory);
             return View(category);
@@ -56,7 +56,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Update(int id, UpdateCategoryVM updateCategory)
         {
             if (!ModelState.IsValid) return View();
-            Category dbCategory = _context.Categories.Where(x => x.Id == id).FirstOrDefault();
+            Category dbCategory = _context.Categories.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
             bool isCurrentName = dbCategory.Name.Trim().ToLower() == updateCategory.Name.ToLower().Trim();
             bool nameContext = _context.Categories.Any(x => x.Name == updateCategory.Name);
             if (nameContext && !isCurrentName)
@@ -77,7 +77,8 @@ namespace Restaurant.UI.Areas.admin.Controllers
         {
             Category dbCategory = _context.Categories.Where(x => x.Id == id).FirstOrDefault();
             if (dbCategory is null) return NotFound();
-            _context.Categories.Remove(dbCategory);
+            //_context.Categories.Remove(dbCategory);
+            dbCategory.IsDeleted = true;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
