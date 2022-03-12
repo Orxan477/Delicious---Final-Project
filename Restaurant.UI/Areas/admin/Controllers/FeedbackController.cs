@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Business.Services;
 using Restaurant.Business.Utilities;
+using Restaurant.Business.ViewModels;
 using Restaurant.Business.ViewModels.Home.Feedback;
 using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -40,9 +42,41 @@ namespace Restaurant.UI.Areas.admin.Controllers
             string value= Settings[$"{key}"];
             return int.Parse(value);
         }
-        public IActionResult Index()
+        public IActionResult Index(int page =1)
         {
-            return View(_context.Feedbacks.Include(x=>x.Position).ToList());
+            int count = GetSetting("TakeCount");
+            ViewBag.TakeCount = count;
+            var feedbacks = _context.Feedbacks
+                                .Skip((page - 1) * count)
+                                .Take(count)
+                                .Include(x => x.Position)
+                                .ToList();
+            var feedbackVM = GetProductList(feedbacks);
+            int pageCount = GetPageCount(count);
+            Paginate<FeedbackListVM> model = new Paginate<FeedbackListVM>(feedbackVM, page, pageCount);
+            return View();
+        }
+        private int GetPageCount(int take)
+        {
+            var prodCount = _context.Feedbacks.Count();
+            return (int)Math.Ceiling((decimal)prodCount / take);
+        }
+        private List<FeedbackListVM> GetProductList(List<Feedback> feedbacks)
+        {
+            List<FeedbackListVM> model = new List<FeedbackListVM>();
+            foreach (var item in feedbacks)
+            {
+                var product = new FeedbackListVM
+                {
+                    Id = item.Id,
+                    FullName=item.FullName,
+                    Comment=item.Comment,
+                    Position=item.Position.Name,
+                    Image = item.Image,
+                };
+                model.Add(product);
+            }
+            return model;
         }
         public async Task<IActionResult> Create()
         {

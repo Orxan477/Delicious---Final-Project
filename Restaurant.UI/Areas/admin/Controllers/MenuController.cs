@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Business.Services;
 using Restaurant.Business.Utilities;
+using Restaurant.Business.ViewModels;
 using Restaurant.Business.ViewModels.Menu;
 using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -40,9 +42,43 @@ namespace Restaurant.UI.Areas.admin.Controllers
             string value = Settings[$"{key}"];
             return int.Parse(value);
         }
-        public IActionResult Index()
+        public IActionResult Index(int page=1)
         {
-            return View(_context.Products.Include(x => x.MenuImage).Include(x => x.Category).ToList());
+            int count= GetSetting("TakeCount");
+            ViewBag.TakeCount = count;
+           var products=_context.Products
+                                .Skip((page - 1) * count)
+                                .Take(count)
+                                .Include(x => x.MenuImage)
+                                .Include(x => x.Category)
+                                .ToList();
+            var productsVM = GetProductList(products);
+            int pageCount = GetPageCount(count);
+            Paginate<ProductListVM> model = new Paginate<ProductListVM>(productsVM, page, pageCount);
+            return View(model);
+        }
+        private int GetPageCount(int take)
+        {
+            var prodCount = _context.Products.Where(p => !p.IsDeleted).Count();
+            return (int)Math.Ceiling((decimal)prodCount / take);
+        }
+        private List<ProductListVM> GetProductList(List<Product> products)
+        {
+            List<ProductListVM> model = new List<ProductListVM>();
+            foreach (var item in products)
+            {
+                var product = new ProductListVM
+                {
+                    Id = item.Id,
+                    Name = item.Name,
+                    Price = item.Price,
+                    Description=item.Description,
+                    Category = item.Category.Name,
+                    Image = item.MenuImage.Image,
+                };
+                model.Add(product);
+            }
+            return model;
         }
         public async Task<IActionResult> Create()
         {

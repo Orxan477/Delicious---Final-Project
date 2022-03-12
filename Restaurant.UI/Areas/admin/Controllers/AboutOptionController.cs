@@ -1,8 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Restaurant.Business.Services;
+using Restaurant.Business.ViewModels;
 using Restaurant.Business.ViewModels.Home.About;
 using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,16 +17,54 @@ namespace Restaurant.UI.Areas.admin.Controllers
     {
         private AppDbContext _context;
         private IMapper _mapper;
+        private SettingServices _settingServices;
 
-        public AboutOptionController(AppDbContext context, IMapper mapper)
+        public AboutOptionController(AppDbContext context,
+                                     IMapper mapper,
+                                     SettingServices settingServices)
         {
             _context = context;
             _mapper = mapper;
+            _settingServices = settingServices;
         }
-        public IActionResult Index()
+        private int GetSetting(string key)
+        {
+            Dictionary<string, string> Settings = _settingServices.GetSetting();
+            string value = Settings[$"{key}"];
+            return int.Parse(value);
+        }
+        public IActionResult Index(int page=1)
         {
             ViewBag.OptionCount = _context.AboutOptions.Count();
-            return View(_context.AboutOptions.ToList());
+            int count = GetSetting("TakeCount");
+            ViewBag.TakeCount = count;
+            var option = _context.AboutOptions
+                                .Skip((page - 1) * count)
+                                .Take(count)
+                                .ToList();
+            var optionVm = GetProductList(option);
+            int pageCount = GetPageCount(count);
+            Paginate<AboutOptionListVM> model = new Paginate<AboutOptionListVM>(optionVm, page, pageCount);
+            return View(model);
+        }
+        private int GetPageCount(int take)
+        {
+            var prodCount = _context.AboutOptions.Count();
+            return (int)Math.Ceiling((decimal)prodCount / take);
+        }
+        private List<AboutOptionListVM> GetProductList(List<AboutOption> options)
+        {
+            List<AboutOptionListVM> model = new List<AboutOptionListVM>();
+            foreach (var item in options)
+            {
+                var option = new AboutOptionListVM
+                {
+                    Id = item.Id,
+                    Option=item.Option,
+                };
+                model.Add(option);
+            }
+            return model;
         }
         public IActionResult Create()
         {

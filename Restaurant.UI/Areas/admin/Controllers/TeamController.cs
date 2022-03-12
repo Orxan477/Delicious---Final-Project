@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Business.Services;
 using Restaurant.Business.Utilities;
+using Restaurant.Business.ViewModels;
 using Restaurant.Business.ViewModels.Team;
 using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -40,11 +42,41 @@ namespace Restaurant.UI.Areas.admin.Controllers
             string value = Settings[$"{key}"];
             return int.Parse(value);
         }
-        public IActionResult Index()
+        public IActionResult Index(int page=1)
         {
-            return View(_context.Teams
-                                .Include(x => x.Position)
-                                .ToList());
+            int count = GetSetting("TakeCount");
+            ViewBag.TakeCount = count;
+            var team = _context.Teams
+                               .Skip((page - 1) * count)
+                               .Take(count)
+                               .Include(x => x.Position)
+                               .ToList();
+            var teamVM = GetProductList(team);
+            int pageCount = GetPageCount(count);
+            Paginate<TeamListVM> model = new Paginate<TeamListVM>(teamVM, page, pageCount);
+            return View();
+        }
+        private int GetPageCount(int take)
+        {
+            var prodCount = _context.Teams.Count();
+            return (int)Math.Ceiling((decimal)prodCount / take);
+        }
+        private List<TeamListVM> GetProductList(List<Team> teams)
+        {
+            List<TeamListVM> model = new List<TeamListVM>();
+            foreach (var item in teams)
+            {
+                var team = new TeamListVM
+                {
+                    Id = item.Id,
+                    FullName = item.FullName,
+                    About = item.About,
+                    Image = item.Image,
+                    Position=item.Position.Name,
+                };
+                model.Add(team);
+            }
+            return model;
         }
         public async Task<IActionResult> Create()
         {

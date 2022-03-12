@@ -4,9 +4,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Restaurant.Business.Services;
 using Restaurant.Business.Utilities;
+using Restaurant.Business.ViewModels;
 using Restaurant.Business.ViewModels.Home.HomeIntro;
 using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -38,9 +40,39 @@ namespace Restaurant.UI.Areas.admin.Controllers
             string value = Settings[$"{key}"];
             return int.Parse(value);
         }
-        public IActionResult Index()
+        public IActionResult Index(int page=1)
         {
-            return View(_context.HomeIntros.ToList());
+            int count = GetSetting("TakeCount");
+            ViewBag.TakeCount = count;
+            var intro=_context.HomeIntros
+                                .Skip((page - 1) * count)
+                                .Take(count)
+                                .ToList();
+            var introVM = GetProductList(intro);
+            int pageCount = GetPageCount(count);
+            Paginate<IntroListVM> model = new Paginate<IntroListVM>(introVM, page, pageCount);
+            return View(model);
+        }
+        private int GetPageCount(int take)
+        {
+            var prodCount = _context.HomeIntros.Count();
+            return (int)Math.Ceiling((decimal)prodCount / take);
+        }
+        private List<IntroListVM> GetProductList(List<HomeIntro> intros)
+        {
+            List<IntroListVM> model = new List<IntroListVM>();
+            foreach (var item in intros)
+            {
+                var intro = new IntroListVM
+                {
+                    Id = item.Id,
+                    Head=item.Head,
+                    Content=item.Content,
+                    Image=item.Image
+                };
+                model.Add(intro);
+            }
+            return model;
         }
         public IActionResult Create()
         {
