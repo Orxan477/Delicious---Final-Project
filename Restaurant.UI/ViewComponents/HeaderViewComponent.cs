@@ -29,6 +29,7 @@ namespace Restaurant.UI.ViewComponents
             ViewBag.Phone1 = GetSetting("Phone1");
             ViewBag.NavbarWork = GetSetting("NavbarWork");
             ViewBag.WorkTime = GetSetting("WorkTime");
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             ViewBag.basketCount = BasketCount();
             return View();
         }

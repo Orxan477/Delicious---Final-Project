@@ -24,6 +24,7 @@ namespace Restaurant.UI.ViewComponents
             ViewBag.Country = GetSetting("Country");
             ViewBag.Phone1 = GetSetting("Phone1");
             ViewBag.Email1 = GetSetting("Email1");
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View();
         }
     }
