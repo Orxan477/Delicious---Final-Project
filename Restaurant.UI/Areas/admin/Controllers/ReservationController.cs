@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Restaurant.Business.Services;
 using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
     public class ReservationController : Controller
     {
         private AppDbContext _context;
+        private SettingServices _settingServices;
 
         public ReservationController(AppDbContext context)
         {
@@ -17,6 +19,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public IActionResult Index()
         {
+            
             return View(_context.Reservations.Where(x=>!x.IsCheck && !x.IsClose).OrderByDescending(x=>x.Id).ToList());
         }
         [HttpPost]
