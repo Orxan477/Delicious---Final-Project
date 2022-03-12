@@ -40,7 +40,7 @@ namespace Restaurant.UI.Controllers
             int ReservationCountSetting = GetSetting("ReservationCount");
             int ReservationCountDb = _context.Reservations.Where(x => !x.IsCheck && !x.IsClose).Count();
             if (ReservationCountSetting == ReservationCountDb) return BadRequest();
-
+            if (reservationVM.PeopleCount > 10) return BadRequest();
             if (!ModelState.IsValid) return View(nameof(Index));
 
             Reservation reservation = new Reservation
