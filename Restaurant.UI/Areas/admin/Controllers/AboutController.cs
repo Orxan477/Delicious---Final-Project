@@ -83,6 +83,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
             {
                 string value=GetSetting("PhotoSize");
                 int size= int.Parse(value);
+
                 if (!CheckImageValid(aboutUpdate.Photo, "image/", size))
                 {
                     ModelState.AddModelError("Photo", _errorMessage);
@@ -99,7 +100,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         {
             if (!Extension.CheckSize(file, size))
             {
-                _errorMessage = "The size of this photo is 200";
+                _errorMessage = $"The size of this photo is {size}";
                 return false;
             }
             if (!Extension.CheckType(file, type))
