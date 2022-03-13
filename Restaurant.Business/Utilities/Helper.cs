@@ -1,4 +1,6 @@
 ﻿using System.IO;
+using System.Net;
+using System.Net.Mail;
 
 namespace Restaurant.Business.Utilities
 {
@@ -12,5 +14,27 @@ namespace Restaurant.Business.Utilities
                 File.Delete(path);
             }
         }
+    }
+    public static class Email
+    {
+        public static void SendEmail(string fromMail,string password,string toMail,string body, string subject)
+        {
+            using(var client=new SmtpClient("smtp.gmail.com", 587))
+            {
+                client.Credentials = new NetworkCredential(fromMail, password);
+                client.EnableSsl = true;
+                var msg = new MailMessage(fromMail, toMail);
+                msg.Body = body;
+                msg.Subject = subject;
+                msg.IsBodyHtml= true;
+                client.Send(msg);
+            }
+        }
+    }
+    public enum UserRoles
+    {
+        Admin,
+        Member,
+        Moderator
     }
 }

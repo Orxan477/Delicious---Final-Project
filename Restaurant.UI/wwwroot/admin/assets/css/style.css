@@ -20195,12 +20195,24 @@ div.tagsinput {
 /* === Landing screens === */
 /* Auth */
 .auth.login-bg {
-  background: url("../images/auth/Login_bg.jpg");
-  background-size: cover; }
+    background: url("../images/auth/chefs-bg.jpg");
+    background-size: cover;
+}
+    .auth.login-bg::before {
+        position: absolute;
+        content: "";
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: black;
+        opacity: 0.5;
+    }
 
 .auth .login-half-bg {
-  background: url("../images/auth/login-bg.jpg");
-  background-size: cover; }
+    background: url("../images/auth/chefs-bg.jpg");
+    background-size: cover;
+}
 
 .auth.register-half-bg {
   background: url("../images/auth/Login_bg2.jpg");

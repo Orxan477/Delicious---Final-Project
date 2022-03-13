@@ -54,8 +54,15 @@ using Restaurant.Business.ViewModels.Menu;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 7 "D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\Views\_ViewImports.cshtml"
+using Restaurant.Business.ViewModels.Account;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8d4fe46e015734d1668739f0a888fe26c3261704", @"/Views/Shared/_ModalPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c642045ab5facbda06c8a24985111813a93e162a", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"1a265a8357939eaaedc63aa3d0a6938115de1f8a", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared__ModalPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<HomeVM>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("style", new global::Microsoft.AspNetCore.Html.HtmlString("width: 60%;"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -113,7 +120,7 @@ using Restaurant.Business.ViewModels.Menu;
 #line hidden
 #nullable disable
             WriteLiteral("</h5>\r\n                                    </div>\r\n                                    <div class=\"modal-body menu-modal\">\r\n                                        <div class=\"d-flex justify-content-center\">\r\n                                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "8d4fe46e015734d1668739f0a888fe26c32617048426", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "8d4fe46e015734d1668739f0a888fe26c32617048644", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -159,7 +166,7 @@ AddHtmlAttributeValue("", 855, pro.MenuImage.Image, 855, 20, false);
 #line hidden
 #nullable disable
             WriteLiteral("                                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8d4fe46e015734d1668739f0a888fe26c326170411381", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8d4fe46e015734d1668739f0a888fe26c326170411599", async() => {
                 WriteLiteral("Choose Size");
             }
             );
@@ -175,7 +182,7 @@ AddHtmlAttributeValue("", 855, pro.MenuImage.Image, 855, 20, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                                   ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8d4fe46e015734d1668739f0a888fe26c326170412597", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8d4fe46e015734d1668739f0a888fe26c326170412815", async() => {
                 WriteLiteral("Kiçik - ");
 #nullable restore
 #line 27 "D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\Views\Shared\_ModalPartial.cshtml"
@@ -198,7 +205,7 @@ AddHtmlAttributeValue("", 855, pro.MenuImage.Image, 855, 20, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                                   ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8d4fe46e015734d1668739f0a888fe26c326170414082", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8d4fe46e015734d1668739f0a888fe26c326170414300", async() => {
                 WriteLiteral("Orta - ");
 #nullable restore
 #line 28 "D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\Views\Shared\_ModalPartial.cshtml"
@@ -221,7 +228,7 @@ AddHtmlAttributeValue("", 855, pro.MenuImage.Image, 855, 20, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                                   ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8d4fe46e015734d1668739f0a888fe26c326170415575", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8d4fe46e015734d1668739f0a888fe26c326170415793", async() => {
                 WriteLiteral("Böyük - ");
 #nullable restore
 #line 29 "D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\Views\Shared\_ModalPartial.cshtml"
@@ -251,7 +258,7 @@ AddHtmlAttributeValue("", 855, pro.MenuImage.Image, 855, 20, false);
                                         <button type=""button"" class=""btn btn-secondary""
                                             data-dismiss=""modal"" id=""modalClosePartial"">Cancel</button>
                                             ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8d4fe46e015734d1668739f0a888fe26c326170417463", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8d4fe46e015734d1668739f0a888fe26c326170417681", async() => {
                 WriteLiteral("\r\n                                                <button type=\"submit\" class=\"btn btn-warning\">Add to Cart</button>\r\n                                                <input type=\"hidden\" id=\"productCount\"");
                 BeginWriteAttribute("value", " value=\"", 2736, "\"", 2751, 1);
 #nullable restore
