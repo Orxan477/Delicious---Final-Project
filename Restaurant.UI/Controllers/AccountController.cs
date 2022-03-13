@@ -21,6 +21,7 @@ namespace Restaurant.UI.Controllers
         private IConfiguration _configure;
         private IWebHostEnvironment _env;
         private SettingServices _settingServices;
+        private SignInManager<AppUser> _signInManager;
         private RoleManager<IdentityRole> _roleManager;
 
         public AccountController(AppDbContext context,
@@ -28,7 +29,8 @@ namespace Restaurant.UI.Controllers
                                  IConfiguration configure,
                                  IWebHostEnvironment env,
                                  RoleManager<IdentityRole> roleManager,
-                                 SettingServices settingServices)
+                                 SettingServices settingServices,
+                                 SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
             _context = context;
@@ -36,6 +38,7 @@ namespace Restaurant.UI.Controllers
             _env = env;
             _roleManager = roleManager;
             _settingServices = settingServices;
+            _signInManager = signInManager;
         }
         private string GetSetting(string key)
         {
@@ -116,7 +119,43 @@ namespace Restaurant.UI.Controllers
         }
         public IActionResult Login()
         {
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginVM loginVM,string ReturnUrl)
+        {
+            if (!ModelState.IsValid) return View();
+            AppUser user=await _userManager.FindByNameAsync(loginVM.UserName);
+            if(user is null)
+            {
+                ModelState.AddModelError(string.Empty, "Email and Password is Wrong");
+                return View(loginVM);
+            }
+            if (user.IsActivated == false)
+            {
+                ModelState.AddModelError(string.Empty, "Please Confirm Your Email");
+                return View(loginVM);
+            }
+            var result = await _signInManager.PasswordSignInAsync(user, loginVM.Password, loginVM.RememberMe, true);
+            if (result.IsLockedOut)
+            {
+                ModelState.AddModelError(string.Empty, "Your Account is locked. Few minutes leter is unlocked");
+                return View(loginVM);
+            }
+
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError(string.Empty, "Email and Password is Wrong");
+                return View(loginVM);
+            }
+
+            if (ReturnUrl != null)
+            {
+                return LocalRedirect(ReturnUrl);
+            }
+            return RedirectToAction("Index", "Home");
         }
         public async Task<IActionResult> CreateRole()
         {
