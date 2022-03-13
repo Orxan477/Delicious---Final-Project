@@ -112,8 +112,8 @@ namespace Restaurant.UI.Controllers
                 body = body.Replace("{{restaurantName}}", $"{name}");
                 Email.SendEmail(_configure.GetSection("Email:SenderEmail").Value,
                            _configure.GetSection("Email:Password").Value, user.Email, body, $"{name} - Confirmation Succesfull");
-
-                return View(nameof(Login));
+                await _signInManager.SignInAsync(user,false);
+                return RedirectToAction("Index","Home");
             }
             else return BadRequest();
         }
@@ -126,31 +126,49 @@ namespace Restaurant.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginVM loginVM,string ReturnUrl)
         {
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid)
+            {
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View();
+            }
+                
             AppUser user=await _userManager.FindByNameAsync(loginVM.UserName);
             if(user is null)
             {
                 ModelState.AddModelError(string.Empty, "Email and Password is Wrong");
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
                 return View(loginVM);
             }
             if (user.IsActivated == false)
             {
                 ModelState.AddModelError(string.Empty, "Please Confirm Your Email");
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
                 return View(loginVM);
             }
             var result = await _signInManager.PasswordSignInAsync(user, loginVM.Password, loginVM.RememberMe, true);
             if (result.IsLockedOut)
             {
                 ModelState.AddModelError(string.Empty, "Your Account is locked. Few minutes leter is unlocked");
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
                 return View(loginVM);
             }
 
             if (!result.Succeeded)
             {
                 ModelState.AddModelError(string.Empty, "Email and Password is Wrong");
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
                 return View(loginVM);
             }
 
+            if (ReturnUrl != null)
+            {
+                return LocalRedirect(ReturnUrl);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+        public IActionResult LogOut(string ReturnUrl)
+        {
+            _signInManager.SignOutAsync();
             if (ReturnUrl != null)
             {
                 return LocalRedirect(ReturnUrl);

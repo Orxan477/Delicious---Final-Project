@@ -5,7 +5,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,46 +23,53 @@
     <!-- End layout styles -->
     <link rel="shortcut icon" href="~/assets/img/icon.png" />
 </head>
-  <body>
+<body>
     <div class="container-scroller">
-      <div class="container-fluid page-body-wrapper full-page-wrapper">
-        <div class="row w-100 m-0">
-          <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
-            <div class="card col-lg-4 mx-auto">
-              <div class="card-body px-5 py-5">
-                <h3 class="card-title text-left mb-3">Login</h3>
-                <div asp-validation-summary="ModelOnly" class=text-danger></div>
-                <form method="post">
-                  <div class="form-group">
-                    <label asp-for="UserName">Username</label>
-                    <input asp-for="UserName" class="form-control p_input">
-                    <span asp-validation-for="UserName" class="text-danger"></span>
-                  </div>
-                  <div class="form-group">
-                    <label asp-for="Password"></label>
-                    <input asp-for="Password" class="form-control p_input">
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                  </div>
-                  <div class="form-group d-flex align-items-center justify-content-between">
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input asp-for="RememberMe" class="form-check-input"> Remember me </label>
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="row w-100 m-0">
+                <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+                    <div class="card col-lg-4 mx-auto">
+                        <div class="card-body px-5 py-5">
+                            <h3 class="card-title text-left mb-3">Login</h3>
+                            <div asp-validation-summary="ModelOnly" class=text-danger></div>
+                            @if (@ViewBag.IsConfirmed == true)
+                            {
+                                <div class="alert alert-success" role="alert">
+                                    Welcome. Email confirmed successfully.
+                                </div>
+                            }
+                            <form method="post">
+                                <div class="form-group">
+                                    <label asp-for="UserName">Username</label>
+                                    <input asp-for="UserName" class="form-control p_input">
+                                    <span asp-validation-for="UserName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Password"></label>
+                                    <input asp-for="Password" class="form-control p_input">
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                                <div class="form-group d-flex align-items-center justify-content-between">
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input asp-for="RememberMe" class="form-check-input"> Remember me
+                                        </label>
+                                    </div>
+                                    <a href="#" class="forgot-pass">Forgot password</a>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
+                                </div>
+                            </form>
+                            <p class="sign-up">Don't have an Account?<a asp-controller="Account" asp-action="Register"> Sign Up</a></p>
+                        </div>
                     </div>
-                    <a href="#" class="forgot-pass">Forgot password</a>
-                  </div>
-                  <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
-                  </div>
-                </form>
-                  <p class="sign-up">Don't have an Account?<a asp-controller="Account" asp-action="Register"> Sign Up</a></p>
-              </div>
+                </div>
+                <!-- content-wrapper ends -->
             </div>
-          </div>
-          <!-- content-wrapper ends -->
+            <!-- row ends -->
         </div>
-        <!-- row ends -->
-      </div>
-      <!-- page-body-wrapper ends -->
+        <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
@@ -77,5 +84,5 @@
     <script src="~/admin/assets/js/settings.js"></script>
     <script src="~/admin/assets/js/todolist.js"></script>
     <!-- endinject -->
-  </body>
+</body>
 </html>
