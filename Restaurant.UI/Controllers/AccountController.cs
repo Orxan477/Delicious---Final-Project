@@ -80,8 +80,8 @@ namespace Restaurant.UI.Controllers
                 body = body.Replace("{{email}}", $"{newUser.Email}").Replace("{{url}}", $"{link}").Replace("{{restaurantName}}",$"{name}");
                 Email.SendEmail(_configure.GetSection("Email:SenderEmail").Value,
                            _configure.GetSection("Email:Password").Value, newUser.Email, body, $"{name} - Confirmation Link");
-                await _userManager.AddToRoleAsync(newUser, "Admin");
-                //await _userManager.AddToRoleAsync(newUser, "Member");
+                //await _userManager.AddToRoleAsync(newUser, "Admin");
+                await _userManager.AddToRoleAsync(newUser, "Member");
                 ViewBag.IsSuccessful = true;
                 ViewBag.RestaurantName = GetSetting("RestaurantName");
                 return View();
@@ -115,6 +115,7 @@ namespace Restaurant.UI.Controllers
                 Email.SendEmail(_configure.GetSection("Email:SenderEmail").Value,
                            _configure.GetSection("Email:Password").Value, user.Email, body, $"{name} - Confirmation Succesfull");
                 await _signInManager.SignInAsync(user,false);
+                await CookieAddDb(user);
                 return RedirectToAction("Index","Home");
             }
             else return BadRequest();
