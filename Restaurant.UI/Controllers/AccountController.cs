@@ -12,6 +12,7 @@ using Restaurant.Data.DAL;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Restaurant.UI.Controllers
@@ -178,12 +179,13 @@ namespace Restaurant.UI.Controllers
             {
                 foreach (var item in basket)
                 {
+                    var type = _context.Types.Where(x => x.Name == item.Size).FirstOrDefault();
                     BasketItem newDbBasket = new BasketItem
                     {
                         ProductId = item.Id,
                         Count = item.Count,
                         Price = item.Price,
-                        Size = item.Size,
+                        TypeId = type.Id,
                         AppUserId = user.Id
                     };
                     await _context.BasketItems.AddAsync(newDbBasket);

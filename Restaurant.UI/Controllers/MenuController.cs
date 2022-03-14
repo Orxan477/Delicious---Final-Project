@@ -150,18 +150,19 @@ namespace Restaurant.UI.Controllers
             switch (priceId)
             {
                 case 1:
-                    size = "Kiçik";
+                    size = "Small";
                     break;
                 case 2:
-                    size = "Orta";
+                    size = "Medium";
                     break;
                 case 3:
-                    size = "Böyük";
+                    size = "Large";
                     break;
                 default:
+                    size = "Other";
                     break;
             }
-            return size;
+            return size;    
 
         }
         #region Check Basket
@@ -200,6 +201,7 @@ namespace Restaurant.UI.Controllers
             {
                 var user = await _userManager.FindByNameAsync(User.Identity.Name);
                 var dbBasket = _context.BasketItems.Where(x => x.ProductId == id && x.Price == price && x.AppUserId == user.Id).FirstOrDefault();
+                var type = _context.Types.Where(x => x.Name == size).FirstOrDefault();
                 if (dbBasket is null)
                 {
                     BasketItem newDbBasket = new BasketItem
@@ -207,7 +209,7 @@ namespace Restaurant.UI.Controllers
                         ProductId = id,
                         Count = 1,
                         Price = price,
-                        Size = size,
+                        TypeId = type.Id,
                         AppUserId = user.Id
                     };
 
@@ -238,7 +240,7 @@ namespace Restaurant.UI.Controllers
         }
         private List<BasketItem> GetBasket(string userId)
         {
-            var basket = _context.BasketItems.Where(x => x.AppUserId == userId).ToList();
+            var basket = _context.BasketItems.Where(x => x.AppUserId == userId).Include(x=>x.Type).ToList();
             return basket;
         }
         public async Task<IActionResult> Basket()
@@ -313,7 +315,7 @@ namespace Restaurant.UI.Controllers
                 Image = dbProduct.MenuImage.Image,
                 Price = item.Price,
                 Category = dbProduct.Category.Name,
-                Size = item.Size
+                Size = item.Type.Name
             };
         }
         [HttpPost]

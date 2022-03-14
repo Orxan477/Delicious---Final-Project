@@ -26,6 +26,8 @@ namespace Restaurant.Data.DAL
         public DbSet<ContactUs> ContactUs { get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<BasketItem> BasketItems { get; set; }
+        public DbSet<Type> Types { get; set; }
+        public DbSet<TokenBlackList> TokenBlackList { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new AboutConfiguration());
@@ -44,6 +46,7 @@ namespace Restaurant.Data.DAL
             modelBuilder.ApplyConfiguration(new TeamConfiguration());
             modelBuilder.ApplyConfiguration(new ContactUsConfiguration());
             modelBuilder.ApplyConfiguration(new SettingConfiguration());
+            modelBuilder.ApplyConfiguration(new TypeConfiguration());
             base.OnModelCreating(modelBuilder);
         }
     }
