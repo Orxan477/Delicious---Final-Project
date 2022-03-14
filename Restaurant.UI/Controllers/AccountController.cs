@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Restaurant.Business.Services;
@@ -99,6 +100,8 @@ namespace Restaurant.UI.Controllers
         }
         public async Task<IActionResult> VerifyEmail(string userid, string token)
         {
+            bool isExistToken = _context.TokenBlackList.Any(x => x.Token == token);
+            if (isExistToken) return BadRequest();
             var user=await _userManager.FindByIdAsync(userid);
             if (user == null) return NotFound();
             var result=await _userManager.ConfirmEmailAsync(user, token);
@@ -116,10 +119,22 @@ namespace Restaurant.UI.Controllers
                 Email.SendEmail(_configure.GetSection("Email:SenderEmail").Value,
                            _configure.GetSection("Email:Password").Value, user.Email, body, $"{name} - Confirmation Succesfull");
                 await _signInManager.SignInAsync(user,false);
+
+                await AddTokenDb(token);
+
                 await CookieAddDb(user);
                 return RedirectToAction("Index","Home");
             }
             else return BadRequest();
+        }
+        private async Task AddTokenDb(string token)
+        {
+            TokenBlackList blackList = new TokenBlackList
+            {
+                Token = token
+            };
+            _context.TokenBlackList.Add(blackList);
+            await _context.SaveChangesAsync();
         }
         public IActionResult Login()
         {
