@@ -135,7 +135,7 @@ namespace Restaurant.UI.Controllers
             AppUser user=await _userManager.FindByNameAsync(loginVM.UserName);
             if(user is null)
             {
-                ModelState.AddModelError(string.Empty, "Email and Password is Wrong");
+                ModelState.AddModelError(string.Empty, "Username and Password is Wrong");
                 ViewBag.RestaurantName = GetSetting("RestaurantName");
                 return View(loginVM);
             }
@@ -155,7 +155,7 @@ namespace Restaurant.UI.Controllers
 
             if (!result.Succeeded)
             {
-                ModelState.AddModelError(string.Empty, "Email and Password is Wrong");
+                ModelState.AddModelError(string.Empty, "Username and Password is Wrong");
                 ViewBag.RestaurantName = GetSetting("RestaurantName");
                 return View(loginVM);
             }
