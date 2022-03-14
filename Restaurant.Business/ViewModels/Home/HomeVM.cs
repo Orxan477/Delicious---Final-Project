@@ -1,4 +1,5 @@
-﻿using Restaurant.Business.ViewModels.Footer;
+﻿using Restaurant.Business.ViewModels.Account;
+using Restaurant.Business.ViewModels.Footer;
 using Restaurant.Business.ViewModels.Home;
 using Restaurant.Business.ViewModels.Menu;
 using Restaurant.Core.Models;

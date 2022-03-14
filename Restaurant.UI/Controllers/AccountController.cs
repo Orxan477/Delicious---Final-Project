@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Restaurant.Business.Services;
 using Restaurant.Business.Utilities;
+using Restaurant.Business.ViewModels;
 using Restaurant.Business.ViewModels.Account;
 using Restaurant.Business.ViewModels.Menu;
 using Restaurant.Core.Models;
@@ -74,13 +75,13 @@ namespace Restaurant.UI.Controllers
                 var token = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
                 string link = Url.Action(nameof(VerifyEmail), "Account", new { userId = newUser.Id, token },
                                                                     Request.Scheme, Request.Host.ToString());
-                string name= GetSetting("RestaurantName");
+                string name = GetSetting("RestaurantName");
                 string body = string.Empty;
                 using (StreamReader streamReader = new StreamReader(Path.Combine(_env.WebRootPath, "assets", "SendMessage", "ConfigurationLink.html")))
                 {
                     body = streamReader.ReadToEnd();
                 }
-                body = body.Replace("{{email}}", $"{newUser.Email}").Replace("{{url}}", $"{link}").Replace("{{restaurantName}}",$"{name}");
+                body = body.Replace("{{email}}", $"{newUser.Email}").Replace("{{url}}", $"{link}").Replace("{{restaurantName}}", $"{name}");
                 Email.SendEmail(_configure.GetSection("Email:SenderEmail").Value,
                            _configure.GetSection("Email:Password").Value, newUser.Email, body, $"{name} - Confirmation Link");
                 //await _userManager.AddToRoleAsync(newUser, "Admin");
@@ -103,9 +104,9 @@ namespace Restaurant.UI.Controllers
         {
             bool isExistToken = _context.TokenBlackList.Any(x => x.Token == token);
             if (isExistToken) return BadRequest();
-            var user=await _userManager.FindByIdAsync(userid);
+            var user = await _userManager.FindByIdAsync(userid);
             if (user == null) return NotFound();
-            var result=await _userManager.ConfirmEmailAsync(user, token);
+            var result = await _userManager.ConfirmEmailAsync(user, token);
             if (result.Succeeded)
             {
                 user.IsActivated = true;
@@ -119,12 +120,12 @@ namespace Restaurant.UI.Controllers
                 body = body.Replace("{{restaurantName}}", $"{name}");
                 Email.SendEmail(_configure.GetSection("Email:SenderEmail").Value,
                            _configure.GetSection("Email:Password").Value, user.Email, body, $"{name} - Confirmation Succesfull");
-                await _signInManager.SignInAsync(user,false);
+                await _signInManager.SignInAsync(user, false);
 
                 await AddTokenDb(token);
 
                 await CookieAddDb(user);
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
             else return BadRequest();
         }
@@ -151,7 +152,7 @@ namespace Restaurant.UI.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginVM loginVM,string ReturnUrl)
+        public async Task<IActionResult> Login(LoginVM loginVM, string ReturnUrl)
         {
             IsAuthenticated();
             if (!ModelState.IsValid)
@@ -159,9 +160,9 @@ namespace Restaurant.UI.Controllers
                 ViewBag.RestaurantName = GetSetting("RestaurantName");
                 return View();
             }
-                
-            AppUser user=await _userManager.FindByNameAsync(loginVM.UserName);
-            if(user is null)
+
+            AppUser user = await _userManager.FindByNameAsync(loginVM.UserName);
+            if (user is null)
             {
                 ModelState.AddModelError(string.Empty, "Username and Password is Wrong");
                 ViewBag.RestaurantName = GetSetting("RestaurantName");
@@ -186,7 +187,7 @@ namespace Restaurant.UI.Controllers
                 ModelState.AddModelError(string.Empty, "Username and Password is Wrong");
                 ViewBag.RestaurantName = GetSetting("RestaurantName");
                 return View(loginVM);
-                
+
             }
             await CookieAddDb(user);
 
@@ -250,6 +251,52 @@ namespace Restaurant.UI.Controllers
                 }
             }
             return Content("Ok");
+        }
+        public IActionResult SettingAccount()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SettingAccount(string ReturnUrl)
+        {
+            if (ReturnUrl != null)
+            {
+                return LocalRedirect(ReturnUrl);
+            }
+            return View();
+        }
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangePassword(ChangePasswordVM changePasswordVM)
+        {
+            if (!ModelState.IsValid) return View(changePasswordVM);
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                ModelState.AddModelError(string.Empty, "User is Not Found");
+                return View();
+            }
+            var result = await _userManager.ChangePasswordAsync(user, changePasswordVM.CurrentPassword,
+                                                                                    changePasswordVM.NewPassword);
+            if (result.Succeeded)
+            {
+                //Email.SendEmailAsync(user.Email, $"Your Password Is Changed", "Fiorello");
+                ViewBag.IsSuccessPassword = true;
+                return View(nameof(SettingAccount));
+            }
+            else
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+                return View(changePasswordVM);
+            }
         }
     }
 }
