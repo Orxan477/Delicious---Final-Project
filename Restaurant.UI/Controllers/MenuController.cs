@@ -199,7 +199,7 @@ namespace Restaurant.UI.Controllers
             else
             {
                 var user = await _userManager.FindByNameAsync(User.Identity.Name);
-                var dbBasket = _context.BasketItems.Where(x => x.ProductId == id && x.Product.Price == price && x.AppUserId == user.Id).FirstOrDefault();
+                var dbBasket = _context.BasketItems.Where(x => x.ProductId == id && x.Price == price && x.AppUserId == user.Id).FirstOrDefault();
                 if (dbBasket is null)
                 {
                     BasketItem newDbBasket = new BasketItem
