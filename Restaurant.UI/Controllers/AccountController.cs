@@ -59,6 +59,7 @@ namespace Restaurant.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterVM registerVM)
         {
+            IsAuthenticated();
             if (!ModelState.IsValid) return View();
             AppUser newUser = new AppUser
             {
@@ -127,6 +128,13 @@ namespace Restaurant.UI.Controllers
             }
             else return BadRequest();
         }
+        private void IsAuthenticated()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                throw new Exception("You alredy authenticated");
+            }
+        }
         private async Task AddTokenDb(string token)
         {
             TokenBlackList blackList = new TokenBlackList
@@ -145,6 +153,7 @@ namespace Restaurant.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginVM loginVM,string ReturnUrl)
         {
+            IsAuthenticated();
             if (!ModelState.IsValid)
             {
                 ViewBag.RestaurantName = GetSetting("RestaurantName");
