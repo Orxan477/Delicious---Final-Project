@@ -238,7 +238,7 @@ namespace Restaurant.UI.Controllers
         }
         private List<BasketItem> GetBasket(string userId)
         {
-           var basket= _context.BasketItems.Where(x => x.AppUserId == userId).ToList();
+            var basket = _context.BasketItems.Where(x => x.AppUserId == userId).ToList();
             return basket;
         }
         public async Task<IActionResult> Basket()
@@ -257,7 +257,7 @@ namespace Restaurant.UI.Controllers
             else
             {
                 var user = await _userManager.FindByNameAsync(User.Identity.Name);
-                List<BasketItem> basket= GetBasket(user.Id);
+                List<BasketItem> basket = GetBasket(user.Id);
                 List<BasketItemVM> model = await GetBasketList(basket);
                 HomeVM homeVM = new HomeVM
                 {
@@ -317,30 +317,64 @@ namespace Restaurant.UI.Controllers
             };
         }
         [HttpPost]
-        public IActionResult EmptyCart()
+        public async Task<IActionResult> EmptyCart()
         {
-            Response.Cookies.Delete("basket");
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = await _userManager.FindByNameAsync(User.Identity.Name);
+                var basket = GetBasket(user.Id);
+                foreach (var item in basket)
+                {
+                    _context.BasketItems.Remove(item);
+                }
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                Response.Cookies.Delete("basket");
+            }
             return RedirectToAction("Basket", "Menu");
         }
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        public IActionResult RemoveFromCart(int? id)
+        public async Task<IActionResult> RemoveFromCart(int? id)
         {
-            if (id == null) return NotFound();
-            var baskets = GetBasket();
-            var basket = baskets.FirstOrDefault(x => x.Id == id);
-            if (basket == null) return NotFound();
-            if (basket.Count == 1 || basket.Count <= 0)
+            if (!User.Identity.IsAuthenticated)
             {
-                baskets.Remove(basket);
+                if (id == null) return NotFound();
+                var baskets = GetBasket();
+                var basket = baskets.FirstOrDefault(x => x.Id == id);
+                if (basket == null) return NotFound();
+                if (basket.Count == 1 || basket.Count <= 0)
+                {
+                    baskets.Remove(basket);
+                }
+                else
+                {
+                    basket.Count--;
+                }
+                HttpContext.Response.Cookies.Append("basket", JsonConvert.SerializeObject(baskets));
             }
             else
             {
-                basket.Count--;
+                var user = await _userManager.FindByNameAsync(User.Identity.Name);
+                var baskets = GetBasket(user.Id);
+                var basket = baskets.FirstOrDefault(x => x.Id == id);
+                if (basket == null) return NotFound();
+                if (basket.Count == 1 || basket.Count <= 0)
+                {
+                    _context.BasketItems.Remove(basket);
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    basket.Count--;
+                    await _context.SaveChangesAsync();
+                }
             }
 
 
-            HttpContext.Response.Cookies.Append("basket", JsonConvert.SerializeObject(baskets));
+
             return RedirectToAction("Basket", "Menu");
         }
     }
