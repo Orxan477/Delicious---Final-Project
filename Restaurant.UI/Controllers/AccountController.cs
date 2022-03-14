@@ -60,7 +60,10 @@ namespace Restaurant.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterVM registerVM)
         {
-            IsAuthenticated();
+            if (!IsAuthenticated())
+            {
+                return BadRequest();
+            }
             if (!ModelState.IsValid) return View();
             AppUser newUser = new AppUser
             {
@@ -129,12 +132,13 @@ namespace Restaurant.UI.Controllers
             }
             else return BadRequest();
         }
-        private void IsAuthenticated()
+        private bool IsAuthenticated()
         {
             if (User.Identity.IsAuthenticated)
             {
-                throw new Exception("You alredy authenticated");
+                return false;
             }
+            return true;
         }
         private async Task AddTokenDb(string token)
         {
@@ -147,6 +151,10 @@ namespace Restaurant.UI.Controllers
         }
         public IActionResult Login()
         {
+            if (!IsAuthenticated())
+            {
+                return BadRequest();
+            }
             ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View();
         }
@@ -254,20 +262,28 @@ namespace Restaurant.UI.Controllers
         }
         public IActionResult SettingAccount()
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return BadRequest();
+            }
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult SettingAccount(string ReturnUrl)
         {
+            
             if (ReturnUrl != null)
             {
                 return LocalRedirect(ReturnUrl);
             }
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View();
         }
         public IActionResult ChangePassword()
         {
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View();
         }
         [HttpPost]
@@ -279,14 +295,15 @@ namespace Restaurant.UI.Controllers
             if (user == null)
             {
                 ModelState.AddModelError(string.Empty, "User is Not Found");
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
                 return View();
             }
             var result = await _userManager.ChangePasswordAsync(user, changePasswordVM.CurrentPassword,
                                                                                     changePasswordVM.NewPassword);
             if (result.Succeeded)
             {
-                //Email.SendEmailAsync(user.Email, $"Your Password Is Changed", "Fiorello");
                 ViewBag.IsSuccessPassword = true;
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
                 return View(nameof(SettingAccount));
             }
             else
@@ -295,8 +312,114 @@ namespace Restaurant.UI.Controllers
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
                 return View(changePasswordVM);
             }
         }
+
+        public IActionResult ChangeUsername()
+        {
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangeUsername(ChangeUsernameVM changeUsername)
+        {
+            if (!ModelState.IsValid) return View(changeUsername);
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                ModelState.AddModelError(string.Empty, "User is Not Found");
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View(changeUsername);
+            }
+            var checkPasword = await _userManager.CheckPasswordAsync(user, changeUsername.Password);
+            if (!checkPasword)
+            {
+                ModelState.AddModelError(string.Empty, "Incorrect Password");
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View(changeUsername);
+            }
+            var result = await _userManager.SetUserNameAsync(user, changeUsername.NewUsername);
+            if (result.Succeeded)
+            {
+                //Email.SendEmailAsync(user.Email, "Your Username Is Changed", "Fiorello");
+                await _signInManager.RefreshSignInAsync(user);
+                ViewBag.IsSuccessUsername = true;
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View(nameof(SettingAccount));
+            }
+            else
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View();
+            }
+        }
+        public IActionResult ChangeMail()
+        {
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangeMail(ChangeEmailVM changeEmail)
+        {
+            if (!ModelState.IsValid) return View(changeEmail);
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                ModelState.AddModelError(string.Empty, "User is Not Found");
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View(changeEmail);
+            }
+
+            var checkPasword = await _userManager.CheckPasswordAsync(user, changeEmail.Password);
+            if (!checkPasword)
+            {
+                ModelState.AddModelError(string.Empty, "Incorrect Password");
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View(changeEmail);
+            }
+            var token = await _userManager.GenerateChangeEmailTokenAsync(user, changeEmail.NewEmail);
+            var result = await _userManager.ChangeEmailAsync(user, changeEmail.NewEmail, token);
+            if (result.Succeeded)
+            {
+                ViewBag.IsSuccessMail = true;
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View(nameof(SettingAccount));
+            }
+            else
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View(nameof(ChangeMail));
+            }
+        }
+        //public async Task<IActionResult> VerifyChangeEmail(AppUser user,string email,string token)
+        //{
+        //    var result = await _userManager.ChangeEmailAsync(user, email, token);
+        //    if (result.Succeeded)
+        //    {
+        //        //Email.SendEmailAsync(user.Email, "Your Email Is Changed", "Fiorello");
+        //        ViewBag.IsSuccessMail = true;
+        //        return View(nameof(SettingAccount));
+        //    }
+        //    else
+        //    {
+        //        foreach (var error in result.Errors)
+        //        {
+        //            ModelState.AddModelError(string.Empty, error.Description);
+        //        }
+        //        return View(nameof(ChangeMail));
+        //    }
+        //}
     }
 }
