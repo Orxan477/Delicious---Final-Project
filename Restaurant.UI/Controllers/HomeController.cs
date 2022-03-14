@@ -39,6 +39,7 @@ namespace Restaurant.UI.Controllers
             ViewBag.Email2 = GetSetting("Email2");
             ViewBag.Phone1 = GetSetting("Phone1");
             ViewBag.Phone2 = GetSetting("Phone2");
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             HomeVM homeVM = new HomeVM
             {
                 HomeIntro=await _context.HomeIntros
