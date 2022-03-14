@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Restaurant.Business.ViewModels;
@@ -14,11 +15,14 @@ namespace Restaurant.UI.Controllers
     public class MenuController : Controller
     {
         private AppDbContext _context;
+        private UserManager<AppUser> _userManager;
         private int _proCount;
 
-        public MenuController(AppDbContext context)
+        public MenuController(AppDbContext context,
+                              UserManager<AppUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
             _proCount = _context.Products.Count();
         }
         public async Task<IActionResult> Index()
@@ -78,14 +82,14 @@ namespace Restaurant.UI.Controllers
                 {
 
                     Products = _context.Products
-                                .Where(x=>x.Id==id)
+                                .Where(x => x.Id == id)
                                .Include(x => x.MenuImage)
                                .Include(x => x.Category)
                                .ToList(),
                 }
 
             };
-            return PartialView("_ModalPartial",homeVM);
+            return PartialView("_ModalPartial", homeVM);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -103,21 +107,20 @@ namespace Restaurant.UI.Controllers
         }
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddBasket(int? id,int? priceId)
+        public async Task<IActionResult> AddBasket(int? id, int? priceId)
         {
             if (id is null) return NotFound();
             Product dbProduct = await _context.Products.FindAsync(id);
             if (dbProduct is null) return BadRequest();
-
             List<BasketVM> basket = GetBasket();
-            UpdateBasket((int)id, basket,priceId);
-            Response.Cookies.Append("basket", JsonConvert.SerializeObject(basket));
+
+            await UpdateBasket((int)id, basket, priceId);
             return RedirectToAction("Index", "Menu");
         }
         private double ProductPrice(Product dbProduct, int? priceId)
         {
             double price = 1;
-            
+
             if (priceId != null)
             {
                 switch (priceId)
@@ -169,25 +172,55 @@ namespace Restaurant.UI.Controllers
         //    if (dbProduct is null) return BadRequest();
         //}
         #endregion
-        private void UpdateBasket(int id, List<BasketVM> basket,int?priceId)
+        private async Task UpdateBasket(int id, List<BasketVM> basket, int? priceId)
         {
-            Product dbProduct =  _context.Products.Find(id);
-            double price=ProductPrice(dbProduct, priceId);
-            string size=ProductSize(priceId);
-            BasketVM basketProduct = basket.Find(x => x.Id == id && x.Price==price);
-            if (basketProduct is null)
+            Product dbProduct = _context.Products.Find(id);
+            double price = ProductPrice(dbProduct, priceId);
+            string size = ProductSize(priceId);
+            if (!User.Identity.IsAuthenticated)
             {
-                basket.Add(new BasketVM
+                BasketVM basketProduct = basket.Find(x => x.Id == id && x.Price == price);
+                if (basketProduct is null)
                 {
-                    Id = id,
-                    Count = 1,
-                    Price=price,
-                    Size= size
-                });
+                    basket.Add(new BasketVM
+                    {
+                        Id = id,
+                        Count = 1,
+                        Price = price,
+                        Size = size
+                    });
+                }
+                else
+                {
+                    basketProduct.Count++;
+                }
+                Response.Cookies.Append("basket", JsonConvert.SerializeObject(basket));
             }
             else
             {
-                basketProduct.Count++;
+                var user = await _userManager.FindByNameAsync(User.Identity.Name);
+                var dbBasket = _context.BasketItems.Where(x => x.ProductId == id && x.Product.Price == price && x.AppUserId == user.Id).FirstOrDefault();
+                if (dbBasket is null)
+                {
+                    BasketItem newDbBasket = new BasketItem
+                    {
+                        ProductId = id,
+                        Count = 1,
+                        Price = price,
+                        Size = size,
+                        AppUserId = user.Id
+                    };
+
+                    await _context.BasketItems.AddAsync(newDbBasket);
+                    await _context.SaveChangesAsync();
+                    Response.Cookies.Delete("basket");
+                }
+                else
+                {
+                    dbBasket.Count++;
+                    await _context.SaveChangesAsync();
+                    Response.Cookies.Delete("basket");
+                }
             }
         }
         private List<BasketVM> GetBasket()
@@ -203,15 +236,35 @@ namespace Restaurant.UI.Controllers
             }
             return basket;
         }
+        private List<BasketItem> GetBasket(string userId)
+        {
+           var basket= _context.BasketItems.Where(x => x.AppUserId == userId).ToList();
+            return basket;
+        }
         public async Task<IActionResult> Basket()
         {
-            List<BasketVM> basket = GetBasket();
-            List<BasketItemVM> model = await GetBasketList(basket);
-            HomeVM homeVM = new HomeVM
+
+            if (!User.Identity.IsAuthenticated)
             {
-                BasketItemVM = model
-            };
-            return View(homeVM);
+                List<BasketVM> basket = GetBasket();
+                List<BasketItemVM> model = await GetBasketList(basket);
+                HomeVM homeVM = new HomeVM
+                {
+                    BasketItemVM = model
+                };
+                return View(homeVM);
+            }
+            else
+            {
+                var user = await _userManager.FindByNameAsync(User.Identity.Name);
+                List<BasketItem> basket= GetBasket(user.Id);
+                List<BasketItemVM> model = await GetBasketList(basket);
+                HomeVM homeVM = new HomeVM
+                {
+                    BasketItemVM = model
+                };
+                return View(homeVM);
+            }
         }
         private async Task<List<BasketItemVM>> GetBasketList(List<BasketVM> basket)
         {
@@ -220,6 +273,18 @@ namespace Restaurant.UI.Controllers
             {
                 Product dbProduct = await _context.Products
                                             .Include(x => x.MenuImage).Include(x => x.Category).FirstOrDefaultAsync(x => x.Id == item.Id);
+                BasketItemVM basketItemVM = GetBasketItem(item, dbProduct);
+                model.Add(basketItemVM);
+            }
+            return model;
+        }
+        private async Task<List<BasketItemVM>> GetBasketList(List<BasketItem> basket)
+        {
+            List<BasketItemVM> model = new List<BasketItemVM>();
+            foreach (BasketItem item in basket)
+            {
+                Product dbProduct = await _context.Products
+                                            .Include(x => x.MenuImage).Include(x => x.Category).FirstOrDefaultAsync(x => x.Id == item.ProductId);
                 BasketItemVM basketItemVM = GetBasketItem(item, dbProduct);
                 model.Add(basketItemVM);
             }
@@ -235,7 +300,20 @@ namespace Restaurant.UI.Controllers
                 Image = dbProduct.MenuImage.Image,
                 Price = item.Price,
                 Category = dbProduct.Category.Name,
-                Size=item.Size
+                Size = item.Size
+            };
+        }
+        private BasketItemVM GetBasketItem(BasketItem item, Product dbProduct)
+        {
+            return new BasketItemVM
+            {
+                Id = item.Id,
+                Name = dbProduct.Name,
+                Count = item.Count,
+                Image = dbProduct.MenuImage.Image,
+                Price = item.Price,
+                Category = dbProduct.Category.Name,
+                Size = item.Size
             };
         }
         [HttpPost]

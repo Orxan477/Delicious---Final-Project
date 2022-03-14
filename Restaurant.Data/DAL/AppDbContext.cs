@@ -25,6 +25,7 @@ namespace Restaurant.Data.DAL
         public DbSet<Team> Teams { get; set; }
         public DbSet<ContactUs> ContactUs { get; set; }
         public DbSet<Setting> Settings { get; set; }
+        public DbSet<BasketItem> BasketItems { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new AboutConfiguration());

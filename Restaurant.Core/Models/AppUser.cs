@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
 
 namespace Restaurant.Core.Models
 {
@@ -6,5 +7,6 @@ namespace Restaurant.Core.Models
     {
         public string FullName { get; set; }
         public bool IsActivated { get; set; }
+        public ICollection<BasketItem> BasketItems { get; set; }
     }
 }
