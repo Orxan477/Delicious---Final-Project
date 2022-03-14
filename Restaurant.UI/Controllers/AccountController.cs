@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using Restaurant.Business.Services;
 using Restaurant.Business.Utilities;
 using Restaurant.Business.ViewModels.Account;
+using Restaurant.Business.ViewModels.Menu;
 using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
 using System;
@@ -158,13 +160,49 @@ namespace Restaurant.UI.Controllers
                 ModelState.AddModelError(string.Empty, "Username and Password is Wrong");
                 ViewBag.RestaurantName = GetSetting("RestaurantName");
                 return View(loginVM);
+                
             }
+            await CookieAddDb(user);
 
             if (ReturnUrl != null)
             {
                 return LocalRedirect(ReturnUrl);
             }
             return RedirectToAction("Index", "Home");
+        }
+        private async Task CookieAddDb(AppUser user)
+        {
+            List<BasketVM> basket = GetBasket();
+            if (basket != null)
+            {
+                foreach (var item in basket)
+                {
+                    BasketItem newDbBasket = new BasketItem
+                    {
+                        ProductId = item.Id,
+                        Count = item.Count,
+                        Price = item.Price,
+                        Size = item.Size,
+                        AppUserId = user.Id
+                    };
+                    await _context.BasketItems.AddAsync(newDbBasket);
+                    await _context.SaveChangesAsync();
+                    Response.Cookies.Delete("basket");
+                }
+            }
+        }
+        private List<BasketVM> GetBasket()
+        {
+            List<BasketVM> basket;
+            if (Request.Cookies["basket"] != null)
+            {
+                basket = JsonConvert.DeserializeObject<List<BasketVM>>(Request.Cookies["basket"]);
+            }
+            else
+            {
+                basket = new List<BasketVM>();
+            }
+            return basket;
         }
         public IActionResult LogOut(string ReturnUrl)
         {
