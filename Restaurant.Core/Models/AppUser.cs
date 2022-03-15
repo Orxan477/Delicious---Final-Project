@@ -7,6 +7,7 @@ namespace Restaurant.Core.Models
     {
         public string FullName { get; set; }
         public bool IsActivated { get; set; }
+        public bool IsDeleted { get; set; }
         public ICollection<BasketItem> BasketItems { get; set; }
     }
 }

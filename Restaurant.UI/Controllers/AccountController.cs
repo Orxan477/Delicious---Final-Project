@@ -176,6 +176,12 @@ namespace Restaurant.UI.Controllers
                 ViewBag.RestaurantName = GetSetting("RestaurantName");
                 return View(loginVM);
             }
+            if (user.IsDeleted == false)
+            {
+                ModelState.AddModelError(string.Empty, "Your account is blocked");
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View(loginVM);
+            }
             if (user.IsActivated == false)
             {
                 ModelState.AddModelError(string.Empty, "Please Confirm Your Email");

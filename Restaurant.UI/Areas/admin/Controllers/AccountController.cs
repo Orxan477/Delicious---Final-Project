@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Restaurant.UI.Areas.admin.Controllers
 {
@@ -14,8 +17,25 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public IActionResult Index()
         {
-            //return View(_context.User);
-            return View();
+            return View(_context.Users.ToList());
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(string id)
+        {
+            AppUser dbUser = _context.Users.Where(x => x.Id == id).FirstOrDefault();
+            if (dbUser is null) return NotFound();
+            if (!dbUser.IsDeleted)
+            {
+
+                dbUser.IsDeleted = true;
+            }
+            else
+            {
+                dbUser.IsDeleted = false;
+            }
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }
