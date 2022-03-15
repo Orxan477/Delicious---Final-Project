@@ -273,7 +273,7 @@ namespace Restaurant.UI.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult SettingAccount(string ReturnUrl)
         {
-            
+
             if (ReturnUrl != null)
             {
                 return LocalRedirect(ReturnUrl);
@@ -344,7 +344,6 @@ namespace Restaurant.UI.Controllers
             var result = await _userManager.SetUserNameAsync(user, changeUsername.NewUsername);
             if (result.Succeeded)
             {
-                //Email.SendEmailAsync(user.Email, "Your Username Is Changed", "Fiorello");
                 await _signInManager.RefreshSignInAsync(user);
                 ViewBag.IsSuccessUsername = true;
                 ViewBag.RestaurantName = GetSetting("RestaurantName");
@@ -421,5 +420,75 @@ namespace Restaurant.UI.Controllers
         //        return View(nameof(ChangeMail));
         //    }
         //}
+        public IActionResult ForgotPassword()
+        {
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ForgotPassword(MailVm mail)
+        {
+            if (!ModelState.IsValid) return View(mail);
+            AppUser user = await _userManager.FindByEmailAsync(mail.Email);
+            if (user == null)
+            {
+                ModelState.AddModelError(string.Empty, "User Is Not Found");
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View();
+            }
+            if (user.IsActivated == false)
+            {
+                ModelState.AddModelError(string.Empty, "Please Confirm Your Email");
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View(mail);
+            }
+            string token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+            string link = Url.Action(nameof(ForgotPasswordConfirm), "Account", new { userId = user.Id, token },
+                                                                            Request.Scheme, Request.Host.ToString());
+           
+            string name = GetSetting("RestaurantName");
+            string body = string.Empty;
+            using (StreamReader streamReader = new StreamReader(Path.Combine(_env.WebRootPath, "assets", "SendMessage", "ResetPassword.html")))
+            {
+                body = streamReader.ReadToEnd();
+            }
+            body = body.Replace("{{restaurantName}}", $"{name}").Replace("{{url}}",link);
+            Email.SendEmail(_configure.GetSection("Email:SenderEmail").Value,
+                       _configure.GetSection("Email:Password").Value, user.Email, body, $"{name} - Reset Password");
+            await _signInManager.SignInAsync(user, false);
+            ViewBag.IsSuccessReset = true;
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
+            return View();
+        }
+        public IActionResult ForgotPasswordConfirm()
+        {
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ForgotPasswordConfirm(string userid, string token,ForgotPasswordVM forgotPassword)
+        {
+            if (!ModelState.IsValid) return View();
+            AppUser user = await _userManager.FindByIdAsync(userid);
+            if (user == null) return BadRequest();
+            IdentityResult identityResult = await _userManager.ResetPasswordAsync(user, token, forgotPassword.NewPassword);
+            if (identityResult.Succeeded)
+            {
+                await _signInManager.SignInAsync(user, false);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                foreach (var error in identityResult.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View();
+            }
+        }
     }
 }
