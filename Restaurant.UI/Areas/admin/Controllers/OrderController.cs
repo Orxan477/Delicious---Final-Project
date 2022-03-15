@@ -28,6 +28,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
             List<FullOrder> fullOrders = await _context.FullOrders
                                                 .Include(x => x.Orders)
                                                 .Include(x => x.BillingAdress).ThenInclude(x=>x.AppUser)
+                                                .OrderByDescending(x=>x.Id)
                                                 .ToListAsync();
             return View(fullOrders);
         }
