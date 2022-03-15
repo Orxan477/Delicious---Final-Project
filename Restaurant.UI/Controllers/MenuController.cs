@@ -407,7 +407,7 @@ namespace Restaurant.UI.Controllers
             };
             await _context.BillingAdresses.AddAsync(billingAdress);
             await _context.SaveChangesAsync();
-            var billingId = _context.BillingAdresses.OrderByDescending(x => x.Id).FirstOrDefaultAsync();
+            var billingId = await _context.BillingAdresses.OrderByDescending(x => x.Id).FirstOrDefaultAsync();
             FullOrder order = new FullOrder
             {
                 AppUserId = user.Id,
@@ -418,28 +418,27 @@ namespace Restaurant.UI.Controllers
 
             double total = 0;
 
-            //foreach (BasketItem item in basketItems)
-            //{
-            //    Order orderItem = new Order
-            //    {
-            //        Count = item.Count,
-            //        Price = (double)item.Price,
-            //        ProductId = item.ProductId,
-            //        Name = item.Name,
-            //        Image = item.Image,
-            //        Size = item.Size
-            //    };
+            foreach (BasketItem item in basketItems)
+            {
+                Order orderItem = new Order
+                {
+                    Count = item.Count,
+                    Price = (double)item.Price,
+                    ProductId = item.ProductId,
+                    TypeId = item.TypeId
+                };
 
-            //    total += (orderItem.Count * (double)orderItem.Price);
+                total += (orderItem.Count * (double)orderItem.Price);
 
-            //    orderItems.Add(orderItem);
-            //    item.IsDeleted = true;
-
-            //}
-
-            //order.Total = total;
-            //order.Orders = orderItems;
-            return Json(basket);
+                orderItems.Add(orderItem);
+                await _context.Orders.AddAsync(orderItem);
+                _context.BasketItems.Remove(item);
+            }
+            order.Total = total;
+            order.Orders = orderItems;
+            await _context.FullOrders.AddAsync(order);
+            await _context.SaveChangesAsync();
+            return Json("Her sey okaydir dostum");
         }
     }
 }
