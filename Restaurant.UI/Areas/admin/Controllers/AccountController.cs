@@ -4,9 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Restaurant.Business.Services;
+using Restaurant.Business.ViewModels;
 using Restaurant.Business.ViewModels.Account;
 using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,20 +23,57 @@ namespace Restaurant.UI.Areas.admin.Controllers
         private UserManager<AppUser> _userManager;
         private RoleManager<IdentityRole> _roleManager;
         private IMapper _mapper;
+        private SettingServices _settingServices;
 
         public AccountController(AppDbContext context,
                                  UserManager<AppUser> userManager,
                                  RoleManager<IdentityRole> roleManager,
-                                 IMapper mapper)
+                                 IMapper mapper,
+                                 SettingServices settingService)
         {
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
             _mapper = mapper;
+            _settingServices = settingService;
         }
-        public IActionResult Index()
+        private int GetSetting(string key)
         {
-            return View(_context.Users.OrderByDescending(x => x.Id).ToList());
+            Dictionary<string, string> Settings = _settingServices.GetSetting();
+            string value = Settings[$"{key}"];
+            return int.Parse(value);
+        }
+        public IActionResult Index(int page = 1)
+        {
+            int count = GetSetting("TakeCount");
+            ViewBag.TakeCount = count;
+            var users = _context.Users.OrderByDescending(x => x.Id).ToList();
+            var userVM = GetProductList(users);
+            int pageCount = GetPageCount(count);
+            Paginate<UserListVM> model = new Paginate<UserListVM>(userVM, page, pageCount);
+            return View(model);
+        }
+        private int GetPageCount(int take)
+        {
+            var prodCount = _context.Users.Count();
+            return (int)Math.Ceiling((decimal)prodCount / take);
+        }
+        private List<UserListVM> GetProductList(List<AppUser> users)
+        {
+            List<UserListVM> model = new List<UserListVM>();
+            foreach (var item in users)
+            {
+                var user = new UserListVM
+                {
+                    Id = item.Id,
+                    FullName = item.FullName,
+                    Email = item.Email,
+                    PhoneNumber = item.PhoneNumber,
+                    IsDeleted=item.IsDeleted
+                };
+                model.Add(user);
+            }
+            return model;
         }
         public async Task<IActionResult> Update(string id)
         {
