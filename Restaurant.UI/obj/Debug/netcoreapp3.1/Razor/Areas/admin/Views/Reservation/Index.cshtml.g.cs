@@ -124,8 +124,15 @@ using Restaurant.Business.ViewModels.Setting;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 17 "D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\Areas\admin\Views\_ViewImports.cshtml"
+using Restaurant.Business.ViewModels.Account;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"dc27dc3fcdea9af1971a76157e50967f3ef7ca65", @"/Areas/admin/Views/Reservation/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"348261af3763741e4c82daa4b6d5fe9b682addfd", @"/Areas/admin/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c971379740ab012161ef949c96c5555444a3d51d", @"/Areas/admin/Views/_ViewImports.cshtml")]
     public class Areas_admin_Views_Reservation_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Paginate<ReservationListVM>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("d-inline"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -261,7 +268,7 @@ using Restaurant.Business.ViewModels.Setting;
 #line hidden
 #nullable disable
             WriteLiteral("</td>\r\n                            <td>\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc27dc3fcdea9af1971a76157e50967f3ef7ca6512865", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc27dc3fcdea9af1971a76157e50967f3ef7ca6513096", async() => {
                 WriteLiteral("\r\n                                        <button type=\"submit\" class=\"btn btn-success\"><i class=\"mdi mdi-check-circle-outline\"></i></button>\r\n                                    ");
             }
             );
@@ -297,7 +304,7 @@ using Restaurant.Business.ViewModels.Setting;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc27dc3fcdea9af1971a76157e50967f3ef7ca6515858", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc27dc3fcdea9af1971a76157e50967f3ef7ca6516089", async() => {
                 WriteLiteral("\r\n                                        <button type=\"submit\" class=\"btn btn-danger\"><i class=\"mdi mdi-close-circle-outline\"></i></button>\r\n                                    ");
             }
             );
@@ -365,7 +372,7 @@ WriteAttributeValue(" ", 2865, Model.CurrentPage<3?"d-none":"", 2866, 34, false)
 #nullable disable
             EndWriteAttribute();
             WriteLiteral(">\r\n                                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc27dc3fcdea9af1971a76157e50967f3ef7ca6520383", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc27dc3fcdea9af1971a76157e50967f3ef7ca6520614", async() => {
                 WriteLiteral("First");
             }
             );
@@ -399,7 +406,7 @@ WriteAttributeValue(" ", 3125, Model.CurrentPage==1   ?"d-none":"", 3126, 38, fa
 #nullable disable
             EndWriteAttribute();
             WriteLiteral(">\r\n                                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc27dc3fcdea9af1971a76157e50967f3ef7ca6522766", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc27dc3fcdea9af1971a76157e50967f3ef7ca6522997", async() => {
                 WriteLiteral("Previous");
             }
             );
@@ -460,7 +467,7 @@ WriteAttributeValue(" ", 3724, Model.CurrentPage==i?"disabled":"", 3725, 37, fal
 #nullable disable
             EndWriteAttribute();
             WriteLiteral(">\r\n                                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc27dc3fcdea9af1971a76157e50967f3ef7ca6526506", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc27dc3fcdea9af1971a76157e50967f3ef7ca6526737", async() => {
 #nullable restore
 #line 71 "D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\Areas\admin\Views\Reservation\Index.cshtml"
                                                                                                            Write(i);
@@ -525,7 +532,7 @@ WriteAttributeValue(" ", 4091, Model.CurrentPage==Model.PageCount?"d-none":"", 4
 #nullable disable
             EndWriteAttribute();
             WriteLiteral(">\r\n                                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc27dc3fcdea9af1971a76157e50967f3ef7ca6530288", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc27dc3fcdea9af1971a76157e50967f3ef7ca6530519", async() => {
                 WriteLiteral("Next >");
             }
             );
@@ -568,7 +575,7 @@ WriteAttributeValue(" ", 4371, Model.CurrentPage==Model.PageCount?"d-none":"", 4
 #nullable disable
             EndWriteAttribute();
             WriteLiteral(">\r\n                                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc27dc3fcdea9af1971a76157e50967f3ef7ca6533245", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc27dc3fcdea9af1971a76157e50967f3ef7ca6533476", async() => {
                 WriteLiteral("Last");
             }
             );
