@@ -379,5 +379,17 @@ namespace Restaurant.UI.Controllers
 
             return RedirectToAction("Basket", "Menu");
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Buy()
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            var user = await _userManager.GetUserAsync(User);
+            var basket= GetBasket(user.Id);
+            return Json(basket);
+        }
     }
 }

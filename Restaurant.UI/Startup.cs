@@ -29,10 +29,11 @@ namespace Restaurant.UI
         {
             services.AddScoped<SettingServices>();
             services.AddControllersWithViews();
-
+            services.AddControllers().AddNewtonsoftJson(options =>
+            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddMapperService();
 
-            services.AddIdentity<AppUser,IdentityRole>()
+            services.AddIdentity<AppUser, IdentityRole>()
                     .AddEntityFrameworkStores<AppDbContext>()
                     .AddDefaultTokenProviders();
 
@@ -86,7 +87,7 @@ namespace Restaurant.UI
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
-                
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
