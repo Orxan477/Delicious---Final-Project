@@ -461,10 +461,7 @@ namespace Restaurant.UI.Controllers
             HomeVM homeVM = new HomeVM
             {
                 FullOrders = _context.FullOrders.Include(x => x.Orders)
-                                                            .Include(x => x.BillingAdress)
-                                                            .Include(x => x.AppUser)
-                                                            .Where(x => x.AppUser.UserName ==
-                                                             User.Identity.Name)
+                                                            .Include(x => x.BillingAdress).ThenInclude(x=>x.AppUser)
                                                             .ToList(),
             };
             return View(homeVM);

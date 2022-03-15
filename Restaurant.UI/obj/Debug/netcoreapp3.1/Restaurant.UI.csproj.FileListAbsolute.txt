@@ -250,3 +250,4 @@ D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\bin\Debug\netco
 D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
 D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\obj\Debug\netcoreapp3.1\Razor\Views\Menu\ConfirmOrder.cshtml.g.cs
 D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\obj\Debug\netcoreapp3.1\Razor\Views\Menu\MyOrder.cshtml.g.cs
+D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\obj\Debug\netcoreapp3.1\Razor\Areas\admin\Views\Order\Index.cshtml.g.cs

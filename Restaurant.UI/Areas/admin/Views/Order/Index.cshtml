@@ -1,0 +1,31 @@
+﻿@model List<FullOrder>
+@{
+    ViewData["Title"] = "Index";
+    int n = 1;
+}
+
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">FullName</th>
+            <th scope="col">Order Date</th>
+            <th scope="col">TotalPrice</th>
+            <th scope="col">Setting</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+       {
+           <tr>
+            <th scope="row">@n</th>
+            <td>@item.BillingAdress.AppUser.FullName</td>
+            <td>@item.CreatedAt</td>
+            <td>@item.Total</td>
+            <td><a class="btn btn-link">Detail</a></td>
+        </tr>
+        n++;
+       }
+    </tbody>
+</table>
+
