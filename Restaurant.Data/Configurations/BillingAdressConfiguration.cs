@@ -8,7 +8,7 @@ namespace Restaurant.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<BillingAdress> builder)
         {
-            builder.Property(x=>x.AppUserId).IsRequired();
+            //builder.Property(x => x.AppUserId).IsRequired();
             builder.Property(x => x.Adress).HasMaxLength(70).IsRequired();
             builder.Property(x => x.Phone).HasMaxLength(14).IsRequired();
         }

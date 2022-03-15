@@ -9,6 +9,8 @@
     <Compile Remove="Migrations\20220302185435_updateDatabaseReservationTable.Designer.cs" />
     <Compile Remove="Migrations\20220313123002_CreateIdentityTables.cs" />
     <Compile Remove="Migrations\20220313123002_CreateIdentityTables.Designer.cs" />
+    <Compile Remove="Migrations\20220315202111_UpdateSQL.cs" />
+    <Compile Remove="Migrations\20220315202111_UpdateSQL.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

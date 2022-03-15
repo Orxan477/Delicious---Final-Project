@@ -6,7 +6,7 @@ namespace Restaurant.Core.Models
     public class FullOrder
     {
         public int Id { get; set; }
-        public int AppUserId { get; set; }
+        public string AppUserId { get; set; }
         public AppUser AppUser { get; set; }
         public double Total { get; set; }
         public int BillingAdressId { get; set; }
