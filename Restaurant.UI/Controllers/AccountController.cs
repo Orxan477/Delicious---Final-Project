@@ -389,6 +389,7 @@ namespace Restaurant.UI.Controllers
             if (result.Succeeded)
             {
                 ViewBag.IsSuccessMail = true;
+                await AddTokenDb(token);
                 ViewBag.RestaurantName = GetSetting("RestaurantName");
                 return View(nameof(SettingAccount));
             }
@@ -471,12 +472,15 @@ namespace Restaurant.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ForgotPasswordConfirm(string userid, string token,ForgotPasswordVM forgotPassword)
         {
+            bool isExistToken = _context.TokenBlackList.Any(x => x.Token == token);
+            if (isExistToken) return BadRequest();
             if (!ModelState.IsValid) return View();
             AppUser user = await _userManager.FindByIdAsync(userid);
             if (user == null) return BadRequest();
             IdentityResult identityResult = await _userManager.ResetPasswordAsync(user, token, forgotPassword.NewPassword);
             if (identityResult.Succeeded)
             {
+                await AddTokenDb(token);
                 await _signInManager.SignInAsync(user, false);
                 return RedirectToAction("Index", "Home");
             }
