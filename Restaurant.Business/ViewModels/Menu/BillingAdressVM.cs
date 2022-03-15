@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Restaurant.Business.ViewModels.Menu
 {
-    internal class BillingAdressVM
+    public class BillingAdressVM
     {
+        [Required,MaxLength(70)]
+        public string Adress { get; set; }
+        public string AppUserId { get; set; }
     }
 }
