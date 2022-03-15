@@ -30,7 +30,6 @@ namespace Restaurant.UI.Areas.admin.Controllers
                                                 .Include(x => x.BillingAdress).ThenInclude(x=>x.AppUser)
                                                 .ToListAsync();
             return View(fullOrders);
-            return Json(_context.FullOrders.Include(x=>x.AppUser).Include(x=>x.BillingAdress).Include(x=>x.Orders).ToList());
         }
     }
 }

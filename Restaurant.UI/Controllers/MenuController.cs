@@ -395,10 +395,9 @@ namespace Restaurant.UI.Controllers
             }
             var user = await _userManager.GetUserAsync(User);
             List<BasketItem> basketItems = await GetBasketProduct(user.Id);
-            //var basket = GetBasket(user.Id);
             if (basketItems.Count == 0) return BadRequest();
             await AddBillingInformation(homeVM.BillingAdressesVM.Adress, user.Id);
-            await BuyProduct(user.Id, basketItems);
+            await BuyProduct(basketItems);
             return Json("Her sey okaydir dostum");
         }
         private async Task<List<BasketItem>> GetBasketProduct(string userId)
@@ -418,12 +417,11 @@ namespace Restaurant.UI.Controllers
             await _context.BillingAdresses.AddAsync(billingAdress);
             await _context.SaveChangesAsync();
         }
-        private async Task BuyProduct(string userId,List<BasketItem> basketItems)
+        private async Task BuyProduct(List<BasketItem> basketItems)
         {
             var billingId = await _context.BillingAdresses.OrderByDescending(x => x.Id).FirstOrDefaultAsync();
             FullOrder order = new FullOrder
             {
-                AppUserId = userId,
                 CreatedAt = DateTime.UtcNow.AddHours(4),
                 BillingAdressId = billingId.Id,
             };
