@@ -398,7 +398,7 @@ namespace Restaurant.UI.Controllers
             if (basketItems.Count == 0) return BadRequest();
             await AddBillingInformation(homeVM.BillingAdressesVM.Adress, user.Id);
             await BuyProduct(basketItems);
-            return Json("Her sey okaydir dostum");
+            return RedirectToAction(nameof(MyOrder));
         }
         private async Task<List<BasketItem>> GetBasketProduct(string userId)
         {
