@@ -22,5 +22,6 @@ namespace Restaurant.Business.ViewModels
         public List<BasketItemVM> BasketItemVM { get; set; }
         public List<Product> Product { get; set; }
         public List<Restaurant.Core.Models.Team> Teams { get; set; }
+        public BillingAdressVM BillingAdressesVM { get; set; }
     }
 }

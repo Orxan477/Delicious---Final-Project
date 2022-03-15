@@ -6,6 +6,7 @@ using Restaurant.Business.ViewModels;
 using Restaurant.Business.ViewModels.Menu;
 using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -162,7 +163,7 @@ namespace Restaurant.UI.Controllers
                     size = "Other";
                     break;
             }
-            return size;    
+            return size;
 
         }
         #region Check Basket
@@ -240,7 +241,7 @@ namespace Restaurant.UI.Controllers
         }
         private List<BasketItem> GetBasket(string userId)
         {
-            var basket = _context.BasketItems.Where(x => x.AppUserId == userId).Include(x=>x.Type).ToList();
+            var basket = _context.BasketItems.Where(x => x.AppUserId == userId).Include(x => x.Type).ToList();
             return basket;
         }
         public async Task<IActionResult> Basket()
@@ -379,16 +380,65 @@ namespace Restaurant.UI.Controllers
 
             return RedirectToAction("Basket", "Menu");
         }
+        public IActionResult ConfirmOrder()
+        {
+            return View();
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Buy()
+        public async Task<IActionResult> Buy(HomeVM homeVM)
         {
+            if (!ModelState.IsValid) return View(homeVM.BillingAdressesVM);
             if (!User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Login", "Account");
             }
             var user = await _userManager.GetUserAsync(User);
-            var basket= GetBasket(user.Id);
+            List<BasketItem> basketItems = await _context.BasketItems
+                .Include(b => b.Product)
+                .Where(b => b.AppUserId == user.Id)
+                .ToListAsync();
+            var basket = GetBasket(user.Id);
+            if (basket.Count == 0) return BadRequest();
+            BillingAdress billingAdress = new BillingAdress
+            {
+                Adress = homeVM.BillingAdressesVM.Adress,
+                AppUserId = user.Id,
+            };
+            await _context.BillingAdresses.AddAsync(billingAdress);
+            await _context.SaveChangesAsync();
+            var billingId = _context.BillingAdresses.OrderByDescending(x => x.Id).FirstOrDefaultAsync();
+            FullOrder order = new FullOrder
+            {
+                AppUserId = user.Id,
+                CreatedAt = DateTime.UtcNow.AddHours(4),
+                BillingAdressId = billingId.Id,
+            };
+            List<Order> orderItems = new List<Order>();
+
+            double total = 0;
+
+            //foreach (BasketItem item in basketItems)
+            //{
+            //    Order orderItem = new Order
+            //    {
+            //        Count = item.Count,
+            //        Price = (double)item.Price,
+            //        ProductId = item.ProductId,
+            //        Name = item.Name,
+            //        Image = item.Image,
+            //        Size = item.Size
+            //    };
+
+            //    total += (orderItem.Count * (double)orderItem.Price);
+
+            //    orderItems.Add(orderItem);
+            //    item.IsDeleted = true;
+
+            //}
+
+            //order.Total = total;
+            //order.Orders = orderItems;
             return Json(basket);
         }
     }
