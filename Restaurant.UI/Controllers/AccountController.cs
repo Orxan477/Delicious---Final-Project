@@ -72,6 +72,16 @@ namespace Restaurant.UI.Controllers
                 UserName = registerVM.UserName,
                 PhoneNumber = registerVM.Number
             };
+            AppUser user = await _userManager.FindByEmailAsync(registerVM.Email);
+            if (user != null)
+            {
+                if (user.IsDeleted == true)
+                {
+                    ModelState.AddModelError(string.Empty, "Your email is blocked");
+                    ViewBag.RestaurantName = GetSetting("RestaurantName");
+                    return View(registerVM);
+                }
+            }
             IdentityResult identityResult = await _userManager.CreateAsync(newUser, registerVM.Password);
             if (identityResult.Succeeded)
             {
@@ -176,7 +186,7 @@ namespace Restaurant.UI.Controllers
                 ViewBag.RestaurantName = GetSetting("RestaurantName");
                 return View(loginVM);
             }
-            if (user.IsDeleted == false)
+            if (user.IsDeleted == true)
             {
                 ModelState.AddModelError(string.Empty, "Your account is blocked");
                 ViewBag.RestaurantName = GetSetting("RestaurantName");
@@ -454,14 +464,14 @@ namespace Restaurant.UI.Controllers
 
             string link = Url.Action(nameof(ForgotPasswordConfirm), "Account", new { userId = user.Id, token },
                                                                             Request.Scheme, Request.Host.ToString());
-           
+
             string name = GetSetting("RestaurantName");
             string body = string.Empty;
             using (StreamReader streamReader = new StreamReader(Path.Combine(_env.WebRootPath, "assets", "SendMessage", "ResetPassword.html")))
             {
                 body = streamReader.ReadToEnd();
             }
-            body = body.Replace("{{restaurantName}}", $"{name}").Replace("{{url}}",link);
+            body = body.Replace("{{restaurantName}}", $"{name}").Replace("{{url}}", link);
             Email.SendEmail(_configure.GetSection("Email:SenderEmail").Value,
                        _configure.GetSection("Email:Password").Value, user.Email, body, $"{name} - Reset Password");
             await _signInManager.SignInAsync(user, false);
@@ -476,7 +486,7 @@ namespace Restaurant.UI.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ForgotPasswordConfirm(string userid, string token,ForgotPasswordVM forgotPassword)
+        public async Task<IActionResult> ForgotPasswordConfirm(string userid, string token, ForgotPasswordVM forgotPassword)
         {
             bool isExistToken = _context.TokenBlackList.Any(x => x.Token == token);
             if (isExistToken) return BadRequest();

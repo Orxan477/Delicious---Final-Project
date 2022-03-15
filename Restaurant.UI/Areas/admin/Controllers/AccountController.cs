@@ -17,10 +17,10 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public IActionResult Index()
         {
-            return View(_context.Users.ToList());
+            return View(_context.Users.OrderByDescending(x=>x.Id).ToList());
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(string id)
         {
             AppUser dbUser = _context.Users.Where(x => x.Id == id).FirstOrDefault();
