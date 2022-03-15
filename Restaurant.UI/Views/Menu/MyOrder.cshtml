@@ -1,0 +1,42 @@
+﻿@model HomeVM
+@{
+    ViewData["Title"] = "MyOrder";
+    int n = 1;
+}
+
+<div class="container">
+    <div class="row">
+        <table class="table" style="margin-top:150px">
+            <thead>
+                <tr>
+                    <th scope="col">No</th>
+                     <th scope="col">Address</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Count</th>
+                        <th scope="col">Order Date</th>
+                        <th scope="col">Order Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.FullOrders)
+               {
+                   <tr>
+                    <th scope="row">@n</th>
+                    <td>@item.BillingAdress.Adress</td>
+                    <td>@item.AppUser.PhoneNumber</td>
+                    <td>@item.Orders.Count()</td>
+                    <td>@item.CreatedAt</td>
+                    <td>@item.Total $</td>
+                </tr>
+                n++;
+               }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Script
+            {
+<script src="~/assets/js/otherPage.js"></script>
+<script src="~/assets/js/menu.js"></script>
+            }
+

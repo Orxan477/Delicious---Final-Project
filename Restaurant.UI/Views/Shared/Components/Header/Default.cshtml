@@ -69,7 +69,7 @@
                                     @User.Identity.Name
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" asp-controller="Account" asp-action="MyOrder" asp-route-ReturnUrl="@Context.Request.Path.Value" style="color: black;">Order</a>
+                                    <a class="dropdown-item" asp-controller="Menu" asp-action="MyOrder" asp-route-ReturnUrl="@Context.Request.Path.Value" style="color: black;">Order</a>
                                     <a class="dropdown-item" asp-controller="Account" asp-action="SettingAccount" asp-route-ReturnUrl="@Context.Request.Path.Value" style="color: black;">Setting</a>
                                     <a class="dropdown-item" asp-controller="Account" asp-action="LogOut" asp-route-ReturnUrl="@Context.Request.Path.Value" style="color: black;">LogOut</a>
                                 </div>

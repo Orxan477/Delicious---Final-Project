@@ -394,23 +394,36 @@ namespace Restaurant.UI.Controllers
                 return RedirectToAction("Login", "Account");
             }
             var user = await _userManager.GetUserAsync(User);
-            List<BasketItem> basketItems = await _context.BasketItems
+            List<BasketItem> basketItems = await GetBasketProduct(user.Id);
+            //var basket = GetBasket(user.Id);
+            if (basketItems.Count == 0) return BadRequest();
+            await AddBillingInformation(homeVM.BillingAdressesVM.Adress, user.Id);
+            await BuyProduct(user.Id, basketItems);
+            return Json("Her sey okaydir dostum");
+        }
+        private async Task<List<BasketItem>> GetBasketProduct(string userId)
+        {
+            return await _context.BasketItems
                 .Include(b => b.Product)
-                .Where(b => b.AppUserId == user.Id)
+                .Where(b => b.AppUserId == userId)
                 .ToListAsync();
-            var basket = GetBasket(user.Id);
-            if (basket.Count == 0) return BadRequest();
+        }
+        private async Task AddBillingInformation(string adress,string userId)
+        {
             BillingAdress billingAdress = new BillingAdress
             {
-                Adress = homeVM.BillingAdressesVM.Adress,
-                AppUserId = user.Id,
+                Adress = adress,
+                AppUserId = userId,
             };
             await _context.BillingAdresses.AddAsync(billingAdress);
             await _context.SaveChangesAsync();
+        }
+        private async Task BuyProduct(string userId,List<BasketItem> basketItems)
+        {
             var billingId = await _context.BillingAdresses.OrderByDescending(x => x.Id).FirstOrDefaultAsync();
             FullOrder order = new FullOrder
             {
-                AppUserId = user.Id,
+                AppUserId = userId,
                 CreatedAt = DateTime.UtcNow.AddHours(4),
                 BillingAdressId = billingId.Id,
             };
@@ -438,7 +451,23 @@ namespace Restaurant.UI.Controllers
             order.Orders = orderItems;
             await _context.FullOrders.AddAsync(order);
             await _context.SaveChangesAsync();
-            return Json("Her sey okaydir dostum");
+        }
+        public IActionResult MyOrder()
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return BadRequest();
+            }
+            HomeVM homeVM = new HomeVM
+            {
+                FullOrders = _context.FullOrders.Include(x => x.Orders)
+                                                            .Include(x => x.BillingAdress)
+                                                            .Include(x => x.AppUser)
+                                                            .Where(x => x.AppUser.UserName ==
+                                                             User.Identity.Name)
+                                                            .ToList(),
+            };
+            return View(homeVM);
         }
     }
 }
