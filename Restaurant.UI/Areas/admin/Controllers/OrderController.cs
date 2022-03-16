@@ -23,7 +23,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var user = await _userManager.GetUserAsync(User);
+            //var user = await _userManager.GetUserAsync(User);
 
             List<FullOrder> fullOrders = await _context.FullOrders
                                                 .Include(x => x.Orders)

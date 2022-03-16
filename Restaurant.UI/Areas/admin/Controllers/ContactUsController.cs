@@ -68,7 +68,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Check(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             ContactUs dbContactUs = _context.ContactUs.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
             if (dbContactUs is null) return NotFound();
