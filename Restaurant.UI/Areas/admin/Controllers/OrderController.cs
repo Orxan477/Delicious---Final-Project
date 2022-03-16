@@ -36,10 +36,13 @@ namespace Restaurant.UI.Areas.admin.Controllers
         {
             return View(_context.FullOrders
                                          .Include(x => x.Orders)
+                                         .ThenInclude(x=>x.Type)
+                                         .Include(x => x.Orders)
                                          .ThenInclude(x=>x.Product)
                                          .ThenInclude(x=>x.MenuImage)
                                          .Include(x => x.BillingAdress)
                                          .ThenInclude(x => x.AppUser)
+                                         //.Include(x=>x.B
                                          .FirstOrDefault(x => x.Id == id));
         }
     }
