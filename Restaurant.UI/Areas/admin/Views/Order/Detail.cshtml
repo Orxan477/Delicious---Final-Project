@@ -1,0 +1,53 @@
+﻿@model FullOrder
+@{
+    ViewData["Title"] = "Detail";
+    int n = 1;
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Count</th>
+                    <th scope="col">Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Orders)
+                {
+                    <tr>
+                        <th scope="row">@n</th>
+                        <td><img src="~/assets/img/@item.Product.MenuImage.Image"></td>
+                        <td>@item.Product.Name</td>
+                        <td>@item.Count</td>
+                        <td>@item.Type</td>
+                    </tr>
+                    n++;
+                }
+            </tbody>
+        </table>
+
+        <table class="table table-dark mt-4">
+            <thead>
+                <tr>
+                    <th scope="row">
+                        Full Name:
+                        @Model.BillingAdress.AppUser.FullName
+                    </th>
+                    <th scope="row">Phone Number: @Model.BillingAdress.AppUser.FullName</th>
+                    <th scope="row">Address: @Model.BillingAdress.Adress</th>
+
+                    <th scope="row">Total: @Model.Total.ToString("F2") AZN</th>
+                </tr>
+            </thead>
+        </table>
+        <div class="mt-4 d-flex justify-content-center">
+            <a class="btn btn-light" asp-action="Index">Cancel</a>
+        </div>
+    </div>
+</div>
+

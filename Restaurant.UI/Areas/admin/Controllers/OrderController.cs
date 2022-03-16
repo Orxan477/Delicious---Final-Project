@@ -32,5 +32,15 @@ namespace Restaurant.UI.Areas.admin.Controllers
                                                 .ToListAsync();
             return View(fullOrders);
         }
+        public IActionResult Detail(int id)
+        {
+            return View(_context.FullOrders
+                                         .Include(x => x.Orders)
+                                         .ThenInclude(x=>x.Product)
+                                         .ThenInclude(x=>x.MenuImage)
+                                         .Include(x => x.BillingAdress)
+                                         .ThenInclude(x => x.AppUser)
+                                         .FirstOrDefault(x => x.Id == id));
+        }
     }
 }
