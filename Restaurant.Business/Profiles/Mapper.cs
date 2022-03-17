@@ -31,6 +31,7 @@ namespace Restaurant.Business.Profiles
             CreateMap<RestaurantPhotos, UpdateRestaurantPhotoVM>();
             CreateMap<Feedback, UpdateFeedbackVM>();
             CreateMap<Special, CreateUpdateSpecialVM>();
+            CreateMap<Product, ProductListVM>().ForMember(o => o.Image, m => m.MapFrom(x => x.MenuImage.Image));
         }
     }
 }

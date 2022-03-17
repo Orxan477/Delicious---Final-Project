@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "UYVlD6I72FZEqZNNuA6ScHPayJdMLF2QvP3I2EPhNjGfubAR3Nj5aqaJ36QpCUJ22tKg26w6J51SArffL4JwbA==",
+  "dgSpecHash": "cvqM3X0Z5kq9OXhUiXcePTzAsdp4r+daVG5q1k8gW0UCU+scnyznmTyUKv2PKkYMAtawj0ea+celQFm8YA3i2A==",
   "success": true,
   "projectFilePath": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.Business\\Restaurant.Business.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Orxan477\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
+    "C:\\Users\\Orxan477\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\Orxan477\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\Orxan477\\.nuget\\packages\\fluentvalidation\\10.3.6\\fluentvalidation.10.3.6.nupkg.sha512",
     "C:\\Users\\Orxan477\\.nuget\\packages\\fluentvalidation.aspnetcore\\10.3.6\\fluentvalidation.aspnetcore.10.3.6.nupkg.sha512",

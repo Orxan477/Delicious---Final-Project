@@ -254,7 +254,7 @@
                             loading="lazy"></iframe>
                 </div>
                 <div class="col-lg-6 col-md-5 col-sm-12 message">
-                    <form method="post" asp-controller="Home" asp-action="ContactUs">
+                    <form method="post delete-btn" asp-controller="Home" asp-action="ContactUs">
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <input asp-for="ContactUsVM.Name" class="form-control" placeholder="Your Name">
@@ -288,7 +288,8 @@
     <script src="~/assets/js/script.js"></script>
     <script src="~/assets/js/home.js"></script>
     <partial name="_ValidationScriptsPartial" />
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+    <script src="~/assets/js/SweetAlertConfirm.js"></script>
     }
 </main>
 

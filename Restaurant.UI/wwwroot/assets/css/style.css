@@ -382,12 +382,12 @@ html {
 
 .about-content-options .check-option-about {
     color: #ffb03b;
+    margin-right:10px;
 }
 
 .about-content-options .distance-ul-about {
     margin: 18px 0;
 }
-
 .chooseIntro {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;

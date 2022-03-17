@@ -4,7 +4,7 @@ namespace Restaurant.Core.Interfaces
 {
     public interface IUnitOfWork
     {
-        //public IProductRepository productRepository { get; }
+        //public IPaginateRepository Repository { get; }
         Task SaveChange();
     }
 }

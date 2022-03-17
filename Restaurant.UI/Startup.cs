@@ -9,8 +9,11 @@ using Microsoft.Extensions.Hosting;
 using Restaurant.Business.Profiles;
 using Restaurant.Business.Services;
 using Restaurant.Business.Validators.Home;
+using Restaurant.Business.ViewModels.Menu;
+using Restaurant.Core.Interfaces;
 using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
+using Restaurant.Data.Implementations;
 using System;
 
 namespace Restaurant.UI
@@ -32,7 +35,7 @@ namespace Restaurant.UI
             services.AddControllers().AddNewtonsoftJson(options =>
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddMapperService();
-
+            services.AddScoped<IPaginateRepository<Product, ProductListVM>, PaginateRepository<Product, ProductListVM>>();
             services.AddIdentity<AppUser, IdentityRole>()
                     .AddEntityFrameworkStores<AppDbContext>()
                     .AddDefaultTokenProviders();

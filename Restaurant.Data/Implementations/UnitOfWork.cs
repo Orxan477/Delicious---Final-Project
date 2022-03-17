@@ -7,13 +7,13 @@ namespace Restaurant.Data.Implementations
     public class UnitOfWork : IUnitOfWork
     {
         private AppDbContext _context;
-        //private ProductRepository _productRepository;
+        //private PaginateRepository _repository;
 
         public UnitOfWork(AppDbContext context)
         {
             _context = context;
         }
-        //public IProductRepository productRepository => _productRepository ?? new ProductRepository(_context);
+        //public IPaginateRepository repository => _repository ?? new Repository(_context);
 
         public async Task SaveChange()
         {
