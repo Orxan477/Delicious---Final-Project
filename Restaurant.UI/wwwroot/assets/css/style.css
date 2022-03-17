@@ -148,7 +148,12 @@ html {
     .nav2Right a:hover {
         color: #ffb03b;
     }
-
+    .nav2Right .myDrop .myItem:active{
+        background-color:white;
+    }
+    .nav2Right .myDrop .myItem {
+        padding: 5px 20px!important;
+    }
 .nav2LeftIcon {
     font-family: "Satisfy", cursive;
     font-size: 28px;
@@ -201,6 +206,19 @@ html {
     .nav2Right .shop-cart {
         display: none;
     }
+    .myDrop{
+        border:1px solid white;
+    }
+    .dropdown-menu{
+        background:transparent!important;
+    }
+    .myDrop .myItem{
+        color:white!important;
+    }
+        .myDrop .myItem:hover {
+            color: #ffb03b !important;
+            background: transparent;
+        }
 }
 
 .stickyOtherPageNavbar {

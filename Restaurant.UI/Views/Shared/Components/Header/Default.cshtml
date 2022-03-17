@@ -64,14 +64,14 @@
                                 <i class="fas fa-shopping-basket logo-basket"></i>
                             </a>
                         </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <li class="nav-item dropdown myDrop">
+                                <a class="nav-link dropdown-toggle pb-3" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     @User.Identity.Name
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" asp-controller="Menu" asp-action="MyOrder" asp-route-ReturnUrl="@Context.Request.Path.Value" style="color: black;">Order</a>
-                                    <a class="dropdown-item" asp-controller="Account" asp-action="SettingAccount" asp-route-ReturnUrl="@Context.Request.Path.Value" style="color: black;">Setting</a>
-                                    <a class="dropdown-item" asp-controller="Account" asp-action="LogOut" asp-route-ReturnUrl="@Context.Request.Path.Value" style="color: black;">LogOut</a>
+                                <div class="dropdown-menu p-0" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item myItem p-2" asp-controller="Menu" asp-action="MyOrder" asp-route-ReturnUrl="@Context.Request.Path.Value" style="color: black;">Order</a>
+                                    <a class="dropdown-item myItem" asp-controller="Account" asp-action="SettingAccount" asp-route-ReturnUrl="@Context.Request.Path.Value" style="color: black;">Setting</a>
+                                    <a class="dropdown-item myItem" asp-controller="Account" asp-action="LogOut" asp-route-ReturnUrl="@Context.Request.Path.Value" style="color: black;">LogOut</a>
                                 </div>
                             </li>
                         <li class="nav-item d-none">
