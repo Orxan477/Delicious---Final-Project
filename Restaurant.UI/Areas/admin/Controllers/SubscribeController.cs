@@ -23,15 +23,14 @@ namespace Restaurant.UI.Areas.admin.Controllers
             _context = context;
             _settingServices = settingServices;
         }
-        private int GetSetting(string key)
+        private string GetSetting(string key)
         {
             Dictionary<string, string> Settings = _settingServices.GetSetting();
-            string value = Settings[$"{key}"];
-            return int.Parse(value);
+            return Settings[$"{key}"];
         }
         public IActionResult Index(int page = 1)
         {
-            int count = GetSetting("TakeCount");
+            int count = int.Parse(GetSetting("TakeCount"));
             ViewBag.TakeCount = count;
             var subscribes = _context.Subscribes
                                      .Skip((page - 1) * count)
@@ -41,7 +40,8 @@ namespace Restaurant.UI.Areas.admin.Controllers
             var subscribeVM = GetProductList(subscribes);
             int pageCount = GetPageCount(count);
             Paginate<SubscribeListVM> model = new Paginate<SubscribeListVM>(subscribeVM, page, pageCount);
-            return View();
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
+            return View(model);
         }
         private int GetPageCount(int take)
         {

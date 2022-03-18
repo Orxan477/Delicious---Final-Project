@@ -27,18 +27,18 @@ namespace Restaurant.UI.Areas.admin.Controllers
             _mapper = mapper;
             _settingServices = settingServices;
         }
-        private int GetSetting(string key)
+        private string GetSetting(string key)
         {
             Dictionary<string, string> Settings = _settingServices.GetSetting();
-            string value = Settings[$"{key}"];
-            return int.Parse(value);
+            return Settings[$"{key}"];
         }
         public IActionResult Index(int page=1)
         {
             ViewBag.OptionCount = _context.AboutOptions
                                           .Where(x => !x.IsDeleted)
                                           .Count();
-            int count = GetSetting("TakeCount");
+            int dbItemCount = int.Parse(GetSetting("TakeCount"));
+            int count = dbItemCount;
             ViewBag.TakeCount = count;
             var option = _context.AboutOptions
                                 .Where(x => !x.IsDeleted)
@@ -48,6 +48,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
             var optionVm = GetProductList(option);
             int pageCount = GetPageCount(count);
             Paginate<AboutOptionListVM> model = new Paginate<AboutOptionListVM>(optionVm, page, pageCount);
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View(model);
         }
         private int GetPageCount(int take)
@@ -72,17 +73,23 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public IActionResult Create()
         {
             if (_context.AboutOptions.Where(x => !x.IsDeleted).Count()==3) return BadRequest();
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(AboutOptionCreateVM aboutOptionCreate)
         {
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid)
+            {
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View();
+            }
             bool nameContext = _context.AboutOptions.Any(x => x.Option.Trim().ToLower() == aboutOptionCreate.Option.Trim().ToLower());
             if (nameContext)
             {
                 ModelState.AddModelError("Option", "This Option is available");
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
                 return View();
             }
             AboutOption aboutOption = _mapper.Map<AboutOption>(aboutOptionCreate);
@@ -95,19 +102,25 @@ namespace Restaurant.UI.Areas.admin.Controllers
             AboutOption dbAboutOption = _context.AboutOptions.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
             if (dbAboutOption is null) return NotFound();
             AboutOptionUpdateVM aboutOption = _mapper.Map<AboutOptionUpdateVM>(dbAboutOption);
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View(aboutOption);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(int id, AboutOptionUpdateVM aboutOptionUpdate)
         {
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid)
+            {
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View();
+            }
             AboutOption dbAboutOption = _context.AboutOptions.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
             bool isCurrentName = dbAboutOption.Option.Trim().ToLower() == aboutOptionUpdate.Option.ToLower().Trim();
             bool nameContext = _context.AboutOptions.Any(x => x.Option.Trim().ToLower() == aboutOptionUpdate.Option.Trim().ToLower());
             if (nameContext && !isCurrentName)
             {
                 ModelState.AddModelError("Option", "This Option is available");
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
                 return View();
             }
             if (!isCurrentName && !nameContext)

@@ -40,29 +40,29 @@ namespace Restaurant.UI.Areas.admin.Controllers
             _settingServices = settingServices;
             _repository = repository;
         }
-        private int GetSetting(string key)
+        private string GetSetting(string key)
         {
             Dictionary<string, string> Settings = _settingServices.GetSetting();
-            string value = Settings[$"{key}"];
-            return int.Parse(value);
+            return Settings[$"{key}"];
         }
-        public async Task<IActionResult> Index(int page=1)
+        public IActionResult Index(int page=1)
         {
-            int count= GetSetting("TakeCount");
+            int count=int.Parse(GetSetting("TakeCount"));
             ViewBag.TakeCount = count;
-           //var products=_context.Products
-           //                     .Skip((page - 1) * count)
-           //                     .Take(count)
-           //                     .Include(x => x.MenuImage)
-           //                     .Include(x => x.Category)
-           //                     .ToList();
-         List<Product>products1= await  _repository.GetPaginate(count, page, "MenuImage,Category");
-            return Json(products1);
+            var products = _context.Products
+                                 .Skip((page - 1) * count)
+                                 .Take(count)
+                                 .Include(x => x.MenuImage)
+                                 .Include(x => x.Category)
+                                 .ToList();
+            //List<Product>products1= await  _repository.GetPaginate(count, page, "MenuImage,Category");
+            //return Json(products1);
 
-            //var productsVM = GetProductList(products);
-            //int pageCount = GetPageCount(count);
-            //Paginate<ProductListVM> model = new Paginate<ProductListVM>(productsVM, page, pageCount);
-            //return View(model);
+            var productsVM = GetProductList(products);
+            int pageCount = GetPageCount(count);
+            Paginate<ProductListVM> model = new Paginate<ProductListVM>(productsVM, page, pageCount);
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
+            return View(model);
         }
         private int GetPageCount(int take)
         {
@@ -97,18 +97,24 @@ namespace Restaurant.UI.Areas.admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateMenuVM createMenu)
         {
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid)
+            {
+                await GetSelectedItemAsync();
+                return View();
+            }
             bool isExist = _context.Products.Any(p => p.Name.Trim()
                                                            .ToLower() == createMenu.Name.Trim().ToLower());
             if (isExist)
             {
                 ModelState.AddModelError("Name", "This name currently use");
+                await GetSelectedItemAsync();
                 return View();
             }
-            int size = GetSetting("PhotoSize");
+            int size = int.Parse(GetSetting("PhotoSize"));
             if (!CheckImageValid(createMenu.Photo, "image/", size))
             {
                 ModelState.AddModelError("Photo", _errorMessage);
+                await GetSelectedItemAsync();
                 return View(createMenu);
             }
             string fileName = await Extension.SaveFileAsync(createMenu.Photo, _env.WebRootPath, "assets/img");
@@ -157,7 +163,11 @@ namespace Restaurant.UI.Areas.admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(int id, UpdateMenuVM updateMenu)
         {
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid)
+            {
+                await GetSelectedItemAsync();
+                return View();
+            }
             Product dbProduct = _context.Products.Where(x => x.Id == id).Include(x => x.MenuImage).FirstOrDefault();
             bool isCurrentName = dbProduct.Name.Trim().ToLower() == updateMenu.Name.ToLower().Trim();
             if (!isCurrentName)
@@ -176,10 +186,11 @@ namespace Restaurant.UI.Areas.admin.Controllers
             }
             if (updateMenu.Photo != null)
             {
-                int size = GetSetting("PhotoSize");
+                int size = int.Parse(GetSetting("PhotoSize"));
                 if (!CheckImageValid(updateMenu.Photo, "image/", size))
                 {
                     ModelState.AddModelError("Photo", _errorMessage);
+                    await GetSelectedItemAsync();
                     return View(updateMenu);
                 }
                 Helper.RemoveFile(_env.WebRootPath, "assets/img", dbProduct.MenuImage.Image);
@@ -213,6 +224,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         {
             ViewBag.Category = new SelectList(await _context.Categories
                                                             .ToListAsync(), "Id", "Name");
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
         }
     }
 }

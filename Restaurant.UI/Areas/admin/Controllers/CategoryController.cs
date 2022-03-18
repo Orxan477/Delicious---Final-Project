@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Restaurant.Business.Services;
 using Restaurant.Business.ViewModels.Menu;
 using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,19 +15,29 @@ namespace Restaurant.UI.Areas.admin.Controllers
     {
         private AppDbContext _context;
         private IMapper _mapper;
+        private SettingServices _settingServices;
 
         public CategoryController(AppDbContext context,
-                                  IMapper mapper)
+                                  IMapper mapper,
+                                  SettingServices settingServices)
         {
             _context = context;
             _mapper = mapper;
+            _settingServices = settingServices;
+        }
+        private string GetSetting(string key)
+        {
+            Dictionary<string, string> Settings = _settingServices.GetSetting();
+            return Settings[$"{key}"];
         }
         public IActionResult Index()
         {
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View(_context.Categories.Where(x => !x.IsDeleted).ToList());
         }
         public IActionResult Create()
         {
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View();
         }
         [HttpPost]
@@ -37,6 +49,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
             if (name)
             {
                 ModelState.AddModelError("Name", "This Product Name is available");
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
                 return View();
             }
             Category category = _mapper.Map<Category>(categoryCreate);
@@ -62,6 +75,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
             if (nameContext && !isCurrentName)
             {
                 ModelState.AddModelError("Name", "This Category is available");
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
                 return View();
             }
             if (!isCurrentName && !nameContext)

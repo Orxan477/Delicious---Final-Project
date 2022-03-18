@@ -37,20 +37,20 @@ namespace Restaurant.UI.Areas.admin.Controllers
             _mapper = mapper;
             _settingServices = settingService;
         }
-        private int GetSetting(string key)
+        private string GetSetting(string key)
         {
             Dictionary<string, string> Settings = _settingServices.GetSetting();
-            string value = Settings[$"{key}"];
-            return int.Parse(value);
+            return Settings[$"{key}"];
         }
         public IActionResult Index(int page = 1)
         {
-            int count = GetSetting("TakeCount");
+            int count = int.Parse(GetSetting("TakeCount"));
             ViewBag.TakeCount = count;
             var users = _context.Users.OrderByDescending(x => x.Id).ToList();
             var userVM = GetProductList(users);
             int pageCount = GetPageCount(count);
             Paginate<UserListVM> model = new Paginate<UserListVM>(userVM, page, pageCount);
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View(model);
         }
         private int GetPageCount(int take)
@@ -117,6 +117,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         {
             ViewBag.Roles = new SelectList(await _context.Roles
                                                             .ToListAsync(), "Name");
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
         }
         //[HttpPost]
         //[ValidateAntiForgeryToken]

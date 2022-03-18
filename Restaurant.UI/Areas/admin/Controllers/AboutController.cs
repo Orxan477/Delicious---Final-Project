@@ -39,6 +39,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public IActionResult Index()
         {
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View(_context.Abouts.FirstOrDefault());
         }
         public IActionResult Update(int id)
@@ -46,13 +47,18 @@ namespace Restaurant.UI.Areas.admin.Controllers
             About dbAbout = _context.Abouts.Where(x => x.Id == id).FirstOrDefault();
             if (dbAbout is null) return NotFound();
             AboutUpdateVM about = _mapper.Map<AboutUpdateVM>(dbAbout);
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View(about);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(int id, AboutUpdateVM aboutUpdate)
         {
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid)
+            {
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View();
+            }
             About dbAbout = _context.Abouts.Where(x => x.Id == id).FirstOrDefault();
             bool isCurrentHead = dbAbout.Head.Trim().ToLower() == aboutUpdate.Head.ToLower().Trim();
             if (!isCurrentHead)
@@ -87,6 +93,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
                 if (!CheckImageValid(aboutUpdate.Photo, "image/", size))
                 {
                     ModelState.AddModelError("Photo", _errorMessage);
+                    ViewBag.RestaurantName = GetSetting("RestaurantName");
                     return View(aboutUpdate);
                 }
                 Helper.RemoveFile(_env.WebRootPath, "assets/img", dbAbout.Image);

@@ -64,7 +64,11 @@ namespace Restaurant.UI.Controllers
             {
                 return BadRequest();
             }
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid)
+            {
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View();
+            }
             AppUser newUser = new AppUser
             {
                 FullName = registerVM.FullName,
@@ -306,7 +310,11 @@ namespace Restaurant.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangePassword(ChangePasswordVM changePasswordVM)
         {
-            if (!ModelState.IsValid) return View(changePasswordVM);
+            if (!ModelState.IsValid)
+            {
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View(changePasswordVM);
+            }
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
@@ -342,7 +350,11 @@ namespace Restaurant.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangeUsername(ChangeUsernameVM changeUsername)
         {
-            if (!ModelState.IsValid) return View(changeUsername);
+            if (!ModelState.IsValid)
+            {
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View(changeUsername);
+            }
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
@@ -384,7 +396,11 @@ namespace Restaurant.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangeMail(ChangeEmailVM changeEmail)
         {
-            if (!ModelState.IsValid) return View(changeEmail);
+            if (!ModelState.IsValid)
+            {
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View(changeEmail);
+            }
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
@@ -419,6 +435,7 @@ namespace Restaurant.UI.Controllers
                 return View(nameof(ChangeMail));
             }
         }
+        #region Verify Email
         //public async Task<IActionResult> VerifyChangeEmail(AppUser user,string email,string token)
         //{
         //    var result = await _userManager.ChangeEmailAsync(user, email, token);
@@ -437,6 +454,7 @@ namespace Restaurant.UI.Controllers
         //        return View(nameof(ChangeMail));
         //    }
         //}
+        #endregion
         public IActionResult ForgotPassword()
         {
             ViewBag.RestaurantName = GetSetting("RestaurantName");
@@ -446,7 +464,11 @@ namespace Restaurant.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ForgotPassword(MailVm mail)
         {
-            if (!ModelState.IsValid) return View(mail);
+            if (!ModelState.IsValid)
+            {
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View(mail);
+            }
             AppUser user = await _userManager.FindByEmailAsync(mail.Email);
             if (user == null)
             {
@@ -490,7 +512,11 @@ namespace Restaurant.UI.Controllers
         {
             bool isExistToken = _context.TokenBlackList.Any(x => x.Token == token);
             if (isExistToken) return BadRequest();
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid)
+            {
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View();
+            }
             AppUser user = await _userManager.FindByIdAsync(userid);
             if (user == null) return BadRequest();
             IdentityResult identityResult = await _userManager.ResetPasswordAsync(user, token, forgotPassword.NewPassword);

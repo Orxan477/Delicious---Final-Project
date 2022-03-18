@@ -75,7 +75,11 @@ namespace Restaurant.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ContactUs(HomeVM homeVM)
         {
-            if (!ModelState.IsValid) return View(homeVM);
+            if (!ModelState.IsValid)
+            {
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View(homeVM);
+            }
 
             ContactUs contact = new ContactUs
             {
@@ -93,7 +97,11 @@ namespace Restaurant.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Subscribe(HomeVM homeVM)
         {
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid)
+            {
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View();
+            }
 
             Subscribe subscribe = new Subscribe
             {

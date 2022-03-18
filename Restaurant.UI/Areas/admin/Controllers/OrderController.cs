@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Restaurant.Business.Services;
 using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
 using System.Collections.Generic;
@@ -14,12 +15,20 @@ namespace Restaurant.UI.Areas.admin.Controllers
     {
         private AppDbContext _context;
         private UserManager<AppUser> _userManager;
+        private SettingServices _settingServices;
 
         public OrderController(AppDbContext context,
-                               UserManager<AppUser> userManager)
+                               UserManager<AppUser> userManager,
+                               SettingServices settingServices)
         {
             _context = context;
             _userManager = userManager;
+            _settingServices = settingServices;
+        }
+        private string GetSetting(string key)
+        {
+            Dictionary<string, string> Settings = _settingServices.GetSetting();
+            return Settings[$"{key}"];
         }
         public async Task<IActionResult> Index()
         {
@@ -30,10 +39,12 @@ namespace Restaurant.UI.Areas.admin.Controllers
                                                 .Include(x => x.BillingAdress).ThenInclude(x=>x.AppUser)
                                                 .OrderByDescending(x=>x.Id)
                                                 .ToListAsync();
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View(fullOrders);
         }
         public IActionResult Detail(int id)
         {
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View(_context.FullOrders
                                          .Include(x => x.Orders)
                                          .ThenInclude(x=>x.Type)
@@ -42,7 +53,6 @@ namespace Restaurant.UI.Areas.admin.Controllers
                                          .ThenInclude(x=>x.MenuImage)
                                          .Include(x => x.BillingAdress)
                                          .ThenInclude(x => x.AppUser)
-                                         //.Include(x=>x.B
                                          .FirstOrDefault(x => x.Id == id));
         }
     }

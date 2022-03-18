@@ -34,15 +34,14 @@ namespace Restaurant.UI.Areas.admin.Controllers
             _env = env;
             _settingServices = settingServices;
         }
-        private int GetSetting(string key)
+        private string GetSetting(string key)
         {
             Dictionary<string, string> Settings = _settingServices.GetSetting();
-            string value = Settings[$"{key}"];
-            return int.Parse(value);
+            return Settings[$"{key}"];
         }
         public IActionResult Index(int page=1)
         {
-            int count = GetSetting("TakeCount");
+            int count = int.Parse(GetSetting("TakeCount"));
             ViewBag.TakeCount = count;
             var intro=_context.HomeIntros
                                 .Where(x => !x.IsDeleted)
@@ -52,6 +51,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
             var introVM = GetProductList(intro);
             int pageCount = GetPageCount(count);
             Paginate<IntroListVM> model = new Paginate<IntroListVM>(introVM, page, pageCount);
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View(model);
         }
         private int GetPageCount(int take)
@@ -77,6 +77,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public IActionResult Create()
         {
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View();
         }
         [HttpPost]
@@ -84,7 +85,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Create(HomeIntroCreateVM homeIntroCreate)
         {
             if (!ModelState.IsValid) return View();
-            int size = GetSetting("PhotoSize"); 
+            int size = int.Parse(GetSetting("PhotoSize")); 
             if (!CheckImageValid(homeIntroCreate.Photo, "image/", size))
             {
                 ModelState.AddModelError("Photo", _errorMessage);
@@ -120,13 +121,18 @@ namespace Restaurant.UI.Areas.admin.Controllers
             HomeIntro dbHomeIntro = _context.HomeIntros.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
             if (dbHomeIntro is null) return NotFound();
             HomeIntroUpdateVM homeIntro = _mapper.Map<HomeIntroUpdateVM>(dbHomeIntro);
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View(homeIntro);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(int id, HomeIntroUpdateVM homeIntroUpdate)
         {
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid)
+            {
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View();
+            }
             HomeIntro dbHomeIntro = _context.HomeIntros.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
             bool isCurrentHead = dbHomeIntro.Head.Trim().ToLower() == homeIntroUpdate.Head.ToLower().Trim();
             if (!isCurrentHead)
@@ -140,10 +146,11 @@ namespace Restaurant.UI.Areas.admin.Controllers
             }
             if (homeIntroUpdate.Photo != null)
             {
-                int size = GetSetting("PhotoSize");
+                int size = int.Parse(GetSetting("PhotoSize"));
                 if (!CheckImageValid(homeIntroUpdate.Photo, "image/", size))
                 {
                     ModelState.AddModelError("Photo", _errorMessage);
+                    ViewBag.RestaurantName = GetSetting("RestaurantName");
                     return View(homeIntroUpdate);
                 }
                 Helper.RemoveFile(_env.WebRootPath, "assets/img", dbHomeIntro.Image);

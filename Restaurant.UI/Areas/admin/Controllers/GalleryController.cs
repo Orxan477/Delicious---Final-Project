@@ -32,31 +32,37 @@ namespace Restaurant.UI.Areas.admin.Controllers
             _mapper = mapper;
             _settingServices = settingServices;
         }
-        private int GetSetting(string key)
+        private string GetSetting(string key)
         {
             Dictionary<string, string> Settings = _settingServices.GetSetting();
-            string value = Settings[$"{key}"];
-            return int.Parse(value);
-        }
+            return Settings[$"{key}"];
+            }
         public IActionResult Index()
         {
             ViewBag.RestaurantPhoto = _context.RestaurantPhotos.Count();
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View(_context.RestaurantPhotos.ToList());
         }
         public IActionResult Create()
         {
             if (_context.RestaurantPhotos.Count() == 8) return BadRequest();
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateRestaurantPhotoVM createRestaurantPhoto)
         {
-            if (!ModelState.IsValid) return View();
-            int size = GetSetting("PhotoSize");
+            if (!ModelState.IsValid)
+            {
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View();
+            }
+            int size = int.Parse(GetSetting("PhotoSize"));
             if (!CheckImageValid(createRestaurantPhoto.Photo, "image/", size))
             {
                 ModelState.AddModelError("Photo", _errorMessage);
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
                 return View(createRestaurantPhoto);
             }
             string fileName = await Extension.SaveFileAsync(createRestaurantPhoto.Photo, _env.WebRootPath, "assets/img");
@@ -87,20 +93,26 @@ namespace Restaurant.UI.Areas.admin.Controllers
             RestaurantPhotos dbRestaurantPhoto = _context.RestaurantPhotos.Where(x => x.Id == id).FirstOrDefault();
             if (dbRestaurantPhoto is null) return NotFound();
             UpdateRestaurantPhotoVM photo = _mapper.Map<UpdateRestaurantPhotoVM>(dbRestaurantPhoto);
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View(photo);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(int id, UpdateRestaurantPhotoVM updateRestaurantPhoto)
         {
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid)
+            {
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View();
+            }
             RestaurantPhotos dbRestaurantPhoto = _context.RestaurantPhotos.Where(x => x.Id == id).FirstOrDefault();
             if (updateRestaurantPhoto.Photo != null)
             {
-                int size = GetSetting("PhotoSize");
+                int size = int.Parse(GetSetting("PhotoSize"));
                 if (!CheckImageValid(updateRestaurantPhoto.Photo, "image/", size))
                 {
                     ModelState.AddModelError("Photo", _errorMessage);
+                    ViewBag.RestaurantName = GetSetting("RestaurantName");
                     return View(updateRestaurantPhoto);
                 }
                 Helper.RemoveFile(_env.WebRootPath, "assets/img", dbRestaurantPhoto.Image);

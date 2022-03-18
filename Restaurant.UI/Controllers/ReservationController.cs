@@ -21,27 +21,31 @@ namespace Restaurant.UI.Controllers
             _context = context;
             _settingServices = settingServices;
         }
-        private int GetSetting(string key)
+        private string GetSetting(string key)
         {
             Dictionary<string, string> Settings = _settingServices.GetSetting();
-            string value = Settings[$"{key}"];
-            return int.Parse(value);
+            return Settings[$"{key}"];
         }
         public IActionResult Index()
         {
             ViewBag.ReservationCountSetting=GetSetting("ReservationCount");
             ViewBag.ReservationCountDb = _context.Reservations.Where(x => !x.IsCheck && !x.IsClose).Count();
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ReservationTable(ReservationVM reservationVM)
         {
-            int ReservationCountSetting = GetSetting("ReservationCount");
+            int ReservationCountSetting = int.Parse(GetSetting("ReservationCount"));
             int ReservationCountDb = _context.Reservations.Where(x => !x.IsCheck && !x.IsClose).Count();
             if (ReservationCountSetting == ReservationCountDb) return BadRequest();
             if (reservationVM.PeopleCount > 10) return BadRequest();
-            if (!ModelState.IsValid) return View(nameof(Index));
+            if (!ModelState.IsValid)
+            {
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View(nameof(Index));
+            }
 
             Reservation reservation = new Reservation
             {
@@ -61,7 +65,11 @@ namespace Restaurant.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Subscribe(HomeVM homeVM)
         {
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid)
+            {
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View();
+            }
 
             Subscribe subscribe = new Subscribe
             {

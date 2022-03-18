@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Restaurant.Business.Services;
 using Restaurant.Business.ViewModels.Home.Special;
 using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,15 +17,25 @@ namespace Restaurant.UI.Areas.admin.Controllers
     {
         private IMapper _mapper;
         private AppDbContext _context;
+        private SettingServices _settingServices;
 
-        public SpecialController(AppDbContext context, IMapper mapper)
+        public SpecialController(AppDbContext context,
+                                 IMapper mapper,
+                                 SettingServices settingServices)
         {
             _mapper = mapper;
             _context = context;
+            _settingServices = settingServices;
+        }
+        private string GetSetting(string key)
+        {
+            Dictionary<string, string> Settings = _settingServices.GetSetting();
+            return Settings[$"{key}"];
         }
         public IActionResult Index()
         {
             ViewBag.SpecialCount=_context.Specials.Where(x => !x.IsDeleted).Count();
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View(_context.Specials.Where(x => !x.IsDeleted).Include(x => x.MenuImage).ToList());
         }
         public async Task<IActionResult> Create()
@@ -39,7 +51,11 @@ namespace Restaurant.UI.Areas.admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateUpdateSpecialVM createSpecial)
         {
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid)
+            {
+                await GetSelectedItemAsync();
+                return View();
+            }
             
             Product dbProduct = await _context.Products.Where(x => !x.IsDeleted && x.Id == createSpecial.ProductId).Include(x=>x.MenuImage).FirstOrDefaultAsync();
             if (dbProduct is null) return NotFound();
@@ -48,6 +64,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
             if (isExistFoodName)
             {
                 ModelState.AddModelError("FoodName", "Information about this product is available");
+                await GetSelectedItemAsync();
                 return View(createSpecial);
             }
             Special special = new Special
@@ -74,7 +91,11 @@ namespace Restaurant.UI.Areas.admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(int id, CreateUpdateSpecialVM updateSpecialVM)
         {
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid)
+            {
+                await GetSelectedItemAsync();
+                return View();
+            }
             Special dbSpecial = _context.Specials.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
             Product dbProduct = await _context.Products.Where(x => !x.IsDeleted && x.Id == updateSpecialVM.ProductId)
                                                                             .Include(x => x.MenuImage).FirstOrDefaultAsync();
@@ -86,6 +107,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
             if (isExistFoodNameContext && !isExistFoodName)
             {
                 ModelState.AddModelError("ProductId", "Information about this product is available");
+                await GetSelectedItemAsync();
                 return View(updateSpecialVM);
             }
             
@@ -123,6 +145,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         {
             ViewBag.Product = new SelectList(await _context.Products
                                                             .ToListAsync(), "Id", "Name");
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
         }
     }
 }

@@ -36,15 +36,14 @@ namespace Restaurant.UI.Areas.admin.Controllers
             _env = env;
             _settingServices = settingServices;
         }
-        private int GetSetting(string key)
+        private string GetSetting(string key)
         {
             Dictionary<string, string> Settings = _settingServices.GetSetting();
-            string value = Settings[$"{key}"];
-            return int.Parse(value);
+            return Settings[$"{key}"];
         }
         public IActionResult Index(int page=1)
         {
-            int count = GetSetting("TakeCount");
+            int count = int.Parse(GetSetting("TakeCount"));
             ViewBag.TakeCount = count;
             var team = _context.Teams
                                .Where(x => !x.IsDeleted)
@@ -55,7 +54,8 @@ namespace Restaurant.UI.Areas.admin.Controllers
             var teamVM = GetProductList(team);
             int pageCount = GetPageCount(count);
             Paginate<TeamListVM> model = new Paginate<TeamListVM>(teamVM, page, pageCount);
-            return View();
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
+            return View(model);
         }
         private int GetPageCount(int take)
         {
@@ -88,11 +88,16 @@ namespace Restaurant.UI.Areas.admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(TeamCreateVM teamCreate)
         {
-            if (!ModelState.IsValid) return View();
-            int size = GetSetting("PhotoSize");
+            if (!ModelState.IsValid)
+            {
+                await GetSelectedItemAsync();
+                return View();
+            }
+            int size = int.Parse(GetSetting("PhotoSize"));
             if (!CheckImageValid(teamCreate.Photo, "image/", size))
             {
                 ModelState.AddModelError("Photo", _errorMessage);
+               await GetSelectedItemAsync();
                 return View(teamCreate);
             }
             string fileName = await Extension.SaveFileAsync(teamCreate.Photo, _env.WebRootPath, "assets/img");
@@ -132,7 +137,11 @@ namespace Restaurant.UI.Areas.admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(int id, UpdateTeamVM updateTeam)
         {
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid)
+            {
+                await GetSelectedItemAsync();
+                return View();
+            }
             Team dbTeam = _context.Teams.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
             bool isCurrentName = dbTeam.FullName.Trim().ToLower() == updateTeam.FullName.ToLower().Trim();
             if (!isCurrentName)
@@ -146,10 +155,11 @@ namespace Restaurant.UI.Areas.admin.Controllers
             }
             if (updateTeam.Photo != null)
             {
-                int size = GetSetting("PhotoSize");
+                int size = int.Parse(GetSetting("PhotoSize"));
                 if (!CheckImageValid(updateTeam.Photo, "image/", size))
                 {
                     ModelState.AddModelError("Photo", _errorMessage);
+                    await GetSelectedItemAsync();
                     return View(updateTeam);
                 }
                 Helper.RemoveFile(_env.WebRootPath, "assets/img", dbTeam.Image);
@@ -175,6 +185,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         {
             ViewBag.Position = new SelectList(await _context.Positions
                                                             .ToListAsync(), "Id", "Name");
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
         }
     }
 }

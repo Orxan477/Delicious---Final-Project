@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using Restaurant.Business.Services;
 using Restaurant.Business.ViewModels;
 using Restaurant.Business.ViewModels.Menu;
 using Restaurant.Core.Models;
@@ -17,13 +18,16 @@ namespace Restaurant.UI.Controllers
     {
         private AppDbContext _context;
         private UserManager<AppUser> _userManager;
+        private SettingServices _settingServices;
         private int _proCount;
 
         public MenuController(AppDbContext context,
-                              UserManager<AppUser> userManager)
+                              UserManager<AppUser> userManager,
+                              SettingServices settingServices)
         {
             _context = context;
             _userManager = userManager;
+            _settingServices = settingServices;
             _proCount = _context.Products.Count();
         }
         public async Task<IActionResult> Index()

@@ -23,15 +23,15 @@ namespace Restaurant.UI.Areas.admin.Controllers
             _settingServices = settingServices;
             _context = context;
         }
-        private int GetSetting(string key)
+        private string GetSetting(string key)
         {
             Dictionary<string, string> Settings = _settingServices.GetSetting();
-            string value = Settings[$"{key}"];
-            return int.Parse(value);
+            return Settings[$"{key}"];
+
         }
-        public IActionResult Index(int page=1)
+        public IActionResult Index(int page = 1)
         {
-            int count = GetSetting("TakeCount");
+            int count = int.Parse(GetSetting("TakeCount"));
             ViewBag.TakeCount = count;
             var contact = _context.ContactUs
                                   .Skip((page - 1) * count)
@@ -41,7 +41,8 @@ namespace Restaurant.UI.Areas.admin.Controllers
             var contactVM = GetProductList(contact);
             int pageCount = GetPageCount(count);
             Paginate<ContactUsListVM> model = new Paginate<ContactUsListVM>(contactVM, page, pageCount);
-            return View();
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
+            return View(model);
         }
         private int GetPageCount(int take)
         {
@@ -60,7 +61,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
                     Email = item.Email,
                     Subject = item.Subject,
                     SentDate = item.SentDate,
-                    Message=item.Message,
+                    Message = item.Message,
                 };
                 model.Add(contact);
             }
