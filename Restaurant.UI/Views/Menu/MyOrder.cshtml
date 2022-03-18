@@ -15,9 +15,9 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Address</th>
-                                    <th>Phone</th>
                                     <th>Count</th>
                                     <th>Order Date</th>
+                                    <th>Status</th>
                                     <th>Order Total</th>
                                 </tr>
                             </thead>
@@ -27,9 +27,24 @@
                                     <tr>
                                         <th scope="row">@n</th>
                                         <td>@item.BillingAdress</td>
-                                        <td>@item.AppUser.PhoneNumber</td>
                                         <td>@item.Orders.Count()</td>
                                         <td>@item.CreatedAt</td>
+                                        @if (item.Status=="pending")
+                                       {
+                                           <td style="text-align:center;" class="text-danger">@item.Status</td>
+                                       }
+                                       @if (item.Status=="preparing")
+                                       {
+                                           <td style="text-align:center;" class="text-primary">@item.Status</td>
+                                       }
+                                       @if (item.Status=="way")
+                                       {
+                                           <td style="text-align:center;" class="text-warning">@item.Status</td>
+                                       }
+                                       @if (item.Status=="delivired")
+                                       {
+                                           <td style="text-align:center;" class="text-success">@item.Status</td>
+                                       }
                                         <td>@item.Total $</td>
                                     </tr>
                                     n++;
