@@ -25,6 +25,7 @@ namespace Restaurant.Business.ViewModels
         public List<FullOrder> FullOrders { get; set; }
         public BillingAdressVM BillingAdressesVM { get; set; }
         public Core.Models.Team Team { get; set; }
+        public Paginate<HomeFullOrderListVM> Paginate { get; set; }
 
     }
 }

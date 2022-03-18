@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -19,15 +20,18 @@ namespace Restaurant.UI.Controllers
         private AppDbContext _context;
         private UserManager<AppUser> _userManager;
         private SettingServices _settingServices;
+        private IMapper _mapper;
         private int _proCount;
 
         public MenuController(AppDbContext context,
                               UserManager<AppUser> userManager,
-                              SettingServices settingServices)
+                              SettingServices settingServices,
+                              IMapper mapper)
         {
             _context = context;
             _userManager = userManager;
             _settingServices = settingServices;
+            _mapper = mapper;
             _proCount = _context.Products.Count();
         }
         private string GetSetting(string key)
@@ -462,21 +466,48 @@ namespace Restaurant.UI.Controllers
             await _context.FullOrders.AddAsync(order);
             await _context.SaveChangesAsync();
         }
-        public IActionResult MyOrder()
+        public async Task<IActionResult> MyOrder(int page = 1)
         {
             if (!User.Identity.IsAuthenticated)
             {
                 return BadRequest();
             }
+            int count = int.Parse(GetSetting("TakeCount"));
+            ViewBag.TakeCount = count;
+            var userName = User.Identity.Name;
+            var user=await _userManager.FindByNameAsync(userName);
+            var FullOrders = _context.FullOrders
+                                  .Where(x => x.AppUserId == user.Id)
+                                 .Skip((page - 1) * count)
+                                 .Take(count)
+                                 .Include(x => x.Orders)
+                                 .Include(x => x.AppUser)
+                                 .OrderByDescending(x => x.Id)
+                                 .ToList();
+            var productsVM = GetProductList(FullOrders);
+            int pageCount = GetPageCount(count,user.Id);
             HomeVM homeVM = new HomeVM
             {
-                FullOrders = _context.FullOrders.Include(x => x.Orders)
-                                                .Include(x=>x.AppUser)
-                                                .OrderByDescending(x => x.Id)
-                                                .ToList(),
+                Paginate = new Paginate<HomeFullOrderListVM>(productsVM, page, pageCount),
             };
+            //Paginate<HomeFullOrderListVM> model = new Paginate<HomeFullOrderListVM>(productsVM, page, pageCount);
             ViewBag.RestaurantName = GetSetting("RestaurantName");
-            return View(homeVM);
+            return View(homeVM.FullOrders);
+        }
+        private int GetPageCount(int take,string userId)
+        {
+            var prodCount = _context.FullOrders.Where(x => x.AppUserId == userId).Count();
+            return (int)Math.Ceiling((decimal)prodCount / take);
+        }
+        private List<HomeFullOrderListVM> GetProductList(List<FullOrder> products)
+        {
+            List<HomeFullOrderListVM> model = new List<HomeFullOrderListVM>();
+            foreach (var item in products)
+            {
+                HomeFullOrderListVM productList = _mapper.Map<HomeFullOrderListVM>(item);
+                model.Add(productList);
+            }
+            return model;
         }
     }
 }

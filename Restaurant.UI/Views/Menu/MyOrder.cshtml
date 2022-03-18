@@ -1,7 +1,11 @@
 ﻿@model HomeVM
 @{
-    ViewData["Title"] = "MyOrder";
-    int n = 1;
+    ViewData["Title"] = "Index";
+    int count = ViewBag.TakeCount;
+    int page = Model.Paginate.PageCount;
+    int productNum = ((Model.Paginate.CurrentPage - 1) * count) + 1;
+    int previous = Model.Paginate.CurrentPage - 1;
+    int next = Model.Paginate.CurrentPage + 1;
 }
 
 <div class="container">
@@ -14,7 +18,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Address</th>
+                                    <th>FullName</th>
                                     <th>Count</th>
                                     <th>Order Date</th>
                                     <th>Status</th>
@@ -22,12 +26,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model.FullOrders)
+                                @foreach (var item in Model.Paginate.Items)
                                 {
                                     <tr>
-                                        <th scope="row">@n</th>
-                                        <td>@item.BillingAdress</td>
-                                        <td>@item.Orders.Count()</td>
+                                        <th scope="row">@productNum</th>
+                                        <td>@item.FullName</td>
+                                        <td>@item.Count</td>
                                         <td>@item.CreatedAt</td>
                                         @if (item.Status=="pending")
                                        {
@@ -47,10 +51,41 @@
                                        }
                                         <td>@item.Total $</td>
                                     </tr>
-                                    n++;
+                                    productNum++;
                                 }
                             </tbody>
                         </table>
+                        @if (Model.Paginate.PageCount!=1 && Model.Paginate.PageCount!=0)
+                      {
+                           <div class="col-lg-12 grid-margin stretch-card justify-content-center mt-4 mb-0">
+                                <nav aria-label="...">
+                                    <ul class="pagination pagination-md">
+                                        <li class="page-item @(Model.Paginate.CurrentPage<3?"d-none":"")">
+                                            <a class="page-link" asp-action="Index" asp-route-page="1">First</a>
+                                        </li>
+                                        <li class="page-item @(Model.Paginate.CurrentPage==1   ?"d-none":"")">
+                                            <a class="page-link" asp-action="Index" asp-route-page="@previous">Previous</a>
+                                        </li>
+
+                                        @if (Model.Paginate.CurrentPage >= 2 && Model.Paginate.CurrentPage < Model.Paginate.PageCount)
+                                        {
+                                            @for (int i = Model.Paginate.CurrentPage - 1; i <= Model.Paginate.CurrentPage + 1; i++)
+                                            {
+                                                <li class="page-item @(Model.Paginate.CurrentPage==i?"disabled":"")">
+                                                    <a class="page-link" asp-action="Index" asp-route-page="@i">@i</a>
+                                                </li>
+                                            }
+                                        }
+                                        <li class="page-item @(Model.Paginate.CurrentPage==Model.Paginate.PageCount?"d-none":"")">
+                                            <a class="page-link" asp-action="Index" asp-route-page="@next">Next ></a>
+                                        </li>
+                                        <li class="page-item @(Model.Paginate.CurrentPage==Model.Paginate.PageCount?"d-none":"")">
+                                            <a class="page-link" asp-action="Index" asp-route-page="@Model.Paginate.PageCount">Last</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>  
+                      }
                     </div>
                 @*</div>*@
             </div>

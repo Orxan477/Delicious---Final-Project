@@ -51,6 +51,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
             int count=int.Parse(GetSetting("TakeCount"));
             ViewBag.TakeCount = count;
             var products = _context.Products
+                                 .Where(x=>!x.IsDeleted)
                                  .Skip((page - 1) * count)
                                  .Take(count)
                                  .Include(x => x.MenuImage)
