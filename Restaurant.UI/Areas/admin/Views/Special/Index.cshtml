@@ -29,10 +29,9 @@
                                     <td>@n</td>
                                     <th><img src="~/assets/img/@special.MenuImage.Image" /></th>
                                     <td>@special.FoodName</td>
-                                    <td>@special.InformationTabHead</td>
-                                    <td>@special.InformationTabContent</td>
-                                    <td>@special.InformationTabItalicContent</td>
-                                    <td>
+                                    <td>@(special.InformationTabHead.Length<=15?special.InformationTabHead:special.InformationTabHead.Substring(0,15)+"...")</td>
+                                    <td>@(special.InformationTabContent.Length<=15?special.InformationTabContent:special.InformationTabContent.Substring(0,15)+"...")</td>
+                                    <td>@(special.InformationTabItalicContent.Length<=15?special.InformationTabItalicContent:special.InformationTabItalicContent.Substring(0,15)+"...")</td>                                    <td>
                                         <a asp-action="Update" class="btn btn-warning" asp-route-id="@special.Id"><i class="mdi mdi-table-edit"></i></a>
                                         @*<form class="d-inline delete-btn" asp-action="Delete" asp-route-id="@cat.Id" method="post">
                                             <button type="submit" class="btn btn-danger "><i class="mdi mdi-delete-forever"></i></button>

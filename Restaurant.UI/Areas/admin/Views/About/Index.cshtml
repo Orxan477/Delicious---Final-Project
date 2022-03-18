@@ -27,11 +27,11 @@
                          <tr>
                             <td>@n</td>
                             <td><img src="~/assets/img/@Model.Image"/></td>
-                            <td>@Model.Head</td>
-                            <td>@Model.NormalContent</td>
-                            <td>@Model.ItalicContent</td>
-                            <td>@Model.NormalContent2</td>
-                            <td>@Model.Link</td>
+                            <td>@(Model.Head.Length<=15?Model.Head:Model.Head.Substring(0,15)+"...")</td>
+                            <td>@(Model.NormalContent.Length<=20?Model.NormalContent:Model.NormalContent.Substring(0,20)+"...")</td>
+                            <td>@(Model.ItalicContent.Length<=20?Model.ItalicContent:Model.ItalicContent.Substring(0,20)+"...")</td>
+                            <td>@(Model.NormalContent2.Length<=20?Model.NormalContent2:Model.NormalContent2.Substring(0,20)+"...")</td>
+                            <td>@(Model.Link.Length<=10?Model.Link:Model.Link.Substring(0,10)+"...")</td>
                             <td>
                                     <a asp-action="Update" class="btn btn-warning" asp-route-id="@Model.Id"><i class="mdi mdi-table-edit"></i></a>                
                                 </td>

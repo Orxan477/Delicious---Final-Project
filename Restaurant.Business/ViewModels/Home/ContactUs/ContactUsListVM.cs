@@ -10,5 +10,7 @@ namespace Restaurant.Business.ViewModels.Home.ContactUs
         public string Subject { get; set; }
         public string Message { get; set; }
         public DateTime SentDate { get; set; }
+        public string SendMessage { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

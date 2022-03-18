@@ -31,8 +31,9 @@
                             <td>@productNum</td>
                             <td><img src="~/assets/img/@home.Image" /></td>
                             <td>@home.Head</td>
-                            <td>@home.Content</td>
+                            <td>@(home.Content.Length<=50?home.Content:home.Content.Substring(0,50)+"...")</td>
                             <td>
+                                    
                                     <a asp-action="Update" class="btn btn-warning" asp-route-id="@home.Id"><i class="mdi mdi-table-edit"></i></a>                
                                     @*<form class="d-inline delete-btn" asp-action="Delete" asp-route-id="@cat.Id" method="post">
                                         <button type="submit" class="btn btn-danger "><i class="mdi mdi-delete-forever"></i></button>

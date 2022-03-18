@@ -28,7 +28,7 @@ namespace Restaurant.UI.Controllers
         }
         public IActionResult Index()
         {
-            ViewBag.ReservationCountSetting=GetSetting("ReservationCount");
+            ViewBag.ReservationCountSetting=int.Parse(GetSetting("ReservationCount"));
             ViewBag.ReservationCountDb = _context.Reservations.Where(x => !x.IsCheck && !x.IsClose).Count();
             ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View();

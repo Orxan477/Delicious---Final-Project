@@ -27,7 +27,7 @@
                             {
                                 <tr>
                                     <td>@productNum</td>
-                                    <td>@option.Option</td>
+                                    <td>@(option.Option.Length<=50?option.Option:option.Option.Substring(0,50)+"...")</td>
                                     <td>
                                         <a asp-action="Update" class="btn btn-warning" asp-route-id="@option.Id"><i class="mdi mdi-table-edit"></i></a>
                                         @*<form class="d-inline delete-btn" asp-action="Delete" asp-route-id="@team.Id" method="post">

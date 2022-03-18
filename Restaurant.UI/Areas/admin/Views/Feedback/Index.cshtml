@@ -33,7 +33,7 @@
                             <td><img src="~/assets/img/@feedback.Image"/></td>
                             <td>@feedback.FullName</td>
                             <td>@feedback.Position</td>
-                            <td>@feedback.Comment</td>
+                            <td>@(feedback.Comment.Length<=20?feedback.Comment:feedback.Comment.Substring(0,50)+"...")</td>
                             <td>
                                     <a asp-action="Update" class="btn btn-warning" asp-route-id="@feedback.Id"><i class="mdi mdi-table-edit"></i></a>                
                                     @*<form class="d-inline delete-btn" asp-action="Delete" asp-route-id="@cat.Id" method="post">

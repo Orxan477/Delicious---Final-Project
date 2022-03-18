@@ -22,8 +22,8 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Subject</th>
-                                <th>Message</th>
                                 <th>Sent Date</th>
+                                <th>Message</th>
                                 <th>Setting</th>
                             </tr>
                         </thead>
@@ -35,12 +35,12 @@
                                     <td>@contact.Name</td>
                                     <td>@contact.Email</td>
                                     <td>@contact.Subject</td>
-                                    <td>@contact.Message</td>
                                     <td>@contact.SentDate</td>
+                                    <td>@(contact.Message.Length<=5?contact.Message:contact.Message.Substring(0,5)+"...")</td>
                                     <td>
-                                        <form class="d-inline" asp-action="Delete" asp-route-id="@contact.Id" method="post">
-                                            <button type="submit" class="btn btn-success"><i class="mdi mdi-check-circle-outline"></i></button>
-                                        </form>
+                                        
+                                            <a asp-action="SendMessage" asp-route-id="@contact.Id" type="submit" class="btn btn-primary"><i class="mdi mdi-contact-mail"></i></a>
+                                        
                                     </td>
                                 </tr>
                                 productNum++;

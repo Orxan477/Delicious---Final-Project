@@ -37,7 +37,7 @@ namespace Restaurant.Business.Profiles
             CreateMap<Special, CreateUpdateSpecialVM>();
             CreateMap<Product, ProductListVM>().ForMember(o => o.Image, m => m.MapFrom(x => x.MenuImage.Image));
             CreateMap<AboutOption, AboutOptionListVM>();
-            CreateMap<Team, TeamListVM>();
+            CreateMap<Team, TeamListVM>().ForMember(o => o.Position, m => m.MapFrom(x => x.Position.Name));
             CreateMap<AppUser, UserListVM>();
             CreateMap<ContactUs, ContactUsListVM>();
             CreateMap<Feedback, FeedbackListVM>().ForMember(o => o.Position, m => m.MapFrom(x => x.Position.Name));

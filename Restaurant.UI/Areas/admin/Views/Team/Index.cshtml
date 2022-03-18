@@ -33,7 +33,7 @@
                             <td><img src="~/assets/img/@team.Image" /></td>
                             <td>@team.FullName</td>
                             <td>@team.Position</td>
-                            <td>@team.About</td>
+                            <td>@(team.About.Length<=20?team.About:team.About.Substring(0,20)+"...")</td>
                             <td>
                                     <a asp-action="Update" class="btn btn-warning" asp-route-id="@team.Id"><i class="mdi mdi-table-edit"></i></a>
                                     @*<form class="d-inline delete-btn" asp-action="Delete" asp-route-id="@team.Id" method="post">

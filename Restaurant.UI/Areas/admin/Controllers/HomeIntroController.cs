@@ -39,11 +39,11 @@ namespace Restaurant.UI.Areas.admin.Controllers
             Dictionary<string, string> Settings = _settingServices.GetSetting();
             return Settings[$"{key}"];
         }
-        public IActionResult Index(int page=1)
+        public IActionResult Index(int page = 1)
         {
             int count = int.Parse(GetSetting("TakeCount"));
             ViewBag.TakeCount = count;
-            var intro=_context.HomeIntros
+            var intro = _context.HomeIntros
                                 .Where(x => !x.IsDeleted)
                                 .Skip((page - 1) * count)
                                 .Take(count)
@@ -79,7 +79,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Create(HomeIntroCreateVM homeIntroCreate)
         {
             if (!ModelState.IsValid) return View();
-            int size = int.Parse(GetSetting("PhotoSize")); 
+            int size = int.Parse(GetSetting("PhotoSize"));
             if (!CheckImageValid(homeIntroCreate.Photo, "image/", size))
             {
                 ModelState.AddModelError("Photo", _errorMessage);

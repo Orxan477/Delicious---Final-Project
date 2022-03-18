@@ -98,6 +98,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
             {
                 FullName = teamCreate.FullName,
                 PositionId = teamCreate.PositionId,
+                About=teamCreate.About,
                 Image = fileName
             };
             await _context.AddAsync(team);
@@ -145,6 +146,11 @@ namespace Restaurant.UI.Areas.admin.Controllers
             if (!isCurrentPosition)
             {
                 dbTeam.PositionId = updateTeam.PositionId;
+            }
+            bool isCurrentContent = dbTeam.About.Trim().ToLower() == updateTeam.About.Trim().ToLower();
+            if (!isCurrentContent)
+            {
+                dbTeam.About = updateTeam.About;
             }
             if (updateTeam.Photo != null)
             {
