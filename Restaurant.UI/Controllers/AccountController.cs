@@ -92,15 +92,7 @@ namespace Restaurant.UI.Controllers
                 var token = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
                 string link = Url.Action(nameof(VerifyEmail), "Account", new { userId = newUser.Id, token },
                                                                     Request.Scheme, Request.Host.ToString());
-                string name = GetSetting("RestaurantName");
-                string body = string.Empty;
-                using (StreamReader streamReader = new StreamReader(Path.Combine(_env.WebRootPath, "assets", "SendMessage", "ConfigurationLink.html")))
-                {
-                    body = streamReader.ReadToEnd();
-                }
-                body = body.Replace("{{email}}", $"{newUser.Email}").Replace("{{url}}", $"{link}").Replace("{{restaurantName}}", $"{name}");
-                Email.SendEmail(_configure.GetSection("Email:SenderEmail").Value,
-                           _configure.GetSection("Email:Password").Value, newUser.Email, body, $"{name} - Confirmation Link");
+                SendEmailAsync(newUser.Email, link);
                 //await _userManager.AddToRoleAsync(newUser, "Admin");
                 await _userManager.AddToRoleAsync(newUser, "Member");
                 ViewBag.IsSuccessful = true;
@@ -115,6 +107,26 @@ namespace Restaurant.UI.Controllers
                 }
                 ViewBag.RestaurantName = GetSetting("RestaurantName");
                 return View();
+            }
+        }
+        private void SendEmailAsync(string email,string link)
+        {
+            string name = GetSetting("RestaurantName");
+            string body = string.Empty;
+            using (StreamReader streamReader = new StreamReader(Path.Combine(_env.WebRootPath, "assets", "SendMessage", "ConfigurationLink.html")))
+            {
+                body = streamReader.ReadToEnd();
+            }
+            body = body.Replace("{{email}}", $"{email}").Replace("{{url}}", $"{link}").Replace("{{restaurantName}}", $"{name}");
+            TryAgain:
+            try
+            {
+                Email.SendEmail(_configure.GetSection("Email:SenderEmail").Value,
+                       _configure.GetSection("Email:Password").Value, email, body, $"{name} - Contact");
+            }
+            catch (Exception ex)
+            {
+                goto TryAgain;
             }
         }
         public async Task<IActionResult> VerifyEmail(string userid, string token)

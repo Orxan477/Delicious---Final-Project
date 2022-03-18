@@ -30,6 +30,11 @@ namespace Restaurant.UI.Controllers
             _settingServices = settingServices;
             _proCount = _context.Products.Count();
         }
+        private string GetSetting(string key)
+        {
+            Dictionary<string, string> Settings = _settingServices.GetSetting();
+            return Settings[$"{key}"];
+        }
         public async Task<IActionResult> Index()
         {
             ViewBag.productsCount = _proCount;
@@ -49,6 +54,7 @@ namespace Restaurant.UI.Controllers
                                                .ToListAsync(),
                 }
             };
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View(vm);
         }
         public IActionResult LoadProduct(int skip)
@@ -75,7 +81,7 @@ namespace Restaurant.UI.Controllers
                 }
 
             };
-
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             return PartialView("_MenuPartial", homeVM);
 
         }
@@ -94,13 +100,18 @@ namespace Restaurant.UI.Controllers
                 }
 
             };
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             return PartialView("_ModalPartial", homeVM);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Subscribe(HomeVM homeVM)
         {
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid)
+            {
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View();
+            }
 
             Subscribe subscribe = new Subscribe
             {
@@ -259,6 +270,7 @@ namespace Restaurant.UI.Controllers
                 {
                     BasketItemVM = model
                 };
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
                 return View(homeVM);
             }
             else
@@ -270,6 +282,7 @@ namespace Restaurant.UI.Controllers
                 {
                     BasketItemVM = model
                 };
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
                 return View(homeVM);
             }
         }
@@ -468,6 +481,7 @@ namespace Restaurant.UI.Controllers
                                                             .OrderByDescending(x => x.Id)
                                                             .ToList(),
             };
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View(homeVM);
         }
     }

@@ -9,7 +9,7 @@ namespace Restaurant.Business.Validators.Home
         {
             RuleFor(x => x.Name).MaximumLength(50).NotNull().NotEmpty();
             RuleFor(x=>x.Email).MaximumLength(255).EmailAddress().NotNull().NotEmpty();
-            RuleFor(x=>x.Subject).MaximumLength(20);
+            RuleFor(x=>x.Subject).MaximumLength(15);
             RuleFor(x=>x.Message).MaximumLength(255).NotNull().NotEmpty();
         }
     }
