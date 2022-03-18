@@ -399,13 +399,18 @@ namespace Restaurant.UI.Controllers
         }
         public IActionResult ConfirmOrder()
         {
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Buy(HomeVM homeVM)
         {
-            if (!ModelState.IsValid) return View(homeVM.BillingAdressesVM);
+            if (!ModelState.IsValid)
+            {
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View(homeVM.BillingAdressesVM);
+            }
             if (!User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Login", "Account");
@@ -429,6 +434,7 @@ namespace Restaurant.UI.Controllers
             {
                 AppUserId=userId,
                 CreatedAt = DateTime.UtcNow.AddHours(4),
+                Status="pending",
                 BillingAdress = adress,
             };
             List<Order> orderItems = new List<Order>();

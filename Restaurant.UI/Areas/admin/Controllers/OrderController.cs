@@ -37,17 +37,18 @@ namespace Restaurant.UI.Areas.admin.Controllers
             Dictionary<string, string> Settings = _settingServices.GetSetting();
             return Settings[$"{key}"];
         }
-        public IActionResult Index(int page=1)
+        public IActionResult Index(int page = 1)
         {
             //var user = await _userManager.GetUserAsync(User);
             int count = int.Parse(GetSetting("TakeCount"));
             ViewBag.TakeCount = count;
-            var fullOrders =  _context.FullOrders
+            var fullOrders = _context.FullOrders
+                                       .Where(p=>!p.IsDeleted)
                                        .Skip((page - 1) * count)
                                        .Take(count)
                                        .Include(x => x.Orders)
                                        .Include(x => x.AppUser)
-                                       .OrderByDescending(x=>x.Id)
+                                       .OrderByDescending(x => x.Id)
                                        .ToList();
             var orderVM = GetProductList(fullOrders);
             int pageCount = GetPageCount(count);
@@ -81,6 +82,36 @@ namespace Restaurant.UI.Areas.admin.Controllers
                                          .ThenInclude(x=>x.MenuImage)
                                          .Include(x => x.AppUser)
                                          .FirstOrDefault(x => x.Id == id));
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ChangeStatus(int id)
+        {
+            FullOrder order = _context.FullOrders.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
+            if (order is null) return NotFound();
+            if (order.Status=="pending")
+            {
+                order.Status = "preparing";
+                _context.SaveChanges();
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return RedirectToAction(nameof(Index));
+            }
+            else if (order.Status == "preparing")
+            {
+                order.Status = "way";
+                _context.SaveChanges();
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return RedirectToAction(nameof(Index));
+            }
+            else if (order.Status=="way")
+            {
+                order.Status = "delivired";
+                order.IsDeleted = true;
+                _context.SaveChanges();
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return RedirectToAction(nameof(Index));
+            }
+            else { return BadRequest(); }
         }
     }
 }
