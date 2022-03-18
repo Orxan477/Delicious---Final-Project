@@ -39,8 +39,10 @@
                                     <td>@(contact.Message.Length<=5?contact.Message:contact.Message.Substring(0,5)+"...")</td>
                                     <td>
                                         
-                                            <a asp-action="SendMessage" asp-route-id="@contact.Id" type="submit" class="btn btn-primary"><i class="mdi mdi-contact-mail"></i></a>
-                                        
+                                            <a asp-action="SendMessage" asp-route-id="@contact.Id" type="submit" class="btn btn-primary mr -2"><i class="mdi mdi-contact-mail"></i></a>
+                                            <form method="post" class="d-inline" asp-action="Delete" asp-route-id="@contact.Id">
+                                                <button type="submit" class="btn btn-danger"><i class="mdi mdi-comment-remove-outline"></i></button>
+                                            </form>
                                     </td>
                                 </tr>
                                 productNum++;
@@ -78,6 +80,12 @@
                                 </nav>
                             </div>  
                       }
+                       @if (Model.PageCount == 0)
+                    {
+                        <div class="d-flex justify-content-center mt-3">
+                             <h3>No Message</h3>   
+                        </div>
+                    }
                 </div>
             </div>
         </div>

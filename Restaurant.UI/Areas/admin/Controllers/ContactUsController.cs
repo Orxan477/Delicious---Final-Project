@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Restaurant.Business.Services;
 using Restaurant.Business.Utilities;
@@ -122,6 +123,16 @@ namespace Restaurant.UI.Areas.admin.Controllers
 
             dbContactUs.IsDeleted = true;
             await _context.SaveChangesAsync();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+            ContactUs dbContactUs = await _context.ContactUs.Where(x => !x.IsDeleted).FirstOrDefaultAsync();
+            if (dbContactUs == null) return NotFound();
+            dbContactUs.IsDeleted = true;
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }
