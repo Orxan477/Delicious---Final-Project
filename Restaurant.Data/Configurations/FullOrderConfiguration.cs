@@ -11,6 +11,7 @@ namespace Restaurant.Data.Configurations
             //builder.Property(x => x.AppUserId).IsRequired();
             builder.Property(x => x.Total).IsRequired();
             builder.Property(x=>x.CreatedAt).IsRequired();
+            builder.Property(x=>x.Status).IsRequired();
             builder.Property(x=>x.IsDeleted).HasDefaultValue(false);
         }
     }

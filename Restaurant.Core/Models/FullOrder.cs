@@ -12,6 +12,7 @@ namespace Restaurant.Core.Models
         public string BillingAdress { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime CreatedAt { get; set; }
+        public string Status { get; set; }
         public List<Order> Orders { get; set; }
     }
 }
