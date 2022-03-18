@@ -46,7 +46,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
                                        .Skip((page - 1) * count)
                                        .Take(count)
                                        .Include(x => x.Orders)
-                                       .Include(x => x.BillingAdress).ThenInclude(x=>x.AppUser)
+                                       .Include(x => x.AppUser)
                                        .OrderByDescending(x=>x.Id)
                                        .ToList();
             var orderVM = GetProductList(fullOrders);
@@ -79,8 +79,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
                                          .Include(x => x.Orders)
                                          .ThenInclude(x=>x.Product)
                                          .ThenInclude(x=>x.MenuImage)
-                                         .Include(x => x.BillingAdress)
-                                         .ThenInclude(x => x.AppUser)
+                                         .Include(x => x.AppUser)
                                          .FirstOrDefault(x => x.Id == id));
         }
     }

@@ -45,7 +45,7 @@ namespace Restaurant.Business.Profiles
             CreateMap<Reservation, ReservationListVM>();
             CreateMap<Setting, SettingListVM>();
             CreateMap<Subscribe, SubscribeListVM>();
-            CreateMap<FullOrder, FullOrderListVM>().ForMember(o=>o.BillingAdress,m=>m.MapFrom(x=>x.BillingAdress.Adress));
+            CreateMap<FullOrder, FullOrderListVM>();
         }
     }
 }

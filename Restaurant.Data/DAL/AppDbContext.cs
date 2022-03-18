@@ -28,7 +28,6 @@ namespace Restaurant.Data.DAL
         public DbSet<BasketItem> BasketItems { get; set; }
         public DbSet<Type> Types { get; set; }
         public DbSet<TokenBlackList> TokenBlackList { get; set; }
-        public DbSet<BillingAdress> BillingAdresses { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<FullOrder> FullOrders { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -50,7 +49,6 @@ namespace Restaurant.Data.DAL
             modelBuilder.ApplyConfiguration(new ContactUsConfiguration());
             modelBuilder.ApplyConfiguration(new SettingConfiguration());
             modelBuilder.ApplyConfiguration(new TypeConfiguration());
-            modelBuilder.ApplyConfiguration(new BillingAdressConfiguration());
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
             modelBuilder.ApplyConfiguration(new FullOrderConfiguration());
             base.OnModelCreating(modelBuilder);

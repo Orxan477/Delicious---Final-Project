@@ -8,7 +8,6 @@ namespace Restaurant.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<FullOrder> builder)
         {
-            builder.Property(x=>x.BillingAdressId).IsRequired();
             //builder.Property(x => x.AppUserId).IsRequired();
             builder.Property(x => x.Total).IsRequired();
             builder.Property(x=>x.CreatedAt).IsRequired();

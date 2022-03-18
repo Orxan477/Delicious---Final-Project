@@ -413,8 +413,7 @@ namespace Restaurant.UI.Controllers
             var user = await _userManager.GetUserAsync(User);
             List<BasketItem> basketItems = await GetBasketProduct(user.Id);
             if (basketItems.Count == 0) return BadRequest();
-            await AddBillingInformation(homeVM.BillingAdressesVM.Adress, user.Id);
-            await BuyProduct(basketItems);
+            await BuyProduct(basketItems,homeVM.BillingAdressesVM.Adress,user.Id);
             return RedirectToAction(nameof(MyOrder));
         }
         private async Task<List<BasketItem>> GetBasketProduct(string userId)
@@ -424,23 +423,13 @@ namespace Restaurant.UI.Controllers
                 .Where(b => b.AppUserId == userId)
                 .ToListAsync();
         }
-        private async Task AddBillingInformation(string adress,string userId)
+        private async Task BuyProduct(List<BasketItem> basketItems,string adress,string userId)
         {
-            BillingAdress billingAdress = new BillingAdress
-            {
-                Adress = adress,
-                AppUserId = userId,
-            };
-            await _context.BillingAdresses.AddAsync(billingAdress);
-            await _context.SaveChangesAsync();
-        }
-        private async Task BuyProduct(List<BasketItem> basketItems)
-        {
-            var billingId = await _context.BillingAdresses.OrderByDescending(x => x.Id).FirstOrDefaultAsync();
             FullOrder order = new FullOrder
             {
+                AppUserId=userId,
                 CreatedAt = DateTime.UtcNow.AddHours(4),
-                BillingAdressId = billingId.Id,
+                BillingAdress = adress,
             };
             List<Order> orderItems = new List<Order>();
 
@@ -476,10 +465,9 @@ namespace Restaurant.UI.Controllers
             HomeVM homeVM = new HomeVM
             {
                 FullOrders = _context.FullOrders.Include(x => x.Orders)
-                                                            .Include(x => x.BillingAdress)
-                                                            .ThenInclude(x=>x.AppUser)
-                                                            .OrderByDescending(x => x.Id)
-                                                            .ToList(),
+                                                .Include(x=>x.AppUser)
+                                                .OrderByDescending(x => x.Id)
+                                                .ToList(),
             };
             ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View(homeVM);
