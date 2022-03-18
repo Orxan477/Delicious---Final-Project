@@ -35,7 +35,7 @@ namespace Restaurant.UI
             services.AddControllers().AddNewtonsoftJson(options =>
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddMapperService();
-            services.AddScoped<IPaginateRepository<Product, ProductListVM>, PaginateRepository<Product, ProductListVM>>();
+            //services.AddScoped<IPaginateRepository<Product, ProductListVM>, PaginateRepository<Product, ProductListVM>>();
             services.AddIdentity<AppUser, IdentityRole>()
                     .AddEntityFrameworkStores<AppDbContext>()
                     .AddDefaultTokenProviders();
