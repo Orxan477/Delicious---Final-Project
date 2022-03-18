@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Restaurant.Business.Services;
 using Restaurant.Business.ViewModels;
 using Restaurant.Business.ViewModels.Home.ContactUs;
@@ -16,12 +17,15 @@ namespace Restaurant.UI.Areas.admin.Controllers
     {
         private SettingServices _settingServices;
         private AppDbContext _context;
+        private IMapper _mapper;
 
         public ContactUsController(AppDbContext context,
-                                   SettingServices settingServices)
+                                   SettingServices settingServices,
+                                   IMapper mapper)
         {
             _settingServices = settingServices;
             _context = context;
+            _mapper = mapper;
         }
         private string GetSetting(string key)
         {
@@ -54,15 +58,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
             List<ContactUsListVM> model = new List<ContactUsListVM>();
             foreach (var item in contacts)
             {
-                var contact = new ContactUsListVM
-                {
-                    Id = item.Id,
-                    Name = item.Name,
-                    Email = item.Email,
-                    Subject = item.Subject,
-                    SentDate = item.SentDate,
-                    Message = item.Message,
-                };
+                ContactUsListVM contact=_mapper.Map<ContactUsListVM>(item);
                 model.Add(contact);
             }
             return model;

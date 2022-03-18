@@ -66,15 +66,8 @@ namespace Restaurant.UI.Areas.admin.Controllers
             List<FeedbackListVM> model = new List<FeedbackListVM>();
             foreach (var item in feedbacks)
             {
-                var product = new FeedbackListVM
-                {
-                    Id = item.Id,
-                    FullName=item.FullName,
-                    Comment=item.Comment,
-                    Position=item.Position.Name,
-                    Image = item.Image,
-                };
-                model.Add(product);
+                FeedbackListVM feedback=_mapper.Map<FeedbackListVM>(item);
+                model.Add(feedback);
             }
             return model;
         }

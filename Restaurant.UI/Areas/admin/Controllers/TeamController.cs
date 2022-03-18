@@ -67,14 +67,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
             List<TeamListVM> model = new List<TeamListVM>();
             foreach (var item in teams)
             {
-                var team = new TeamListVM
-                {
-                    Id = item.Id,
-                    FullName = item.FullName,
-                    About = item.About,
-                    Image = item.Image,
-                    Position=item.Position.Name,
-                };
+                TeamListVM team=_mapper.Map<TeamListVM>(item);
                 model.Add(team);
             }
             return model;

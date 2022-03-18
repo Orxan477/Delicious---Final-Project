@@ -25,20 +25,21 @@ namespace Restaurant.UI.Areas.admin.Controllers
         private IWebHostEnvironment _env;
         private IMapper _mapper;
         private SettingServices _settingServices;
-        private PaginateRepository<Product,ProductListVM> _repository;
+        //private PaginateRepository<Product,ProductListVM> _repository;
         private string _errorMessage;
 
         public MenuController(AppDbContext context,
                               IWebHostEnvironment env,
                               IMapper mapper,
-                              SettingServices settingServices,
-                              PaginateRepository<Product,ProductListVM> repository)
+                              SettingServices settingServices
+                              //PaginateRepository<Product,ProductListVM> repository
+            )
         {
             _context = context;
             _env = env;
             _mapper = mapper;
             _settingServices = settingServices;
-            _repository = repository;
+            //_repository = repository;
         }
         private string GetSetting(string key)
         {
@@ -75,15 +76,6 @@ namespace Restaurant.UI.Areas.admin.Controllers
             foreach (var item in products)
             {
                 ProductListVM productList=_mapper.Map<ProductListVM>(item);
-                //var product = new ProductListVM
-                //{
-                //    Id = item.Id,
-                //    Name = item.Name,
-                //    Price = item.Price,
-                //    Description=item.Description,
-                //    Category = item.Category.Name,
-                //    Image = item.MenuImage.Image,
-                //};
                 model.Add(productList);
             }
             return model;

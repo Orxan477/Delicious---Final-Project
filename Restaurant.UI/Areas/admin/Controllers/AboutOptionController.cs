@@ -61,11 +61,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
             List<AboutOptionListVM> model = new List<AboutOptionListVM>();
             foreach (var item in options)
             {
-                var option = new AboutOptionListVM
-                {
-                    Id = item.Id,
-                    Option=item.Option,
-                };
+                AboutOptionListVM option=_mapper.Map<AboutOptionListVM>(item);
                 model.Add(option);
             }
             return model;

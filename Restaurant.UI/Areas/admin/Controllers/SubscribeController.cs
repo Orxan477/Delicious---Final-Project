@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Restaurant.Business.Services;
 using Restaurant.Business.ViewModels;
 using Restaurant.Business.ViewModels.Footer;
@@ -16,12 +17,15 @@ namespace Restaurant.UI.Areas.admin.Controllers
     {
         private AppDbContext _context;
         private SettingServices _settingServices;
+        private IMapper _mapper;
 
         public SubscribeController(AppDbContext context,
-                                   SettingServices settingServices)
+                                   SettingServices settingServices,
+                                   IMapper mapper)
         {
             _context = context;
             _settingServices = settingServices;
+            _mapper = mapper;
         }
         private string GetSetting(string key)
         {
@@ -53,11 +57,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
             List<SubscribeListVM> model = new List<SubscribeListVM>();
             foreach (var item in subscribes)
             {
-                var subscribe = new SubscribeListVM
-                {
-                    Id = item.Id,
-                    Email = item.Email, 
-                };
+                SubscribeListVM subscribe = _mapper.Map<SubscribeListVM>(item);
                 model.Add(subscribe);
             }
             return model;

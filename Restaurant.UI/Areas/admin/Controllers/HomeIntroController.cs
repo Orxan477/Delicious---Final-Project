@@ -64,13 +64,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
             List<IntroListVM> model = new List<IntroListVM>();
             foreach (var item in intros)
             {
-                var intro = new IntroListVM
-                {
-                    Id = item.Id,
-                    Head=item.Head,
-                    Content=item.Content,
-                    Image=item.Image
-                };
+                IntroListVM intro = _mapper.Map<IntroListVM>(item);
                 model.Add(intro);
             }
             return model;

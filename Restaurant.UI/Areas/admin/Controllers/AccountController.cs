@@ -63,14 +63,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
             List<UserListVM> model = new List<UserListVM>();
             foreach (var item in users)
             {
-                var user = new UserListVM
-                {
-                    Id = item.Id,
-                    FullName = item.FullName,
-                    Email = item.Email,
-                    PhoneNumber = item.PhoneNumber,
-                    IsDeleted=item.IsDeleted
-                };
+                UserListVM user=_mapper.Map<UserListVM>(item);
                 model.Add(user);
             }
             return model;

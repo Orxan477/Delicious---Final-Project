@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Restaurant.Business.Services;
 using Restaurant.Business.ViewModels;
 using Restaurant.Business.ViewModels.Reservation;
@@ -16,12 +17,15 @@ namespace Restaurant.UI.Areas.admin.Controllers
     {
         private AppDbContext _context;
         private SettingServices _settingServices;
+        private IMapper _mapper;
 
         public ReservationController(AppDbContext context,
-                                     SettingServices settingServices)
+                                     SettingServices settingServices,
+                                     IMapper mapper)
         {
             _context = context;
             _settingServices=settingServices;
+            _mapper = mapper;
         }
         private string GetSetting(string key)
         {
@@ -53,17 +57,8 @@ namespace Restaurant.UI.Areas.admin.Controllers
             List<ReservationListVM> model = new List<ReservationListVM>();
             foreach (var item in reservs)
             {
-                var product = new ReservationListVM
-                {
-                    Id = item.Id,
-                    FullName=item.FullName,
-                    Email=item.Email,
-                    Number=item.Number,
-                    Date=item.Date, 
-                    PeopleCount=item.PeopleCount,
-                    Message=item.Message,
-                };
-                model.Add(product);
+                ReservationListVM reservation = _mapper.Map<ReservationListVM>(item);
+                model.Add(reservation);
             }
             return model;
         }

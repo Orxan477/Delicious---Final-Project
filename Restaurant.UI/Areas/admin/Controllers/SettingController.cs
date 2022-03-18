@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Business.Services;
 using Restaurant.Business.ViewModels;
@@ -17,12 +18,15 @@ namespace Restaurant.UI.Areas.admin.Controllers
     {
         private AppDbContext _context;
         private SettingServices _settingServices;
+        private IMapper _mapper;
 
         public SettingController(AppDbContext context,
-                                 SettingServices settingServices)
+                                 SettingServices settingServices,
+                                 IMapper mapper)
         {
             _context = context;
-            _settingServices = settingServices; 
+            _settingServices = settingServices;
+            _mapper = mapper;
         }
         private string GetSetting(string key)
         {
@@ -53,13 +57,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
             List<SettingListVM> model = new List<SettingListVM>();
             foreach (var item in settings)
             {
-                var setting = new SettingListVM
-                {
-                    Id = item.Id,
-                    Key=item.Key,
-                    Value=item.Value,
-                    Type = item.Type,
-                };
+                SettingListVM setting = _mapper.Map<SettingListVM>(item);
                 model.Add(setting);
             }
             return model;
