@@ -4,22 +4,23 @@
 }
 
 <main>
-        <section id="team" class="mt-2">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 teamIntro mb-3">
-                        <h3>Our <span>Team</span></h3>
-                        <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
-                    </div>
+    <section id="team" class="mt-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 teamIntro mb-3">
+                    <h3>Our <span>Team</span></h3>
+                    <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
                 </div>
-                <div class="row">
-                    @foreach (var person in Model.Teams)
-                   {
-                       <div class="col-lg-4 col-md-6 col-sm-12 py-3">
+            </div>
+            <div class="row">
+                @foreach (var person in Model.Teams)
+                {
+                    <div class="col-lg-4 col-md-6 col-sm-12 py-3">
                         <div class="employee">
                             <div class="image">
-                                <img src="~/assets/img/@person.Image" data-toggle="modal" data-target="#exampleModal-@person.Id"
-                                    class="card-img-top" alt="">
+                                <img src="~/assets/img/@person.Image" data-toggle="modal" id="teamModal" data-target="#exampleModal-@person.Id"
+                                 class="card-img-top" alt="">
+                                <input type="hidden" value="@person.Id">
                             </div>
                             <div class="image-info">
                                 <h4>@person.FullName</h4>
@@ -32,37 +33,43 @@
                                 </ul>
                             </div>
                         </div>
-                         <div class="modal fade" id="exampleModal-@person.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
+                            <div class="modal fade " id="exampleModal-@person.Id" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog team-modal-append" role="document">
+                                </div>
+                                @*<div class="modal fade" id="exampleModal-@person.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
                                     <div class="modal-header d-flex justify-content-center  ">
-                                        <h5 class="modal-title" id="exampleModalLabel">@person.FullName</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">@person.FullName</h5>
                                     </div>
                                     <div class="modal-body d-flex justify-content-center">
-                                        <div class="col-lg-5 p-0">
-                                            <img src="~/assets/img/@person.Image" width="200px">
-                                        </div>
-                                        <div class="col-lg-7 p-0">
-                                             <p class="ml-4">@person.About</p>
-                                        </div>
-                                       
+                                    <div class="col-lg-5 p-0">
+                                    <img src="~/assets/img/@person.Image" width="200px">
                                     </div>
-                                </div>
-                                <div class="modal-footer" style="background:white; border-top:1px solid black">
+                                    <div class="col-lg-7 p-0">
+                                    <p class="ml-4">@person.About</p>
+                                    </div>
+
+                                    </div>
+                                    </div>
+                                    <div class="modal-footer" style="background:white; border-top:1px solid black">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
+                                    </div>
+                                    </div>
+                                    </div>*@
                             </div>
-                        </div>
-                        </div>
-                   }
-                </div>
+                    </div>
+                }
             </div>
-        </section>
-        @section Script
-{
+        </div>
+    </section>
+    @section Script
+    {
     <script src="~/assets/js/NavLink.js"></script>
     <script src="~/assets/js/script.js"></script>
     <script src="~/assets/js/otherPage.js"></script>
-}
-    </main>
+    <script src="~/assets/js/TeamModal.js"></script>
+    }
+</main>
 

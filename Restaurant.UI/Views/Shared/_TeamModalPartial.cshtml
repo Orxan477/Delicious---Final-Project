@@ -1,0 +1,30 @@
+﻿@model HomeVM
+@*@foreach (var person in Model.Team.)
+    {*@
+@*<div class="modal fade" id="exampleModal-@Model.Team.Id" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">*@
+    @*<div class="modal-dialog" role="document">*@
+<div class="modal-content">
+    <div class="modal-header d-flex justify-content-center  ">
+        <h5 class="modal-title" id="exampleModalLabel">@Model.Team.FullName</h5>
+    </div>
+    <div class="modal-body d-flex justify-content-center">
+        <div class="col-lg-5 p-0">
+            <img src="~/assets/img/@Model.Team.Image" width="200px">
+        </div>
+        <div class="col-lg-7 p-0">
+            <p class="ml-4">@Model.Team.About</p>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+                data-dismiss="modal" id="close-modal-partial">
+            Cancel
+        </button>
+    </div>
+</div>
+    @*</div>*@
+    @*</div>*@
+
+@*}*@

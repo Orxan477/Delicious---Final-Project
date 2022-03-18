@@ -56,5 +56,15 @@ namespace Restaurant.UI.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        public IActionResult ModalPartial(int id)
+        {
+            HomeVM homeVM = new HomeVM
+            {
+                Team = _context.Teams.Where(x => !x.IsDeleted && x.Id==id).Include(x=>x.Position).FirstOrDefault(),
+
+            };
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
+            return PartialView("_TeamModalPartial", homeVM);
+        }
     }
 }

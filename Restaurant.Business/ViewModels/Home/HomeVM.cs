@@ -24,6 +24,7 @@ namespace Restaurant.Business.ViewModels
         public List<Core.Models.Team> Teams { get; set; }
         public List<FullOrder> FullOrders { get; set; }
         public BillingAdressVM BillingAdressesVM { get; set; }
+        public Core.Models.Team Team { get; set; }
 
     }
 }
