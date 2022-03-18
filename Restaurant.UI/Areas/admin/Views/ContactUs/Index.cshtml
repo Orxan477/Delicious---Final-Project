@@ -40,9 +40,10 @@
                                     <td>
                                         
                                             <a asp-action="SendMessage" asp-route-id="@contact.Id" type="submit" class="btn btn-primary mr -2"><i class="mdi mdi-contact-mail"></i></a>
-                                            <form method="post" class="d-inline" asp-action="Delete" asp-route-id="@contact.Id">
+                                           @* <form method="post" class="d-inline" asp-action="Delete" asp-route-id="@contact.Id">
                                                 <button type="submit" class="btn btn-danger"><i class="mdi mdi-comment-remove-outline"></i></button>
-                                            </form>
+                                            </form>*@
+                                            <a asp-action="Delete" asp-route-id="@contact.Id" class="btn btn-danger delete-btn"><i class="mdi mdi-comment-remove-outline"></i></a>
                                     </td>
                                 </tr>
                                 productNum++;
@@ -91,3 +92,7 @@
         </div>
     </div>
 </div>
+@section ScriptModal{
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+<script src="~/admin/assets/js/AlertModal.js"></script>
+}

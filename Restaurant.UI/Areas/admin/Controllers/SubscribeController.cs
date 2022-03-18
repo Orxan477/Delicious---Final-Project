@@ -62,8 +62,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
             }
             return model;
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        
         public async Task<IActionResult> Delete(int id)
         {
             Subscribe dbSubscribe = _context.Subscribes.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();

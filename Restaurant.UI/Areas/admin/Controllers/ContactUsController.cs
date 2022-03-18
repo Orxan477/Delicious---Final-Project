@@ -124,8 +124,8 @@ namespace Restaurant.UI.Areas.admin.Controllers
             dbContactUs.IsDeleted = true;
             await _context.SaveChangesAsync();
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
             ContactUs dbContactUs = await _context.ContactUs.Where(x => !x.IsDeleted).FirstOrDefaultAsync();

@@ -14,30 +14,14 @@
             confirmButtonText: 'Yes'
         }).then((result) => {
             if (result.isConfirmed) {
-                //fetch(url).then(data => {
-                //    if (data.ok) {
-                //        window.location.reload(true);
-                //    }
-                //    else {
-                //        alert("warning");
-                //    }
-                //})
-                //console.log(result)
-               
-                    fetch(url).then(data => {
-                        if (data.ok) {
-                            Swal.fire(
-                                'Deleted!',
-                                'Your file has been deleted.',
-                                'success')
-                            $(document).on("click", ".swal2-confirm", function () {
-                                console.log("ds " )
-                            })
-                        }
-                        else {
-                            alert("warning");
-                        }
-                    })
+                fetch(url).then(data => {
+                    if (data.ok) {
+                        window.location.reload(true);
+                    }
+                    else {
+                        alert("warning");
+                    }
+                })
                 
             }
         })
