@@ -34,11 +34,18 @@
                                     Username has been updated succesfully
                                 </div>
                             }
+                            @if (ViewBag.IsSuccessNumber==true)
+                           {
+                               <div class="alert alert-success" role="alert">
+                                    Phone Number has been updated succesfully
+                                </div>
+                           }
                             
                         </div>
                         <div class="card-body px-5 pb-5 pt-3">
                             <h3 class="card-title text-left mb-3 d-flex justify-content-center">Setting</h3>
                             <a class="btn btn-warning d-flex justify-content-center mb-3" asp-controller="Account" asp-action="ChangeMail">Mail</a>
+                            <a class="btn btn-warning d-flex justify-content-center mb-3" asp-controller="Account" asp-action="ChangeNumber">Phone Number</a>
                             <a class="btn btn-warning d-flex justify-content-center mb-3" asp-controller="Account" asp-action="ChangeUsername">Username</a>
                             <a class="btn btn-warning d-flex justify-content-center mb-3" asp-controller="Account" asp-action="ChangePassword">Password</a>
                             <a class="btn btn-secondary d-flex justify-content-center" asp-controller="Home" asp-action="Index">Cancel</a>

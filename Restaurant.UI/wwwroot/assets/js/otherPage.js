@@ -4,13 +4,12 @@ var header = document.querySelector(".myNavbar");
 header.classList.add("background-scroll-navbar");
 
 function myFunction() {
-  if (window.pageYOffset > sticky ) {
+    if (window.pageYOffset > sticky) {
     navbar2.classList.add("stickyOtherPageNavbar");
   } else {
     navbar2.classList.remove("stickyOtherPageNavbar");
   }
 }
 
-window.onscroll = function () {myUpperFunction(),
-                               myFunction(),
+window.onscroll = function () {myFunction(),
                                activeLink()};

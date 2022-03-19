@@ -13,3 +13,6 @@ function myUpperFunction() {
 }
 
 
+window.onscroll = function () {
+    myUpperFunction()
+};

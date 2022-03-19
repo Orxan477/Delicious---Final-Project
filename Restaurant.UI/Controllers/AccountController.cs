@@ -13,9 +13,13 @@ using Restaurant.Core.Models;
 using Restaurant.Data.DAL;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Restaurant.UI.Controllers
 {
@@ -109,7 +113,7 @@ namespace Restaurant.UI.Controllers
                 return View();
             }
         }
-        private void SendEmailAsync(string email,string link)
+        private void SendEmailAsync(string email, string link)
         {
             string name = GetSetting("RestaurantName");
             string body = string.Empty;
@@ -118,7 +122,7 @@ namespace Restaurant.UI.Controllers
                 body = streamReader.ReadToEnd();
             }
             body = body.Replace("{{email}}", $"{email}").Replace("{{url}}", $"{link}").Replace("{{restaurantName}}", $"{name}");
-            TryAgain:
+        TryAgain:
             try
             {
                 Email.SendEmail(_configure.GetSection("Email:SenderEmail").Value,
@@ -328,12 +332,7 @@ namespace Restaurant.UI.Controllers
                 return View(changePasswordVM);
             }
             var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                ModelState.AddModelError(string.Empty, "User is Not Found");
-                ViewBag.RestaurantName = GetSetting("RestaurantName");
-                return View();
-            }
+            if (user == null) return NotFound();
             var result = await _userManager.ChangePasswordAsync(user, changePasswordVM.CurrentPassword,
                                                                                     changePasswordVM.NewPassword);
             if (result.Succeeded)
@@ -368,12 +367,7 @@ namespace Restaurant.UI.Controllers
                 return View(changeUsername);
             }
             var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                ModelState.AddModelError(string.Empty, "User is Not Found");
-                ViewBag.RestaurantName = GetSetting("RestaurantName");
-                return View(changeUsername);
-            }
+            if (user == null) return NotFound();
             var checkPasword = await _userManager.CheckPasswordAsync(user, changeUsername.Password);
             if (!checkPasword)
             {
@@ -414,12 +408,7 @@ namespace Restaurant.UI.Controllers
                 return View(changeEmail);
             }
             var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                ModelState.AddModelError(string.Empty, "User is Not Found");
-                ViewBag.RestaurantName = GetSetting("RestaurantName");
-                return View(changeEmail);
-            }
+            if (user == null) return NotFound();
 
             var checkPasword = await _userManager.CheckPasswordAsync(user, changeEmail.Password);
             if (!checkPasword)
@@ -467,6 +456,51 @@ namespace Restaurant.UI.Controllers
         //    }
         //}
         #endregion
+        public IActionResult ChangeNumber()
+        {
+            ViewBag.RestaurantName = GetSetting("RestaurantName");
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangeNumber(ChangeNumberVM changeNumber)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View(changeNumber);
+            }
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null) return NotFound();
+            var checkPasword = await _userManager.CheckPasswordAsync(user, changeNumber.Password);
+            if (!checkPasword)
+            {
+                ModelState.AddModelError(string.Empty, "Incorrect Password");
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View(changeNumber);
+            }
+            var token = await _userManager.GenerateChangePhoneNumberTokenAsync(user, changeNumber.Number);
+
+            var result = await _userManager.ChangePhoneNumberAsync(user, changeNumber.Number, token);
+            if (result.Succeeded)
+            {
+                await _signInManager.RefreshSignInAsync(user);
+                ViewBag.IsSuccessNumber = true;
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View(nameof(SettingAccount));
+            }
+            else
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                return View();
+            }
+        }
+
+
         public IActionResult ForgotPassword()
         {
             ViewBag.RestaurantName = GetSetting("RestaurantName");
@@ -535,6 +569,10 @@ namespace Restaurant.UI.Controllers
             if (identityResult.Succeeded)
             {
                 await AddTokenDb(token);
+                if (!IsAuthenticated())
+                {
+                    return RedirectToAction("Index", "Home");
+                }
                 await _signInManager.SignInAsync(user, false);
                 return RedirectToAction("Index", "Home");
             }
