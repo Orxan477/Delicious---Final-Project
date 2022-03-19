@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Restaurant.Business.Implementations;
+using Restaurant.Business.Interfaces;
 using Restaurant.Business.Profiles;
 using Restaurant.Business.Services;
 using Restaurant.Business.Validators.Home;
@@ -17,7 +19,7 @@ using Restaurant.Data.Implementations;
 using System;
 
 namespace Restaurant.UI
-{
+{   
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -35,7 +37,10 @@ namespace Restaurant.UI
             services.AddControllers().AddNewtonsoftJson(options =>
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddMapperService();
-            //services.AddScoped<IPaginateRepository<Product, ProductListVM>, PaginateRepository<Product, ProductListVM>>();
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IReservationService, ReservationService>();
+
             services.AddIdentity<AppUser, IdentityRole>()
                     .AddEntityFrameworkStores<AppDbContext>()
                     .AddDefaultTokenProviders();

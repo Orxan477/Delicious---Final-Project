@@ -10,17 +10,14 @@ using System.Threading.Tasks;
 
 namespace Restaurant.Data.Implementations
 {
-    public class PaginateRepository<T, U> : IPaginateRepository<T, U>
+    public class PaginateRepository<T> : IPaginateRepository<T>
                 where T : class
-        where U : class
     {
         private AppDbContext _context;
-        private IMapper _mapper;
 
-        public PaginateRepository(AppDbContext context,IMapper mapper)
+        public PaginateRepository(AppDbContext context)
         {
             _context = context;
-            _mapper = mapper;
         }
 
         public int GetPageCount(int take, Expression<Func<T, bool>> expression = null)
@@ -31,31 +28,18 @@ namespace Restaurant.Data.Implementations
             return (int)Math.Ceiling((decimal)prodCount / take);
         }
 
-        public List<U> GetProductList(List<T> entity)
-        {
-            List<U> models = new List<U>();
-            foreach (var item in entity)
-            {
-                U model = _mapper.Map<U>(item);
-                models.Add(model);
-            }
-            return models;
-        }
-
-        
-
-        public async Task<List<T>> GetPaginate(int count, int page = 1,  params string[] includes)
+        public async Task<List<T>> GetPaginate(int count, int page, Expression<Func<T, bool>> exp = null, params string[] includes)
         {
             var query = GetQuery(includes);
 
-            return await query.Skip((page - 1) * count)
+            return exp is null
+                ?await query.Skip((page - 1) * count)
+                             .Take(count)
+                             .ToListAsync()
+                : await query.Where(exp)
+                             .Skip((page - 1) * count)
                              .Take(count)
                              .ToListAsync();
-
-                //: await query.Where(expression)
-                //             .Skip((page - 1) * count)
-                //             .Take(count)
-                //             .ToListAsync();
         }
         private IQueryable<T> GetQuery(string[] includes)
         {

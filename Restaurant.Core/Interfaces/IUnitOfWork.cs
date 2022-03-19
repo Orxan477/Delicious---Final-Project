@@ -4,7 +4,7 @@ namespace Restaurant.Core.Interfaces
 {
     public interface IUnitOfWork
     {
-        //public IPaginateRepository Repository { get; }
+        public IReservationPaginateRepository ReservationPaginateRepository { get; }
         Task SaveChange();
     }
 }

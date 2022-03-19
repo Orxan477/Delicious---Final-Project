@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Restaurant.Business.Implementations;
+using Restaurant.Business.Interfaces;
 using Restaurant.Business.Services;
 using Restaurant.Business.ViewModels;
 using Restaurant.Business.ViewModels.Reservation;
@@ -17,54 +19,35 @@ namespace Restaurant.UI.Areas.admin.Controllers
     {
         private AppDbContext _context;
         private SettingServices _settingServices;
-        private IMapper _mapper;
+        private IReservationService _reservationService;
 
         public ReservationController(AppDbContext context,
                                      SettingServices settingServices,
-                                     IMapper mapper)
+                                     IReservationService reservationService)
         {
             _context = context;
             _settingServices=settingServices;
-            _mapper = mapper;
+            _reservationService = reservationService;
         }
         private string GetSetting(string key)
         {
             Dictionary<string, string> Settings = _settingServices.GetSetting();
             return Settings[$"{key}"];
         }
-        public IActionResult Index(int page=1)
+        public async Task<IActionResult> Index(int page=1)
         {
             int count = int.Parse(GetSetting("TakeCount"));
             ViewBag.TakeCount = count;
-            var reservs=_context.Reservations
-                                .Skip((page - 1) * count)
-                                .Take(count)
-                                .Where(x=>!x.IsCheck && !x.IsClose)
-                                .OrderByDescending(x=>x.Id).ToList();
-            var reservVM = GetProductList(reservs);
-            int pageCount = GetPageCount(count);
+            var reservs = await _reservationService.GetPaginate(count,page);
+            var reservVM =  _reservationService.GetProductList( reservs);
+            int pageCount = _reservationService.GetPageCount(count);
             Paginate<ReservationListVM> model = new Paginate<ReservationListVM>(reservVM, page, pageCount);
             ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View(model);
         }
-        private int GetPageCount(int take)
-        {
-            var prodCount = _context.Reservations.Where(x => !x.IsCheck && !x.IsClose).Count();
-            return (int)Math.Ceiling((decimal)prodCount / take);
-        }
-        private List<ReservationListVM> GetProductList(List<Reservation> reservs)
-        {
-            List<ReservationListVM> model = new List<ReservationListVM>();
-            foreach (var item in reservs)
-            {
-                ReservationListVM reservation = _mapper.Map<ReservationListVM>(item);
-                model.Add(reservation);
-            }
-            return model;
-        }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Close(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             Reservation dbReservation = _context.Reservations.Where(x => x.Id == id && !x.IsCheck && !x.IsClose).FirstOrDefault();
             if (dbReservation is null) return NotFound();
