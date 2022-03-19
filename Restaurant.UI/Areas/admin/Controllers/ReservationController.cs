@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using Restaurant.Business.Implementations;
+﻿using Microsoft.AspNetCore.Mvc;
 using Restaurant.Business.Interfaces;
 using Restaurant.Business.Services;
 using Restaurant.Business.ViewModels;
@@ -47,8 +45,9 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id,int option)
         {
+            return Json(option);
             Reservation dbReservation = _context.Reservations.Where(x => x.Id == id && !x.IsCheck && !x.IsClose).FirstOrDefault();
             if (dbReservation is null) return NotFound();
             dbReservation.IsClose = true;
@@ -57,8 +56,9 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Check(int id)
+        public async Task<IActionResult> Check(int id,int option)
         {
+            return Json(option);
             Reservation dbReservation = _context.Reservations.Where(x => x.Id == id && !x.IsCheck && !x.IsClose).FirstOrDefault();
             if (dbReservation is null) return NotFound();
             dbReservation.IsCheck = true;
