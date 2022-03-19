@@ -492,7 +492,7 @@ namespace Restaurant.UI.Controllers
             };
             //Paginate<HomeFullOrderListVM> model = new Paginate<HomeFullOrderListVM>(productsVM, page, pageCount);
             ViewBag.RestaurantName = GetSetting("RestaurantName");
-            return View(homeVM.FullOrders);
+            return View(homeVM);
         }
         private int GetPageCount(int take,string userId)
         {
