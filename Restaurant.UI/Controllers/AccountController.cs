@@ -96,7 +96,10 @@ namespace Restaurant.UI.Controllers
                 var token = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
                 string link = Url.Action(nameof(VerifyEmail), "Account", new { userId = newUser.Id, token },
                                                                     Request.Scheme, Request.Host.ToString());
-                SendEmailAsync(newUser.Email, link);
+                if (!SendEmailAsync(newUser.Email, link))
+                {
+                    return BadRequest();
+                }
                 //await _userManager.AddToRoleAsync(newUser, "Admin");
                 await _userManager.AddToRoleAsync(newUser, "Member");
                 ViewBag.IsSuccessful = true;
@@ -113,7 +116,7 @@ namespace Restaurant.UI.Controllers
                 return View();
             }
         }
-        private void SendEmailAsync(string email, string link)
+        private bool SendEmailAsync(string email, string link)
         {
             string name = GetSetting("RestaurantName");
             string body = string.Empty;
@@ -122,6 +125,7 @@ namespace Restaurant.UI.Controllers
                 body = streamReader.ReadToEnd();
             }
             body = body.Replace("{{email}}", $"{email}").Replace("{{url}}", $"{link}").Replace("{{restaurantName}}", $"{name}");
+            int count = 0;
         TryAgain:
             try
             {
@@ -130,8 +134,12 @@ namespace Restaurant.UI.Controllers
             }
             catch (Exception ex)
             {
+                count++;
+                if (count == 3) return false;
+
                 goto TryAgain;
             }
+            return true;
         }
         public async Task<IActionResult> VerifyEmail(string userid, string token)
         {
