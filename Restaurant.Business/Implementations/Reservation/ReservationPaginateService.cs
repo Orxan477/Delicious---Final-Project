@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Restaurant.Business.Implementations
 {
-    public class ReservationService : IReservationService
+    public class ReservationService : IReservationPaginateService
     {
         private IUnitOfWork _unitOfWork;
         private IMapper _mapper;

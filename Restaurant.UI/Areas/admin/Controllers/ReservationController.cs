@@ -17,11 +17,11 @@ namespace Restaurant.UI.Areas.admin.Controllers
     {
         private AppDbContext _context;
         private SettingServices _settingServices;
-        private IReservationService _reservationService;
+        private IReservationPaginateService _reservationService;
 
         public ReservationController(AppDbContext context,
                                      SettingServices settingServices,
-                                     IReservationService reservationService)
+                                     IReservationPaginateService reservationService)
         {
             _context = context;
             _settingServices=settingServices;
