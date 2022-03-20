@@ -66,7 +66,7 @@ namespace Restaurant.UI.Controllers
         {
             if (!IsAuthenticated())
             {
-                return BadRequest();
+                return RedirectToAction("BadRequestCustom", "Error", new { area = "null" });
             }
             if (!ModelState.IsValid)
             {
@@ -98,7 +98,7 @@ namespace Restaurant.UI.Controllers
                                                                     Request.Scheme, Request.Host.ToString());
                 if (!SendEmailAsync(newUser.Email, link))
                 {
-                    return BadRequest();
+                    return RedirectToAction("BadRequestCustom", "Error", new { area = "null" });
                 }
                 //await _userManager.AddToRoleAsync(newUser, "Admin");
                 await _userManager.AddToRoleAsync(newUser, "Member");
@@ -144,7 +144,7 @@ namespace Restaurant.UI.Controllers
         public async Task<IActionResult> VerifyEmail(string userid, string token)
         {
             bool isExistToken = _context.TokenBlackList.Any(x => x.Token == token);
-            if (isExistToken) return BadRequest();
+            if (isExistToken) return RedirectToAction("BadRequestCustom", "Error", new { area = "null" });
             var user = await _userManager.FindByIdAsync(userid);
             if (user == null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             var result = await _userManager.ConfirmEmailAsync(user, token);
@@ -168,7 +168,7 @@ namespace Restaurant.UI.Controllers
                 await CookieAddDb(user);
                 return RedirectToAction("Index", "Home");
             }
-            else return BadRequest();
+            else return RedirectToAction("BadRequestCustom", "Error", new { area = "null" });
         }
         private bool IsAuthenticated()
         {
@@ -191,7 +191,7 @@ namespace Restaurant.UI.Controllers
         {
             if (!IsAuthenticated())
             {
-                return BadRequest();
+                return RedirectToAction("BadRequestCustom", "Error", new { area = "null" });
             }
             ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View();
@@ -308,7 +308,7 @@ namespace Restaurant.UI.Controllers
         {
             if (!User.Identity.IsAuthenticated)
             {
-                return BadRequest();
+                return RedirectToAction("BadRequestCustom", "Error", new { area = "null" });
             }
             ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View();
@@ -565,14 +565,14 @@ namespace Restaurant.UI.Controllers
         public async Task<IActionResult> ForgotPasswordConfirm(string userid, string token, ForgotPasswordVM forgotPassword)
         {
             bool isExistToken = _context.TokenBlackList.Any(x => x.Token == token);
-            if (isExistToken) return BadRequest();
+            if (isExistToken) return RedirectToAction("BadRequestCustom", "Error", new { area = "null" });
             if (!ModelState.IsValid)
             {
                 ViewBag.RestaurantName = GetSetting("RestaurantName");
                 return View();
             }
             AppUser user = await _userManager.FindByIdAsync(userid);
-            if (user == null) return BadRequest();
+            if (user == null) return RedirectToAction("BadRequestCustom", "Error", new { area = "null" });
             IdentityResult identityResult = await _userManager.ResetPasswordAsync(user, token, forgotPassword.NewPassword);
             if (identityResult.Succeeded)
             {

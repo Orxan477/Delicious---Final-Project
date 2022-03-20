@@ -1,14 +1,7 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Restaurant.Business.Interfaces;
-using Restaurant.Business.Interfaces.Setting;
-using Restaurant.Business.Services;
-using Restaurant.Business.ViewModels;
 using Restaurant.Business.ViewModels.Home.About;
-using Restaurant.Core.Models;
-using Restaurant.Data.DAL;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -32,7 +25,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public IActionResult Create()
         {
-            if (_deliciouseService.AboutOptionService.GetAll().Result.Count() == 3) return BadRequest();
+            if (_deliciouseService.AboutOptionService.GetAll().Result.Count() == 3) return RedirectToAction("BadRequestCustom", "Error", new { area = "null" });
             ViewBag.RestaurantName = _deliciouseService.AboutOptionService.GetSetting("RestaurantName");
             return View();
         }
@@ -49,7 +42,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
             {
                 await _deliciouseService.AboutOptionService.Create(aboutOptionCreate);
             }
-            catch (Exception)
+            catch (Exception )
             {
                 ModelState.AddModelError("Option", "This Option is available");
                 ViewBag.RestaurantName = _deliciouseService.AboutOptionService.GetSetting("RestaurantName");

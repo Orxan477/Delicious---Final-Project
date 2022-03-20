@@ -73,7 +73,7 @@ namespace Restaurant.Business.Implementations
         {
             string response = GetSetting("ReservationCount");
             int tableCount=int.Parse(response);
-            int reservCount = _unitOfWork.ReservationPaginateRepository.GetAll().Result.Count();
+            int reservCount = GetAll().Result.Count();
             if (tableCount == reservCount) throw new System.Exception("bad");
             if (reservationVM.PeopleCount > 10) throw new System.Exception("bad");
             Reservation reservation = _mapper.Map<Reservation>(reservationVM);

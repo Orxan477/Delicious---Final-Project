@@ -131,7 +131,7 @@ namespace Restaurant.UI.Controllers
         {
             if (id is null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             Product dbProduct = await _context.Products.FindAsync(id);
-            if (dbProduct is null) return BadRequest();
+            if (dbProduct is null) return RedirectToAction("BadRequestCustom", "Error", new { area = "null" });
             List<BasketVM> basket = GetBasket();
 
             await UpdateBasket((int)id, basket, priceId);
@@ -190,7 +190,7 @@ namespace Restaurant.UI.Controllers
         //{
         //    if (id == null) return RedirectToAction("Index", "Menu");
         //    Product dbProduct = await _context.Prouducts.FindAsync(id);
-        //    if (dbProduct is null) return BadRequest();
+        //    if (dbProduct is null) return RedirectToAction("BadRequestCustom", "Error", new { area = "null" });
         //}
         #endregion
         private async Task UpdateBasket(int id, List<BasketVM> basket, int? priceId)
@@ -421,7 +421,7 @@ namespace Restaurant.UI.Controllers
             }
             var user = await _userManager.GetUserAsync(User);
             List<BasketItem> basketItems = await GetBasketProduct(user.Id);
-            if (basketItems.Count == 0) return BadRequest();
+            if (basketItems.Count == 0) return RedirectToAction("BadRequestCustom", "Error", new { area = "null" });
             await BuyProduct(basketItems,homeVM.BillingAdressesVM.Adress,user.Id);
             return RedirectToAction(nameof(MyOrder));
         }
@@ -470,7 +470,7 @@ namespace Restaurant.UI.Controllers
         {
             if (!User.Identity.IsAuthenticated)
             {
-                return BadRequest();
+                return RedirectToAction("BadRequestCustom", "Error", new { area = "null" });
             }
             int count = int.Parse(GetSetting("TakeCount"));
             ViewBag.TakeCount = count;

@@ -39,7 +39,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public IActionResult Create()
         {
-            if (_context.ChooseRestaurants.Where(x => !x.IsDeleted).Count() == 6) return BadRequest();
+            if (_context.ChooseRestaurants.Where(x => !x.IsDeleted).Count() == 6) return RedirectToAction("BadRequestCustom", "Error", new { area = "null" });
             ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View();
         }

@@ -44,12 +44,12 @@ namespace Restaurant.UI.Controllers
             try
             {
                await _reservationService.ReservationTable(reservationVM);
-                return RedirectToAction(nameof(Index));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("BadRequestCustom", "Error", new { area = "null" });
             }
+                return RedirectToAction(nameof(Index));
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

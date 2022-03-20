@@ -25,7 +25,7 @@ namespace Restaurant.Business.Implementations.Home
         public async Task Create(AboutOptionCreateVM aboutOptionCreate)
         { 
             AboutOption nameContext = await _unitOfWork.AboutOptionGetRepository.Get(x=>x.Option.Trim().ToLower()==aboutOptionCreate.Option.Trim().ToLower());
-            if (nameContext is null) throw new System.Exception("Not");
+            if (nameContext != null) throw new System.Exception();
             AboutOption aboutOption = _mapper.Map<AboutOption>(aboutOptionCreate);
             await _unitOfWork.AboutOptionCRUDRepository.CreateAsync(aboutOption);
             await _unitOfWork.SaveChangeAsync();

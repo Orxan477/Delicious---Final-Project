@@ -111,7 +111,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
                 ViewBag.RestaurantName = GetSetting("RestaurantName");
                 return RedirectToAction(nameof(Index));
             }
-            else { return BadRequest(); }
+            else { return RedirectToAction("BadRequestCustom", "Error", new { area = "null" }); }
         }
     }
 }

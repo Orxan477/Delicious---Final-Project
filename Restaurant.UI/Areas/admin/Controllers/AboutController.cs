@@ -1,16 +1,7 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Restaurant.Business.Interfaces;
 using Restaurant.Business.Interfaces.Home;
-using Restaurant.Business.Services;
-using Restaurant.Business.Utilities;
 using Restaurant.Business.ViewModels.Home.About;
-using Restaurant.Core.Models;
-using Restaurant.Data.DAL;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Restaurant.UI.Areas.admin.Controllers

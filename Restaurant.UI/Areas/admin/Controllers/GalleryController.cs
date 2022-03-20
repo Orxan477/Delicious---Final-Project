@@ -45,7 +45,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public IActionResult Create()
         {
-            if (_context.RestaurantPhotos.Count() == 8) return BadRequest();
+            if (_context.RestaurantPhotos.Count() == 8) return RedirectToAction("BadRequestCustom", "Error", new { area = "null" });
             ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View();
         }

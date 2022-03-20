@@ -42,7 +42,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         {
             if (_context.Specials.Where(x => !x.IsDeleted).Count() == 5)
             {
-                return BadRequest();
+                return RedirectToAction("BadRequestCustom", "Error", new { area = "null" });
             }
             await GetSelectedItemAsync();
             return View();
