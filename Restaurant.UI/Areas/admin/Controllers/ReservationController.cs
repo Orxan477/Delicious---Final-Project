@@ -17,11 +17,11 @@ namespace Restaurant.UI.Areas.admin.Controllers
     {
         private AppDbContext _context;
         private SettingServices _settingServices;
-        private IReservationPaginateService _reservationService;
+        private IReservationService _reservationService;
 
         public ReservationController(AppDbContext context,
                                      SettingServices settingServices,
-                                     IReservationPaginateService reservationService)
+                                     IReservationService reservationService)
         {
             _context = context;
             _settingServices=settingServices;
@@ -47,22 +47,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id,int option)
         {
-            return Json(option);
-            Reservation dbReservation = _context.Reservations.Where(x => x.Id == id && !x.IsCheck && !x.IsClose).FirstOrDefault();
-            if (dbReservation is null) return NotFound();
-            dbReservation.IsClose = true;
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Check(int id,int option)
-        {
-            return Json(option);
-            Reservation dbReservation = _context.Reservations.Where(x => x.Id == id && !x.IsCheck && !x.IsClose).FirstOrDefault();
-            if (dbReservation is null) return NotFound();
-            dbReservation.IsCheck = true;
-            await _context.SaveChangesAsync();
+            var a=await _reservationService.Update(id,option);
             return RedirectToAction(nameof(Index));
         }
     }

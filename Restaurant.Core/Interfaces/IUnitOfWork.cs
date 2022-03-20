@@ -1,10 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using Restaurant.Core.Interfaces.ReservationInterfaces;
+using System.Threading.Tasks;
 
 namespace Restaurant.Core.Interfaces
 {
     public interface IUnitOfWork
     {
-        public IReservationPaginateRepository ReservationPaginateRepository { get; }
-        Task SaveChange();
+        public IReservationGetRepository ReservationPaginateRepository { get; }
+        public IReservationCURDRepository ReservationCRUDRepository { get; }
+        Task SaveChangeAsync();
     }
 }

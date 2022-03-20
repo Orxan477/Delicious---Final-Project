@@ -39,7 +39,7 @@ namespace Restaurant.UI
             services.AddMapperService();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<IReservationPaginateService, ReservationPaginateService>();
+            services.AddScoped<IReservationService, ReservationService>();
 
             services.AddIdentity<AppUser, IdentityRole>()
                     .AddEntityFrameworkStores<AppDbContext>()

@@ -2,8 +2,10 @@
 
 namespace Restaurant.Core.Interfaces
 {
-    public interface ICreateRepository<TEntity>
+    public interface ICRUDRepository<TEntity>
     {
         Task CreateAsync(TEntity entity);
+        void Update(TEntity entity);
+        void Delete(TEntity entity);
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Restaurant.Business.Implementations
 {
-    public class ReservationService : IReservationPaginateService
+    public class ReservationService : IReservationService
     {
         private IUnitOfWork _unitOfWork;
         private IMapper _mapper;
@@ -23,11 +23,14 @@ namespace Restaurant.Business.Implementations
         {
             return _unitOfWork.ReservationPaginateRepository.GetPageCount(take, p => !p.IsCheck && !p.IsClose);
         }
-
         public async Task<List<Reservation>> GetPaginate(int count,int page)
         {
            return await _unitOfWork.ReservationPaginateRepository.GetPaginate(count, page, p => !p.IsCheck && !p.IsClose);
            
+        }
+        public async Task<List<Reservation>> GetAll()
+        {
+            return await _unitOfWork.ReservationPaginateRepository.GetAll(p => !p.IsCheck && !p.IsClose);
         }
 
         public List<ReservationListVM> GetProductList(List<Reservation> reserv)
@@ -39,6 +42,31 @@ namespace Restaurant.Business.Implementations
                 models.Add(model);
             }
             return models;
+        }
+
+        public async Task<Reservation> Update(int id,int option)
+        {
+            Reservation dbReservation =await _unitOfWork.ReservationPaginateRepository.Get(x => x.Id == id && !x.IsCheck && !x.IsClose);
+            if (dbReservation == null) throw new System.Exception();
+            switch (option)
+            {
+                case 1:
+                    dbReservation.IsCheck = true;
+                    break;
+                case 2:
+                    dbReservation.IsClose = true;
+                    break;
+                default:
+                    throw new System.Exception();
+            }
+            _unitOfWork.ReservationCRUDRepository.Update(dbReservation);
+            await _unitOfWork.SaveChangeAsync();
+            return dbReservation;
+        }
+
+        public Task ReservationTable(ReservationVM reservationVM)
+        {
+            
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Restaurant.Business.Interfaces;
 using Restaurant.Business.Services;
 using Restaurant.Business.ViewModels;
 using Restaurant.Business.ViewModels.Reservation;
@@ -14,12 +16,18 @@ namespace Restaurant.UI.Controllers
     {
         private AppDbContext _context;
         private SettingServices _settingServices;
+        private IReservationService _reservationService;
+        private IMapper _mapper;
 
         public ReservationController(AppDbContext context,
-                                     SettingServices settingServices)
+                                     SettingServices settingServices,
+                                     IReservationService reservationService,
+                                     IMapper mapper)
         {
             _context = context;
             _settingServices = settingServices;
+            _reservationService = reservationService;
+            _mapper = mapper;
         }
         private string GetSetting(string key)
         {
@@ -29,7 +37,7 @@ namespace Restaurant.UI.Controllers
         public IActionResult Index()
         {
             ViewBag.ReservationCountSetting=int.Parse(GetSetting("ReservationCount"));
-            ViewBag.ReservationCountDb = _context.Reservations.Where(x => !x.IsCheck && !x.IsClose).Count();
+            ViewBag.ReservationCountDb = _reservationService.GetAll().Result.Count();
             ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View();
         }
@@ -46,17 +54,7 @@ namespace Restaurant.UI.Controllers
                 ViewBag.RestaurantName = GetSetting("RestaurantName");
                 return View(nameof(Index));
             }
-
-            Reservation reservation = new Reservation
-            {
-                FullName = reservationVM.FullName,
-                Email = reservationVM.Email,
-                Number = reservationVM.Number,
-                Date = reservationVM.Date,
-                PeopleCount = reservationVM.PeopleCount,
-                Message = reservationVM.Message,
-
-            };
+            Reservation reservation=_mapper.Map<Reservation>(reservationVM);
             await _context.Reservations.AddAsync(reservation);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

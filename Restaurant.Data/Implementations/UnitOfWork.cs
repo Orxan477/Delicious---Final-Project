@@ -1,6 +1,7 @@
-﻿using AutoMapper;
-using Restaurant.Core.Interfaces;
+﻿using Restaurant.Core.Interfaces;
+using Restaurant.Core.Interfaces.ReservationInterfaces;
 using Restaurant.Data.DAL;
+using Restaurant.Data.Implementations.ReservationImplementations;
 using System.Threading.Tasks;
 
 namespace Restaurant.Data.Implementations
@@ -8,16 +9,21 @@ namespace Restaurant.Data.Implementations
     public class UnitOfWork : IUnitOfWork
     {
         private AppDbContext _context;
-        private ReservationPaginateRepository _reservationPaginateRepository;
+        private ReservationGetRepository _reservationPaginateRepository;
+        private ReservationCRUDRepository _reservationCRUDRepository;
 
         public UnitOfWork(AppDbContext context)
         {
             _context = context;
         }
 
-        public  IReservationPaginateRepository ReservationPaginateRepository => _reservationPaginateRepository= _reservationPaginateRepository
-                                                                            ?? new ReservationPaginateRepository(_context);
-        public async Task SaveChange()
+        public  IReservationGetRepository ReservationPaginateRepository => _reservationPaginateRepository
+                                                                                    ?? new ReservationGetRepository(_context);
+
+        public IReservationCURDRepository ReservationCRUDRepository => _reservationCRUDRepository ??
+                                                                                        new ReservationCRUDRepository(_context);
+
+        public async Task SaveChangeAsync()
         {
            await _context.SaveChangesAsync();
         }

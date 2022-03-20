@@ -46,10 +46,10 @@
                                         <td> </td>
                                     }
                                     <td>
-                                        <form class="d-inline" asp-action="Check" asp-route-id="@reserv.Id" asp-route-option="2" method="post">
+                                        <form class="d-inline" asp-action="Delete" asp-route-id="@reserv.Id" asp-route-option="1" method="post">
                                             <button type="submit" class="btn btn-success"><i class="mdi mdi-check-circle-outline"></i></button>
                                         </form>
-                                        <form class="d-inline" asp-action="Delete" asp-route-id="@reserv.Id" asp-route-option="10" method="post">
+                                        <form class="d-inline" asp-action="Delete" asp-route-id="@reserv.Id" asp-route-option="2" method="post">
                                             <button type="submit" class="btn btn-danger"><i class="mdi mdi-close-circle-outline"></i></button>
                                         </form>
                                     </td>
