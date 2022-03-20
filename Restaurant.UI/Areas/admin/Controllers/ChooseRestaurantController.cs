@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Restaurant.Business.Profiles;
 using Restaurant.Business.Services;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 namespace Restaurant.UI.Areas.admin.Controllers
 {
    [Area("Admin")]
+    [Authorize(Roles = "Admin,Moderator")]
     public class ChooseRestaurantController : Controller
     {
         private AppDbContext _context;

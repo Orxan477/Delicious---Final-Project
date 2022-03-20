@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Restaurant.Business.Interfaces;
 using Restaurant.Business.ViewModels.Home.About;
 using System;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 namespace Restaurant.UI.Areas.admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin,Moderator")]
     public class AboutOptionController : Controller
     {
         private IDeliciousService _deliciouseService;

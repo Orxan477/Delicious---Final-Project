@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Restaurant.Business.Services;
 using Restaurant.Business.ViewModels;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 namespace Restaurant.UI.Areas.admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin,Moderator")]
     public class SubscribeController : Controller
     {
         private AppDbContext _context;

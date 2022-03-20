@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Restaurant.Business.Interfaces;
 using Restaurant.Business.Interfaces.Setting;
 using Restaurant.Data.DAL;
@@ -7,6 +8,7 @@ using System.Linq;
 namespace Restaurant.UI.Areas.admin.Controllers
 {
         [Area("Admin")]
+    [Authorize(Roles = "Admin,Moderator")]
     public class DashboardController : Controller
     {
         private AppDbContext _context;
