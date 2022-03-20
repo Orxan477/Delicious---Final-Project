@@ -484,6 +484,7 @@ namespace Restaurant.UI.Controllers
                                  .Include(x => x.AppUser)
                                  .OrderByDescending(x => x.Id)
                                  .ToList();
+            //return Json(FullOrders);
             var productsVM = GetProductList(FullOrders);
             int pageCount = GetPageCount(count,user.Id);
             HomeVM homeVM = new HomeVM
