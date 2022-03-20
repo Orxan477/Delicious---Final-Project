@@ -129,7 +129,7 @@ namespace Restaurant.UI.Controllers
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> AddBasket(int? id, int? priceId)
         {
-            if (id is null) return NotFound();
+            if (id is null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             Product dbProduct = await _context.Products.FindAsync(id);
             if (dbProduct is null) return BadRequest();
             List<BasketVM> basket = GetBasket();
@@ -365,10 +365,10 @@ namespace Restaurant.UI.Controllers
         {
             if (!User.Identity.IsAuthenticated)
             {
-                if (id == null) return NotFound();
+                if (id == null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
                 var baskets = GetBasket();
                 var basket = baskets.FirstOrDefault(x => x.Id == id);
-                if (basket == null) return NotFound();
+                if (basket == null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
                 if (basket.Count == 1 || basket.Count <= 0)
                 {
                     baskets.Remove(basket);
@@ -384,7 +384,7 @@ namespace Restaurant.UI.Controllers
                 var user = await _userManager.FindByNameAsync(User.Identity.Name);
                 var baskets = GetBasket(user.Id);
                 var basket = baskets.FirstOrDefault(x => x.Id == id);
-                if (basket == null) return NotFound();
+                if (basket == null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
                 if (basket.Count == 1 || basket.Count <= 0)
                 {
                     _context.BasketItems.Remove(basket);

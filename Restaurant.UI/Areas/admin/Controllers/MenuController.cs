@@ -147,7 +147,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Update(int id)
         {
             Product dbProduct = _context.Products.Where(x => x.Id == id).FirstOrDefault();
-            if (dbProduct is null) return NotFound();
+            if (dbProduct is null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             UpdateMenuVM product = _mapper.Map<UpdateMenuVM>(dbProduct);
             await GetSelectedItemAsync();
             return View(product);
@@ -205,7 +205,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             Product dbProduct = _context.Products.Where(x => x.Id == id).Include(x => x.MenuImage).FirstOrDefault();
-            if (dbProduct is null) return NotFound();
+            if (dbProduct is null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             MenuImage dbImage = await _context.MenuImages.Where(x => x.Id == dbProduct.MenuImageId).FirstOrDefaultAsync();
             Helper.RemoveFile(_env.WebRootPath, "assets/img", dbProduct.MenuImage.Image);
             _context.Products.Remove(dbProduct);

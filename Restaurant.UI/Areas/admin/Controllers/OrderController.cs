@@ -88,7 +88,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public IActionResult ChangeStatus(int id)
         {
             FullOrder order = _context.FullOrders.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
-            if (order is null) return NotFound();
+            if (order is null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             if (order.Status=="pending")
             {
                 order.Status = "preparing";

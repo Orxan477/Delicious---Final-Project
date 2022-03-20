@@ -65,7 +65,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public IActionResult Update(int id)
         {
             Setting setting = _context.Settings.Find(id);
-            if (setting == null) return NotFound();
+            if (setting == null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             ViewBag.Setting = setting.Key;
             ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View(setting);
@@ -80,7 +80,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
                 return View(setting);
             }
             Setting dbSetting = await _context.Settings.Where(p => p.Id == id).FirstOrDefaultAsync();
-            if (dbSetting == null) return NotFound();
+            if (dbSetting == null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             dbSetting.Value = setting.Value;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

@@ -255,3 +255,5 @@ D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\obj\Debug\netco
 D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\obj\Debug\netcoreapp3.1\Razor\Areas\admin\Views\ContactUs\SendMessage.cshtml.g.cs
 D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_TeamModalPartial.cshtml.g.cs
 D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\obj\Debug\netcoreapp3.1\Razor\Views\Account\ChangeNumber.cshtml.g.cs
+D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\obj\Debug\netcoreapp3.1\Razor\Views\Error\BadRequestCustom.cshtml.g.cs
+D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.UI\obj\Debug\netcoreapp3.1\Razor\Views\Error\NotFoundCustom.cshtml.g.cs

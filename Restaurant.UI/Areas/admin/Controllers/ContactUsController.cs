@@ -96,7 +96,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
                 return View(contactUs);
             }
             ContactUs dbContactUs = _context.ContactUs.Where(x => x.Id == contactUs.Id && !x.IsDeleted).FirstOrDefault();
-            if (dbContactUs is null) return NotFound();
+            if (dbContactUs is null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             await SendEmailAnswer(contactUs.SendMessage, dbContactUs);
             ViewBag.RestaurantName = GetSetting("RestaurantName");
             return RedirectToAction(nameof(Index));
@@ -129,7 +129,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             ContactUs dbContactUs = await _context.ContactUs.Where(x => !x.IsDeleted).FirstOrDefaultAsync();
-            if (dbContactUs == null) return NotFound();
+            if (dbContactUs == null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             dbContactUs.IsDeleted = true;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

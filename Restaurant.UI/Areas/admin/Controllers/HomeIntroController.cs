@@ -113,7 +113,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public IActionResult Update(int id)
         {
             HomeIntro dbHomeIntro = _context.HomeIntros.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
-            if (dbHomeIntro is null) return NotFound();
+            if (dbHomeIntro is null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             HomeIntroUpdateVM homeIntro = _mapper.Map<HomeIntroUpdateVM>(dbHomeIntro);
             ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View(homeIntro);
@@ -159,7 +159,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             HomeIntro dbHomeIntro = _context.HomeIntros.Where(x => x.Id == id).FirstOrDefault();
-            if (dbHomeIntro is null) return NotFound();
+            if (dbHomeIntro is null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             Helper.RemoveFile(_env.WebRootPath, "assets/img", dbHomeIntro.Image);
             //_context.HomeIntros.Remove(dbHomeIntro);
             dbHomeIntro.IsDeleted = true;

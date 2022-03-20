@@ -122,7 +122,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Update(int id)
         {
             Team dbTeam = _context.Teams.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
-            if (dbTeam is null) return NotFound();
+            if (dbTeam is null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             UpdateTeamVM team = _mapper.Map<UpdateTeamVM>(dbTeam);
             await GetSelectedItemAsync();
             return View(team);
@@ -173,7 +173,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             Team dbTeam = _context.Teams.Where(x => x.Id == id).FirstOrDefault();
-            if (dbTeam is null) return NotFound();
+            if (dbTeam is null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             Helper.RemoveFile(_env.WebRootPath, "assets/img", dbTeam.Image);
             //_context.Teams.Remove(dbTeam);
             dbTeam.IsDeleted = true;

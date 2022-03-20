@@ -146,7 +146,7 @@ namespace Restaurant.UI.Controllers
             bool isExistToken = _context.TokenBlackList.Any(x => x.Token == token);
             if (isExistToken) return BadRequest();
             var user = await _userManager.FindByIdAsync(userid);
-            if (user == null) return NotFound();
+            if (user == null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             var result = await _userManager.ConfirmEmailAsync(user, token);
             if (result.Succeeded)
             {
@@ -340,7 +340,7 @@ namespace Restaurant.UI.Controllers
                 return View(changePasswordVM);
             }
             var user = await _userManager.GetUserAsync(User);
-            if (user == null) return NotFound();
+            if (user == null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             var result = await _userManager.ChangePasswordAsync(user, changePasswordVM.CurrentPassword,
                                                                                     changePasswordVM.NewPassword);
             if (result.Succeeded)
@@ -375,7 +375,7 @@ namespace Restaurant.UI.Controllers
                 return View(changeUsername);
             }
             var user = await _userManager.GetUserAsync(User);
-            if (user == null) return NotFound();
+            if (user == null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             var checkPasword = await _userManager.CheckPasswordAsync(user, changeUsername.Password);
             if (!checkPasword)
             {
@@ -416,7 +416,7 @@ namespace Restaurant.UI.Controllers
                 return View(changeEmail);
             }
             var user = await _userManager.GetUserAsync(User);
-            if (user == null) return NotFound();
+            if (user == null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
 
             var checkPasword = await _userManager.CheckPasswordAsync(user, changeEmail.Password);
             if (!checkPasword)
@@ -479,7 +479,7 @@ namespace Restaurant.UI.Controllers
                 return View(changeNumber);
             }
             var user = await _userManager.GetUserAsync(User);
-            if (user == null) return NotFound();
+            if (user == null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             var checkPasword = await _userManager.CheckPasswordAsync(user, changeNumber.Password);
             if (!checkPasword)
             {

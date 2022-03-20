@@ -58,7 +58,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
             }
             
             Product dbProduct = await _context.Products.Where(x => !x.IsDeleted && x.Id == createSpecial.ProductId).Include(x=>x.MenuImage).FirstOrDefaultAsync();
-            if (dbProduct is null) return NotFound();
+            if (dbProduct is null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             bool isExistFoodName=_context.Specials.Any(x=>x.FoodName.Trim().ToLower()==
                                                                     dbProduct.Name.ToLower().Trim());
             if (isExistFoodName)
@@ -82,7 +82,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Update(int id)
         {
             Special dbSpecial = _context.Specials.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
-            if (dbSpecial is null) return NotFound();
+            if (dbSpecial is null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             CreateUpdateSpecialVM position = _mapper.Map<CreateUpdateSpecialVM>(dbSpecial);
             await GetSelectedItemAsync();
             return View(position);
@@ -99,7 +99,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
             Special dbSpecial = _context.Specials.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
             Product dbProduct = await _context.Products.Where(x => !x.IsDeleted && x.Id == updateSpecialVM.ProductId)
                                                                             .Include(x => x.MenuImage).FirstOrDefaultAsync();
-            if (dbProduct is null) return NotFound();
+            if (dbProduct is null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             bool isExistFoodNameContext = _context.Specials.Any(x => x.FoodName.Trim().ToLower() ==
                                                                              dbProduct.Name.ToLower().Trim());
 
@@ -135,7 +135,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             Special dbSpecial = _context.Specials.Where(x => x.Id == id).FirstOrDefault();
-            if (dbSpecial is null) return NotFound();
+            if (dbSpecial is null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             //_context.Specials.Remove(dbSpecial);
             dbSpecial.IsDeleted = true;
             await _context.SaveChangesAsync();

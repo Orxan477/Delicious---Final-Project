@@ -127,7 +127,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Update(int id)
         {
             Feedback dbFeedback = _context.Feedbacks.Where(x => x.Id == id).FirstOrDefault();
-            if (dbFeedback is null) return NotFound();
+            if (dbFeedback is null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             UpdateFeedbackVM feedback = _mapper.Map<UpdateFeedbackVM>(dbFeedback);
             await GetSelectedItemAsync();
             //ViewBag.RestaurantName = GetSetting("RestaurantName");
@@ -179,7 +179,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             Feedback dbFeedback = _context.Feedbacks.Where(x => x.Id == id).FirstOrDefault();
-            if (dbFeedback is null) return NotFound();
+            if (dbFeedback is null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             Helper.RemoveFile(_env.WebRootPath, "assets/img", dbFeedback.Image);
             _context.Feedbacks.Remove(dbFeedback);
             await _context.SaveChangesAsync();

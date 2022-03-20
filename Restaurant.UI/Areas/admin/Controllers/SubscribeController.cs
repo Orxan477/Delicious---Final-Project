@@ -66,7 +66,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             Subscribe dbSubscribe = _context.Subscribes.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
-            if (dbSubscribe is null) return NotFound();
+            if (dbSubscribe is null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             dbSubscribe.IsDeleted = true;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

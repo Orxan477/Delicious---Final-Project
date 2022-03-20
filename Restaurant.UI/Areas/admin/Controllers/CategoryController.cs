@@ -60,7 +60,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public IActionResult Update(int id)
         {
             Category dbCategory = _context.Categories.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
-            if (dbCategory is null) return NotFound();
+            if (dbCategory is null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             UpdateCategoryVM category = _mapper.Map<UpdateCategoryVM>(dbCategory);
             return View(category);
         }
@@ -90,7 +90,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             Category dbCategory = _context.Categories.Where(x => x.Id == id).FirstOrDefault();
-            if (dbCategory is null) return NotFound();
+            if (dbCategory is null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             //_context.Categories.Remove(dbCategory);
             dbCategory.IsDeleted = true;
             await _context.SaveChangesAsync();

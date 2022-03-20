@@ -91,7 +91,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public IActionResult Update(int id)
         {
             RestaurantPhotos dbRestaurantPhoto = _context.RestaurantPhotos.Where(x => x.Id == id).FirstOrDefault();
-            if (dbRestaurantPhoto is null) return NotFound();
+            if (dbRestaurantPhoto is null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             UpdateRestaurantPhotoVM photo = _mapper.Map<UpdateRestaurantPhotoVM>(dbRestaurantPhoto);
             ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View(photo);
@@ -127,7 +127,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             RestaurantPhotos dbRestaurantPhoto = _context.RestaurantPhotos.Where(x => x.Id == id).FirstOrDefault();
-            if (dbRestaurantPhoto is null) return NotFound();
+            if (dbRestaurantPhoto is null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             Helper.RemoveFile(_env.WebRootPath, "assets/img", dbRestaurantPhoto.Image);
             _context.RestaurantPhotos.Remove(dbRestaurantPhoto);
             await _context.SaveChangesAsync();

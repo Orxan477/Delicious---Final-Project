@@ -70,9 +70,9 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public async Task<IActionResult> Update(string id)
         {
-            if (id == null) return NotFound();
+            if (id == null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             AppUser appUser = await _userManager.FindByIdAsync(id);
-            if (appUser == null) return NotFound();
+            if (appUser == null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             var userRole = await _userManager.GetRolesAsync(appUser);
             AppUserVM appUserVM = new AppUserVM
             {
@@ -117,7 +117,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Delete(string id)
         {
             AppUser dbUser = await _userManager.FindByIdAsync(id);
-            if (dbUser is null) return NotFound();
+            if (dbUser is null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             if (!dbUser.IsDeleted)
             {
 

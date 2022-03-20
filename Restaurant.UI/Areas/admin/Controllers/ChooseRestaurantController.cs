@@ -76,7 +76,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public IActionResult Update(int id)
         {
             ChooseRestaurant dbChooseRestaurant = _context.ChooseRestaurants.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
-            if (dbChooseRestaurant is null) return NotFound();
+            if (dbChooseRestaurant is null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             ChooseUpdateVM restaurant = _mapper.Map<ChooseUpdateVM>(dbChooseRestaurant);
             ViewBag.RestaurantName = GetSetting("RestaurantName");
             return View(restaurant);
@@ -124,7 +124,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             ChooseRestaurant dbChooseRestaurant = _context.ChooseRestaurants.Where(x => x.Id == id).FirstOrDefault();
-            if (dbChooseRestaurant is null) return NotFound();
+            if (dbChooseRestaurant is null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
             //_context.ChooseRestaurants.Remove(dbChooseRestaurant);
             dbChooseRestaurant.IsDeleted = true;
             await _context.SaveChangesAsync();
