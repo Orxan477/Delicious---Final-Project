@@ -16,6 +16,8 @@ namespace Restaurant.Data.Implementations
         private SettingRepository _settingRepository;
         private AboutGetRepository _aboutGetRepository;
         private AboutCRUDRepository _aboutCRUDRepository;
+        private AboutOptionGetRepository _aboutOptionGetRepository;
+        private AboutOptionCRUDRepository _aboutOptionCRUDRepository;
 
         public UnitOfWork(AppDbContext context)
         {
@@ -33,6 +35,10 @@ namespace Restaurant.Data.Implementations
         public IAboutGetRepository AboutGetRepository => _aboutGetRepository ?? new AboutGetRepository(_context);
 
         public IAboutCRUDRepository AboutCRUDRepository => _aboutCRUDRepository ?? new AboutCRUDRepository(_context);
+
+        public IAboutOptionGetRepository AboutOptionGetRepository => _aboutOptionGetRepository ?? new AboutOptionGetRepository(_context);
+
+        public IAboutOptionCRUDRepository AboutOptionCRUDRepository => _aboutOptionCRUDRepository ?? new AboutOptionCRUDRepository(_context);
 
         public async Task SaveChangeAsync()
         {

@@ -50,9 +50,7 @@ namespace Restaurant.UI.Controllers
 
                 About = await _deliciousService.AboutService.GetAll(),
 
-                AboutOptions=await _context.AboutOptions
-                                           .Where(x => !x.IsDeleted)
-                                           .ToListAsync(),
+                AboutOptions=await _deliciousService.AboutOptionService.GetAll(),
 
                 Specials=await _context.Specials
                                        .Where(x => !x.IsDeleted)

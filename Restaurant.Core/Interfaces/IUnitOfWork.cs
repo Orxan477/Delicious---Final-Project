@@ -11,6 +11,8 @@ namespace Restaurant.Core.Interfaces
         public IAboutGetRepository AboutGetRepository { get; }
         public ISettingRepository SettingRepository { get; }
         public IAboutCRUDRepository AboutCRUDRepository { get; }
+        public IAboutOptionGetRepository AboutOptionGetRepository { get; }
+        public IAboutOptionCRUDRepository AboutOptionCRUDRepository { get; }
         Task SaveChangeAsync();
     }
 }

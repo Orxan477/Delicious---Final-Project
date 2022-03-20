@@ -12,6 +12,7 @@ namespace Restaurant.Business.Implementations
     {
         private AboutService _aboutService;
         private ReservationService _reservationService;
+        private AboutOptionService _aboutOptionService;
         private IUnitOfWork _unitOfWork;
         private IMapper _mapper;
         private IWebHostEnvironment _env;
@@ -32,5 +33,6 @@ namespace Restaurant.Business.Implementations
 
         public IReservationService ReservationService => _reservationService ?? new ReservationService(_unitOfWork,_mapper,_settingService);
 
+        public IAboutOptionService AboutOptionService => _aboutOptionService ?? new AboutOptionService(_unitOfWork,_settingService,_mapper);
     }
 }

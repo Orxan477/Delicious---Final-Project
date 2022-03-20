@@ -34,7 +34,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public async Task<IActionResult> Update(int id)
         {
-            AboutUpdateVM about=await _aboutService.GetMap(id);
+            AboutUpdateVM about = await _deliciousService.AboutService.GetMap(id);
             ViewBag.RestaurantName = _aboutService.GetSetting("RestaurantName");
             return View(about);
         }
