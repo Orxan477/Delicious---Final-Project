@@ -33,25 +33,27 @@
 
     <section id="about" class="mt-5">
         <div class="container-fluid py-4">
-            <div class="row">
+           @foreach (var item in Model.About)
+           {
+                <div class="row">
                 <div class="col-lg-5 col-md-12 col-sm-12 mb-4 p-0 image-about "
-                     style="background-image: url(/assets/img/about.jpg);">
-                    <a href="@Model.About.Link" target="_blank" rel="noopener noreferrer">
+                     style="background-image: url(/assets/img/@item.Image);">
+                    <a href="@item.Link" target="_blank" rel="noopener noreferrer">
                         <i class="fas fa-play icon-play"></i>
                     </a>
                 </div>
                 <div class="col-lg-7 col-md-12 col-sm-12 padding-all-content">
                     <div class="about-head">
-                        <h3>@Html.Raw(Model.About.Head)</h3>
+                        <h3>@Html.Raw(item.Head)</h3>
                     </div>
                     <div class="about-content">
                         <p>
-                            @Model.About.NormalContent
+                            @item.NormalContent
                         </p>
                     </div>
                     <div class="about-italic-content">
                         <p>
-                            @Model.About.ItalicContent
+                            @item.ItalicContent
                         </p>
                     </div>
                     <div class="about-content-options">
@@ -63,10 +65,11 @@
                         </ul>
                     </div>
                     <div class="about-content">
-                        <p> @Model.About.NormalContent2</p>
+                        <p> @item.NormalContent2</p>
                     </div>
                 </div>
             </div>
+           }
         </div>
     </section>
 

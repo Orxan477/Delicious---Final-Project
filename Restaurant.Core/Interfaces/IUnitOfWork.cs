@@ -1,4 +1,5 @@
-﻿using Restaurant.Core.Interfaces.ReservationInterfaces;
+﻿using Restaurant.Core.Interfaces.HomeInterfaces;
+using Restaurant.Core.Interfaces.ReservationInterfaces;
 using System.Threading.Tasks;
 
 namespace Restaurant.Core.Interfaces
@@ -7,7 +8,9 @@ namespace Restaurant.Core.Interfaces
     {
         public IReservationGetRepository ReservationPaginateRepository { get; }
         public IReservationCURDRepository ReservationCRUDRepository { get; }
+        public IAboutGetRepository AboutGetRepository { get; }
         public ISettingRepository SettingRepository { get; }
+        public IAboutCRUDRepository AboutCRUDRepository { get; }
         Task SaveChangeAsync();
     }
 }

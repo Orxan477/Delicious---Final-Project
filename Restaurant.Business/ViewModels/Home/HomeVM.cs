@@ -10,7 +10,7 @@ namespace Restaurant.Business.ViewModels
     public class HomeVM
     {
         public List<HomeIntro> HomeIntro { get; set; }
-        public About About { get; set; }
+        public List<About> About { get; set; }
         public List<AboutOption> AboutOptions { get; set; }
         public List<ChooseRestaurant> ChooseRestaurants { get; set; }
         public List<Special> Specials { get; set; }

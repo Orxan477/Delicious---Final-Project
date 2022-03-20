@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
+using Restaurant.Business.Interfaces;
+using Restaurant.Business.Interfaces.Home;
 using Restaurant.Business.Services;
 using Restaurant.Business.ViewModels;
 using Restaurant.Business.ViewModels.Home;
@@ -17,12 +19,16 @@ namespace Restaurant.UI.Controllers
     {
         private AppDbContext _context;
         private SettingServices _settingServices;
+        private IDeliciousService _deliciousService;
 
         public HomeController(AppDbContext context,
-                              SettingServices settingServices)
+                              SettingServices settingServices,
+                              IDeliciousService deliciousService)
         {
             _context = context;
             _settingServices = settingServices;
+            _deliciousService = deliciousService;
+            
         }
         private string GetSetting(string key)
         {
@@ -42,12 +48,11 @@ namespace Restaurant.UI.Controllers
             ViewBag.RestaurantName = GetSetting("RestaurantName");
             HomeVM homeVM = new HomeVM
             {
-                HomeIntro=await _context.HomeIntros
-                                        .Where(x=>!x.IsDeleted)
+                HomeIntro = await _context.HomeIntros
+                                        .Where(x => !x.IsDeleted)
                                         .ToListAsync(),
 
-                About=await _context.Abouts
-                                    .FirstOrDefaultAsync(),
+                About = await _deliciousService.AboutService.GetAll(),
 
                 AboutOptions=await _context.AboutOptions
                                            .Where(x => !x.IsDeleted)
