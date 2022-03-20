@@ -222,6 +222,11 @@ html {
 }
 .btn-warning{
     color:white;
+    background-color:#ffb03b;
+}
+.btn-warning:hover {
+    color: white;
+    background-color: #f0a636;
 }
 .stickyOtherPageNavbar {
     position: fixed;
