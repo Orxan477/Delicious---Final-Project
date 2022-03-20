@@ -17,6 +17,7 @@ namespace Restaurant.Business.Implementations
         private IWebHostEnvironment _env;
         private ISettingService _settingService;
 
+
         public DeliciousService(IUnitOfWork unitOfWork,
                            ISettingService settingService,
                            IWebHostEnvironment env,
@@ -27,8 +28,9 @@ namespace Restaurant.Business.Implementations
             _env = env;
             _settingService = settingService;
         }
-        public IAboutService AboutService => _aboutService ?? new AboutService(_unitOfWork, _settingService, _mapper, _env);
+        public IAboutService AboutService => _aboutService ?? new AboutService(_unitOfWork, _settingService, _mapper,_env);
 
         public IReservationService ReservationService => _reservationService ?? new ReservationService(_unitOfWork,_mapper,_settingService);
+
     }
 }

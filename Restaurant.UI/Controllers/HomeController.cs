@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Business.Interfaces;
 using Restaurant.Business.Interfaces.Home;
+using Restaurant.Business.Interfaces.Setting;
 using Restaurant.Business.Services;
 using Restaurant.Business.ViewModels;
 using Restaurant.Business.ViewModels.Home;
@@ -18,11 +19,11 @@ namespace Restaurant.UI.Controllers
     public class HomeController : Controller
     {
         private AppDbContext _context;
-        private SettingServices _settingServices;
+        private ISettingService _settingServices;
         private IDeliciousService _deliciousService;
 
         public HomeController(AppDbContext context,
-                              SettingServices settingServices,
+                              ISettingService settingServices,
                               IDeliciousService deliciousService)
         {
             _context = context;
@@ -30,22 +31,17 @@ namespace Restaurant.UI.Controllers
             _deliciousService = deliciousService;
             
         }
-        private string GetSetting(string key)
-        {
-            Dictionary<string, string> Settings = _settingServices.GetSetting();
-            return Settings[$"{key}"];
-        }
         public async Task<IActionResult> Index()
         {
-            ViewBag.Adress1 = GetSetting("Adress1");
-            ViewBag.Adress2 = GetSetting("Adress2");
-            ViewBag.ContactUsWork = GetSetting("ContactUsWork");
-            ViewBag.WorkTime = GetSetting("WorkTime");
-            ViewBag.Email1 = GetSetting("Email1");
-            ViewBag.Email2 = GetSetting("Email2");
-            ViewBag.Phone1 = GetSetting("Phone1");
-            ViewBag.Phone2 = GetSetting("Phone2");
-            ViewBag.RestaurantName = GetSetting("RestaurantName");
+            ViewBag.Adress1 = _settingServices.GetSetting("Adress1");
+            ViewBag.Adress2 = _settingServices.GetSetting("Adress2");
+            ViewBag.ContactUsWork = _settingServices.GetSetting("ContactUsWork");
+            ViewBag.WorkTime = _settingServices.GetSetting("WorkTime");
+            ViewBag.Email1 = _settingServices.GetSetting("Email1");
+            ViewBag.Email2 = _settingServices.GetSetting("Email2");
+            ViewBag.Phone1 = _settingServices.GetSetting("Phone1");
+            ViewBag.Phone2 = _settingServices.GetSetting("Phone2");
+            ViewBag.RestaurantName = _settingServices.GetSetting("RestaurantName");
             HomeVM homeVM = new HomeVM
             {
                 HomeIntro = await _context.HomeIntros
@@ -82,7 +78,7 @@ namespace Restaurant.UI.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                ViewBag.RestaurantName = _settingServices.GetSetting("RestaurantName");
                 return View(homeVM);
             }
 
@@ -104,7 +100,7 @@ namespace Restaurant.UI.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.RestaurantName = GetSetting("RestaurantName");
+                ViewBag.RestaurantName = _settingServices.GetSetting("RestaurantName");
                 return View();
             }
 

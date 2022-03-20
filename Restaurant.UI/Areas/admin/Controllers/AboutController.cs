@@ -18,21 +18,24 @@ namespace Restaurant.UI.Areas.admin.Controllers
     [Area("Admin")]
     public class AboutController : Controller
     {
+        private IAboutService _aboutService;
         private readonly IDeliciousService _deliciousService;
 
-        public AboutController(IDeliciousService deliciousService)
+        public AboutController(IAboutService aboutService,
+                               IDeliciousService deliciousService)
         {
+            _aboutService = aboutService;
             _deliciousService = deliciousService;
         }
         public async Task<IActionResult> Index()
         {
-            ViewBag.RestaurantName = _deliciousService.AboutService.GetSetting("RestaurantName");
-            return View(await _deliciousService.AboutService.GetAll());
+            ViewBag.RestaurantName = _aboutService.GetSetting("RestaurantName");
+            return View(await _aboutService.GetAll());
         }
         public async Task<IActionResult> Update(int id)
         {
-            AboutUpdateVM about=await _deliciousService.AboutService.GetMap(id);
-            ViewBag.RestaurantName = _deliciousService.AboutService.GetSetting("RestaurantName");
+            AboutUpdateVM about=await _aboutService.GetMap(id);
+            ViewBag.RestaurantName = _aboutService.GetSetting("RestaurantName");
             return View(about);
         }
         [HttpPost]
@@ -41,17 +44,17 @@ namespace Restaurant.UI.Areas.admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.RestaurantName = _deliciousService.AboutService.GetSetting("RestaurantName");
+                ViewBag.RestaurantName = _aboutService.GetSetting("RestaurantName");
                 return View(aboutUpdate);
             }
             try
             {
-                await _deliciousService.AboutService.Update(id, aboutUpdate);
+                await _aboutService.Update(id, aboutUpdate);
             }
             catch (System.Exception ex)
             {
                 ModelState.AddModelError("Photo", ex.Message);
-                ViewBag.RestaurantName = _deliciousService.AboutService.GetSetting("RestaurantName");
+                ViewBag.RestaurantName = _aboutService.GetSetting("RestaurantName");
                 return View();
             }
             return RedirectToAction(nameof(Index));

@@ -19,5 +19,6 @@ namespace Restaurant.Business.Implementations.Setting
             Dictionary<string, string> Settings = _unitOfWork.SettingRepository.GetSetting();
             return Settings[$"{key}"];
         }
+        
     }
 }

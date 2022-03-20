@@ -43,9 +43,9 @@ namespace Restaurant.UI
             services.AddMapperService();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            //services.AddScoped<IReservationService, ReservationService>();
+            services.AddScoped<IReservationService, ReservationService>();
             services.AddScoped<ISettingService, SettingService>();
-            //services.AddScoped<IAboutService, AboutService>();
+            services.AddScoped<IAboutService, AboutService>();
             services.AddScoped<IDeliciousService, DeliciousService>();
 
             services.AddIdentity<AppUser, IdentityRole>()
