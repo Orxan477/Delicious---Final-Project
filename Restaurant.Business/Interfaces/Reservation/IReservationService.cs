@@ -1,11 +1,12 @@
-﻿using Restaurant.Business.ViewModels.Reservation;
+﻿using Restaurant.Business.Interfaces.Setting;
+using Restaurant.Business.ViewModels.Reservation;
 using Restaurant.Core.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Restaurant.Business.Interfaces
 {
-    public interface IReservationService
+    public interface IReservationService:ISettingService
     {
         Task<List<Reservation>> GetPaginate(int count,int page);
         Task<List<Reservation>> GetAll();

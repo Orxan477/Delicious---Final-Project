@@ -11,6 +11,7 @@ namespace Restaurant.Data.Implementations
         private AppDbContext _context;
         private ReservationGetRepository _reservationPaginateRepository;
         private ReservationCRUDRepository _reservationCRUDRepository;
+        private SettingRepository _settingRepository;
 
         public UnitOfWork(AppDbContext context)
         {
@@ -22,6 +23,8 @@ namespace Restaurant.Data.Implementations
 
         public IReservationCURDRepository ReservationCRUDRepository => _reservationCRUDRepository ??
                                                                                         new ReservationCRUDRepository(_context);
+
+        public ISettingRepository SettingRepository => _settingRepository ?? new SettingRepository(_context);
 
         public async Task SaveChangeAsync()
         {

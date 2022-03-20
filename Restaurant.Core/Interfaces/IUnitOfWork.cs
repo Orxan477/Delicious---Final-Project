@@ -7,6 +7,7 @@ namespace Restaurant.Core.Interfaces
     {
         public IReservationGetRepository ReservationPaginateRepository { get; }
         public IReservationCURDRepository ReservationCRUDRepository { get; }
+        public ISettingRepository SettingRepository { get; }
         Task SaveChangeAsync();
     }
 }

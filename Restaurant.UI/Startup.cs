@@ -7,7 +7,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Restaurant.Business.Implementations;
+using Restaurant.Business.Implementations.Setting;
 using Restaurant.Business.Interfaces;
+using Restaurant.Business.Interfaces.Setting;
 using Restaurant.Business.Profiles;
 using Restaurant.Business.Services;
 using Restaurant.Business.Validators.Home;
@@ -40,6 +42,7 @@ namespace Restaurant.UI
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IReservationService, ReservationService>();
+            services.AddScoped<ISettingService, SettingService>();
 
             services.AddIdentity<AppUser, IdentityRole>()
                     .AddEntityFrameworkStores<AppDbContext>()

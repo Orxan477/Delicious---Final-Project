@@ -15,32 +15,21 @@ namespace Restaurant.UI.Areas.admin.Controllers
     [Area("Admin")]
     public class ReservationController : Controller
     {
-        private AppDbContext _context;
-        private SettingServices _settingServices;
         private IReservationService _reservationService;
 
-        public ReservationController(AppDbContext context,
-                                     SettingServices settingServices,
-                                     IReservationService reservationService)
+        public ReservationController(IReservationService reservationService)
         {
-            _context = context;
-            _settingServices=settingServices;
             _reservationService = reservationService;
-        }
-        private string GetSetting(string key)
-        {
-            Dictionary<string, string> Settings = _settingServices.GetSetting();
-            return Settings[$"{key}"];
         }
         public async Task<IActionResult> Index(int page=1)
         {
-            int count = int.Parse(GetSetting("TakeCount"));
+            int count = int.Parse(_reservationService.GetSetting("TakeCount"));
             ViewBag.TakeCount = count;
             var reservs = await _reservationService.GetPaginate(count,page);
             var reservVM =  _reservationService.GetProductList( reservs);
             int pageCount = _reservationService.GetPageCount(count);
             Paginate<ReservationListVM> model = new Paginate<ReservationListVM>(reservVM, page, pageCount);
-            ViewBag.RestaurantName = GetSetting("RestaurantName");
+            ViewBag.RestaurantName = _reservationService.GetSetting("RestaurantName");
             return View(model);
         }
         [HttpPost]
