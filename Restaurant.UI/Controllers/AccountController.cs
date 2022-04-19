@@ -130,7 +130,7 @@ namespace Restaurant.UI.Controllers
             try
             {
                 Email.SendEmail(_configure.GetSection("Email:SenderEmail").Value,
-                       _configure.GetSection("Email:Password").Value, email, body, $"{name} - Contact");
+                       _configure.GetSection("Email:Password").Value, email, body, $"{name} - Verify Email");
             }
             catch (Exception ex)
             {
@@ -159,8 +159,20 @@ namespace Restaurant.UI.Controllers
                     body = streamReader.ReadToEnd();
                 }
                 body = body.Replace("{{restaurantName}}", $"{name}");
-                Email.SendEmail(_configure.GetSection("Email:SenderEmail").Value,
+                int count = 0;
+                TryAgain:
+                try
+                {
+                    Email.SendEmail(_configure.GetSection("Email:SenderEmail").Value,
                            _configure.GetSection("Email:Password").Value, user.Email, body, $"{name} - Confirmation Succesfull");
+                }
+                catch (Exception)
+                {
+                    count++;
+                    if (count == 3) return RedirectToAction("BadRequestCustom", "Error", new { area = "null" });
+
+                    goto TryAgain;
+                }
                 await _signInManager.SignInAsync(user, false);
 
                 await AddTokenDb(token);
@@ -284,7 +296,7 @@ namespace Restaurant.UI.Controllers
             }
             return basket;
         }
-        public IActionResult LogOut(string ReturnUrl)
+        public IActionResult LogOut(string? ReturnUrl)
         {
             _signInManager.SignOutAsync();
             if (ReturnUrl != null)
@@ -548,8 +560,20 @@ namespace Restaurant.UI.Controllers
                 body = streamReader.ReadToEnd();
             }
             body = body.Replace("{{restaurantName}}", $"{name}").Replace("{{url}}", link);
-            Email.SendEmail(_configure.GetSection("Email:SenderEmail").Value,
+            int count = 0;
+            TryAgain:
+            try
+            {
+                Email.SendEmail(_configure.GetSection("Email:SenderEmail").Value,
                        _configure.GetSection("Email:Password").Value, user.Email, body, $"{name} - Reset Password");
+            }
+            catch (Exception)
+            {
+                count++;
+                if (count == 3) return RedirectToAction("BadRequestCustom", "Error", new { area = "null" });
+
+                goto TryAgain;
+            }
             await _signInManager.SignInAsync(user, false);
             ViewBag.IsSuccessReset = true;
             ViewBag.RestaurantName = GetSetting("RestaurantName");

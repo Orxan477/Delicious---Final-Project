@@ -35,7 +35,7 @@ namespace Restaurant.Business.Profiles
             CreateMap<RestaurantPhotos, UpdateRestaurantPhotoVM>();
             CreateMap<Feedback, UpdateFeedbackVM>();
             CreateMap<Special, CreateUpdateSpecialVM>();
-            CreateMap<Product, ProductListVM>().ForMember(o => o.Image, m => m.MapFrom(x => x.MenuImage.Image));
+            CreateMap<Product, ProductListVM>().ForMember(o => o.Image, m => m.MapFrom(x => x.MenuImage.Image)).ForMember(o => o.Category, m => m.MapFrom(x => x.Category.Name));
             CreateMap<AboutOption, AboutOptionListVM>();
             CreateMap<Team, TeamListVM>().ForMember(o => o.Position, m => m.MapFrom(x => x.Position.Name));
             CreateMap<AppUser, UserListVM>();
@@ -45,7 +45,7 @@ namespace Restaurant.Business.Profiles
             CreateMap<Reservation, ReservationListVM>();
             CreateMap<Setting, SettingListVM>();
             CreateMap<Subscribe, SubscribeListVM>();
-            CreateMap<FullOrder, FullOrderListVM>();
+            CreateMap<FullOrder, FullOrderListVM>().ForMember(o => o.FullName, m => m.MapFrom(x => x.AppUser.FullName));
             CreateMap<FullOrder, HomeFullOrderListVM>().ForMember(o=>o.FullName,m=>m.MapFrom(x=>x.AppUser.FullName)).ForMember(o=>o.Count,m=>m.MapFrom(x=>x.Orders.Count));
             CreateMap<ReservationVM, Reservation>();
         }

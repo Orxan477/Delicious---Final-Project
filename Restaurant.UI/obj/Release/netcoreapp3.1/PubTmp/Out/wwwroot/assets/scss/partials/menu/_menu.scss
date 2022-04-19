@@ -1,0 +1,83 @@
+.menuIntro{
+    margin-top: $big-size;
+    flex-direction: column;
+    text-align: center;
+    & h3{
+        font-size: ($size*2)+4;
+        color: $second-color;
+        font-family: $second-font-family;
+        font-weight: 600;
+        & span{
+            color: $main-color;
+            font-family: $second-font-family;
+        }
+    }
+    & p{
+        font-size: $size+2;
+        color: $second-color;
+        font-weight: 300;
+        margin: 1% auto 0 auto;
+    }
+}
+@media only screen and (min-width: 1024px) {
+    .menuIntro{
+        & p{
+            width: 50%;
+        }
+    }
+}
+#menu{
+    & ul{
+        list-style: none;
+        & .product{
+            color: black;
+            padding: 8px 10px 8px;
+            border: 2px solid $main-color;
+            border-radius: 15px;
+            transition: .3s all;
+        }
+        & .product:hover{
+            text-decoration: none;
+        }
+        & li{
+            transition: .3s all;
+        }
+        & li:hover .product{
+            background-color: $main-color;
+            color: $font-color;
+        }
+    }
+}
+.menu-modal {
+    &p{
+        text-align: center;
+    }
+    & .size{
+        text-align: center;
+        margin-bottom: $size+1 ;
+    }
+}
+.sum-count{
+    & .count{
+        & .minus{
+            padding: 5px;
+            background-color: $main-color;
+            cursor: pointer;
+        }
+        & .plus{
+            padding: 5px;
+            background-color: $main-color;
+            cursor: pointer;
+        }
+        & span{
+            padding: 5px;
+        }
+    }
+    & .sum{
+        & span{
+
+            font-size: $size+6;
+            font-weight: bold;
+        }
+    }
+}

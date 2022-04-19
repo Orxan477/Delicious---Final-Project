@@ -1,0 +1,15 @@
+D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.Business\bin\Release\netcoreapp3.1\Restaurant.Business.deps.json
+D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.Business\bin\Release\netcoreapp3.1\Restaurant.Business.dll
+D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.Business\bin\Release\netcoreapp3.1\Restaurant.Business.pdb
+D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.Business\bin\Release\netcoreapp3.1\Restaurant.Core.dll
+D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.Business\bin\Release\netcoreapp3.1\Restaurant.Data.dll
+D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.Business\bin\Release\netcoreapp3.1\Restaurant.Data.pdb
+D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.Business\bin\Release\netcoreapp3.1\Restaurant.Core.pdb
+D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.Business\obj\Release\netcoreapp3.1\Restaurant.Business.csproj.AssemblyReference.cache
+D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.Business\obj\Release\netcoreapp3.1\Restaurant.Business.GeneratedMSBuildEditorConfig.editorconfig
+D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.Business\obj\Release\netcoreapp3.1\Restaurant.Business.AssemblyInfoInputs.cache
+D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.Business\obj\Release\netcoreapp3.1\Restaurant.Business.AssemblyInfo.cs
+D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.Business\obj\Release\netcoreapp3.1\Restaurant.Business.csproj.CoreCompileInputs.cache
+D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.Business\obj\Release\netcoreapp3.1\Restaurant.Business.csproj.CopyComplete
+D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.Business\obj\Release\netcoreapp3.1\Restaurant.Business.dll
+D:\HP\Documents\Private\Code Academy\FinallProject\Restaurant.Business\obj\Release\netcoreapp3.1\Restaurant.Business.pdb

@@ -595,7 +595,6 @@ namespace Restaurant.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
@@ -727,7 +726,6 @@ namespace Restaurant.Data.Migrations
                         .HasMaxLength(50);
 
                     b.Property<string>("InformationTabContent")
-                        .IsRequired()
                         .HasColumnType("nvarchar(500)")
                         .HasMaxLength(500);
 
@@ -737,7 +735,6 @@ namespace Restaurant.Data.Migrations
                         .HasMaxLength(100);
 
                     b.Property<string>("InformationTabItalicContent")
-                        .IsRequired()
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 

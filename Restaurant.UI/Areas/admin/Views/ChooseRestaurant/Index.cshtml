@@ -33,7 +33,7 @@
                                         <td><span>@n</span></td>
                                     }
                                     <td>@choose.CardHead</td>
-                                    <td>@choose.CardContent</td>
+                                    <td>@(choose.CardContent.Length<=70?choose.CardContent:choose.CardContent.Substring(0,70)+"...")</td>
                                     <td>
                                         <a asp-action="Update" class="btn btn-warning" asp-route-id="@choose.Id"><i class="mdi mdi-table-edit"></i></a>
                                         @* <form class="d-inline delete-btn" asp-action="Delete" asp-route-id="@pro.Id" method="post">

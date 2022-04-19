@@ -10,7 +10,7 @@ namespace Restaurant.Data.Configurations
         {
             builder.Property(x => x.Name).IsRequired().HasMaxLength(50);
             builder.Property(x => x.Price).IsRequired().HasDefaultValue(0).HasColumnType("decimal(18,2)");
-            builder.Property(x=>x.Description).HasMaxLength(255).IsRequired();
+            builder.Property(x=>x.Description).HasMaxLength(255);
             builder.Property(x => x.IsDeleted).HasDefaultValue(false);
         }
     }

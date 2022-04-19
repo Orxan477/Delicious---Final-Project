@@ -99,11 +99,13 @@ namespace Restaurant.UI.Areas.admin.Controllers
             }
             ContactUs dbContactUs = _context.ContactUs.Where(x => x.Id == contactUs.Id && !x.IsDeleted).FirstOrDefault();
             if (dbContactUs is null) return RedirectToAction("NotFoundCustom", "Error", new { area = "null" });
-            await SendEmailAnswer(contactUs.SendMessage, dbContactUs);
-            ViewBag.RestaurantName = GetSetting("RestaurantName");
+            if (!await SendEmailAnswer(contactUs.SendMessage, dbContactUs))
+            {
+                return RedirectToAction("BadRequestCustom", "Error", new { area = "null" });
+            }
             return RedirectToAction(nameof(Index));
         }
-        private async Task SendEmailAnswer(string message, ContactUs dbContactUs)
+        private async Task<bool> SendEmailAnswer(string message, ContactUs dbContactUs)
         {
             string name = GetSetting("RestaurantName");
             string body = string.Empty;
@@ -112,6 +114,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
                 body = streamReader.ReadToEnd();
             }
             body = body.Replace("{{send}}", $"{message}").Replace("{{restaurantName}}", $"{name}");
+            int count = 0;
         TryAgain:
             try
             {
@@ -120,11 +123,15 @@ namespace Restaurant.UI.Areas.admin.Controllers
             }
             catch (Exception ex)
             {
+                count++;
+                if (count == 3) return false;
+
                 goto TryAgain;
             }
 
             dbContactUs.IsDeleted = true;
             await _context.SaveChangesAsync();
+            return true;
         }
         //[HttpPost]
         //[ValidateAntiForgeryToken]

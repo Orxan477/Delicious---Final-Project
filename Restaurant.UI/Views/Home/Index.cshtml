@@ -19,8 +19,8 @@
                                     @intro.Content
                                 </p>
                                 <div class="animate-button">
-                                    <button class="btn btn-primary">MENU</button>
-                                    <button class="btn btn-primary">Reservation</button>
+                                    <a class="btn btn-primary" asp-controller="Menu" asp-action="Index">MENU</a>
+                                    <a class="btn btn-primary" asp-controller="Reservation" asp-action="Index">Reservation</a>
                                 </div>
                             </div>
 
@@ -78,7 +78,7 @@
             <div class="row">
                 <div class="col-lg-12 chooseIntro">
                     <h3>Why choose <span>Our Restaurant</span></h3>
-                    <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+                    <p>By choosing us, you will see that it is the right choice. And 3 main reasons to choose us.</p>
                 </div>
                 @foreach (var choose in Model.ChooseRestaurants)
                 {
@@ -111,8 +111,7 @@
                 <div class="col-lg-12 specialIntro mb-5">
                     <h3>Check our <span>Specials</span></h3>
                     <p>
-                        Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque
-                        vitae autem.
+                        Get acquainted with the special dishes of our restaurant.
                     </p>
                 </div>
                 <div class="col-lg-3 col-md-12 col-sm-12 titleSpecials mb-4">
@@ -148,8 +147,7 @@
                 <div class="col-lg-12 galleryIntro mb-4">
                     <h3>Some photos from <span>Our Restaurant</span></h3>
                     <p>
-                        Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque
-                        vitae autem.
+                        You can visit our restaurant to see the beautiful views of our restaurant more closely.
                     </p>
                 </div>
                 @foreach (var restaurant in Model.RestaurantsPhotos)
@@ -195,8 +193,7 @@
                 <div class="col-lg-12 contactIntro mb-4">
                     <h3>Contact <span>Us</span></h3>
                     <p>
-                        Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque
-                        vitae autem.
+                        Contact us by filling out this form. We will return as soon as possible.
                     </p>
                 </div>
                 <div class="col-lg-12 padding-all-row mb-3 ">

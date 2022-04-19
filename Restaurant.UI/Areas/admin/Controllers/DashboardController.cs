@@ -19,12 +19,12 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         public IActionResult Index()
         {
-            ViewBag.ReservationCount = _context.Reservations.ToList().Count();
-            ViewBag.FullOrderCount=_context.FullOrders.ToList().Count(); 
+            ViewBag.ReservationCount = _context.Reservations.Where(x=>!x.IsCheck && !x.IsClose).ToList().Count();
+            ViewBag.FullOrderCount=_context.FullOrders.Where(x=>!x.IsDeleted).ToList().Count(); 
             ViewBag.UserCount= _context.Users.ToList().Count();
             ViewBag.TeamCount= _context.Teams.ToList().Count();
-            ViewBag.ContactUsCount=_context.ContactUs.ToList().Count();
-            ViewBag.SubscribeCount = _context.Subscribes.ToList().Count;
+            ViewBag.ContactUsCount=_context.ContactUs.Where(x=>!x.IsDeleted).ToList().Count();
+            ViewBag.SubscribeCount = _context.Subscribes.Where(x => !x.IsDeleted).ToList().Count;
             return View();
         }
     }

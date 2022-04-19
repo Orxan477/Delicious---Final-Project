@@ -39,9 +39,9 @@ namespace Restaurant.UI.Areas.admin.Controllers
             int count = int.Parse(GetSetting("TakeCount"));
             ViewBag.TakeCount = count;
             var subscribes = _context.Subscribes
+                                     .Where(x => !x.IsDeleted)
                                      .Skip((page - 1) * count)
                                      .Take(count)
-                                     .Where(x => !x.IsDeleted)
                                      .ToList();
             var subscribeVM = GetProductList(subscribes);
             int pageCount = GetPageCount(count);

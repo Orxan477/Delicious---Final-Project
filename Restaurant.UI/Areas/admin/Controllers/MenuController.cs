@@ -54,6 +54,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
             ViewBag.TakeCount = count;
             var products = _context.Products
                                  .Where(x=>!x.IsDeleted)
+                                 .OrderByDescending(x=>x.Id)
                                  .Skip((page - 1) * count)
                                  .Take(count)
                                  .Include(x => x.MenuImage)
@@ -179,6 +180,14 @@ namespace Restaurant.UI.Areas.admin.Controllers
             {
                 dbProduct.Price = updateMenu.Price;
             }
+            if (updateMenu.Description != null)
+            {
+                bool isCurrentContent = dbProduct.Description.Trim().ToLower() == updateMenu.Description.ToLower().Trim();
+                if (!isCurrentContent)
+                {
+                    dbProduct.Description = updateMenu.Description;
+                }
+            }
             if (updateMenu.Photo != null)
             {
                 int size = int.Parse(GetSetting("PhotoSize"));
@@ -217,7 +226,7 @@ namespace Restaurant.UI.Areas.admin.Controllers
         }
         private async Task GetSelectedItemAsync()
         {
-            ViewBag.Category = new SelectList(await _context.Categories
+            ViewBag.Category = new SelectList(await _context.Categories.Where(x=>!x.IsDeleted)
                                                             .ToListAsync(), "Id", "Name");
             ViewBag.RestaurantName = GetSetting("RestaurantName");
         }

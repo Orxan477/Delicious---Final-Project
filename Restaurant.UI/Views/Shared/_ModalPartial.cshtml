@@ -15,7 +15,7 @@
                                             <img src="~/assets/img/@pro.MenuImage.Image" style="width: 60%;"
                                                 class="img-fluid" alt="">
                                         </div>
-                                        <p class="text-black-50 mt-3 mb-0 px-2">@pro.Description</p>
+                                        <p class="text-black-50 mt-3 mb-4 px-2" style="text-align:center;">@pro.Description</p>
                                         <div class="size">
                                             <select name="size" id="pizzas">
                                                 @{
@@ -24,9 +24,9 @@
                                                     double boyuk = (n * 2.5);
                                                 }
                                                     <option value="1">Choose Size</option>
-                                                   <option value="1" >Kiçik - @pro.Price</option>
-                                                   <option value="2" >Orta - @orta.ToString("F2")</option>
-                                                   <option value="3" >Böyük - @boyuk</option>
+                                                   <option value="1" >Small - @pro.Price <span>$</span></option>
+                                                   <option value="2" >Medium - @orta.ToString("F2") <span>$</span></option>
+                                                   <option value="3" >Large - @boyuk <span>$</span></option>
                                             </select>
                                         </div>
                                     </div>

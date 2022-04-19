@@ -1,0 +1,103 @@
+.specialIntro{
+    flex-direction: column;
+    text-align: center;
+    & h3{
+        font-size: ($size*2)+4;
+        color: $second-color;
+        font-family: $second-font-family;
+        font-weight: 600;
+        & span{
+            color: $main-color;
+            font-family: $second-font-family;
+        }
+    }
+    & p{
+        font-size: $size+2;
+        color: $second-color;
+        font-weight: 300;
+        margin: 1% auto 0 auto;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .specialIntro{
+        & p{
+            width: 50%;
+        }
+    }
+}
+.titleSpecials{
+    & ul{
+        & li{
+            list-style: none;
+            padding: 0;
+            & .nav-link{
+                font-size: $size+1;
+                color: $second-color;
+                font-weight: 600;
+                padding: ($size/2)+5 $size+1 ($size/2)+5 $size+1;
+                border-right: 2px solid #e8e7e4;
+                transition: .3s all;
+            }
+            & .nav-link:hover{
+                color: $main-color;
+            }
+            & .active-special{
+                color: $main-color;
+                border-right:2px solid $main-color;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 992px) {
+    .titleSpecials{
+        & ul{
+            & li{
+
+                & .nav-link{
+                    border-right: none;
+                    transition: .3s all;
+                }
+                & .nav-link:hover{
+                    color: $main-color;
+                }
+                & .active-special{
+                    background-color: $main-color;
+                    color: $font-color;
+            }
+            & .active-special:hover{
+                background-color: $main-color;
+                color: $font-color;
+        }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 768px) {
+    .active-special-property{
+        flex-direction: column;
+    }
+}
+.content-special{
+    & h3{
+        font-family: $second-font-family;
+        color: $second-color;
+        font-weight: 600;
+        font-size: $size*2;
+        margin: 0;
+    }
+    & .distance{
+        color: $special-font-color;
+        font-style: italic;
+        font-size: $size+2;
+        margin: 3% 0 2% 0;
+    }
+    & .normal-text{
+        color: $special-font-color;
+        font-size: $size+2;
+    }
+}
+.active-special-property{
+    display: flex;
+    animation: fadeIn ease .5s both;
+}

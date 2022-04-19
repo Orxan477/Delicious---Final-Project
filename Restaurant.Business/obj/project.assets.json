@@ -5291,23 +5291,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Orxan477\\.nuget\\packages\\": {},
+    "C:\\Users\\user\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.Business\\Restaurant.Business.csproj",
+      "projectUniqueName": "D:\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.Business\\Restaurant.Business.csproj",
       "projectName": "Restaurant.Business",
-      "projectPath": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.Business\\Restaurant.Business.csproj",
-      "packagesPath": "C:\\Users\\Orxan477\\.nuget\\packages\\",
-      "outputPath": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.Business\\obj\\",
+      "projectPath": "D:\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.Business\\Restaurant.Business.csproj",
+      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+      "outputPath": "D:\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.Business\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Orxan477\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -5322,8 +5322,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.Data\\Restaurant.Data.csproj": {
-              "projectPath": "D:\\HP\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.Data\\Restaurant.Data.csproj"
+            "D:\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.Data\\Restaurant.Data.csproj": {
+              "projectPath": "D:\\Documents\\Private\\Code Academy\\FinallProject\\Restaurant.Data\\Restaurant.Data.csproj"
             }
           }
         }
@@ -5357,18 +5357,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[3.1.10, 3.1.10]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

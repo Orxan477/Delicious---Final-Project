@@ -1,0 +1,127 @@
+.nav2Right {
+  margin-left: 18%;
+  & .responsive-card{
+    display: none;
+  }
+  & a,
+  .shop-cart {
+    font-weight: 500;
+    padding: $size 0 $size ($size * 2)-4 !important;
+    color: $font-color;
+    font-size: $size + 1;
+    transition: 0.3s all;
+  }
+  & .shop-cart {
+    position: relative;
+    transition: 0.3s all;
+    margin-left: 10px;
+    padding: 0 !important;
+    & a sup {
+      padding: 1px 3px;
+      color: #fff;
+      background-color: $main-color;
+      z-index: 2;
+      top: 0px;
+    }
+    & .shop-min {
+      position: absolute;
+      display: none;
+      z-index: 5;
+      background-color: white;
+      color: black;
+      left: 70%;
+      top: 100%;
+      transform: translateX(-50%);
+      box-shadow: 0 ($size/2)+1 $size+1 silver;
+      transition: 0.3s;
+      & li {
+        padding: 4px;
+        & img {
+          width: ($big-size/2)+30;
+          height: ($big-size/2)+30;
+          margin-right: $size+6;
+        }
+      }
+      & .product-info{
+          display: inline-block;
+          position: absolute;
+      }
+      & .basket-product {
+        width: $big-size*3;
+        & .basket-head {
+          h3 {
+            padding: 0 5px;
+            font-size: $size+3;
+            font-weight: 900;
+          }
+        }
+      }
+    }
+    & i {
+      cursor: pointer;
+      font-size: $size + 5;
+    }
+  }
+  & .shop-cart:hover .shop-min {
+    display: inline;
+  }
+  & .logo-basket {
+    font-size: $size;
+    position: absolute;
+    left: ($size/2)+3;
+    top: ($size/2)+6;
+  }
+  & a:hover {
+    color: $main-color;
+  }
+}
+.nav2LeftIcon {
+  font-family: $second-font-family;
+  font-size: ($size * 2);
+  font-weight: 500;
+  color: $logo-color;
+  letter-spacing: 3px;
+  line-height: 1;
+}
+.nav2LeftIcon:hover {
+  color: $logo-color;
+}
+.burgerMenu {
+  color: $font-color;
+}
+.background-scroll-navbar {
+  background-color: rgba(0, 0, 0, 0.9);
+  transition: 0.3s all;
+}
+.background-scroll-0-navbar {
+  transition: 0.3s all;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.active-color {
+  color: $main-color !important;
+}
+@media only screen and (max-width: 1199px) {
+  .nav2Right {
+    margin-left: 5%;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .nav2Right {
+    & .responsive-card{
+      display: inline;
+    }
+    & .shop-cart{
+      display: none;
+    }
+  }
+}
+.stickyOtherPageNavbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+}

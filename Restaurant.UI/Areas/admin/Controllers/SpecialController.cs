@@ -117,18 +117,27 @@ namespace Restaurant.UI.Areas.admin.Controllers
                                                                 updateSpecialVM.InformationTabHead.Trim().ToLower();
             if(!isCurrentTabHead) dbSpecial.InformationTabHead = updateSpecialVM.InformationTabHead;
 
-            bool isCurrentTabContent = dbSpecial.InformationTabContent.Trim().ToLower() ==
+            if (updateSpecialVM.InformationTabContent != null)
+            {
+                bool isCurrentTabContent = dbSpecial.InformationTabContent.Trim().ToLower() ==
                                                                updateSpecialVM.InformationTabContent.Trim().ToLower();
-            if (!isCurrentTabContent) dbSpecial.InformationTabContent = updateSpecialVM.InformationTabContent;
+                if (!isCurrentTabContent) dbSpecial.InformationTabContent = updateSpecialVM.InformationTabContent;
+            }
 
-            bool isCurrentTabItalicContent = dbSpecial.InformationTabItalicContent.Trim().ToLower() ==
+            if (updateSpecialVM.InformationTabItalicContent != null)
+            {
+                if (dbSpecial.InformationTabItalicContent ==null)
+                {
+                    dbSpecial.InformationTabItalicContent = updateSpecialVM.InformationTabItalicContent;
+                }
+                bool isCurrentTabItalicContent = dbSpecial.InformationTabItalicContent.Trim().ToLower() ==
                                                                updateSpecialVM.InformationTabItalicContent.Trim().ToLower();
-            if (!isCurrentTabItalicContent) dbSpecial.InformationTabItalicContent = updateSpecialVM.InformationTabItalicContent;
+                if (!isCurrentTabItalicContent) dbSpecial.InformationTabItalicContent = updateSpecialVM.InformationTabItalicContent;
+            }
 
             bool isCurrentProductId = dbSpecial.MenuImageId == dbProduct.MenuImage.Id;
             if (!isCurrentProductId) dbSpecial.MenuImageId = dbProduct.MenuImage.Id;
 
-            if (!isCurrentTabItalicContent) dbSpecial.InformationTabItalicContent = updateSpecialVM.InformationTabItalicContent;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

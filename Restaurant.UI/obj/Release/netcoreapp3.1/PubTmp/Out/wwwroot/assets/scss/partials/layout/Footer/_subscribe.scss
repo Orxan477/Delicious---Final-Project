@@ -1,0 +1,60 @@
+#subscribe{
+    background-color: #f0eeeb;
+    & .form{
+        display: inline-block;
+        padding: 6px;
+        background-color: white;
+        border-radius: 15px;
+    }
+    & .sub-text{
+        text-align: center;
+        padding: 30px;
+        & h4{
+            font-size: $size+10;
+            font-weight: 600;
+            line-height:1;
+            color: black;
+        }
+        & p{
+            color: black;
+            font-size: $size+3;
+        }
+        & input{
+            display: inline-block;
+            height: 37px;
+            border: none;
+        }
+        & button{
+            margin: 0 ($size/2)+3;
+            border-radius: ($size*4)+2;
+            padding: ($size/2)+3 ($size*2)+5;
+            font-size: $size;
+            background-color: $main-color;
+            border: 2px solid $main-color;
+            font-weight: 500;
+            transition: .3s all;
+            font-weight: 500;
+            color: $font-color;
+            margin: 0;
+        }
+        & button:hover{
+            background-color: $button-hover-color;
+            border: 2px solid $button-hover-color;
+        }
+        & .btn:focus{
+            background-color: $main-color;
+            border-color: 2px solid $main-color;
+            box-shadow: none;
+        }
+        & .btn:active:focus{
+            background-color: $main-color;
+            border-color: 2px solid $main-color;
+            box-shadow: none !important;
+        }
+        & .btn-primary:focus{
+            box-shadow: none !important;
+            border-color: 1px solid $main-color !important;
+        }
+    }
+    
+}

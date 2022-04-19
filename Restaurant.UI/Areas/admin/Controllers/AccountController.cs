@@ -48,7 +48,8 @@ namespace Restaurant.UI.Areas.admin.Controllers
         {
             int count = int.Parse(GetSetting("TakeCount"));
             ViewBag.TakeCount = count;
-            var users = _context.Users.OrderByDescending(x => x.Id).ToList();
+            var users = _context.Users.OrderByDescending(x => x.Id).Skip((page - 1) * count)
+                                     .Take(count).ToList();
             var userVM = GetProductList(users);
             int pageCount = GetPageCount(count);
             Paginate<UserListVM> model = new Paginate<UserListVM>(userVM, page, pageCount);

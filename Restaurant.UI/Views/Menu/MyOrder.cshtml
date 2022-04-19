@@ -19,42 +19,41 @@
                                 <tr>
                                     <th>No</th>
                                     <th>FullName</th>
-                                    <th>Count</th>
                                     <th>Order Date</th>
                                     <th>Status</th>
                                     <th>Order Total</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                               <tbody>
                                 @foreach (var item in Model.Paginate.Items)
                                 {
                                     <tr>
                                         <th scope="row">@productNum</th>
                                         <td>@item.FullName</td>
-                                        <td>@item.Count</td>
                                         <td>@item.CreatedAt</td>
                                         @if (item.Status=="pending")
                                        {
-                                           <td style="text-align:center;" class="text-danger">@item.Status</td>
+                                           <td class="text-danger">@item.Status</td>
                                        }
                                        @if (item.Status=="preparing")
                                        {
-                                           <td style="text-align:center;" class="text-primary">@item.Status</td>
+                                           <td class="text-primary">@item.Status</td>
                                        }
                                        @if (item.Status=="way")
                                        {
-                                           <td style="text-align:center;" class="text-warning">@item.Status</td>
+                                           <td class="text-warning">@item.Status</td>
                                        }
                                        @if (item.Status=="delivired")
                                        {
-                                           <td style="text-align:center;" class="text-success">@item.Status</td>
+                                           <td class="text-success">@item.Status</td>
                                        }
                                         <td>@item.Total $</td>
                                     </tr>
                                     productNum++;
                                 }
                             </tbody>
-                        </table>
+                        
+                    </table>
                         @if (Model.Paginate.PageCount!=1 && Model.Paginate.PageCount!=0)
                       {
                            <div class="col-lg-12 grid-margin stretch-card d-flex justify-content-center mt-5 mb-0">
@@ -86,6 +85,12 @@
                                 </nav>
                             </div>  
                       }
+                      @if (Model.Paginate.Items.Count() == 0)
+                    {
+                        <div class="d-flex justify-content-center mt-3">
+                             <h3>No Order</h3>   
+                        </div>
+                    }
                     </div>
                 @*</div>*@
             </div>

@@ -50,7 +50,7 @@ namespace Restaurant.UI.Controllers
                                     .Where(x => !x.IsDeleted)
                                     .Include(x => x.MenuImage)
                                     .Include(x => x.Category)
-                                    .OrderByDescending(p => p.Id)
+                                    .OrderByDescending(x => x.Id)
                                     .ToListAsync(),
 
                     Categories = await _context.Categories

@@ -1,86 +1,101 @@
 ﻿@model HomeVM
 
     @foreach (var pro in Model.MenuVM.Products)
-                   {
-                       <div class="col-lg-3 col-md-4 col-sm-6 mt-3 ">
-                        <div class="product-item text-center" data-id="@pro.Category.Name.ToLower()">
-                            <div class="img">
-                                <a href="#">
-                                    <img src="~/assets/img/@pro.MenuImage.Image" class="img-fluid" alt="">
-                                </a>
+{
+    <div class="col-lg-3 col-md-4 col-sm-6 mt-3 ">
+        <div class="product-item text-center" data-id="@pro.Category.Name.ToLower()">
+            <div class="img">
+                <a href="#">
+                    <img src="~/assets/img/@pro.MenuImage.Image" class="img-fluid" alt="">
+                </a>
+            </div>
+            <div class="title mt-3">
+                <h6>@pro.Name</h6>
+            </div>
+            <div>
+
+                @if (pro.Description != null)
+                {
+                    <p class="text-black-50">@(pro.Description.Length<=40?pro.Description:pro.Description.Substring(0,40)+"...")</p>
+                }
+                else
+                {
+                    <p></p>
+                }
+                <span class="text-black-50">
+                    @if (pro.Category.Name.ToLower().Trim() == "pizza")
+                    {
+                        <a href="#" data-toggle="modal" id="modal-pizza" data-target="#pro-@pro.Id"
+                   class="btn btn-warning mt-2">Secin</a>
+                        <input type="hidden" value="@pro.Id" />
+                    }
+                    else
+                    {
+                        <div class="sum-count d-flex justify-content-between ">
+                            <div class="count">
+                                <form asp-action="AddBasket" asp-route-id="@pro.Id" method="post" id="otherCatBut">
+                                    <button type="submit" class="btn btn-warning">Add to Cart</button>
+                                    <input type="hidden" value="@pro.Id">
+                                </form>
                             </div>
-                            <div class="title mt-3">
-                                <h6>@pro.Name</h6>
-                            </div>
-                            <div>
-                                <p class="text-black-50">@pro.Description</p>
-                                <span class="text-black-50">
-                                    @if (pro.Category.Name.ToLower().Trim()=="pizza")
-                                   {
-                                       <a href="#" data-toggle="modal" id="modal-pizza" data-target="#pro-@pro.Id"
-                                        class="btn btn-warning mt-2">Secin</a>
-                                        <input type="hidden" value="@pro.Id" />
-                                    }
-                                    else {
-                                        
-                                        <form asp-action="AddBasket" asp-route-id="@pro.Id" method="post" id="otherCatBut" >
-                                               <button type="submit" class="btn btn-warning" >Add to Cart</button>
-                                                <input type="hidden" value="@pro.Id">
-                                            </form>
-                                   }
-                                </span>
+                            <div class="sum">
+                                <h5 style="color:black;" class="my-2">@pro.Price <span>$</span></h5>
                             </div>
                         </div>
-                        @if (pro.Category.Name.ToLower().Trim()=="pizza")
-                        {
-                           @* <div class="modal fade" id="pro-@pro.Id" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog " role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header d-flex justify-content-center">
-                                        <h5 class="modal-title" id="exampleModalLabel">@pro.Name</h5>
-                                    </div>
-                                    <div class="modal-body menu-modal">
-                                        <div class="d-flex justify-content-center">
-                                            <img src="~/assets/img/@pro.MenuImage.Image" style="width: 60%;"
-                                                class="img-fluid" alt="">
-                                        </div>
-                                        <p class="text-black-50 mt-3 mb-0 px-2">@pro.Description</p>
-                                        <div class="size">
-                                            <select name="size" id="pizza">
-                                                @{
-                                                    double n = @pro.Price;
-                                                    double orta = (n * 1.5);
-                                                    double boyuk = (n * 2.5);
-                                                }
-                                                    <option>Choose Size</option>
-                                                   <option value="1" >Kiçik - @pro.Price</option>
-                                                   <option value="2" >Orta - @orta</option>
-                                                   <option value="3" >Böyük - @boyuk</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">Cancel</button>
-                                            <form asp-action="AddBasket" asp-route-id="@pro.Id" id="pizza-order"  method="post" >
-                                                <button type="submit" class="btn btn-warning">Add to Cart</button>
-                                                <input type="hidden" id="productCount" value="@pro.Id" />
-                                            </form>
+                    }
+                </span>
+            </div>
+        </div>
+        @if (pro.Category.Name.ToLower().Trim() == "pizza")
+        {
+            @* <div class="modal fade" id="pro-@pro.Id" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog " role="document">
+                <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center">
+                <h5 class="modal-title" id="exampleModalLabel">@pro.Name</h5>
+                </div>
+                <div class="modal-body menu-modal">
+                <div class="d-flex justify-content-center">
+                <img src="~/assets/img/@pro.MenuImage.Image" style="width: 60%;"
+                class="img-fluid" alt="">
+                </div>
+                <p class="text-black-50 mt-3 mb-0 px-2">@pro.Description</p>
+                <div class="size">
+                <select name="size" id="pizza">
+                @{
+                double n = @pro.Price;
+                double orta = (n * 1.5);
+                double boyuk = (n * 2.5);
+                }
+                <option>Choose Size</option>
+                <option value="1" >Kiçik - @pro.Price</option>
+                <option value="2" >Orta - @orta</option>
+                <option value="3" >Böyük - @boyuk</option>
+                </select>
+                </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                data-dismiss="modal">Cancel</button>
+                <form asp-action="AddBasket" asp-route-id="@pro.Id" id="pizza-order"  method="post" >
+                <button type="submit" class="btn btn-warning">Add to Cart</button>
+                <input type="hidden" id="productCount" value="@pro.Id" />
+                </form>
 
-                                    </div>
-                                </div>
-                            </div>
+                </div>
+                </div>
+                </div>
+                </div>*@
+            @*<partial name="_ModalPartial" />*@
+            <div class="modal fade myModalAjax" id="pro-@pro.Id" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLabel " aria-hidden="true">
+                <div class="modal-dialog append-modal" role="document">
+                    @* <div class="modal-content append-modal">
+
                         </div>*@
-                        @*<partial name="_ModalPartial" />*@
-                        <div class="modal fade myModalAjax" id="pro-@pro.Id" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel " aria-hidden="true">
-                            <div class="modal-dialog append-modal" role="document">
-                               @* <div class="modal-content append-modal">
-
-                                </div>*@
-                            </div>
-                        </div>
-                        }
-                    </div>
-                   }
+                </div>
+            </div>
+        }
+    </div>
+}
