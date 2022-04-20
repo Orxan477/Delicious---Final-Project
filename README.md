@@ -1,2 +1,2 @@
 # Final Project - Restaurant
-To reserve a place in a restaurant, to order food...
+It includes general information about the restaurant, reservation system, product order and tracking of that order, easy communication with the restaurant management.
